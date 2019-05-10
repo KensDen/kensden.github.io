@@ -4,7 +4,7 @@ Hello World!
 
 This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
 
-#DesignMakeCreate 🗝👾👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 🤖 #SeymourPapert 📚
+#DesignMakeCreate 🗝👾👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚
 
 root@KenDCon:~# "progress brings with it the amelioration of the human condition"
 
