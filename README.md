@@ -2,9 +2,9 @@
 
 Hello World!
 
-This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from Raspberry Pi and Pi-Top. #LifelongLearner
+This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from Raspberry Pi and Pi-Top.
 
-#DesignMakeCreate 🗝 👾👨🏻‍💻 #TechForGood #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 🏻‍🏫👩🏻‍🎓 #SeymourPapert
+#DesignMakeCreate 🗝 👾👨🏻‍💻 #TechForGood #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 🏻‍🏫👩🏻‍🎓 #LifelongLearner #SeymourPapert
 
 root@KenDC:~#
 
