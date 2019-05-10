@@ -6,7 +6,7 @@ This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace wi
 
 #DesignMakeCreate 🗝 👾👨🏻‍💻 #TechForGood #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 🏻‍🏫👩🏻‍🎓 #LifelongLearner #SeymourPapert
 
-root@KenDC:~#
+root@KenDC:~# Technologist made with 💚 in Virginia for the betterment of the 🌎
 
 now everything's our technology
 
