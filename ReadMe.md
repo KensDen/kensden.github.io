@@ -7,6 +7,7 @@ root@KenDCon:~# Technologist <•> "progress brings with it the amelioration of 
 This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
 
 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝
+
 #DesignMakeCreate 👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_iaMQymrm0c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
