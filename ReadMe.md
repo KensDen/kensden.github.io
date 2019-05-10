@@ -14,7 +14,9 @@ This just got real! 🤖 Launching my official #Makerspace ~ #Hackerspace with #
 
 now everything's our technology
 
-this world our classroom, our laboratory. and an uncertain future society means a lot more than just, <b>ME</b>
+this world our classroom, our laboratory. 
+
+and an uncertain future society means a lot more than just, <b>ME</b>
 
 so together we build, getting stronger each time
 
