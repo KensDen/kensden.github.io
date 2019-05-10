@@ -2,11 +2,13 @@
 
 Hello World!
 
-This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from Raspberry Pi and Pi-Top.
+This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from Raspberry Pi <https://www.raspberrypi.org/> and Pi-Top.
 
 #DesignMakeCreate 🗝 👾👨🏻‍💻 #TechForGood #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 🏻‍🏫👩🏻‍🎓 #LifelongLearner #SeymourPapert
 
 "progress brings with it the amelioration of the human condition"
+
+root@KenDCon:~#
 
 Technologist made with 💚 in Virginia for the betterment of the 🌎
 
