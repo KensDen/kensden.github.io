@@ -1,12 +1,14 @@
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-root@KenDCon:~# "progress brings with it the amelioration of the human condition"
+root@KenDCon:~# Technologist - "progress brings with it the amelioration of the human condition"
 
-This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
+Summary: Technologist made with 💚 in Virginia for the betterment of the 🌎 This just got real! 🤖 
 
-#DesignMakeCreate 👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝
+Launching my official #Makerspace <•> #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
 
-Summary: Technologist made with 💚 in Virginia for the betterment of the 🌎
+#CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝
+#DesignMakeCreate 👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
+
 
 now everything's our technology
 
