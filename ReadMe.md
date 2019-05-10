@@ -9,6 +9,8 @@ This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace wi
 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝
 #DesignMakeCreate 👨🏻‍💻 #TechForGood 📓🙏 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_iaMQymrm0c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 now everything's our technology
 
 this world our classroom, our laboratory, and an uncertain future society means a lot more than just me
