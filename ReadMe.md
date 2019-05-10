@@ -14,7 +14,7 @@ This just got real! 🤖 Launching my official #Makerspace ~ #Hackerspace with #
 
 now everything's our technology
 
-this world our classroom, our laboratory. 
+this world our classroom, our laboratory
 
 and an uncertain future society means a lot more than just, <b>ME</b>
 
@@ -30,6 +30,6 @@ every problem, just an opportunity to improve our lives, our world, our communit
 
 what can we build? and what can we make? what can we fix? and what can we break?
 
-and as we learn, we play, we explore and race, we help make the world a better place.
+and as we learn, we play, we explore and race, we help make the world a better place
 
 and together...we make the future!
