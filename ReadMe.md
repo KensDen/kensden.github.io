@@ -1,6 +1,6 @@
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-root@KenDCon:~# Technologist -> "progress brings with it the amelioration of the human condition"
+root@KenDCon:~# Technologist <•> "progress brings with it the amelioration of the human condition"
 
 <b>Summary</b>: Technologist made with 💚 in Virginia for the betterment of the 🌎
 
