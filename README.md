@@ -1,9 +1,6 @@
 # hello-world
-test
 
 Hello World!
-
-Make create design build
 
 This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from Raspberry Pi and Pi-Top. #LifelongLearner
 
