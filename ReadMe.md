@@ -4,7 +4,7 @@ root@KenDCon:~# Technologist <•> "progress brings with it the amelioration of 
 
 <b>Summary</b>: Technologist made with 💚 in Virginia for the betterment of the 🌎
 
-This just got real! 🤖 Launching my official #Makerspace <•> #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
+This just got real! 🤖 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
 
 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝
 
