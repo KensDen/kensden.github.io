@@ -6,7 +6,7 @@ root@KenDCon:~# Technologist <•> "progress brings with it the amelioration of 
 
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/">Pi-Top</a>.
 
-"Invention requires two things: 1.The ability to try a lot of experiments, and 2. Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/">AWS</a>
+"Invention requires two things: 1. The ability to try a lot of experiments, and 2. Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/">AWS</a>
 
 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡 #SeymourPapert 📚🗝 #DesignMakeCreate 👨🏻‍💻📓 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
 
