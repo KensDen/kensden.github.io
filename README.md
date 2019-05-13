@@ -33,3 +33,13 @@ what can we build? and what can we make? what can we fix? and what can we break?
 and as we learn, we play, we explore and race, we help make the world a better place
 
 and together...we make the future!
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140021176-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-140021176-1');
+</script>
