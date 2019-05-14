@@ -32,7 +32,9 @@ Some of my current security thought leadership and educational influencers inclu
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Pvgef9ABDUc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
- • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/></a><a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a>
+ • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/>
+ 
+ </a><a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a>
 
  <iframe width="560" height="315" src="https://www.youtube.com/embed/_iaMQymrm0c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
