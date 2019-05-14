@@ -52,6 +52,7 @@ Some of my educational influences and secuirty thought leadership include:
 
 </center>
 
+<right>
 now everything's our technology
 
 this world our classroom, our laboratory
@@ -73,3 +74,4 @@ what can we build? and what can we make? what can we fix? and what can we break?
 and as we learn, we play, we explore and race, we help make the world a better place
 
 and together...we make the future!
+</right>
