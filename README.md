@@ -23,7 +23,10 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 Some of my current security thought leadership and educational influencers include:
 
  • <b>Byron Cook</b> - <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Research Lecture: "Formal Reasoning About the Security of Amazon Web Services</a>
-<iframe width="640" height="400" src="http://podcasts.ox.ac.uk/embed/819d8003e6e9b9e80542" frameborder="0" allowfullscreen></iframe>
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JfjLKBO27nw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
 
  • <b>Professor Seymour Papert, founder of Constructionism</b> 
 
@@ -33,10 +36,9 @@ Some of my current security thought leadership and educational influencers inclu
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Pvgef9ABDUc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
- • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/>
- 
- <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a>
+ • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> - <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a>
 
+<center>
  <iframe width="560" height="315" src="https://www.youtube.com/embed/_iaMQymrm0c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 now everything's our technology
