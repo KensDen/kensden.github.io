@@ -23,11 +23,9 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 Some of my current security thought leadership and educational influencers include:
 
 <center>
- • <b>Byron Cook</b> - <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Research Lecture: "Formal Reasoning About the Security of Amazon Web Services</a>
+ • <b>Byron Cook</b> - <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Research Lecture: "Formal Reasoning About the Security of Amazon Web Services</a><br>
 
-<br>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JfjLKBO27nw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/JfjLKBO27nw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 <br>
