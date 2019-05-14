@@ -22,7 +22,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my educational influences and secuirty thought leadership include:
 
- • <b>Byron Cook</b> - Research Lecture: <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">"Formal Reasoning About the Security of Amazon Web Services</a><br>
+ • <b>Byron Cook</b> <•> Research Lecture: <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">"Formal Reasoning About the Security of Amazon Web Services</a><br>
 
 <center>
 
@@ -44,7 +44,7 @@ Some of my educational influences and secuirty thought leadership include:
 
 </center>
 
- • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> &nbsp - &nbsp <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
+ • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> &nbsp <•> &nbsp <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
 
 <center>
 
