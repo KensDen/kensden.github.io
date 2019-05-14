@@ -30,7 +30,7 @@ Some of my current security thought leadership and educational influencers inclu
 <center> 
  <iframe width="560" height="315" src="https://www.youtube.com/embed/IhEovwWiniY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
-
+<br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Pvgef9ABDUc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
  • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/>
