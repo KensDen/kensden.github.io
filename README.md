@@ -30,7 +30,7 @@ Some of my fundamental security beliefs have been shaped by the following though
 
 </center>
 
- • <b>Professor Seymour Papert, founder of </b><a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html" targets="_blank">Constructionism</a>
+ • <b>Professor Seymour Papert, founder of</b> <a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html" targets="_blank">Constructionism</a>
  
 <center>
 
