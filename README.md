@@ -30,7 +30,7 @@ Some of my core security fundamentals have been influenced by the following thou
 
 </center>
 
- • <b>Professor Seymour Papert, founder of Constructionism</b> <•> <a href="http://www.papert.org/" targets="_blank">Papert.org</a>
+ • <b>Professor Seymour Papert, founder of </b><a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html" targets="_blank">Constructionism</a>
  
 <center>
 
