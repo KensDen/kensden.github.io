@@ -22,7 +22,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my core security fundamentals have been influenced by the following thought leaders:
 
- • <b>Byron Cook</b> <•> Research Lecture: <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">"Formal Reasoning About the Security of Amazon Web Services</a><br>
+ • <b>Byron Cook</b> <•> Research Lecture: <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">"Formal Reasoning About the Security of Amazon Web Services"</a><br>
 
 <center>
 
