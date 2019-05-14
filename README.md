@@ -34,13 +34,9 @@ Some of my core security fundamentals have been influenced by the following thou
 
 <center>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IhEovwWiniY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IhEovwWiniY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 
-<br>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Pvgef9ABDUc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<br>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Pvgef9ABDUc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 
 </center>
 
