@@ -30,7 +30,7 @@ Some of my current security influencers and thought leadership include:
 
 </center>
 
- • <b>Professor Seymour Papert, founder of Constructionism</b><br>
+ • <b>Professor Seymour Papert, founder of Constructionism</b> - <a href="http://www.papert.org/" targets="_blank">Papert.org</a><br>
 
 <center>
 
@@ -40,7 +40,7 @@ Some of my current security influencers and thought leadership include:
 
 </center>
 
- • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> - <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
+ • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/>  -  <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
 
 <center>
 
