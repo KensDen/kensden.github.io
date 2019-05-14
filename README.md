@@ -20,7 +20,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 #CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡📚🗝 #MakeInventCreateBuild 🛠🔩📡📓 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
 
-Some of my core security fundamentals have been influenced by the following thought leaders:
+Some of my fundamental security beliefs have been shaped by the following thought leadership influencers:
 
  • <b>Byron Cook</b> <•> Research Lecture: <a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">"Formal Reasoning About the Security of Amazon Web Services"</a><br>
 
