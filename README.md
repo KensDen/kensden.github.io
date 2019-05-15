@@ -8,13 +8,17 @@
   gtag('config', 'UA-140021176-1');
 </script>
 
+<center>
+
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-<center>"progress brings with it the amelioration of the human condition"</center>
+"progress brings with it the amelioration of the human condition"
+
+</center>
 
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
 
-Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>. This just got real! 🤖
+Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>.
 
 "Invention requires two things: (1) The ability to try a lot of experiments, and (2) Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
 
