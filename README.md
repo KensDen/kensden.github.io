@@ -8,13 +8,9 @@
   gtag('config', 'UA-140021176-1');
 </script>
 
-<center>
-
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-"progress brings with it the amelioration of the human condition"
-
-</center>
+<center>"progress brings with it the amelioration of the human condition"</center>
 
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
 
