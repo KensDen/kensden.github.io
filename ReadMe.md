@@ -20,7 +20,7 @@
 
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>.
 
-•> Be Knowledgeable 🤓👨🏼‍🎓💡<br>
+•> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
 
