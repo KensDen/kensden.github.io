@@ -20,10 +20,17 @@
 
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>.
 
+•> Be Knowledgeable 🤓👨🏼‍🎓💡
+•> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈
+•> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️
+
 <i>"Invention requires two things: (1) The ability to try a lot of experiments, and (2) Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
 </i>
 
-#CreativeClassrooms 📡 #LifelongLearner 📚📓 #DesignMakeCreate 📐🔬🔭 #EducationEvolved 👩🏻‍🏫👨🏻‍💻👩🏻‍🎓
+#CreativeClassrooms 🔭📡
+#LifelongLearner 📚📓🔬
+#DesignMakeCreate 📐🔨🔩
+#EducationEvolved 👩🏻‍🏫👨🏻‍💻👩🏻‍🎓
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
