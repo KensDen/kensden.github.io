@@ -14,7 +14,7 @@
 
 <center>
 
-🛠<i>"progress brings with it the amelioration of the human condition"</i>💡
+<i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
 
 </center>
 
