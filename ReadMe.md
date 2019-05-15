@@ -67,24 +67,24 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
-<i>now everything's our technology
+<i>"now everything's our technology
 
-this world our classroom, our laboratory
+<i>this world our classroom, our laboratory
 
-and an uncertain future society means a lot more than just, <b>ME</b>
+<i>and an uncertain future society means a lot more than just, <b>ME</b>
 
-so together we build, getting stronger each time
+<i>so together we build, getting stronger each time
 
-we collaborate, create, design and combine
+<i>we collaborate, create, design and combine
 
-cause we, are the makers, the modders, the dreamers. the hackers, creators, designers, and schemers
+<i>cause we, are the makers, the modders, the dreamers. the hackers, creators, designers, and schemers
 
-we're the 'what if?' And 'I wonder why?' we're about thinking, tinkering and give it a try
+<i>we're the 'what if?' And 'I wonder why?' we're about thinking, tinkering and give it a try
 
-every problem, just an opportunity to improve our lives, our world, our community
+<i>every problem, just an opportunity to improve our lives, our world, our community
 
-what can we build? and what can we make? what can we fix? and what can we break?
+<i>what can we build? and what can we make? what can we fix? and what can we break?
 
-and as we learn, we play, we explore and race, we help make the world a better place
+<i>and as we learn, we play, we explore and race, we help make the world a better place
 
-and together...we make the future!</i>
+<i>and together...we make the future"
