@@ -21,11 +21,13 @@
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <center>
+  
 [<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]<br>
 [S2VuRENvbg==]<br>
 [4b 65 6e 44 43 6f 6e]<br>
 [75 101 110 68 67 111 110]<br>
 [01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
+
 </center>
 
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
@@ -33,6 +35,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
 
 <center>
+  
 <i>"Invention requires two things:</i><br> (1) <i>The ability to try a lot of experiments;</i><br> (2) <i>Not having to live with the collateral damage of failed experiments."</i> - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
 </center>
 
@@ -68,7 +71,6 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 <iframe width="560" height="315" src="https://www.youtube.com/embed/khOaAHK7efc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 
 </center>
-
 
  • <a href="https://blog.pi-top.com/" target="_blank">pi-top</a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
 
