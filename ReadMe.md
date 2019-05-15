@@ -61,6 +61,15 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
+ • <a href="https://www.alanwatts.com/" target="_blank">Professor Alan Watts</a><br>
+
+<center>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/khOaAHK7efc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+
+</center>
+
+
  • <a href="https://blog.pi-top.com/" target="_blank">pi-top</a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
 
 <center>
