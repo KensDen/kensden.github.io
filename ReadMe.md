@@ -8,7 +8,7 @@
   gtag('config', 'UA-140021176-1');
 </script>
 
-# “Hello World!” 🚀🤖👾👨🏻‍💻
+# “Hello World!” 🤖👾
 
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
 
