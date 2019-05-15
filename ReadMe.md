@@ -41,7 +41,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
- • <b>Professor Byron Cook</b> <•> Research Lecture: "<a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Formal Reasoning About the Security of Amazon Web Services</a>"<br>
+ • <b>Professor Byron Cook</b> <•> "<a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Formal Reasoning About the Security of Amazon Web Services</a>"<br>
 
 <center>
 
