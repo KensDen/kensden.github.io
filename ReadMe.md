@@ -21,7 +21,7 @@
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <center>
-[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]
+[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]<br>
 [S2VuRENvbg==]<br>
 [4b 65 6e 44 43 6f 6e]<br>
 [75 101 110 68 67 111 110]<br>
