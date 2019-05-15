@@ -21,9 +21,11 @@
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <center>
-[S2VuREM=]<br>
-[4b 65 6e 44 43]<br>
-[01001011 01100101 01101110 01000100 01000011]<br>
+[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]
+[S2VuRENvbg==]<br>
+[4b 65 6e 44 43 6f 6e]<br>
+[75 101 110 68 67 111 110]<br>
+[01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
 </center>
 
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
