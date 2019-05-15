@@ -64,7 +64,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <a href="https://www.alanwatts.com/" target="_blank">Professor Alan Watts</a><br>
+ • <a href="https://www.alanwatts.com/" target="_blank"><b>Professor Alan Watts</b></a><br>
 
 <center>
 
