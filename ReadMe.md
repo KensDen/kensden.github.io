@@ -18,7 +18,7 @@
 
 </center>
 
-Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>.
+Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <center>
 [S2VuREM=]<br>
@@ -59,7 +59,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <a href="https://blog.pi-top.com/" target="_blank">Pi-Top</a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
+ • <a href="https://blog.pi-top.com/" target="_blank">pi-top</a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
 
 <center>
 
