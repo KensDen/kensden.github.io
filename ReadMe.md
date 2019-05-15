@@ -30,7 +30,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
 
-<i>"Invention requires two things:<br> (1) The ability to try a lot of experiments, and<br> (2) Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
+<i>"Invention requires two things:<br> (1) The ability to try a lot of experiments<br> (2) Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
 </i>
 
 #CreativeClassrooms 🔭📡
