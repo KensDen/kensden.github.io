@@ -40,9 +40,7 @@ root@KenDCon:~# <b>Technologist</b> <•> "progress brings with it the ameliorat
 
 </center>
 
- • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> 
- 
- <•> <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
+ • <a href="https://www.pi-top.com/" target="_blank"><b>Pi-Top<b/> <•> Blog: <a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">"Defining Constructionist Learning"</a><br>
 
 <center>
 
