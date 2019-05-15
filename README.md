@@ -10,7 +10,7 @@
 
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-root@KenDCon:~# <b>Technologist</b> <•> "progress brings with it the amelioration of the human condition"
+<center>"progress brings with it the amelioration of the human condition"</center>
 
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
 
