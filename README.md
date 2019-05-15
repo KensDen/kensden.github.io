@@ -10,9 +10,9 @@
 
 # “Hello World!” 🚀🤖👾👨🏻‍💻
 
-<center><i>"progress brings with it the amelioration of the human condition"</center></i>
-
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
+
+<center><i>"progress brings with it the amelioration of the human condition"</center></i>
 
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">Pi-Top</a>.
 
