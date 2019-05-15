@@ -23,7 +23,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 <center>
 [S2VuREM=]<br>
 [4b 65 6e 44 43]<br>
-[01001011 01100101 01101110 01000100 01000011]<br>
+[01001011011001010110111001000100 01000011]<br>
 </center>
 
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
