@@ -23,7 +23,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 <i>"Invention requires two things: (1) The ability to try a lot of experiments, and (2) Not having to live with the collateral damage of failed experiments." - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">AWS</a>
 </i>
 
-#CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 💡📚🗝 #MakeInventCreateBuild 🛠🔩📡📓 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
+#CreativeClassrooms 👩🏻‍🎓 #LifelongLearner 📚🗝 #MakeInventCreateBuild 🛠🔩📡📓 #EducationEvolved 👩🏻‍🏫👨🏻‍💻 
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
