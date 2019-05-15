@@ -67,24 +67,24 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
-<i>"now everything's our technology
+<p align="right"><i>"now everything's our technology</p>
 
-<i>this world our classroom, our laboratory
+<p align="right"><i>this world our classroom, our laboratory</p>
 
-<i>and an uncertain future society means a lot more than just, <b>ME</b>
+<p align="right"><i>and an uncertain future society means a lot more than just, <b>ME</b></p>
 
-<i>so together we build, getting stronger each time
+<p align="right"><i>so together we build, getting stronger each time</p>
 
-<i>we collaborate, create, design and combine
+<p align="right"><i>we collaborate, create, design and combine</p>
 
-<i>cause we, are the makers, the modders, the dreamers. the hackers, creators, designers, and schemers
+<p align="right"><i>cause we, are the makers, the modders, the dreamers. the hackers, creators, designers, and schemers</p>
 
-<i>we're the 'what if?' And 'I wonder why?' we're about thinking, tinkering and give it a try
+<p align="right"><i>we're the 'what if?' And 'I wonder why?' we're about thinking, tinkering and give it a try</p>
 
-<i>every problem, just an opportunity to improve our lives, our world, our community
+<p align="right"><i>every problem, just an opportunity to improve our lives, our world, our community</p>
 
-<i>what can we build? and what can we make? what can we fix? and what can we break?
+<p align="right"><i>what can we build? and what can we make? what can we fix? and what can we break?</p>
 
-<i>and as we learn, we play, we explore and race, we help make the world a better place
+<p align="right"><i>and as we learn, we play, we explore and race, we help make the world a better place</p>
 
-<i>and together...we make the future"
+<p align="right"><i>and together...we make the future"</p>
