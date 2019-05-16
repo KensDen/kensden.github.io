@@ -46,7 +46,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
-• <b>Jeff Bezos</b> <•> "The Electricity Metaphor"<br>
+• <b>Jeff Bezos, CEO of Amazon</b> <•> "The Electricity Metaphor"<br>
 
 <center>
 
