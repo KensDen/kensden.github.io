@@ -31,7 +31,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 </center>
 
 root@KenDCon:~# whoami<br>
-life-long self-learner<br>
+"life-long self-learner"<br>
 3 Pillars of My Work Ethic:<br>
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
