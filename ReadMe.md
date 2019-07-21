@@ -47,6 +47,14 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
+• <b>Jeff Bezos, CEO of Amazon</b> <•> "The Electricity Metaphor"<br>
+
+<center>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vMKNUylmanQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</center>
+
  • <b>Professor Byron Cook</b> <•> "<a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Formal Reasoning About the Security of Amazon Web Services</a>" and "<a href="https://plato.stanford.edu/entries/reasoning-automated/" target="_blank">Automated Reasoning</a>"<br>
 
 <center>
