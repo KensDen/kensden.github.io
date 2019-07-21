@@ -30,8 +30,9 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 </center>
 
-Meet Ken: "life-long self-learner"<br>
-My Three Foundational Pillars of Work Ethic:<br>
+root@KenDCon:~# whoami<br>
+•> "life-long self-learner"<br>
+Pillars of Work Ethic:<br>
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
