@@ -43,7 +43,7 @@ root@KenDCon:~# whoami<br>
 
 </center>
 
-(1st)<i> The ability to try a lot of experiments</i><br> (2nd) <i>Not having to live with the collateral damage of failed experiments"</i><br>
+(1st)<i>The ability to try a lot of experiments; (2nd)<i>Not having to live with the collateral damage of failed experiments"</i><br>
 •> Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a>
 
 #CreativeClassrooms 🔭📡
