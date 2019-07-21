@@ -30,6 +30,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 </center>
 
+"life-long self-learner"
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
