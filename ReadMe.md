@@ -46,7 +46,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
 
-• <b>Jeff Bezos, CEO of Amazon</b> <•> "The Electricity Metaphor"<br>
+•> <b>Jeff Bezos, CEO of Amazon</b> <•> "The Electricity Metaphor"<br>
 
 <center>
 
@@ -54,7 +54,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <b>Professor Byron Cook</b> <•> "<a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Formal Reasoning About the Security of Amazon Web Services</a>" and "<a href="https://plato.stanford.edu/entries/reasoning-automated/" target="_blank">Automated Reasoning</a>"<br>
+•> <b>Professor Byron Cook</b> <•> "<a href="https://link.springer.com/chapter/10.1007/978-3-319-96145-3_3" target="_blank">Formal Reasoning About the Security of Amazon Web Services</a>" and "<a href="https://plato.stanford.edu/entries/reasoning-automated/" target="_blank">Automated Reasoning</a>"<br>
 
 <center>
 
@@ -62,7 +62,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <b>Professor Seymour Papert</b>, founder of <a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html/" target="_blank">Constructionism</a><br>
+•> <b>Professor Seymour Papert</b>, founder of <a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html/" target="_blank">Constructionism</a><br>
  
 <center>
 
@@ -72,7 +72,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <a href="https://www.alanwatts.com/" target="_blank"><b>Professor Alan Watts</b></a><br>
+•> <a href="https://www.alanwatts.com/" target="_blank"><b>Professor Alan Watts</b></a><br>
 
 <center>
 
@@ -80,7 +80,7 @@ Some of my fundamental security beliefs have been shaped by thought leadership f
 
 </center>
 
- • <a href="https://blog.pi-top.com/" target="_blank"><b>pi-top</b></a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
+•> <a href="https://blog.pi-top.com/" target="_blank"><b>pi-top</b></a> <•> "<a href="https://blog.pi-top.com/2018/11/06/defining-constructionist-learning/" target="_blank">Defining Constructionist Learning</a>"<br>
 
 <center>
 
