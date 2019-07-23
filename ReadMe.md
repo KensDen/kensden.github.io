@@ -29,21 +29,17 @@ root@KenDCon:~# Technologist<br>
 [75 101 110 68 67 111 110]<br>
 [01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
 
-
-<i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
-
 </center>
 
 Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
-<center>
-  
-<i>"Invention requires two things:</i><br>
+<b>Favorite Quotes</b>:
 
-</center>
+•> <i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
 
-(1st) <i>The ability to try a lot of experiments;</i> (2nd) <i>Not having to live with the collateral damage of failed experiments."</i><br>
-•> Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a>
+•> <i>"Invention requires two things:</i><br>
+
+(1st) <i>The ability to try a lot of experiments;</i> (2nd) <i>Not having to live with the collateral damage of failed experiments."</i><br> - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a>
 
 #CreativeClassrooms 🔭📡
 #LifelongLearner 📚📓🔬
