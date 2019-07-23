@@ -10,8 +10,10 @@
 
 # “Hello World!” 🤖👾
 
-root@KenDCon:~# whoami<br>
+root@KenDCon:~# Technologist<br>
+
 "life-long self-learner"<br>
+
 3 Pillars of My Work Ethic:<br>
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
