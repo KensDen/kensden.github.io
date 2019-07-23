@@ -10,32 +10,29 @@
 
 # “Hello World!” 🤖👾
 
-<b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
-
-<center>
-
-<i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
-
-</center>
-
-Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
-
-<center>
-  
-[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]<br>
-[S2VuRENvbg==]<br>
-[4b 65 6e 44 43 6f 6e]<br>
-[75 101 110 68 67 111 110]<br>
-[01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
-
-</center>
-
 root@KenDCon:~# whoami<br>
 "life-long self-learner"<br>
 3 Pillars of My Work Ethic:<br>
 •> Be Knowledgeable 🤓👨🏼‍🎓📖<br>
 •> Be Relevant 👨🏻‍🔬🕵🏻‍♂️👨🏼‍✈️👨🏻‍🚀📈<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
+
+<b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
+
+<center>
+
+[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]<br>
+[S2VuRENvbg==]<br>
+[4b 65 6e 44 43 6f 6e]<br>
+[75 101 110 68 67 111 110]<br>
+[01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
+
+
+<i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
+
+</center>
+
+Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <center>
   
