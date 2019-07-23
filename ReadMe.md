@@ -37,9 +37,7 @@ Launching my official #Makerspace ~ #Hackerspace with #RPis from <a href="https:
 
 •> <i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
 
-•> <i>"Invention requires two things:</i><br>
-
-(1st) <i>The ability to try a lot of experiments;</i> (2nd) <i>Not having to live with the collateral damage of failed experiments."</i> - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a><br>
+•> <i>"Invention requires two things:</i> (1st) <i>The ability to try a lot of experiments;</i> (2nd) <i>Not having to live with the collateral damage of failed experiments."</i> - Andy Jassy, CEO <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a><br>
 
 #CreativeClassrooms 🔭📡
 #LifelongLearner 📚📓🔬
