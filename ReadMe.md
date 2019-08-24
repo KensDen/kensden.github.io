@@ -37,7 +37,7 @@ Launching my official Makerspace/Hackerspace with #RPis from <a href="https://pr
 
 •> <i>"progress brings with it the amelioration of the human condition"</i> 🛠💡
 
-•> <i>"Always work hard on something uncomfortably exciting."</i> - Larry Page, Cofounder of Google and CEO of <a href="https://abc.xyz/" target="_blank">Alphabet</a><br>
+•> <i>"Always work hard on something uncomfortably exciting."</i> - Larry Page, Co-founder of <a href="https://google.com/" target="_blank">Google</a><br> and CEO of <a href="https://abc.xyz/" target="_blank">Alphabet</a><br>
 
 #CreativeClassrooms 🔭📡
 #LifelongLearner 📚📓🔬
