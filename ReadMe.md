@@ -44,7 +44,7 @@ Launching my official Makerspace/Hackerspace with #RPis from <a href="https://pr
 #DesignMakeCreate 📐🔨🔩
 #EducationEvolved 👩🏻‍🏫👨🏻‍💻👩🏻‍🎓
 
-Some of my fundamental security beliefs have been shaped by thought leadership from the following educational influencers:
+Some of my fundamental technology philosophies have been shaped by thought leadership from the following educational influencers:
 
 •> <b>Jeff Bezos, CEO of Amazon</b> <•> "The Electricity Metaphor"<br>
 
