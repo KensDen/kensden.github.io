@@ -23,7 +23,9 @@ root@KenDCon:~# Technologist<br>
 
 <center>
 
-[<a href="https://twitter.com/KenDCon/" target="_blank">@KenDCon</a>]<br>
+[<a href="https://medium.com/@kendc/" target="_blank">My Blog | @KenDC</a>]<br>
+
+[<a href="https://twitter.com/KenDCon/" target="_blank">My Twitter | @KenDCon</a>]<br>
 [S2VuRENvbg==]<br>
 [4b 65 6e 44 43 6f 6e]<br>
 [75 101 110 68 67 111 110]<br>
