@@ -32,7 +32,7 @@ root@KenDCon:~# Technologist<br>
 [01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
 
 <br>
-<script src="https://www.hackthebox.eu/badge/225679"></script><br>
+<script src="https://www.hackthebox.eu/badge/225679"></script>
 
 </center>
 
