@@ -31,6 +31,8 @@ root@KenDCon:~# Technologist<br>
 [75 101 110 68 67 111 110]<br>
 [01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
 
+<script src="https://www.hackthebox.eu/badge/225679"></script>
+
 </center>
 
 Launching my official Makerspace/Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
