@@ -81,7 +81,7 @@ Some of my fundamental technology philosophies have been shaped by thought leade
 
 <center>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/khOaAHK7efc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+<iframe width="560" height="315" src="https://youtu.be/khOaAHK7efc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 
 </center>
 
