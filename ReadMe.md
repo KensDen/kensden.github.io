@@ -1,13 +1,3 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140021176-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-140021176-1');
-</script>
-
 # “Hello World!” 🤖👾
 
 root@KenDCon:~# Technologist<br>
@@ -20,23 +10,6 @@ root@KenDCon:~# Technologist<br>
 •> Be Engaged 🏃🏻‍♂️🤝💼🌎✈️<br>
 
 <b>Summary</b>: Tech for good, made in Virginia with 💚 for the betterment of the 🌎 
-
-<center>
-
-[<a href="https://medium.com/@kendc/" target="_blank">My Blog | @KenDC</a>]<br>
-
-[<a href="https://twitter.com/KenDCon/" target="_blank">My Twitter | @KenDCon</a>]<br>
-[S2VuRENvbg==]<br>
-[4b 65 6e 44 43 6f 6e]<br>
-[75 101 110 68 67 111 110]<br>
-[01001011 01100101 01101110 01000100 01000011 01101111 01101110]<br>
-
-<br>
-<script src="https://www.hackthebox.eu/badge/225679"></script>
-
-</center>
-
-Launching my official Makerspace/Hackerspace with #RPis from <a href="https://projects.raspberrypi.org/" target="_blank">Raspberry Pi Projects</a> and <a href="https://www.pi-top.com/" target="_blank">pi-top</a>.
 
 <b>Favorite Quotes</b>:
 
