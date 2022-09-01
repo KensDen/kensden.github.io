@@ -40,7 +40,7 @@ Some of my fundamental technology philosophies have been shaped by thought leade
 
 </center>
 
-•> <b>Professor Seymour Papert</b>, founder of <a href="http://www.makerspaceforeducation.com/constructionism--constructivism.html/" target="_blank">Constructionism</a><br>
+•> <b>Professor Seymour Papert</b>, founder of <a href="https://fablearn.stanford.edu/fellows/blog/constructionism-learning-theory-and-model-maker-education/" target="_blank">Constructionism</a><br>
  
 <center>
 
