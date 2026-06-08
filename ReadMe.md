@@ -1,6 +1,6 @@
 # “Hello World!” 🤖👾
 
-root@KenDCon:~# Technologist<br>
+root@KenDC:~# Technologist<br>
 
 "life-long self-learner"<br>
 
