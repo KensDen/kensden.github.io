@@ -1,4 +1,4 @@
-# KensDen.github.io
+# kensden.github.io
 
 My personal site — a casually technical "about me," built as a single static HTML page and served on GitHub Pages.
 
@@ -15,4 +15,4 @@ Technologist · lifelong self-learner · U.S. Army Major (Ret.) · countering th
 ## Find me
 
 - Mastodon — [@KenDC@infosec.exchange](https://infosec.exchange/@KenDC)
-- LinkedIn — [KenDC](https://www.linkedin.com/in/kendallconnell)
+- LinkedIn — [kendallconnell](https://www.linkedin.com/in/kendallconnell)

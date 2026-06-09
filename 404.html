@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 — command not found</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#0a0e12" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730;
+    --ink:#e6edf3; --muted:#8b9aa7; --dim:#74838f;
+    --green:#3fb950; --cyan:#39d3c5; --red:#ff5f57;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(1100px 700px at 78% -8%, rgba(57,211,197,.07), transparent 60%),
+      radial-gradient(900px 600px at -5% 18%, rgba(167,139,250,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;padding:22px;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.014) 0 1px,transparent 1px 3px);
+    mix-blend-mode:overlay;opacity:.5;
+  }
+  .term{
+    width:100%;max-width:640px;position:relative;
+    background:linear-gradient(180deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.9);
+  }
+  .term-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;
+    border-bottom:1px solid var(--line);background:rgba(255,255,255,.015)}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .term-title{margin-left:8px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+  .term-body{padding:26px 24px 28px;font-family:"JetBrains Mono",monospace;font-size:14px}
+  .ln{margin:0 0 4px}
+  .usr{color:var(--ink)} .path{color:var(--cyan)} .cmd{color:var(--green)}
+  .err{color:var(--red)}
+  h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(40px,10vw,64px);
+    margin:18px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-family:"Space Grotesk",sans-serif;font-size:15.5px;margin:0 0 22px;max-width:46ch}
+  a.home{display:inline-block;text-decoration:none;font-family:"JetBrains Mono",monospace;
+    font-size:13.5px;color:var(--ink);border:1px solid var(--line);background:var(--panel);
+    border-radius:8px;padding:10px 16px;transition:border-color .16s,color .16s,background .16s}
+  a.home:hover{border-color:var(--green);color:var(--green);background:#0f1813}
+  .cursor{display:inline-block;width:9px;height:15px;background:var(--green);
+    margin-left:4px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+  <main class="term">
+    <div class="term-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">kensden@github — zsh — 80×24</span>
+    </div>
+    <div class="term-body">
+      <p class="ln"><span class="usr">root@KensDen</span>:<span class="path">~</span># <span class="cmd">open</span> this-page</p>
+      <p class="ln err">zsh: 404: this-page: command not found</p>
+      <h1>404</h1>
+      <p class="sub">This path doesn't exist — maybe it never did, or maybe it's still on a floppy disk in a shoebox somewhere. 💾</p>
+      <a class="home" href="/">cd ~ &nbsp;·&gt;&nbsp; take me home</a>
+      <p class="ln" style="margin-top:22px"><span class="usr">root@KensDen</span>:<span class="path">~</span>#<span class="cursor"></span></p>
+    </div>
+  </main>
+</body>
+</html>
