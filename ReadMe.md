@@ -15,4 +15,4 @@ Technologist · lifelong self-learner · U.S. Army Major (Ret.) · countering th
 ## Find me
 
 - Mastodon — [@KenDC@infosec.exchange](https://infosec.exchange/@KenDC)
-- LinkedIn — [KendallConnell](https://www.linkedin.com/in/kendallconnell)
+- LinkedIn — [KenDC](https://www.linkedin.com/in/kendallconnell)
