@@ -95,8 +95,8 @@
 
   /* ---------- sections ---------- */
   section{padding:30px 0;border-top:1px solid var(--line)}
-  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--dim);margin:0 0 18px;display:flex;align-items:center;gap:10px}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.01em;
+    text-transform:none;color:var(--muted);margin:0 0 18px;display:flex;align-items:center;gap:9px}
   .eyebrow::before{content:"#";color:var(--green)}
   h2{font-size:22px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
 
@@ -118,6 +118,34 @@
   p.body{color:var(--muted);font-size:15.5px;margin:0 0 14px}
   p.body .hl{color:var(--ink)}
   .lede{font-size:17px;color:var(--ink)}
+
+/* inline screenshot / figure */
+.shot{margin:20px 0 4px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);
+padding:10px 14px;border-top:1px solid var(--line);background:var(--panel)}
+.shot figcaption .g{color:var(--green)}
+
+/* neofetch-style system card */
+.neo{display:flex;gap:28px;align-items:center;background:linear-gradient(180deg,var(--panel),var(--panel-2));
+border:1px solid var(--line);border-radius:12px;padding:24px 24px;font-family:"JetBrains Mono",monospace;overflow-x:auto}
+.neo-art{display:flex;flex-direction:row;gap:18px;align-items:center;flex:none}
+.neo-logo-inv{margin:0;color:var(--violet);font-size:12px;line-height:1.1;white-space:pre;
+text-shadow:0 0 16px rgba(167,139,250,.5)}
+.neo-logo-txt{margin:0;color:var(--green);font-size:12px;line-height:1.15;white-space:pre;
+text-shadow:0 0 12px rgba(63,185,80,.4)}
+.neo-info{min-width:0}
+.neo-head{margin:0 0 2px;font-size:13.5px;letter-spacing:.02em}
+.neo-head .u{color:var(--cyan);font-weight:700}
+.neo-head .h{color:var(--violet);font-weight:700}
+.neo-rule{color:var(--dim);font-size:13px;margin:0 0 9px;white-space:nowrap;overflow:hidden}
+.neo dl{margin:0;display:grid;gap:4px}
+.neo dl>div{display:flex;gap:12px;font-size:13px;line-height:1.4}
+.neo dt{color:var(--green);font-weight:700;flex:none;width:78px}
+.neo dd{margin:0;color:var(--ink)}
+.neo dd .m{color:var(--muted)}
+.neo-swatch{display:flex;gap:6px;margin-top:16px}
+.neo-swatch span{width:16px;height:16px;border-radius:3px;display:block}
 
   /* tags */
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
@@ -184,6 +212,9 @@
     .focus{grid-template-columns:1fr}
     header{padding:34px 0 22px}
     .term-body{padding:22px 17px 24px}
+    .neo{flex-direction:column;gap:16px;padding:20px 16px;align-items:flex-start}
+    .neo dt{width:70px}
+    .neo dl>div{font-size:12px}
   }
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
@@ -211,9 +242,56 @@
   </header>
 
   <main>
+  <!-- ============ NEOFETCH SYSTEM CARD ============ -->
+  <section id="sysinfo">
+    <p class="eyebrow">neofetch</p>
+    <h2 class="sr-only">System info</h2>
+    <div class="neo">
+<div class="neo-art">
+<pre class="neo-logo-inv">   ┌─┐      ┌─┐
+   │ └──────┘ │
+ ┌─┘  ┌┐  ┌┐  └─┐
+ │    └┘  └┘    │
+ │              │
+ └─┐  ┌────┐  ┌─┘
+   │  └┐  ┌┘  │
+   └───┘  └───┘</pre>
+<pre class="neo-logo-txt"> _                    
+| | __   ___   _ __  
+| |/ /  / _ \ | '_ \ 
+| ' <  |  __/ | | | |
+|_|\_\  \___| |_| |_|</pre>
+      </div>
+      <div class="neo-info">
+        <p class="neo-head"><span class="u">ken</span>@<span class="h">hello-future</span></p>
+        <p class="neo-rule">———————————————————</p>
+        <dl>
+          <div><dt>OS</dt><dd>MakerOS <span class="m">(rolling release)</span></dd></div>
+          <div><dt>Host</dt><dd>hello-future</dd></div>
+          <div><dt>Kernel</dt><dd>maker/dad</dd></div>
+          <div><dt>Uptime</dt><dd>20+ years of public service</dd></div>
+          <div><dt>Shell</dt><dd>/usr/bin/cybersecurity</dd></div>
+          <div><dt>Packages</dt><dd>circuits, comics, code</dd></div>
+          <div><dt>CPU</dt><dd>curiosity <span class="m">(overclocked)</span></dd></div>
+          <div><dt>Memory</dt><dd>lifelong learner</dd></div>
+          <div><dt>Theme</dt><dd>Tech-for-Good <span class="m">[dark]</span></dd></div>
+          <div><dt>Terminal</dt><dd>hello future_</dd></div>
+        </dl>
+        <div class="neo-swatch" aria-hidden="true">
+          <span style="background:#3fb950"></span>
+          <span style="background:#39d3c5"></span>
+          <span style="background:#e3b341"></span>
+          <span style="background:#a78bfa"></span>
+          <span style="background:#f778ba"></span>
+          <span style="background:#e6edf3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ PILLARS ============ -->
   <section id="ethic">
-    <p class="eyebrow">work ethic — 3 pillars</p>
+    <p class="eyebrow">cat ~/.ethos</p>
     <h2 class="sr-only">Work ethic</h2>
     <div class="pillars">
       <div class="pillar k">
@@ -241,12 +319,17 @@
     <p class="body lede">I've been tinkering with tech out of a lifelong, passionate self-interest since I built my first PC from a pile of parts acquired in 8th grade — teaching myself from an old Microsoft VHS learning series and VCR player borrowed from a local library. 📼</p>
     <p class="body">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer; until I was able to buy all the parts for a PC build piece-by-piece with money earned mowing yards and dodging fire ants during long, hot South Georgia summers. ⌨️</p>
     <p class="body">Only booting to a DOS command line before I was able to upgrade to Windows 3.1; with dial-up internet arriving not long after. Back then "the network" was sneakernet — a stack of floppies hand-carried across the room — and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing. 💾</p>
+
+        <figure class="shot">
+          <img src="dos.png" alt="An MS-DOS 6.22 boot screen running the command: echo hello, future — which prints: hello, future" loading="lazy" width="1600" height="900" />
+          <figcaption><span class="g">C:\&gt;</span> where it all started_</figcaption>
+        </figure>
     <p class="body">I later enlisted in the U.S. Army Reserve in 2000, my junior year of high school, and shipped off the summer before my senior year to Basic Combat Training at Fort Sill, Oklahoma — Home of the Field Artillery. The next year brought Advanced Individual Training at Fort Jackson, South Carolina, where I took my final exam on the morning of September 11th, 2001 — the same date printed on my diploma, and the day I officially completed initial entry training and was qualified to serve as a soldier. 🪖</p>
     <p class="body">From there I came up through the enlisted ranks to Staff Sergeant, earned my commission as an officer, and more recently retired as a Major in 2024 — more than two decades of service; #TempusFugit. Along the way I deployed to Bosnia-Herzegovina for peacekeeping and across the Middle East, including Iraq, where I spent my 21st birthday. 🎖️</p>
     <p class="body">Out of the University of Georgia in 2009, my first job took me across the Atlantic — a security consultant at Deloitte in London, advising commercial clients throughout Europe on global trade compliance. 🌍</p>
     <p class="body">Since London, I've spent more than a decade in management consulting and risk advisory — leading enterprise cybersecurity work for Fortune 100 and global clients across the commercial and federal worlds, from cyber threat intelligence and cloud security to compliance across international frameworks. 🛡️</p>
     <p class="body">These days I work in security — <span class="hl">countering threats and mitigating risks by harnessing advanced AI</span>. I pair an analyst's mindset with an operator's instinct to transform and reinvent all aspects of security. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn't just a department — it's a mission. 👾</p>
-    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on — building little electronics projects with my kiddos and watching the same sparks of curiosity igniting in them. 💡</p>
+    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on — building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together — prompts and patterns one day, soldering irons the next. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. 💡</p>
     <div class="tags">
       <span class="tag"><b>#</b>LifelongLearner</span>
       <span class="tag"><b>#</b>DesignMakeCreate</span>
@@ -257,7 +340,7 @@
 
   <!-- ============ FOCUS ============ -->
   <section id="focus">
-    <p class="eyebrow">currently focused on</p>
+    <p class="eyebrow">ls ~/now/</p>
     <h2>What I'm into right now</h2>
     <div class="focus">
       <div class="item"><span class="arr">·&gt;</span><span class="t">Agentic AI SecOps &amp; Harnessing the AI Security Trifecta (aka: Red / Blue / Purple Teaming) ♥️💙💜</span></div>
@@ -269,7 +352,7 @@
 
   <!-- ============ QUOTES ============ -->
   <section id="quotes">
-    <p class="eyebrow">quotes i keep close</p>
+    <p class="eyebrow">fortune</p>
     <blockquote>
       <p>"Progress brings with it the amelioration of the human condition."</p>
       <cite>·&gt; the reason any of this is worth doing 🛠💡</cite>
@@ -282,7 +365,7 @@
 
   <!-- ============ INFLUENCES ============ -->
   <section id="influences">
-    <p class="eyebrow">thinkers who shaped me</p>
+    <p class="eyebrow">cat ~/influences.log</p>
     <h2>Standing on shoulders</h2>
     <div class="infl">
       <a href="https://plato.stanford.edu/entries/reasoning-automated/" target="_blank" rel="noopener">
@@ -302,7 +385,7 @@
 
   <!-- ============ PI-TOP VIDEO ============ -->
   <section id="pitop">
-    <p class="eyebrow">learning by making</p>
+    <p class="eyebrow">make future</p>
     <h2>We make the future</h2>
     <p class="body">From <a href="https://www.pi-top.com/blog/2018/11/06/defining-constructionist-learning" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">pi-top</a> — the spirit behind everything on this page: the world as classroom and laboratory, and the makers who build it. 🔨</p>
     <div class="video-card">
@@ -314,7 +397,7 @@
 
   <!-- ============ MANIFESTO ============ -->
   <section id="manifesto">
-    <p class="eyebrow">the maker's creed</p>
+    <p class="eyebrow">cat /etc/creed</p>
     <h2 class="sr-only">The maker's creed</h2>
     <div class="maker">
       <p><span class="hl">The world is our classroom, our laboratory.</span> We're the makers and the modders, the dreamers and the hackers — the "what if?" and the "I wonder why?" Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn — and <span class="hl">together, we make the future.</span> 🔭📡🔨</p>
@@ -323,7 +406,7 @@
 
   <!-- ============ BEZOS VIDEO ============ -->
   <section id="electricity">
-    <p class="eyebrow">the bigger picture</p>
+    <p class="eyebrow">history</p>
     <h2>The Electricity Metaphor</h2>
     <p class="body">Jeff Bezos on how a transformative technology — like electricity a century ago — eventually fades into invisible infrastructure, unleashing inventions nobody saw coming. It's how I think about AI now: we're still in the early, electrifying days. ⚡</p>
     <div class="video-card">
@@ -339,7 +422,7 @@
 
   <!-- ============ VIDEO ============ -->
   <section id="watch">
-    <p class="eyebrow">a talk that stuck with me</p>
+    <p class="eyebrow">play talk.mp4</p>
     <h2>Hire the Scrapper</h2>
     <p class="body">This one hits close to home. Regina Hartley on why the best hire might not have the perfect resume — and why <span class="hl">passion and purpose</span> tend to beat pedigree. Reminds me where I came from. 🪛</p>
     <div class="video-card">
