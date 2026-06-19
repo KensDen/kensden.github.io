@@ -4,7 +4,7 @@ My personal site — a casually technical "about me," built as a single static H
 
 **→ Live at [kensden.github.io](https://kensden.github.io)**
 
-Technologist · lifelong self-learner · U.S. Army Major (Ret.) · countering threats and mitigating risks with advanced AI.
+Technologist · lifelong self-learner · U.S. Army Veteran (Ret.) · countering threats and mitigating risks with advanced AI.
 
 ## About this repo
 
