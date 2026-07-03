@@ -116,6 +116,8 @@
   .pillar.k .p-name{color:var(--cyan)} .pillar.r .p-name{color:var(--amber)} .pillar.e .p-name{color:var(--violet)}
 
   p.body{color:var(--muted);font-size:15.5px;margin:0 0 14px}
+  p.body a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(57,211,197,.45)}
+  p.body a:hover{border-bottom-style:solid}
   p.body .hl{color:var(--ink)}
   .lede{font-size:17px;color:var(--ink)}
 
@@ -125,6 +127,12 @@
 .shot figcaption{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);
 padding:10px 14px;border-top:1px solid var(--line);background:var(--panel)}
 .shot figcaption .g{color:var(--green)}
+
+/* two-up image row (maker bench) */
+.shot-row{display:flex;gap:14px;margin:24px 0 4px;align-items:stretch}
+.shot-row .shot{margin:0;flex:1 1 0;min-width:0}
+.shot-row .shot img{height:100%;object-fit:cover}
+@media (max-width:640px){.shot-row{flex-direction:column}.shot-row .shot img{height:auto}}
 
 /* neofetch-style system card */
 .neo{display:flex;gap:28px;align-items:center;background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -317,19 +325,45 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">whoami</p>
     <h2>The story so far</h2>
     <p class="body lede">I've been tinkering with tech out of a lifelong, passionate self-interest since I built my first PC from a pile of parts acquired in 8th grade — teaching myself from an old Microsoft VHS learning series and VCR player borrowed from a local library. 📼</p>
-    <p class="body">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer; until I was able to buy all the parts for a PC build piece-by-piece with money earned mowing yards and dodging fire ants during long, hot South Georgia summers. ⌨️</p>
+    <p class="body">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer; typing up the "www-dot" addresses I scribbled down from the ends of TV commercials, building a hand-written index of an internet I couldn't reach yet. The real thing came piece-by-piece, with money earned mowing yards and dodging fire ants during long, hot South Georgia summers. ⌨️</p>
     <p class="body">Only booting to a DOS command line before I was able to upgrade to Windows 3.1; with dial-up internet arriving not long after. Back then "the network" was sneakernet — a stack of floppies hand-carried across the room — and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing. 💾</p>
 
         <figure class="shot">
           <img src="dos.png" alt="An MS-DOS 6.22 boot screen running the command: echo hello, future — which prints: hello, future" loading="lazy" width="1600" height="900" />
           <figcaption><span class="g">C:\&gt;</span> where it all started_</figcaption>
         </figure>
+
+        <figure class="shot" style="max-width:480px">
+          <img src="floppy.jpg" alt="A 5.25-inch floppy disk with a modern 128GB microSD card resting on top of it" loading="lazy" width="1000" height="750" />
+          <figcaption><span class="g">C:\&gt;</span> same idea, 40 years apart &mdash; that card holds ~350,000 floppies</figcaption>
+        </figure>
     <p class="body">I later enlisted in the U.S. Army Reserve in 2000, my junior year of high school, and shipped off the summer before my senior year to Basic Combat Training at Fort Sill, Oklahoma — Home of the Field Artillery. The next year brought Advanced Individual Training at Fort Jackson, South Carolina, where I took my final exam on the morning of September 11th, 2001 — the same date printed on my diploma, and the day I officially completed initial entry training and was qualified to serve as a soldier. 🪖</p>
+
+    <figure class="shot" style="max-width:560px">
+      <img src="army-early.jpg" alt="A collage of early Army photos: basic training portrait, drill sergeant handshake at graduation, peacekeeping duty in Bosnia beside a general at a Dayton Peace Accord backdrop, and field training exercises" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> reporting for duty, 2000_</figcaption>
+    </figure>
     <p class="body">From there I came up through the enlisted ranks to Staff Sergeant, earned my commission as an officer, and more recently retired as a Major in 2024 — more than two decades of service; #TempusFugit. Along the way I deployed to Bosnia-Herzegovina for peacekeeping and across the Middle East, including Iraq, where I spent my 21st birthday. 🎖️</p>
+
+    <figure class="shot" style="max-width:560px">
+      <img src="army-deployed.jpg" alt="A collage of deployment photos from the Middle East: standing guard by a Humvee and fuel tanker, grilling in Army PT gear, kevlar and body armor portraits, and mounted patrol" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> downrange_</figcaption>
+    </figure>
     <p class="body">Out of the University of Georgia in 2009, my first job took me across the Atlantic — a security consultant at Deloitte in London, advising commercial clients throughout Europe on global trade compliance. 🌍</p>
     <p class="body">Since London, I've spent more than a decade in management consulting and risk advisory — leading enterprise cybersecurity work for Fortune 100 and global clients across the commercial and federal worlds, from cyber threat intelligence and cloud security to compliance across international frameworks. 🛡️</p>
     <p class="body">These days I work in security — <span class="hl">countering threats and mitigating risks by harnessing advanced AI</span>. I pair an analyst's mindset with an operator's instinct to transform and reinvent all aspects of security. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn't just a department — it's a mission. 👾</p>
-    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on — building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together — prompts and patterns one day, soldering irons the next. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. 💡</p>
+    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on — building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together — prompts and patterns one day, soldering irons the next. I'd rather raise <span class="hl">builders than browsers</span>; kids who create, build, and delegate, not just swipe and scroll. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. I wrote the longer version of that thought in <a href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-kibqe/" target="_blank" rel="noopener">Batman Has No Superpowers. That's the Whole Point.</a> 💡</p>
+
+    <div class="shot-row">
+      <figure class="shot">
+        <img src="pitop.jpg" alt="An open green pi-top modular laptop with the Raspberry Pi board, trackball, and internals exposed" loading="lazy" width="780" height="1040" />
+        <figcaption><span class="g">$</span> some assembly required</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="batmobile.jpg" alt="A CircuitMess Batmobile kit being built, showing the ESP32 board and components" loading="lazy" width="780" height="1040" />
+        <figcaption><span class="g">$</span> no superpowers required</figcaption>
+      </figure>
+    </div>
     <div class="tags">
       <span class="tag"><b>#</b>LifelongLearner</span>
       <span class="tag"><b>#</b>DesignMakeCreate</span>
@@ -434,6 +468,19 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
         <p class="v-what">"Choose the underestimated contender, whose secret weapons are <span class="hl">passion and purpose</span>."</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============ COLLECTOR'S ITEM ============ -->
+  <section id="collect">
+    <p class="eyebrow">man ken</p>
+    <h2>Collector's item</h2>
+    <p class="body">What happens when a lifelong comic collector spends two decades in security? Eventually you make yourself the action figure. Mission first. People always. <span class="hl">Not a toy.</span> 🦸</p>
+    <figure class="shot" style="max-width:640px">
+      <a href="kc-01.jpg" target="_blank" rel="noopener">
+        <img src="kc-01.jpg" alt="A collector action-figure card: Ken Connell, Cyberspace Operator — blister pack front with mission essentials, and mission dossier back with profile, QR code, and challenge coin" loading="lazy" width="1536" height="1024" />
+      </a>
+      <figcaption><span class="g">&gt;</span> limited edition · 001/007 · tap to inspect_</figcaption>
+    </figure>
   </section>
 
   </main>
