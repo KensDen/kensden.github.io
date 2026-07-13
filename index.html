@@ -118,6 +118,17 @@
   p.body{color:var(--muted);font-size:15.5px;margin:0 0 14px}
   p.body a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(57,211,197,.45)}
   p.body a:hover{border-bottom-style:solid}
+
+  /* writing / dispatches */
+  .pubs{display:grid;gap:12px;margin-top:4px}
+  .pub{display:block;padding:16px 18px;background:linear-gradient(180deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line);border-radius:12px;text-decoration:none;
+    transition:border-color .16s,transform .16s}
+  .pub:hover{border-color:var(--green);transform:translateY(-1px)}
+  .pub-t{display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
+    color:var(--ink);font-size:16.5px;margin-bottom:5px}
+  .pub-t::before{content:"·> ";font-family:"JetBrains Mono",monospace;color:var(--green)}
+  .pub-m{display:block;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim)}
   p.body .hl{color:var(--ink)}
   .lede{font-size:17px;color:var(--ink)}
 
@@ -394,6 +405,23 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   </section>
 
   <!-- ============ FOCUS ============ -->
+  <!-- ============ WRITING ============ -->
+  <section id="writing">
+    <p class="eyebrow">ls ~/writing/</p>
+    <h2>Dispatches</h2>
+    <p class="body">Occasional long-form writing. Stories first, tech second.</p>
+    <div class="pubs">
+      <a class="pub" href="10-cent-dreams.html">
+        <span class="pub-t">10-Cent Dreams of a Two-Sided Coin</span>
+        <span class="pub-m">an essay for my mom about a dime, comic books, and the day the story changed · hosted here</span>
+      </a>
+      <a class="pub" href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-ejeqe/" target="_blank" rel="noopener">
+        <span class="pub-t">Batman Has No Superpowers. That's the Whole Point.</span>
+        <span class="pub-m">parenting, AI, and raising builders instead of browsers · LinkedIn</span>
+      </a>
+    </div>
+  </section>
+
   <section id="focus">
     <p class="eyebrow">ls ~/now/</p>
     <h2>What I'm into right now</h2>
