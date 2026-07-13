@@ -47,6 +47,11 @@
   .ln{margin:0 0 4px}
   .usr{color:var(--ink)} .path{color:var(--cyan)} .cmd{color:var(--green)}
   .err{color:var(--red)}
+  .snap{margin:18px 0 20px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000}
+  .snap img{display:block;width:100%;height:auto}
+  .snap figcaption{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
+    padding:9px 13px;border-top:1px solid var(--line);background:var(--panel)}
+  .snap figcaption .g{color:var(--green)}
   h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(40px,10vw,64px);
     margin:18px 0 6px;letter-spacing:-.02em}
   .sub{color:var(--muted);font-family:"Space Grotesk",sans-serif;font-size:15.5px;margin:0 0 22px;max-width:46ch}
@@ -69,8 +74,14 @@
     <div class="term-body">
       <p class="ln"><span class="usr">root@KensDen</span>:<span class="path">~</span># <span class="cmd">open</span> this-page</p>
       <p class="ln err">zsh: 404: this-page: command not found</p>
+
+      <figure class="snap">
+        <img src="invasion.jpg" alt="A black-and-white retro sci-fi scene: a giant tin toy robot looming over a small town square while flying saucers hover above the rooftops" width="1280" height="794" />
+        <figcaption><span class="g">&gt;</span> last known footage_</figcaption>
+      </figure>
+
       <h1>404</h1>
-      <p class="sub">This path doesn't exist — maybe it never did, or maybe it's still on a floppy disk in a shoebox somewhere. 💾</p>
+      <p class="sub">This path doesn't exist. Abducted by the saucers, most likely. Or still on a floppy disk in a shoebox somewhere. 💾</p>
       <a class="home" href="/">cd ~ &nbsp;·&gt;&nbsp; take me home</a>
       <p class="ln" style="margin-top:22px"><span class="usr">root@KensDen</span>:<span class="path">~</span>#<span class="cursor"></span></p>
     </div>
