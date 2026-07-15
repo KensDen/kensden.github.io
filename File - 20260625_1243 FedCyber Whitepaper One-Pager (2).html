@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karrier — Compliance-Native DevSecOps Accelerator | Accenture Federal Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ═══ VARIABLES ═══════════════════════════════════════════════════════ */
+    :root {
+      --purple:         #A100FF;
+      --purple-dark:    #7000B0;
+      --purple-deeper:  #4A0080;
+      --purple-deepest: #1C0040;
+      --purple-void:    #0D0018;
+      --purple-light:   #C966FF;
+      --purple-pale:    #E2B4FF;
+      --purple-glass:   rgba(161,0,255,0.12);
+      --purple-border:  rgba(161,0,255,0.25);
+      --purple-bg:      #F8F0FF;
+      --purple-tint:    rgba(161,0,255,0.06);
+      --green:          #10B981;
+      --blue:           #3B82F6;
+      --red:            #EF4444;
+      --yellow:         #F59E0B;
+      --white:          #FFFFFF;
+      --gray-50:  #FAFAFA; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF; --gray-600: #4B5563; --gray-800: #1F2937; --gray-900: #111827;
+      --panel-bg: rgba(18,0,36,0.94);
+      --border:   rgba(255,255,255,0.08);
+      --mono:     'JetBrains Mono', 'Courier New', monospace;
+      --radius:   12px; --radius-lg: 20px;
+      --shadow:   0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg:0 8px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',-apple-system,sans-serif; color:var(--gray-900); background:var(--white); overflow-x:hidden; line-height:1.6; }
+
+    /* ═══ UTILITIES ════════════════════════════════════════════════════════ */
+    .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
+    .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+    .fade-in-delay-1{transition-delay:.1s} .fade-in-delay-2{transition-delay:.2s}
+    .fade-in-delay-3{transition-delay:.3s} .fade-in-delay-4{transition-delay:.4s}
+    .section-label { font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:.75rem; }
+    .section-title { font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:800;color:var(--gray-900);letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem; }
+    .section-title-light { color:var(--white); }
+    .section-sub { font-size:1.05rem;color:var(--gray-600);max-width:580px;line-height:1.7; }
+    .section-sub-light { color:rgba(255,255,255,.7); }
+    .section-header { margin-bottom:3.5rem; }
+
+    /* ═══ NAV ══════════════════════════════════════════════════════════════ */
+    nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,0,24,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(161,0,255,.25);height:70px;display:flex;align-items:center;padding:0 2.5rem;gap:2rem; }
+    .nav-brand { display:flex;align-items:center;gap:1.25rem;text-decoration:none;flex-shrink:0; }
+    .afs-logo { display:flex;align-items:center;gap:.5rem; }
+    .afs-chevron { font-size:1.4rem;font-weight:900;color:var(--purple);font-style:italic; }
+    .afs-wordmark { display:flex;flex-direction:column;line-height:1.1; }
+    .afs-wordmark .accenture { font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:-.01em; }
+    .afs-wordmark .federal   { font-size:.55rem;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.6);text-transform:uppercase; }
+    .nav-divider { width:1px;height:28px;background:rgba(255,255,255,.15); }
+    .nav-product { font-size:1rem;font-weight:700;color:var(--purple-pale);letter-spacing:-.01em; }
+    .nav-links { display:flex;align-items:center;gap:.25rem;margin-left:auto; }
+    .nav-links a { color:rgba(255,255,255,.75);text-decoration:none;font-size:.875rem;font-weight:500;padding:.5rem .85rem;border-radius:6px;transition:color .2s,background .2s; }
+    .nav-links a:hover { color:var(--white);background:rgba(255,255,255,.08); }
+    .btn-nav-cta { background:var(--purple)!important;color:var(--white)!important;padding:.5rem 1.25rem!important;border-radius:8px!important;font-weight:600!important;margin-left:.5rem;transition:background .2s,transform .15s!important; }
+    .btn-nav-cta:hover { background:var(--purple-dark)!important;transform:translateY(-1px); }
+
+    /* ═══ HERO ══════════════════════════════════════════════════════════════ */
+    #hero { position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:var(--purple-void);overflow:hidden;padding:100px 0 0; }
+    .hero-orbs { position:absolute;inset:0;pointer-events:none;overflow:hidden; }
+    .hero-orbs .orb { position:absolute;border-radius:50%;filter:blur(80px);opacity:.3; }
+    .orb-1 { width:700px;height:700px;background:var(--purple);top:-200px;right:-200px;animation:float 8s ease-in-out infinite; }
+    .orb-2 { width:400px;height:400px;background:var(--purple-dark);bottom:100px;left:-100px;animation:float 10s ease-in-out infinite reverse; }
+    .orb-3 { width:300px;height:300px;background:var(--purple-light);top:50%;left:45%;opacity:.15;animation:float 12s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-20px) scale(1.03)} 66%{transform:translate(-15px,15px) scale(.97)} }
+    .hero-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(161,0,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(161,0,255,.04) 1px,transparent 1px);background-size:60px 60px; }
+    .hero-content { position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 2rem 4rem;text-align:center; }
+    .hero-eyebrow { display:inline-flex;align-items:center;gap:.5rem;background:rgba(161,0,255,.15);border:1px solid rgba(161,0,255,.3);color:var(--purple-pale);padding:.4rem 1rem;border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2rem; }
+    .hero-eyebrow::before { content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+    .hero-content h1 { font-size:clamp(2.6rem,6vw,4.5rem);font-weight:900;color:var(--white);line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem; }
+    .hero-content h1 em { font-style:normal;background:linear-gradient(90deg,var(--purple-light),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .hero-sub { font-size:1.15rem;color:rgba(255,255,255,.75);max-width:640px;margin:0 auto 2.5rem;line-height:1.7; }
+    .hero-ctas { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+    .btn-primary { background:var(--purple);color:var(--white);padding:.9rem 2rem;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(161,0,255,.35);display:inline-flex;align-items:center;gap:.5rem; }
+    .btn-primary:hover { background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(161,0,255,.45); }
+    .btn-outline { background:transparent;color:var(--white);padding:.9rem 2rem;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);transition:border-color .2s,background .2s,transform .15s;display:inline-flex;align-items:center;gap:.5rem; }
+    .btn-outline:hover { border-color:var(--purple);background:rgba(161,0,255,.1);transform:translateY(-2px); }
+    .hero-stats-bar { position:relative;z-index:1;background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:stretch; }
+    .hero-stat { flex:1;padding:1.75rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.08);transition:background .2s; }
+    .hero-stat:last-child { border-right:none; }
+    .hero-stat:hover { background:rgba(161,0,255,.06); }
+    .hero-stat-num { font-size:2.25rem;font-weight:900;color:var(--purple-light);line-height:1;margin-bottom:.4rem;letter-spacing:-.02em; }
+    .hero-stat-label { font-size:.8rem;color:rgba(255,255,255,.55);font-weight:500;letter-spacing:.03em;text-transform:uppercase; }
+
+    /* ═══ PROBLEM ══════════════════════════════════════════════════════════ */
+    #problem { padding:7rem 0;background:var(--gray-50); }
+    .problem-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3.5rem; }
+    .problem-card { background:var(--white);border-radius:var(--radius-lg);padding:2rem;border:1px solid var(--gray-200);box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s; }
+    .problem-card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(161,0,255,.1);border-color:rgba(161,0,255,.2); }
+    .problem-icon { width:52px;height:52px;border-radius:12px;background:var(--purple-bg);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.5rem; }
+    .problem-card h3 { font-size:1.05rem;font-weight:700;color:var(--gray-900);margin-bottom:.6rem;letter-spacing:-.01em; }
+    .problem-card p { font-size:.9rem;color:var(--gray-600);line-height:1.65; }
+
+    /* ═══ ACCELERATOR ══════════════════════════════════════════════════════ */
+    #accelerator { padding:7rem 0;background:var(--purple-void);position:relative;overflow:hidden; }
+    #accelerator::before { content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(161,0,255,.18) 0%,transparent 70%); }
+    .accelerator-inner { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center; }
+    .accelerator-text .big-statement { font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--white);line-height:1.2;letter-spacing:-.03em;margin-bottom:1.5rem; }
+    .accelerator-text .big-statement span { color:var(--purple-light); }
+    .accelerator-text p { font-size:1rem;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:1rem; }
+    .differentiator-box { background:rgba(161,0,255,.12);border:1px solid rgba(161,0,255,.3);border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-top:2rem; }
+    .differentiator-box p { font-size:1rem;color:var(--purple-pale);font-weight:500;line-height:1.6;margin:0; }
+    .differentiator-box strong { color:var(--white);font-weight:700; }
+    .comparison-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);overflow:hidden; }
+    .comparison-header { padding:1.25rem 1.75rem;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.08); }
+    .comparison-row { display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.75rem;border-bottom:1px solid rgba(255,255,255,.06); }
+    .comparison-row:last-child { border-bottom:none; }
+    .comparison-row.before .cmp-icon { color:var(--red); }
+    .comparison-row.after  .cmp-icon { color:var(--green); }
+    .cmp-icon { flex-shrink:0;margin-top:2px;font-size:.9rem; }
+    .comparison-row p { font-size:.875rem;color:rgba(255,255,255,.7);margin:0;line-height:1.55; }
+    .comparison-section-label { padding:.75rem 1.75rem;background:rgba(161,0,255,.08);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-light); }
+
+    /* ═══ PIPELINE SECTION (How It Works) ══════════════════════════════════ */
+    #how-it-works { padding:7rem 0;background:var(--white); }
+    .pipeline-section-intro { margin-bottom:2.5rem; }
+
+    /* Pipeline panel */
+    .pipeline-panel { background:rgba(12,0,24,.7);border:1px solid var(--border);border-radius:16px;overflow:visible;position:relative;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 48px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04); }
+    .pipeline-info-bar { display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;border-bottom:1px solid var(--border);gap:1rem;flex-wrap:wrap; }
+    .pipeline-meta-left { display:flex;align-items:center;gap:.6rem;flex-wrap:wrap; }
+    .pipeline-id { font-family:var(--mono);font-size:.78rem;color:var(--purple-light);background:var(--purple-glass);border:1px solid var(--purple-border);padding:.2rem .55rem;border-radius:5px;font-weight:500; }
+    .meta-sep { color:rgba(255,255,255,.15);font-size:.75rem; }
+    .pipeline-branch { display:flex;align-items:center;gap:.3rem;font-size:.78rem;color:rgba(255,255,255,.7);font-family:var(--mono); }
+    .branch-icon { color:var(--purple-light);font-size:.85rem; }
+    .pipeline-commit { font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);padding:.2rem .5rem;border-radius:4px; }
+    .pipeline-commit-msg { font-size:.75rem;color:rgba(255,255,255,.6);max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+    .pipeline-status-badge { display:flex;align-items:center;gap:.35rem;font-size:.75rem;font-weight:600;padding:.25rem .7rem;border-radius:100px;transition:all .4s ease; }
+    .pipeline-status-badge.pending { background:rgba(255,255,255,.06);color:rgba(255,255,255,.4); }
+    .pipeline-status-badge.running { background:rgba(59,130,246,.15);color:#60A5FA;border:1px solid rgba(59,130,246,.3); }
+    .pipeline-status-badge.passed  { background:rgba(16,185,129,.15);color:#34D399;border:1px solid rgba(16,185,129,.3); }
+    .p-status-dot { width:7px;height:7px;border-radius:50%;background:currentColor; }
+    .p-status-dot.spinning { animation:spin-dot 1s linear infinite; }
+    @keyframes spin-dot { 0%{opacity:1} 50%{opacity:.4} 100%{opacity:1} }
+    .pipeline-duration { font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.4); }
+    .pipeline-meta-right { display:flex;align-items:center;gap:.75rem; }
+    .jobs-progress { font-size:.72rem;color:rgba(255,255,255,.4);font-family:var(--mono); }
+    .artifacts-btn { display:flex;align-items:center;gap:.5rem;background:var(--purple-glass);border:1px solid var(--purple-border);color:var(--purple-pale);padding:.45rem 1rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;font-family:inherit; }
+    .artifacts-btn:hover { background:rgba(161,0,255,.2);border-color:rgba(161,0,255,.5);transform:translateY(-1px); }
+    .artifacts-btn.open { background:rgba(161,0,255,.2);border-color:var(--purple);color:var(--white); }
+    .artifact-count-badge { background:var(--purple);color:var(--white);padding:.1rem .45rem;border-radius:100px;font-size:.65rem;font-weight:700; }
+    .artifacts-chevron { font-size:.7rem;transition:transform .25s; }
+    .artifacts-btn.open .artifacts-chevron { transform:rotate(180deg); }
+
+    /* Stages track */
+    .stages-track { display:flex;align-items:flex-start;padding:2rem 1.5rem 1.75rem;gap:0;overflow-x:auto;min-width:0;position:relative; }
+    .stage-wrapper { display:flex;align-items:center;position:relative; }
+    .stage-col { display:flex;flex-direction:column;align-items:center;gap:.75rem;padding:1rem;border-radius:12px;cursor:pointer;transition:background .2s;position:relative;min-width:105px; }
+    .stage-col:hover { background:rgba(161,0,255,.06); }
+    .stage-col.s-active { background:rgba(161,0,255,.1); }
+    .stage-icon-wrap { width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:rgba(255,255,255,.05);border:1.5px solid var(--border);transition:border-color .3s,box-shadow .3s;flex-shrink:0; }
+    .stage-col.stage-complete .stage-icon-wrap { border-color:rgba(16,185,129,.5);box-shadow:0 0 12px rgba(16,185,129,.2); }
+    .stage-col.stage-running  .stage-icon-wrap { border-color:rgba(59,130,246,.5);box-shadow:0 0 12px rgba(59,130,246,.25);animation:stage-pulse 1.5s ease-in-out infinite; }
+    @keyframes stage-pulse { 0%,100%{box-shadow:0 0 12px rgba(59,130,246,.25)} 50%{box-shadow:0 0 20px rgba(59,130,246,.45)} }
+    .stage-name { font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);transition:color .3s; }
+    .stage-col.stage-running  .stage-name { color:#60A5FA; }
+    .stage-col.stage-complete .stage-name { color:#34D399; }
+    .stage-chips { display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:96px; }
+    .job-chip { width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.55rem;position:relative;transition:transform .2s;flex-shrink:0; }
+    .job-chip.pending { background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12); }
+    .job-chip.running { background:transparent;border:2px solid transparent; }
+    .job-chip.running::before { content:'';position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(#3B82F6 0deg,rgba(59,130,246,.1) 120deg,rgba(59,130,246,.1) 360deg);animation:chip-spin .7s linear infinite; }
+    .job-chip.running::after  { content:'';position:absolute;inset:2px;border-radius:50%;background:rgba(59,130,246,.15); }
+    @keyframes chip-spin { to{transform:rotate(360deg)} }
+    .job-chip.passed { background:var(--green);border:1.5px solid rgba(16,185,129,.5);box-shadow:0 0 6px rgba(16,185,129,.35);animation:chip-pass .35s cubic-bezier(.4,0,.2,1); }
+    @keyframes chip-pass { 0%{transform:scale(.7);opacity:.5} 60%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
+    .chip-check { position:relative;z-index:1;color:white;font-size:.6rem;font-weight:700;line-height:1; }
+    .stage-status-tag { font-size:.62rem;font-weight:600;padding:.15rem .5rem;border-radius:100px;transition:all .3s; }
+    .stage-status-tag.pending { background:rgba(255,255,255,.06);color:rgba(255,255,255,.4); }
+    .stage-status-tag.running { background:rgba(59,130,246,.15);color:#60A5FA; }
+    .stage-status-tag.passed  { background:rgba(16,185,129,.15);color:#34D399; }
+
+    /* Stage connector */
+    .stage-connector { display:flex;align-items:center;padding:0 4px;margin-top:-24px;flex-shrink:0; }
+    .connector-line { width:24px;height:2px;background:rgba(255,255,255,.08);position:relative;transition:background .4s;overflow:hidden; }
+    .connector-line.lit { background:rgba(16,185,129,.4); }
+    .connector-line.lit::after { content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(16,185,129,.8),transparent);animation:conn-sweep .8s ease-out; }
+    @keyframes conn-sweep { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
+    .connector-arrow { color:rgba(255,255,255,.15);font-size:.7rem;flex-shrink:0;transition:color .4s; }
+    .connector-arrow.lit { color:rgba(16,185,129,.5); }
+
+    /* Pipeline footer */
+    .pipeline-footer { padding:.75rem 1.5rem 1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem; }
+    .pipeline-hint-text { font-size:.72rem;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.4rem; }
+    .pipeline-complete-banner { display:none;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:#34D399; }
+    .pipeline-complete-banner.show { display:flex; }
+    .complete-glow { width:8px;height:8px;border-radius:50%;background:#10B981;box-shadow:0 0 10px #10B981;animation:glow-pulse 1.5s ease-in-out infinite; }
+    @keyframes glow-pulse { 0%,100%{box-shadow:0 0 6px #10B981} 50%{box-shadow:0 0 16px #10B981} }
+
+    /* Popup */
+    #stagePopup { position:absolute;z-index:500;display:none;opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .18s ease,transform .18s ease;pointer-events:none; }
+    #stagePopup.visible { opacity:1;transform:translateY(0) scale(1);pointer-events:auto; }
+    #stagePopup::before { content:'';position:absolute;top:-7px;left:var(--caret-left,50%);width:14px;height:7px;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid rgba(161,0,255,.35);pointer-events:none;transition:left .12s ease; }
+    .popup-card { background:rgba(16,0,32,.97);border:1px solid rgba(161,0,255,.3);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;width:520px; }
+    .popup-header { display:flex;align-items:center;gap:.6rem;padding:.9rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(161,0,255,.08); }
+    .popup-stage-icon { font-size:1rem; }
+    .popup-stage-name { font-size:.85rem;font-weight:700;color:white;text-transform:uppercase;letter-spacing:.06em;flex:1; }
+    .popup-job-count { font-size:.7rem;color:rgba(255,255,255,.4);font-family:var(--mono); }
+    .popup-stage-badge { font-size:.65rem;font-weight:600;padding:.15rem .5rem;border-radius:100px;background:rgba(16,185,129,.15);color:#34D399; }
+    .popup-body { display:flex; }
+    .popup-job-list { width:220px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.07);overflow-y:auto;max-height:360px; }
+    .popup-job-list::-webkit-scrollbar { width:3px; }
+    .popup-job-list::-webkit-scrollbar-thumb { background:rgba(161,0,255,.3);border-radius:4px; }
+    .popup-job-row { display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.04); }
+    .popup-job-row:last-child { border-bottom:none; }
+    .popup-job-row:hover, .popup-job-row.hovered { background:rgba(161,0,255,.12); }
+    .popup-chip-sm { width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.5rem;font-weight:700; }
+    .popup-chip-sm.passed  { background:var(--green);color:white;box-shadow:0 0 5px rgba(16,185,129,.4); }
+    .popup-chip-sm.running { background:transparent;border:2px solid var(--blue);animation:chip-spin .7s linear infinite; }
+    .popup-chip-sm.pending { background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15); }
+    .popup-job-info { flex:1;min-width:0; }
+    .popup-job-name { font-size:.72rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono); }
+    .popup-job-meta { font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px; }
+    .popup-job-arrow { font-size:.7rem;color:rgba(255,255,255,.2);transition:color .15s; }
+    .popup-job-row:hover .popup-job-arrow { color:var(--purple-light); }
+    .popup-detail-panel { flex:1;padding:1rem;display:flex;flex-direction:column;min-height:200px; }
+    .popup-detail-placeholder { display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.2);font-size:.75rem;text-align:center;gap:.5rem; }
+    .placeholder-icon { font-size:1.5rem;opacity:.3; }
+    .popup-detail-content { display:none; }
+    .popup-detail-content.show { display:block;animation:detail-fade .18s ease; }
+    @keyframes detail-fade { from{opacity:0;transform:translateX(6px)} to{opacity:1;transform:translateX(0)} }
+    .detail-job-name { font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--purple-light);margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .detail-job-tool { font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.75rem; }
+    .detail-findings { display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-bottom:.75rem; }
+    .finding-badge { display:flex;align-items:center;justify-content:space-between;padding:.3rem .5rem;border-radius:6px;font-size:.62rem;font-weight:600; }
+    .finding-badge.crit { background:rgba(239,68,68,.15);color:#FCA5A5;border:1px solid rgba(239,68,68,.2); }
+    .finding-badge.high { background:rgba(245,158,11,.15);color:#FCD34D;border:1px solid rgba(245,158,11,.2); }
+    .finding-badge.med  { background:rgba(251,191,36,.10);color:#FDE68A;border:1px solid rgba(251,191,36,.15); }
+    .finding-badge.low  { background:rgba(59,130,246,.12);color:#93C5FD;border:1px solid rgba(59,130,246,.2); }
+    .finding-badge.info { background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08); }
+    .finding-badge.ok   { background:rgba(16,185,129,.12);color:#6EE7B7;border:1px solid rgba(16,185,129,.2); }
+    .badge-label { font-size:.58rem;opacity:.8;letter-spacing:.04em; }
+    .badge-val   { font-size:.7rem;font-weight:700; }
+    .badge-check { color:var(--green);font-size:.65rem; }
+    .detail-text { font-size:.7rem;color:rgba(255,255,255,.6);line-height:1.55;margin-bottom:.6rem; }
+    .detail-artifacts-label { font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:.3rem; }
+    .detail-artifact-chips { display:flex;flex-wrap:wrap;gap:4px; }
+    .detail-artifact-chip { font-family:var(--mono);font-size:.58rem;background:rgba(161,0,255,.1);border:1px solid rgba(161,0,255,.2);color:var(--purple-pale);padding:.15rem .45rem;border-radius:4px;cursor:pointer;transition:background .15s; }
+    .detail-artifact-chip:hover { background:rgba(161,0,255,.22); }
+    .detail-duration { margin-top:auto;padding-top:.6rem;font-size:.62rem;color:rgba(255,255,255,.35);font-family:var(--mono);border-top:1px solid rgba(255,255,255,.06); }
+
+    /* Artifacts panel */
+    .artifacts-panel { max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1); }
+    .artifacts-panel.open { max-height:2000px; }
+    .artifacts-panel-inner { background:rgba(12,0,24,.8);border:1px solid var(--border);border-top:none;border-radius:0 0 16px 16px;padding:1.5rem;backdrop-filter:blur(20px); }
+    .artifacts-panel-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem; }
+    .artifacts-panel-title { font-size:.9rem;font-weight:700;color:white; }
+    .artifacts-total { font-size:.72rem;color:rgba(255,255,255,.4);font-family:var(--mono); }
+    .art-section { margin-bottom:1.5rem; }
+    .art-section:last-child { margin-bottom:0; }
+    .art-section-title { font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--purple-light);font-weight:700;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid rgba(161,0,255,.15);display:flex;align-items:center;gap:.5rem; }
+    .art-section-count { background:rgba(161,0,255,.15);color:var(--purple-light);padding:.1rem .4rem;border-radius:100px;font-size:.58rem; }
+    .art-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.65rem; }
+    .art-card { display:flex;gap:.9rem;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:.85rem;transition:background .15s,border-color .15s;cursor:default; }
+    .art-card:hover { background:rgba(161,0,255,.07);border-color:rgba(161,0,255,.2); }
+    .art-type-icon { width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+    .icon-json{background:rgba(59,130,246,.15)} .icon-html{background:rgba(245,158,11,.15)}
+    .icon-md{background:rgba(161,0,255,.15)} .icon-txt{background:rgba(255,255,255,.06)}
+    .icon-dir{background:rgba(16,185,129,.15)} .icon-xml{background:rgba(239,68,68,.12)}
+    .art-card-body { flex:1;min-width:0; }
+    .art-filename { font-family:var(--mono);font-size:.72rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .art-desc { font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:.5rem; }
+    .art-meta { display:flex;align-items:center;gap:.5rem;flex-wrap:wrap; }
+    .art-size { font-size:.6rem;font-family:var(--mono);color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:.1rem .4rem;border-radius:3px; }
+    .art-job { font-size:.6rem;color:var(--purple-pale);background:rgba(161,0,255,.1);padding:.1rem .4rem;border-radius:3px;font-family:var(--mono); }
+    .art-fw { font-size:.58rem;color:#34D399;background:rgba(16,185,129,.1);padding:.1rem .4rem;border-radius:3px;font-weight:600; }
+
+    /* Pipeline complete shimmer */
+    @keyframes pipeline-shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+    .shimmer-overlay { position:absolute;inset:0;border-radius:16px;background:linear-gradient(90deg,transparent 0%,rgba(16,185,129,.06) 50%,transparent 100%);background-size:200% 100%;animation:pipeline-shimmer .8s ease-out forwards;pointer-events:none;z-index:10; }
+
+    /* ═══ NUMBERS ══════════════════════════════════════════════════════════ */
+    #numbers { padding:6rem 0;background:linear-gradient(135deg,var(--purple-deepest),var(--purple-void)); }
+    .numbers-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem; }
+    .number-card { text-align:center;padding:2.5rem 1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);transition:background .2s,border-color .2s,transform .2s; }
+    .number-card:hover { background:rgba(161,0,255,.08);border-color:rgba(161,0,255,.25);transform:translateY(-4px); }
+    .number-value { font-size:3.25rem;font-weight:900;color:var(--purple-light);line-height:1;letter-spacing:-.03em;margin-bottom:.5rem; }
+    .number-label { font-size:.9rem;color:rgba(255,255,255,.65);font-weight:500;line-height:1.4; }
+    .number-sub { font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.3rem; }
+
+    /* ═══ OSCAL ════════════════════════════════════════════════════════════ */
+    #oscal { padding:7rem 0;background:var(--gray-50); }
+    .oscal-grid { display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;margin-top:3.5rem; }
+    .oscal-explain h3 { font-size:1.2rem;font-weight:700;color:var(--gray-900);margin-bottom:.6rem;margin-top:2rem;letter-spacing:-.01em; }
+    .oscal-explain h3:first-child { margin-top:0; }
+    .oscal-explain p { font-size:.9rem;color:var(--gray-600);line-height:1.7;margin-bottom:.5rem; }
+    .oscal-frameworks { display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:2rem; }
+    .oscal-framework { background:var(--white);border:1px solid var(--gray-200);border-radius:10px;padding:1rem 1.1rem;border-left:3px solid var(--purple); }
+    .oscal-framework .fw-name { font-size:.75rem;font-weight:700;color:var(--purple-dark);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem; }
+    .oscal-framework .fw-desc { font-size:.8rem;color:var(--gray-600);line-height:1.4; }
+    .code-window { background:#1a0030;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(161,0,255,.2); }
+    .code-titlebar { background:#120022;padding:.85rem 1.25rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid rgba(161,0,255,.15); }
+    .code-dots { display:flex;gap:6px; }
+    .code-dot { width:12px;height:12px;border-radius:50%; }
+    .code-dot-r{background:#FF5F57} .code-dot-y{background:#FFBD2E} .code-dot-g{background:#28CA41}
+    .code-filename { font-size:.75rem;color:rgba(255,255,255,.4);font-family:var(--mono);margin-left:.5rem; }
+    .code-label { margin-left:auto;background:rgba(161,0,255,.2);color:var(--purple-pale);padding:.2rem .6rem;border-radius:4px;font-size:.65rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase; }
+    pre.oscal-json { padding:1.5rem;font-family:var(--mono);font-size:.72rem;line-height:1.6;overflow-x:auto;color:rgba(255,255,255,.9);white-space:pre; }
+    .jk{color:#C966FF} .js{color:#98D8C8} .jn{color:#FFB347} .jb{color:#FF79C6}
+    .jsat{color:#28CA41;font-weight:600} .juid{color:#89b4fa} .jbr{color:rgba(255,255,255,.6)}
+
+    /* ═══ MAPPING ══════════════════════════════════════════════════════════ */
+    #mapping { padding:7rem 0;background:var(--white); }
+    .mapping-grid { display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start;margin-top:3.5rem; }
+    .yaml-window { background:#0f0020;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(161,0,255,.15); }
+    .yaml-titlebar { background:#0a0018;padding:.85rem 1.25rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid rgba(161,0,255,.1); }
+    pre.yaml-code { padding:1.5rem;font-family:var(--mono);font-size:.72rem;line-height:1.7;overflow-x:auto;color:rgba(255,255,255,.85);white-space:pre; }
+    .yk{color:#C966FF} .yv{color:#98D8C8} .yn{color:#FFB347} .yc{color:#6272A4} .ys{color:#FF79C6}
+    .mapping-explain h3 { font-size:1.1rem;font-weight:700;color:var(--gray-900);margin-bottom:.6rem;margin-top:1.75rem;letter-spacing:-.01em; }
+    .mapping-explain h3:first-child { margin-top:0; }
+    .mapping-explain p { font-size:.875rem;color:var(--gray-600);line-height:1.7; }
+    .annotation-list { list-style:none;margin-top:1.5rem; }
+    .annotation-list li { display:flex;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--gray-100);align-items:flex-start; }
+    .annotation-list li:last-child { border-bottom:none; }
+    .ann-num { flex-shrink:0;width:22px;height:22px;background:var(--purple);color:white;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px; }
+    .ann-text { font-size:.82rem;color:var(--gray-700);line-height:1.5; }
+    .ann-text strong { color:var(--gray-900);font-weight:600; }
+
+    /* ═══ DASHBOARD PREVIEW ════════════════════════════════════════════════ */
+    #dashboard { padding:7rem 0;background:var(--white); }
+    .dashboard-preview-wrapper { margin-top:3.5rem;background:#f0e8ff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-lg); }
+    .browser-chrome { background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12); }
+    .browser-bar { background:#f1f1f1;padding:.7rem 1rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid #e0e0e0; }
+    .browser-dots { display:flex;gap:5px; }
+    .browser-dot { width:11px;height:11px;border-radius:50%; }
+    .browser-dot-r{background:#FF5F57} .browser-dot-y{background:#FFBD2E} .browser-dot-g{background:#28CA41}
+    .browser-url { flex:1;background:white;border:1px solid #ddd;border-radius:6px;padding:.35rem .75rem;font-size:.75rem;color:#555;font-family:monospace; }
+    .dash-inner { display:flex;min-height:420px; }
+    .dash-sidebar { width:200px;background:linear-gradient(180deg,#667eea 0%,#764ba2 100%);padding:1.25rem 0;flex-shrink:0; }
+    .dash-sidebar-logo { padding:0 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:.5rem; }
+    .dash-sidebar-logo-text { font-size:.8rem;font-weight:700;color:white; }
+    .dash-sidebar-logo-sub { font-size:.6rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em; }
+    .dash-nav-item { padding:.65rem 1.25rem;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.75);cursor:pointer;display:flex;align-items:center;gap:.5rem;border-left:3px solid transparent; }
+    .dash-nav-item.active { color:white;border-left-color:white;background:rgba(255,255,255,.12);font-weight:600; }
+    .dash-main { flex:1;background:#f8f6ff;padding:1.5rem;overflow:auto; }
+    .dash-header-row { display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem; }
+    .dash-title { font-size:1rem;font-weight:700;color:#1a1a2e; }
+    .dash-subtitle { font-size:.7rem;color:#888; }
+    .dash-dl-btn { background:#667eea;color:white;padding:.4rem .9rem;border-radius:6px;font-size:.7rem;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:.35rem; }
+    .dash-metrics { display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.25rem; }
+    .dash-metric { background:white;border-radius:8px;padding:.9rem 1rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .dash-metric-val { font-size:1.6rem;font-weight:800;line-height:1;margin-bottom:.25rem; }
+    .dash-metric-val.green{color:#10B981} .dash-metric-val.red{color:#EF4444} .dash-metric-val.gray{color:#9CA3AF} .dash-metric-val.purple{color:#667eea}
+    .dash-metric-label { font-size:.62rem;color:#888;font-weight:500;text-transform:uppercase;letter-spacing:.05em; }
+    .dash-table-wrap { background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .dash-table { width:100%;border-collapse:collapse;font-size:.72rem; }
+    .dash-table th { background:#f3f4f6;padding:.6rem .9rem;text-align:left;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;border-bottom:1px solid #e5e7eb; }
+    .dash-table td { padding:.6rem .9rem;border-bottom:1px solid #f3f4f6;color:#333;vertical-align:middle; }
+    .dash-table tr:last-child td { border-bottom:none; }
+    .dash-badge { display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .5rem;border-radius:4px;font-size:.62rem;font-weight:600;white-space:nowrap; }
+    .badge-sat{background:#D1FAE5;color:#065F46} .badge-fail{background:#FEE2E2;color:#991B1B} .badge-na{background:#F3F4F6;color:#6B7280}
+    .fw-chip { display:inline-block;padding:.1rem .4rem;background:#EDE9FE;color:#5B21B6;border-radius:3px;font-size:.58rem;font-weight:600;margin-right:2px; }
+
+    /* ═══ SCANNERS ═════════════════════════════════════════════════════════ */
+    #scanners { padding:7rem 0;background:var(--white); }
+    .scanners-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:3.5rem; }
+    .scanner-card { background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.25rem;transition:transform .2s,box-shadow .2s,border-color .2s; }
+    .scanner-card:hover { transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(161,0,255,.2); }
+    .scanner-icon { width:40px;height:40px;border-radius:8px;background:var(--purple-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:.75rem; }
+    .scanner-name { font-size:.85rem;font-weight:700;color:var(--gray-800);margin-bottom:.25rem; }
+    .scanner-type { font-size:.72rem;color:var(--purple-dark);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem; }
+    .scanner-controls { font-size:.72rem;color:var(--gray-600); }
+
+    /* ═══ COMPETITIVE ══════════════════════════════════════════════════════ */
+    #competitive { padding:7rem 0;background:var(--gray-50); }
+    .comp-table-wrap { overflow-x:auto;margin-top:3.5rem;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg); }
+    .comp-table { width:100%;border-collapse:collapse;font-size:.875rem;background:var(--white);min-width:800px; }
+    .comp-table thead tr { background:var(--purple-void); }
+    .comp-table th { padding:1.1rem 1.25rem;text-align:center;font-weight:600;font-size:.8rem;color:rgba(255,255,255,.85);border-right:1px solid rgba(255,255,255,.08); }
+    .comp-table th:first-child { text-align:left;color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase; }
+    .comp-table th.karrier-col { background:rgba(161,0,255,.3);color:white;border-left:2px solid var(--purple);border-right:2px solid var(--purple); }
+    .comp-table td { padding:.9rem 1.25rem;border-bottom:1px solid var(--gray-100);border-right:1px solid var(--gray-100);text-align:center;color:var(--gray-700);vertical-align:middle; }
+    .comp-table td:first-child { text-align:left;font-weight:500;color:var(--gray-800); }
+    .comp-table td.karrier-col { background:rgba(161,0,255,.04);border-left:2px solid rgba(161,0,255,.15);border-right:2px solid rgba(161,0,255,.15);font-weight:600;color:var(--purple-dark); }
+    .comp-table tr:last-child td { border-bottom:none; }
+    .comp-table tr:hover td { background:var(--gray-50); }
+    .comp-table tr:hover td.karrier-col { background:rgba(161,0,255,.07); }
+    .check{color:var(--green);font-size:1.1rem} .cross{color:var(--red);font-size:1.1rem} .partial{color:var(--yellow);font-size:.8rem;font-weight:600}
+
+    /* ═══ SCENARIOS ════════════════════════════════════════════════════════ */
+    #scenarios { padding:7rem 0;background:var(--purple-bg); }
+    .scenarios-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem; }
+    .scenario-card { background:var(--white);border-radius:var(--radius-lg);padding:2.25rem;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s; }
+    .scenario-card:hover { transform:translateY(-5px);box-shadow:0 16px 50px rgba(161,0,255,.12); }
+    .scenario-card::before { content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--purple-light)); }
+    .scenario-num { font-size:3rem;font-weight:900;color:rgba(161,0,255,.1);line-height:1;margin-bottom:1rem; }
+    .scenario-card h3 { font-size:1.05rem;font-weight:700;color:var(--gray-900);margin-bottom:.4rem;letter-spacing:-.01em; }
+    .scenario-tag { font-size:.72rem;font-weight:600;color:var(--purple-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem; }
+    .scenario-card p { font-size:.875rem;color:var(--gray-600);line-height:1.65;margin-bottom:1.25rem; }
+    .scenario-highlights { list-style:none; }
+    .scenario-highlights li { font-size:.82rem;color:var(--gray-700);padding:.3rem 0;display:flex;align-items:flex-start;gap:.5rem;line-height:1.4; }
+    .scenario-highlights li::before { content:'✓';color:var(--green);font-weight:700;flex-shrink:0; }
+
+    /* ═══ CTA ══════════════════════════════════════════════════════════════ */
+    #contact { padding:8rem 0;background:linear-gradient(135deg,var(--purple-deepest) 0%,var(--purple-void) 100%);position:relative;overflow:hidden; }
+    #contact::before { content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(161,0,255,.2) 0%,transparent 65%); }
+    .cta-inner { position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto; }
+    .cta-inner .section-label { color:var(--purple-light);margin-bottom:1rem; }
+    .cta-inner h2 { font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:800;color:var(--white);letter-spacing:-.03em;line-height:1.15;margin-bottom:1.25rem; }
+    .cta-inner p { font-size:1rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:2.5rem; }
+    .cta-buttons { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+    .btn-cta-large { background:var(--purple);color:var(--white);padding:1rem 2.25rem;border-radius:10px;font-weight:700;font-size:1rem;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 8px 30px rgba(161,0,255,.4);display:inline-flex;align-items:center;gap:.5rem; }
+    .btn-cta-large:hover { background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 12px 40px rgba(161,0,255,.5); }
+    .cta-contact-info { margin-top:3rem;padding:1.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);display:inline-block; }
+    .cta-contact-info p { margin:0;font-size:.85rem;color:rgba(255,255,255,.6); }
+    .cta-contact-info a { color:var(--purple-pale);font-weight:600; }
+
+    /* ═══ FOOTER ═══════════════════════════════════════════════════════════ */
+    footer { background:#05000D;padding:3rem 0;border-top:1px solid rgba(161,0,255,.15); }
+    .footer-inner { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem; }
+    .footer-text { font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.6; }
+    .footer-links { display:flex;gap:1.5rem; }
+    .footer-links a { font-size:.78rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s; }
+    .footer-links a:hover { color:var(--purple-light); }
+    .footer-disclaimer { margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);font-size:.72rem;color:rgba(255,255,255,.25);line-height:1.6; }
+
+    /* ═══ RESPONSIVE ════════════════════════════════════════════════════════ */
+    @media(max-width:900px) {
+      .accelerator-inner,.oscal-grid,.mapping-grid{grid-template-columns:1fr}
+      .numbers-grid{grid-template-columns:repeat(2,1fr)}
+      .scenarios-grid{grid-template-columns:1fr}
+      .hero-stats-bar{flex-wrap:wrap}
+      .hero-stat{min-width:45%;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+      nav{padding:0 1.25rem}
+      .nav-links a:not(.btn-nav-cta){display:none}
+      .dash-metrics{grid-template-columns:repeat(2,1fr)}
+      .oscal-frameworks{grid-template-columns:1fr}
+      .art-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px) { .numbers-grid{grid-template-columns:repeat(2,1fr)} }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">
+    <div class="afs-logo">
+      <span class="afs-chevron">&gt;</span>
+      <div class="afs-wordmark">
+        <span class="accenture">accenture</span>
+        <span class="federal">FEDERAL SERVICES</span>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-product">Karrier</div>
+  </div>
+  <nav class="nav-links">
+    <a href="#problem">The Problem</a>
+    <a href="#how-it-works">Pipeline</a>
+    <a href="#oscal">OSCAL</a>
+    <a href="#competitive">Why Karrier</a>
+    <a href="#contact" class="btn-nav-cta">Contact AFS</a>
+  </nav>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Accenture Federal Services Accelerator</div>
+    <h1>Day-One Compliance,<br><em>Built Into Every Commit.</em></h1>
+    <p class="hero-sub">Karrier is the compliance-native DevSecOps accelerator Accenture Federal Services brings to every engagement — delivering machine-readable OSCAL evidence across four compliance frameworks from the very first pipeline run. No procurement. No setup project. Day one.</p>
+    <div class="hero-ctas">
+      <a href="#how-it-works" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        See the Live Pipeline
+      </a>
+      <a href="#contact" class="btn-outline">
+        Bring Karrier to Your Project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats-bar">
+    <div class="hero-stat"><div class="hero-stat-num">11+</div><div class="hero-stat-label">Security Scan Types</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Compliance Frameworks</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-label">Automated Controls</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Day 1</div><div class="hero-stat-label">Compliance Evidence</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Additional Licenses</div></div>
+  </div>
+</section>
+
+<!-- ══ PROBLEM ═══════════════════════════════════════════════════════════════ -->
+<section id="problem">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">The Challenge</div>
+      <h2 class="section-title">Why Compliance Is Broken<br>in Software Delivery</h2>
+      <p class="section-sub">Federal contractors face the same compounding problems. Karrier was built to solve every one of them.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card fade-in fade-in-delay-1"><div class="problem-icon">🚨</div><h3>The Last-Minute Evidence Scramble</h3><p>Compliance assessment happens right before an ATO review, CMMC assessment, or FedRAMP audit. At that point, findings require expensive rework and manual evidence gathering that consumes entire teams for months.</p></div>
+      <div class="problem-card fade-in fade-in-delay-2"><div class="problem-icon">🧩</div><h3>Every Team Does It Differently</h3><p>Multiple teams mean multiple pipeline implementations — each with different scanners, thresholds, and reporting formats. Auditors see inconsistency. Leadership can't quantify organizational risk.</p></div>
+      <div class="problem-card fade-in fade-in-delay-3"><div class="problem-icon">🧠</div><h3>Expertise You Can't Afford to Build</h3><p>Not every team has a dedicated security engineer or a CMMC/FedRAMP specialist. Building in-house OSCAL generation expertise takes years — for infrastructure that doesn't differentiate your mission.</p></div>
+      <div class="problem-card fade-in fade-in-delay-4"><div class="problem-icon">🔌</div><h3>Classified Networks Left Behind</h3><p>Most commercial DevSecOps tooling assumes public internet connectivity. Government and defense environments in classified or restricted networks are forced to build bespoke offline tooling — or go without.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACCELERATOR ════════════════════════════════════════════════════════════ -->
+<section id="accelerator">
+  <div class="container">
+    <div class="accelerator-inner">
+      <div class="accelerator-text fade-in">
+        <div class="section-label" style="color:var(--purple-light)">The Karrier Difference</div>
+        <div class="big-statement">Not a tool you buy.<br><span>A capability we bring.</span></div>
+        <p>Karrier is not a SaaS product. It is not a license fee. It is not a deployment project. Karrier is the proven DevSecOps accelerator Accenture Federal Services brings to every engagement as a built-in capability.</p>
+        <p>When AFS arrives on day one, Karrier arrives with us. Your team gets a complete, centralized, federally-focused CI/CD pipeline with compliance evidence generation already baked in — because it's already built.</p>
+        <p>One <code style="background:rgba(255,255,255,.08);padding:.2em .5em;border-radius:4px;font-size:.85em;color:var(--purple-pale);font-family:var(--mono)">include</code> line. A complete, production-grade pipeline. Instant standardization across every team.</p>
+        <div class="differentiator-box"><p><strong>The single-source model:</strong> Every project references Karrier's central templates by reference — not by copying them. When we update a scanner version, raise a threshold, or add a new control mapping, that change propagates to <strong>every project automatically on their next pipeline run</strong>.</p></div>
+      </div>
+      <div class="comparison-card fade-in fade-in-delay-1">
+        <div class="comparison-header">Timeline comparison</div>
+        <div class="comparison-section-label">Without Karrier</div>
+        <div class="comparison-row before"><div class="cmp-icon">✗</div><p>Months 1–6: Development team builds features. Security is an afterthought.</p></div>
+        <div class="comparison-row before"><div class="cmp-icon">✗</div><p>Month 7: ATO review scheduled. Compliance officer asks for evidence bundles.</p></div>
+        <div class="comparison-row before"><div class="cmp-icon">✗</div><p>Months 7–9: Emergency evidence gathering. Manual scanning. Costly rework for critical findings.</p></div>
+        <div class="comparison-row before"><div class="cmp-icon">✗</div><p>Month 10: Delayed ATO. Project slips. Additional assessment fees incurred.</p></div>
+        <div class="comparison-section-label">With Karrier (Day 1)</div>
+        <div class="comparison-row after"><div class="cmp-icon">✓</div><p>Day 1: Karrier integrated. First pipeline run generates OSCAL evidence across all four frameworks.</p></div>
+        <div class="comparison-row after"><div class="cmp-icon">✓</div><p>Every commit: 11+ automated scans run. Findings surfaced immediately. Evidence accumulated.</p></div>
+        <div class="comparison-row after"><div class="cmp-icon">✓</div><p>Month 7: ATO review opens. Evidence bundle is already complete. Dashboard ready for assessors.</p></div>
+        <div class="comparison-row after"><div class="cmp-icon">✓</div><p>Month 7: ATO approved on schedule. Project ships. No emergency scramble.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS — INTERACTIVE PIPELINE ════════════════════════════════════ -->
+<section id="how-it-works" style="background:var(--purple-void);padding:7rem 0;position:relative;z-index:20;">
+  <div class="container">
+    <div class="section-header fade-in pipeline-section-intro" style="text-align:center;">
+      <div class="section-label" style="color:var(--purple-light)">Live Pipeline Simulation</div>
+      <h2 class="section-title section-title-light">A Complete Pipeline.<br>One Integration.</h2>
+      <p class="section-sub section-sub-light" style="margin:0 auto;">Watch a real Karrier run execute. Hover any stage to inspect its jobs and scan results. Open Artifacts to see every output produced — all from a single <code style="background:rgba(255,255,255,.1);padding:.15em .5em;border-radius:4px;font-family:var(--mono);font-size:.85em">include</code> line.</p>
+    </div>
+
+    <div class="fade-in" id="pipelineWrapper" style="position:relative;">
+      <div class="pipeline-panel" id="pipelinePanel">
+
+        <!-- INFO BAR -->
+        <div class="pipeline-info-bar">
+          <div class="pipeline-meta-left">
+            <span class="pipeline-id">#847</span>
+            <span class="meta-sep">·</span>
+            <span class="pipeline-branch"><span class="branch-icon">⎇</span> main</span>
+            <span class="pipeline-commit">a1b2c3d4</span>
+            <span class="meta-sep">·</span>
+            <span class="pipeline-commit-msg">feat(oscal): add Checkov IaC policy scanner integration</span>
+            <span class="meta-sep">·</span>
+            <span class="pipeline-status-badge pending" id="pipelineStatusBadge">
+              <span class="p-status-dot" id="statusDot"></span>
+              <span id="statusText">Pending</span>
+            </span>
+            <span class="pipeline-duration" id="pipelineDuration">0:00</span>
+          </div>
+          <div class="pipeline-meta-right">
+            <span class="jobs-progress" id="jobsProgress">0 / 21 jobs</span>
+            <button class="artifacts-btn" id="artifactsBtn" onclick="toggleArtifacts()">
+              📦 Artifacts
+              <span class="artifact-count-badge">21</span>
+              <span class="artifacts-chevron">▾</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STAGES TRACK -->
+        <div class="stages-track" id="stagesTrack"></div>
+
+        <!-- FOOTER -->
+        <div class="pipeline-footer">
+          <div class="pipeline-hint-text">← Hover a stage to inspect its jobs and scan results</div>
+          <div class="pipeline-complete-banner" id="completeBanner">
+            <div class="complete-glow"></div>
+            Pipeline passed · 21/21 jobs · v1.4.2 tagged · OSCAL evidence generated
+          </div>
+        </div>
+
+      </div><!-- /pipeline-panel -->
+
+      <!-- POPUP: sits inside pipelineWrapper (sibling of pipelinePanel) so its
+           z-index is not bounded by pipelinePanel's stacking context, ensuring
+           it renders above the artifacts panel at all times -->
+      <div id="stagePopup">
+        <div class="popup-card" id="popupCard"></div>
+      </div>
+
+      <!-- ARTIFACTS PANEL -->
+      <div class="artifacts-panel" id="artifactsPanel">
+        <div class="artifacts-panel-inner" id="artifactsPanelInner"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ NUMBERS ════════════════════════════════════════════════════════════════ -->
+<section id="numbers">
+  <div class="container">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label" style="color:var(--purple-light)">Coverage</div>
+      <h2 class="section-title section-title-light">Built for Breadth.<br>Designed for Depth.</h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-card fade-in"><div class="number-value" data-target="11">0</div><div class="number-label">Security scan categories per pipeline run</div><div class="number-sub">Container, SAST, secrets, IaC, API, DAST, dependencies, licenses, SBOM, hardening, coverage</div></div>
+      <div class="number-card fade-in fade-in-delay-1"><div class="number-value" data-target="4">0</div><div class="number-label">Compliance frameworks mapped simultaneously</div><div class="number-sub">NIST 800-53 Rev 5, NIST 800-171 Rev 3, FedRAMP Moderate, CMMC Level 2</div></div>
+      <div class="number-card fade-in fade-in-delay-2"><div class="number-value" data-target="40">0</div><div class="number-label">Automated security controls assessed per run</div><div class="number-sub">SI, SA, CM, IA, SC, RA, SR, AU, AC control families covered</div></div>
+      <div class="number-card fade-in fade-in-delay-3"><div class="number-value">42</div><div class="number-label">Reusable GitLab CI/CD templates available</div><div class="number-sub">Complete pipelines or modular components — adopt as much or as little as needed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OSCAL ══════════════════════════════════════════════════════════════════ -->
+<section id="oscal">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Compliance as Code</div>
+      <h2 class="section-title">The Evidence Your Auditors<br>Expect — Automatically Generated</h2>
+      <p class="section-sub">OSCAL is the NIST-standard machine-readable format required for federal compliance submissions. Karrier generates it automatically on every pipeline run.</p>
+    </div>
+    <div class="oscal-grid">
+      <div class="oscal-explain fade-in">
+        <h3>What is OSCAL and why does it matter?</h3>
+        <p>OSCAL is the compliance format that NIST, FedRAMP, and DoD expect. Most organizations generate it manually — if at all — at the end of a project, requiring weeks of specialist time. Karrier generates valid OSCAL 1.1.2 documents automatically on every pipeline run.</p>
+        <h3>Four frameworks. One pipeline run.</h3>
+        <p>Most organizations pick one compliance framework and map to it manually. Karrier simultaneously maps every scanner finding to all four frameworks in a single automated pass.</p>
+        <div class="oscal-frameworks">
+          <div class="oscal-framework"><div class="fw-name">NIST SP 800-53 Rev 5</div><div class="fw-desc">Federal ATO baseline — 40 automated controls</div></div>
+          <div class="oscal-framework"><div class="fw-name">FedRAMP Moderate</div><div class="fw-desc">Federal cloud authorization — 35 controls</div></div>
+          <div class="oscal-framework"><div class="fw-name">NIST SP 800-171 Rev 3</div><div class="fw-desc">CUI protection requirements — 25 controls</div></div>
+          <div class="oscal-framework"><div class="fw-name">CMMC Level 2</div><div class="fw-desc">Defense contractor maturity — 22 practices</div></div>
+        </div>
+      </div>
+      <div class="fade-in fade-in-delay-1">
+        <div class="code-window">
+          <div class="code-titlebar">
+            <div class="code-dots"><div class="code-dot code-dot-r"></div><div class="code-dot code-dot-y"></div><div class="code-dot code-dot-g"></div></div>
+            <span class="code-filename">assessment-results.json</span>
+            <span class="code-label">OSCAL 1.1.2</span>
+          </div>
+          <pre class="oscal-json"><span class="jbr">{</span>
+  <span class="jk">"assessment-results"</span><span class="jbr">:</span> <span class="jbr">{</span>
+    <span class="jk">"uuid"</span><span class="jbr">:</span> <span class="juid">"3f2a8b1c-4d5e-6f7a-8b9c-ef1234567890"</span><span class="jbr">,</span>
+    <span class="jk">"metadata"</span><span class="jbr">:</span> <span class="jbr">{</span>
+      <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"Karrier Automated Security Assessment"</span><span class="jbr">,</span>
+      <span class="jk">"last-modified"</span><span class="jbr">:</span> <span class="js">"2026-06-26T14:23:47Z"</span><span class="jbr">,</span>
+      <span class="jk">"oscal-version"</span><span class="jbr">:</span> <span class="js">"1.1.2"</span>
+    <span class="jbr">},</span>
+    <span class="jk">"results"</span><span class="jbr">:</span> <span class="jbr">[{</span>
+      <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"Pipeline #847 — branch: main"</span><span class="jbr">,</span>
+      <span class="jk">"findings"</span><span class="jbr">:</span> <span class="jbr">[</span>
+        <span class="jbr">{</span>
+          <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"SI-2: Flaw Remediation"</span><span class="jbr">,</span>
+          <span class="jk">"target"</span><span class="jbr">:</span> <span class="jbr">{</span>
+            <span class="jk">"status"</span><span class="jbr">:</span> <span class="jbr">{</span>
+              <span class="jk">"state"</span><span class="jbr">:</span> <span class="jsat">"satisfied"</span><span class="jbr">,</span>
+              <span class="jk">"reason"</span><span class="jbr">:</span> <span class="js">"0 critical, 0 high (threshold met)"</span>
+            <span class="jbr">}</span>
+          <span class="jbr">}</span>
+        <span class="jbr">},</span>
+        <span class="jbr">{</span>
+          <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"IA-5: Authenticator Management"</span><span class="jbr">,</span>
+          <span class="jk">"target"</span><span class="jbr">:</span> <span class="jbr">{</span>
+            <span class="jk">"status"</span><span class="jbr">:</span> <span class="jbr">{</span>
+              <span class="jk">"state"</span><span class="jbr">:</span> <span class="jsat">"satisfied"</span><span class="jbr">,</span>
+              <span class="jk">"reason"</span><span class="jbr">:</span> <span class="js">"0 secrets detected in full git history"</span>
+            <span class="jbr">}</span>
+          <span class="jbr">}</span>
+        <span class="jbr">},</span>
+        <span class="jbr">{</span>
+          <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"CM.L2-3.4.1: Baseline Configs (CMMC)"</span><span class="jbr">,</span>
+          <span class="jk">"target"</span><span class="jbr">:</span> <span class="jbr">{</span>
+            <span class="jk">"status"</span><span class="jbr">:</span> <span class="jbr">{</span> <span class="jk">"state"</span><span class="jbr">:</span> <span class="jsat">"satisfied"</span> <span class="jbr">}</span>
+          <span class="jbr">}</span>
+        <span class="jbr">}</span>
+      <span class="jbr">],</span>
+      <span class="jk">"observations"</span><span class="jbr">:</span> <span class="jbr">[{</span>
+        <span class="jk">"title"</span><span class="jbr">:</span> <span class="js">"Trivy Dependency &amp; Container Scan"</span><span class="jbr">,</span>
+        <span class="jk">"methods"</span><span class="jbr">:</span> <span class="jbr">[</span><span class="js">"EXAMINE"</span><span class="jbr">,</span> <span class="js">"TEST"</span><span class="jbr">],</span>
+        <span class="jk">"relevant-evidence"</span><span class="jbr">:</span> <span class="jbr">[{</span>
+          <span class="jk">"description"</span><span class="jbr">:</span>
+            <span class="js">"847 components. CRIT: 0, HIGH: 0, MED: 3"</span>
+        <span class="jbr">}]</span>
+      <span class="jbr">}]</span>
+    <span class="jbr">}]</span>
+  <span class="jbr">}</span>
+<span class="jbr">}</span></pre>
+        </div>
+        <p style="font-size:.72rem;color:var(--gray-400);margin-top:.75rem;text-align:center;">Valid OSCAL 1.1.2 — generated automatically on every pipeline run. Compatible with government GRC tooling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTROL MAPPING YAML ══════════════════════════════════════════════════ -->
+<section id="mapping">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Compliance as Code</div>
+      <h2 class="section-title">Compliance Defined in YAML.<br>Evidence Delivered Automatically.</h2>
+      <p class="section-sub">Karrier's control mappings are plain YAML — readable by engineers and auditors alike. Thresholds, artifact linkages, and framework mappings are all version-controlled and fully auditable.</p>
+    </div>
+    <div class="mapping-grid">
+      <div class="yaml-window fade-in">
+        <div class="yaml-titlebar">
+          <div class="code-dots"><div class="code-dot code-dot-r"></div><div class="code-dot code-dot-y"></div><div class="code-dot code-dot-g"></div></div>
+          <span class="code-filename">nist-800-53-rev5.yaml (excerpt)</span>
+          <span class="code-label">Control Mapping</span>
+        </div>
+        <pre class="yaml-code"><span class="yc"># NIST SP 800-53 Rev 5 — Karrier Control Mappings</span>
+<span class="yc"># Override thresholds in project's .karrier-oscal.yml</span>
+
+<span class="yk">framework</span>:
+  <span class="yk">name</span>: <span class="yv">"NIST SP 800-53 Revision 5"</span>
+  <span class="yk">version</span>: <span class="yv">"5.1.1"</span>
+  <span class="yk">baseline</span>: <span class="yv">"MODERATE"</span>
+
+<span class="yk">controls</span>:
+  <span class="ys">SI-2</span>:
+    <span class="yk">name</span>: <span class="yv">"Flaw Remediation"</span>
+    <span class="yk">family</span>: <span class="yv">"System and Information Integrity"</span>
+    <span class="yk">automated</span>: <span class="ys">true</span>
+    <span class="yk">artifacts</span>:
+      - <span class="yk">file_pattern</span>: <span class="yv">"dependency-check-report.json"</span>
+        <span class="yk">parser_type</span>: <span class="yv">"trivy_vuln"</span>
+        <span class="yk">scanner_name</span>: <span class="yv">"Trivy (Vulnerabilities)"</span>
+    <span class="yk">thresholds</span>:
+      <span class="yk">critical</span>: <span class="yn">0</span>    <span class="yc"># Zero-tolerance</span>
+      <span class="yk">high</span>:     <span class="yn">0</span>    <span class="yc"># Zero-tolerance</span>
+      <span class="yk">medium</span>:   <span class="yn">10</span>   <span class="yc"># Up to 10 allowed</span>
+
+  <span class="ys">IA-5</span>:
+    <span class="yk">name</span>: <span class="yv">"Authenticator Management"</span>
+    <span class="yk">automated</span>: <span class="ys">true</span>
+    <span class="yk">artifacts</span>:
+      - <span class="yk">file_pattern</span>: <span class="yv">"gitleaks-report.json"</span>
+        <span class="yk">parser_type</span>: <span class="yv">"gitleaks"</span>
+    <span class="yk">thresholds</span>:
+      <span class="yk">critical</span>: <span class="yn">0</span>    <span class="yc"># No secrets — ever</span>
+
+  <span class="ys">SR-3</span>:
+    <span class="yk">name</span>: <span class="yv">"Supply Chain Controls"</span>
+    <span class="yk">automated</span>: <span class="ys">true</span>
+    <span class="yk">artifacts</span>:
+      - <span class="yk">file_pattern</span>: <span class="yv">"dependency-check-report.json"</span>
+        <span class="yk">parser_type</span>: <span class="yv">"trivy_filesystem"</span>
+      - <span class="yk">file_pattern</span>: <span class="yv">"*-cyclonedx-sbom.json"</span>
+        <span class="yk">parser_type</span>: <span class="yv">"cyclonedx_sbom"</span>
+    <span class="yk">thresholds</span>:
+      <span class="yk">critical</span>: <span class="yn">0</span>
+      <span class="yk">high</span>:     <span class="yn">0</span></pre>
+      </div>
+      <div class="mapping-explain fade-in fade-in-delay-1">
+        <h3>Every line has a reason.</h3>
+        <p>Karrier's control mappings are not black-box configuration. Each entry is explicit, auditable, and version-controlled. Auditors, program managers, and engineers can all read the same file and understand exactly what is being assessed, how, and at what thresholds.</p>
+        <ul class="annotation-list">
+          <li><div class="ann-num">1</div><div class="ann-text"><strong>Control ID</strong> — maps directly to the framework control identifier. Cross-references are maintained automatically across all four frameworks.</div></li>
+          <li><div class="ann-num">2</div><div class="ann-text"><strong>artifacts</strong> — specifies which scanner output provides evidence, which parser interprets it, and what name appears in the OSCAL output and dashboard.</div></li>
+          <li><div class="ann-num">3</div><div class="ann-text"><strong>thresholds</strong> — defines pass/fail criteria per severity level. Critical and high are typically zero-tolerance. Thresholds can be overridden per-project without modifying the central mapping.</div></li>
+          <li><div class="ann-num">4</div><div class="ann-text"><strong>Multiple artifacts</strong> — SR-3 draws from both Trivy and SBOM output simultaneously. Many-to-many scanner/control relationships are first-class patterns.</div></li>
+          <li><div class="ann-num">5</div><div class="ann-text"><strong>Version-controlled</strong> — every threshold change is a git commit. Auditors can inspect the complete history of compliance policy decisions at any point in time.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DASHBOARD PREVIEW ════════════════════════════════════════════════════ -->
+<section id="dashboard">
+  <div class="container">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label">Human-Readable Output</div>
+      <h2 class="section-title">What Your Compliance Officer Sees<br>After Every Pipeline Run</h2>
+      <p class="section-sub" style="margin:0 auto;">The same pipeline run that generates OSCAL JSON also produces an interactive HTML dashboard — no additional tools, no additional work.</p>
+    </div>
+    <div class="dashboard-preview-wrapper fade-in">
+      <div class="browser-chrome">
+        <div class="browser-bar">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">https://gitlab.example.gov/myproject/-/jobs/847/artifacts/browse/public/index.html</div>
+        </div>
+        <div class="dash-inner">
+          <div class="dash-sidebar">
+            <div class="dash-sidebar-logo"><div class="dash-sidebar-logo-text">Karrier</div><div class="dash-sidebar-logo-sub">OSCAL Dashboard</div></div>
+            <div class="dash-nav-item active">📊 Executive Summary</div>
+            <div class="dash-nav-item">🔒 Control Status</div>
+            <div class="dash-nav-item">🔍 Scanner Mappings</div>
+            <div class="dash-nav-item">📦 Download Evidence</div>
+          </div>
+          <div class="dash-main">
+            <div class="dash-header-row">
+              <div><div class="dash-title">my-federal-app — Pipeline #847</div><div class="dash-subtitle">Assessed: 2026-06-26 14:23 UTC · Branch: main · OSCAL 1.1.2</div></div>
+              <button class="dash-dl-btn">⬇ Download OSCAL Bundle</button>
+            </div>
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="dash-metric-val purple">30</div><div class="dash-metric-label">Total Controls</div></div>
+              <div class="dash-metric"><div class="dash-metric-val green">22</div><div class="dash-metric-label">✓ Satisfied</div></div>
+              <div class="dash-metric"><div class="dash-metric-val red">3</div><div class="dash-metric-label">✗ Not Satisfied</div></div>
+              <div class="dash-metric"><div class="dash-metric-val gray">5</div><div class="dash-metric-label">— Not Assessed</div></div>
+            </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead><tr><th>Control</th><th>Frameworks</th><th>Scanner Evidence</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>SI-2</strong> Flaw Remediation</td><td><span class="fw-chip">800-53</span><span class="fw-chip">FedRAMP</span></td><td>Trivy: 0 CRIT, 0 HIGH, 3 MED</td><td><span class="dash-badge badge-sat">✓ Satisfied</span></td></tr>
+                  <tr><td><strong>IA-5</strong> Authenticator Mgmt</td><td><span class="fw-chip">800-53</span><span class="fw-chip">CMMC</span></td><td>Gitleaks: 0 secrets detected</td><td><span class="dash-badge badge-sat">✓ Satisfied</span></td></tr>
+                  <tr><td><strong>SA-11</strong> Developer Testing</td><td><span class="fw-chip">800-53</span><span class="fw-chip">FedRAMP</span></td><td>SAST + Coverage: 87.4% ✓</td><td><span class="dash-badge badge-sat">✓ Satisfied</span></td></tr>
+                  <tr><td><strong>CM.L2-3.4.2</strong> Config Settings</td><td><span class="fw-chip">CMMC</span><span class="fw-chip">800-171</span></td><td>IaC Scan: 0 CRIT, 0 HIGH</td><td><span class="dash-badge badge-sat">✓ Satisfied</span></td></tr>
+                  <tr><td><strong>SC-8</strong> Transmission Integrity</td><td><span class="fw-chip">800-53</span><span class="fw-chip">FedRAMP</span></td><td>API Security: 2 HIGH findings</td><td><span class="dash-badge badge-fail">✗ Not Satisfied</span></td></tr>
+                  <tr><td><strong>SR-3</strong> Supply Chain Controls</td><td><span class="fw-chip">800-53</span><span class="fw-chip">CMMC</span></td><td>Trivy + SBOM: 847 components clean</td><td><span class="dash-badge badge-sat">✓ Satisfied</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCANNERS GRID ════════════════════════════════════════════════════════ -->
+<section id="scanners">
+  <div class="container">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label">Security Coverage</div>
+      <h2 class="section-title">11+ Scanners. Every Commit.<br>Zero Additional Configuration.</h2>
+      <p class="section-sub" style="margin:0 auto;">Every scanner runs automatically on every pipeline execution. Findings are stored as artifacts, mapped to compliance controls, and available for audit download at any time.</p>
+    </div>
+    <div class="scanners-grid fade-in">
+      <div class="scanner-card"><div class="scanner-icon">🛡️</div><div class="scanner-name">Trivy</div><div class="scanner-type">Container + Dependency</div><div class="scanner-controls">Covers: SI-2, SA-4, CM-2, SR-3, SR-4</div></div>
+      <div class="scanner-card"><div class="scanner-icon">🔑</div><div class="scanner-name">Gitleaks</div><div class="scanner-type">Secrets Detection</div><div class="scanner-controls">Covers: IA-5, SC-28 — full git history</div></div>
+      <div class="scanner-card"><div class="scanner-icon">🔬</div><div class="scanner-name">Semgrep</div><div class="scanner-type">SAST</div><div class="scanner-controls">Covers: SA-11, SI-2 — code-level patterns</div></div>
+      <div class="scanner-card"><div class="scanner-icon">📡</div><div class="scanner-name">Spectral</div><div class="scanner-type">API Security</div><div class="scanner-controls">Covers: SC-5, SC-7, SC-8 — OpenAPI/AsyncAPI</div></div>
+      <div class="scanner-card"><div class="scanner-icon">🏗️</div><div class="scanner-name">Checkov</div><div class="scanner-type">IaC Policy</div><div class="scanner-controls">Covers: CM-2, CM-6, AC-3, AC-4, SC-28</div></div>
+      <div class="scanner-card"><div class="scanner-icon">🔍</div><div class="scanner-name">Grype</div><div class="scanner-type">Container Vulns (dual)</div><div class="scanner-controls">Covers: SI-2 — independent second opinion</div></div>
+      <div class="scanner-card"><div class="scanner-icon">🐳</div><div class="scanner-name">Dockle + Hadolint</div><div class="scanner-type">Container Hardening</div><div class="scanner-controls">Covers: CM-6, CM-7, SC-2</div></div>
+      <div class="scanner-card"><div class="scanner-icon">⚡</div><div class="scanner-name">Dastardly</div><div class="scanner-type">DAST</div><div class="scanner-controls">Covers: SA-11 — runtime application testing</div></div>
+      <div class="scanner-card"><div class="scanner-icon">📦</div><div class="scanner-name">Syft / CycloneDX</div><div class="scanner-type">SBOM Generation</div><div class="scanner-controls">Covers: SR-3, SR-4 — EO 14028 compliant</div></div>
+      <div class="scanner-card"><div class="scanner-icon">📋</div><div class="scanner-name">Dependency-Check</div><div class="scanner-type">Third-party Libraries</div><div class="scanner-controls">Covers: SA-4, SI-2 — CVE matched</div></div>
+      <div class="scanner-card"><div class="scanner-icon">📈</div><div class="scanner-name">Code Quality</div><div class="scanner-type">Radon + Pylint</div><div class="scanner-controls">Covers: SA-11, SA-15 — complexity metrics</div></div>
+      <div class="scanner-card"><div class="scanner-icon">⚖️</div><div class="scanner-name">License Compliance</div><div class="scanner-type">Trivy (Licenses)</div><div class="scanner-controls">Covers: SA-15 — policy enforcement</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPETITIVE ══════════════════════════════════════════════════════════ -->
+<section id="competitive">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Competitive Advantage</div>
+      <h2 class="section-title">Where Karrier Wins.<br>Why Nothing Else Competes.</h2>
+      <p class="section-sub">The federal compliance space has many point solutions. Karrier is the only accelerator that integrates all of them — and wraps the output in native OSCAL.</p>
+    </div>
+    <div class="comp-table-wrap fade-in">
+      <table class="comp-table">
+        <thead><tr>
+          <th>Feature</th>
+          <th class="karrier-col">Karrier (AFS)</th>
+          <th>Snyk</th><th>Prisma Cloud</th><th>ServiceNow GRC</th><th>Manual Process</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>OSCAL-native output (machine-readable)</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>4 frameworks simultaneously (auto-mapped)</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="partial">Partial</span></td><td><span class="partial">Manual</span></td><td><span class="partial">Months</span></td></tr>
+          <tr><td>Air-gap / classified environment support</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="partial">Limited</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>11+ integrated scan types, one pipeline</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="partial">3–4</span></td><td><span class="partial">5–6</span></td><td><span class="cross">✗</span></td><td><span class="partial">Ad-hoc</span></td></tr>
+          <tr><td>Automated evidence on every commit</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Day-1 deployment (no setup project)</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td>—</td></tr>
+          <tr><td>EO 14028 SBOM compliance</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="partial">Partial</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Zero additional licensing / procurement</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Single update propagates to all projects</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>ATO-ready evidence on demand</td><td class="karrier-col"><span class="check">✓</span></td><td><span class="partial">Partial</span></td><td><span class="partial">Partial</span></td><td><span class="partial">Manual entry</span></td><td><span class="partial">Weeks</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENARIOS ══════════════════════════════════════════════════════════════ -->
+<section id="scenarios">
+  <div class="container">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-label">Deployment Flexibility</div>
+      <h2 class="section-title">Three Ways to Deploy.<br>One Standard of Excellence.</h2>
+      <p class="section-sub" style="margin:0 auto;">Karrier adapts to where your team is today. No rip-and-replace required.</p>
+    </div>
+    <div class="scenarios-grid">
+      <div class="scenario-card fade-in"><div class="scenario-num">01</div><div class="scenario-tag">Greenfield</div><h3>Starting From Scratch</h3><p>A new application team includes Karrier with a single <code style="font-size:.8em;background:#f3f4f6;padding:.15em .4em;border-radius:3px">include</code> in their <code style="font-size:.8em;background:#f3f4f6;padding:.15em .4em;border-radius:3px">.gitlab-ci.yml</code>. In under a day, they have a complete production-grade pipeline — without writing a single line of pipeline configuration.</p><ul class="scenario-highlights"><li>Complete pipeline operational same day</li><li>Configure compliance frameworks of interest</li><li>Evidence accumulates from commit one</li><li>Zero pipeline engineering expertise required</li></ul></div>
+      <div class="scenario-card fade-in fade-in-delay-1"><div class="scenario-num">02</div><div class="scenario-tag">Augment</div><h3>Improving an Existing Pipeline</h3><p>A team with an existing GitLab pipeline adds individual Karrier templates à la carte. Need just the OSCAL compliance module? Just secrets scanning? Karrier's modular design makes partial adoption seamless — nothing in the existing pipeline breaks.</p><ul class="scenario-highlights"><li>Drop-in individual template modules</li><li>Existing pipeline stages untouched</li><li>No disruption to working builds</li><li>Compliance coverage grows incrementally</li></ul></div>
+      <div class="scenario-card fade-in fade-in-delay-2"><div class="scenario-num">03</div><div class="scenario-tag">Enterprise</div><h3>Standardizing Across All Teams</h3><p>An organization with ten development teams adopts Karrier as the organizational standard. All future scanner upgrades, threshold changes, and control mapping updates are managed in one place, propagating automatically to all projects.</p><ul class="scenario-highlights"><li>Consistent security posture across all teams</li><li>Audit surface shrinks to a single standard</li><li>Leadership gains program-wide compliance view</li><li>New projects onboard in hours, not weeks</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <div class="section-label">Get Started</div>
+      <h2>Ready to Bring Karrier<br>to Your Next Engagement?</h2>
+      <p>Karrier arrives with your AFS team on day one. No procurement, no licensing, no deployment project. Just a production-grade, compliance-native DevSecOps pipeline — operational before your first standup.</p>
+      <div class="cta-buttons">
+        <a href="mailto:joseph.b.taylor@afs.com" class="btn-cta-large">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact Accenture Federal Services
+        </a>
+        <a href="https://www.accenture.com/us-en/industries/afs-index" class="btn-outline" style="border-color:rgba(255,255,255,.25)">
+          Learn More About AFS
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="cta-contact-info">
+        <p>Accenture Federal Services · 800 N. Glebe Rd, Arlington, VA 22203</p>
+        <p style="margin-top:.25rem"><a href="https://www.accenture.com/us-en/industries/afs-index">accenture.com/federal</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="afs-logo">
+          <span class="afs-chevron" style="font-size:1.1rem">&gt;</span>
+          <div class="afs-wordmark">
+            <span class="accenture" style="font-size:.9rem">accenture</span>
+            <span class="federal" style="font-size:.5rem">FEDERAL SERVICES</span>
+          </div>
+        </div>
+        <p class="footer-text" style="margin-top:.6rem">Karrier DevSecOps Accelerator</p>
+      </div>
+      <div class="footer-links">
+        <a href="#problem">The Problem</a>
+        <a href="#how-it-works">Pipeline</a>
+        <a href="#oscal">OSCAL</a>
+        <a href="#competitive">Why Karrier</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Karrier is an Accenture Federal Services internal accelerator. OSCAL is an open standard published by NIST. NIST SP 800-53, NIST SP 800-171, FedRAMP, and CMMC are U.S. government compliance frameworks. Third-party scanner names (Trivy, Gitleaks, Semgrep, Checkov, etc.) are trademarks of their respective owners. Accenture Federal Services, LLC is a separate legal entity from Accenture LLP. &copy; 2026 Accenture Federal Services.
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT — Pipeline simulator + marketing page animations
+══════════════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── PIPELINE DATA ─────────────────────────────────────────────────────────
+const STAGES = [
+  { id:'lint', name:'Lint', icon:'📝', jobs:[
+    { id:'lint-shell',  name:'lint-shell',  tool:'Shellcheck',      duration:'12s',  artifacts:['shell-lint.report.txt'], findings:null, detail:'No shell script violations found. 23 scripts scanned. All POSIX compliance checks passed.' },
+    { id:'yaml-lint',   name:'yaml-lint',   tool:'yamllint',        duration:'8s',   artifacts:[], findings:null, detail:'47 YAML files validated against strict schema. All CI/CD templates conform.' },
+    { id:'sast',        name:'sast',        tool:'Semgrep',         duration:'45s',  artifacts:['gl-sast-semgrep-report.json'], findings:{crit:0,high:0,med:1,low:4}, detail:'8,234 lines of source code analyzed for injection risks and unsafe patterns.' },
+    { id:'bandit-sast', name:'bandit-sast', tool:'Bandit (Python)', duration:'38s',  artifacts:['gl-sast-pmd-report.json'], findings:{crit:0,high:0,med:0,low:2}, detail:'Python-specific security analysis complete. No high-severity issues. 2 low-severity style warnings.' },
+  ]},
+  { id:'test', name:'Test', icon:'🧪', jobs:[
+    { id:'test-coverage', name:'test-coverage', tool:'pytest + coverage', duration:'1m 04s', artifacts:['coverage-report.json','python-coverage.json'], findings:null, detail:'142 tests executed. 0 failures. Code coverage: 87.4% (threshold 80% ✓). Feeds SA-11 evidence.' },
+  ]},
+  { id:'build', name:'Build', icon:'🏗️', jobs:[
+    { id:'create-container-images', name:'create-container-images', tool:'Buildah (rootless)', duration:'1m 14s', artifacts:['container-images.txt'], findings:null, detail:'Built & pushed: registry.gov/myapp/build:a1b2c3d4 (248 MB)\nBuilt & pushed: registry.gov/myapp/tools:a1b2c3d4 (312 MB)\n2 images, no daemon required.' },
+  ]},
+  { id:'scanning', name:'Scanning', icon:'🔍', jobs:[
+    { id:'container-scanning',      name:'container-scanning',      tool:'Trivy',              duration:'1m 02s', artifacts:['gl-container-scanning-report-trivy.json','scans/'], findings:{crit:0,high:0,med:7,low:12}, detail:'Full container image scan: registry.gov/myapp/build:a1b2c3d4. All layers inspected against CVE databases.' },
+    { id:'dependency-check',        name:'dependency-check',        tool:'Trivy (filesystem)', duration:'48s',    artifacts:['dependency-check-report.json'], findings:{crit:0,high:0,med:3,low:9}, detail:'847 packages scanned. All direct and transitive dependencies checked against NVD and GitHub Advisory.' },
+    { id:'secrets-scanning',        name:'secrets-scanning',        tool:'Gitleaks',           duration:'35s',    artifacts:['gitleaks-report.json'], findings:{label:'Secrets',crit:0,low:0}, detail:'Full git history scanned (GIT_DEPTH=0). 1,247 commits inspected for credentials, API keys, and tokens.' },
+    { id:'iac-scanning',            name:'iac-scanning',            tool:'Trivy (config)',     duration:'22s',    artifacts:['iac-scan-report.json'], findings:{crit:0,high:0,med:2,low:5}, detail:'23 Terraform files and 8 Kubernetes manifests scanned for misconfigurations against CIS benchmarks.' },
+    { id:'checkov-iac-scan',        name:'checkov-iac-scan',        tool:'Checkov',            duration:'41s',    artifacts:['checkov-report.json'], findings:{label:'Warnings',crit:0,low:6}, detail:'247 IaC security policies checked. 241 passed. 6 informational warnings (non-blocking).' },
+    { id:'license-compliance',      name:'license-compliance',      tool:'Trivy (licenses)',   duration:'28s',    artifacts:['license-report.json'], findings:{label:'Blocked',crit:0,label2:'Flagged',med:2}, detail:'312 component licenses identified. 0 blocked. 2 GPL-flagged (reviewed and approved). SA-15 evidence.' },
+    { id:'api-security',            name:'api-security',            tool:'Spectral',           duration:'19s',    artifacts:['api-security-report.json'], findings:{crit:0,high:0,med:0,low:3,label2:'Style'}, detail:'OpenAPI v3.1 spec validated against OWASP API Security Top 10. 0 security violations. 3 style warnings.' },
+    { id:'container-hardening',     name:'container-hardening',     tool:'Dockle + Hadolint',  duration:'25s',    artifacts:['container-hardening-report.json'], findings:{crit:0,high:0,med:0,low:2}, detail:'Dockerfile best practices and runtime security posture validated. No root user violations. CM-6, CM-7 evidence.' },
+    { id:'code-quality',            name:'code-quality',            tool:'Radon + Pylint',     duration:'31s',    artifacts:['code-quality-report.json','radon-cc.json'], findings:null, detail:'Cyclomatic complexity: Grade A (avg 2.1). Pylint score: 8.9/10. Technical debt: Low. SA-11, SA-15 evidence.' },
+    { id:'generate-repo-sbom',      name:'generate-repo-sbom',      tool:'Syft / CycloneDX',  duration:'18s',    artifacts:['repo-sbom.json','repo-sbom.xml'], findings:null, detail:'CycloneDX 1.4 SBOM generated for application source. 247 components catalogued. EO 14028 ✓' },
+    { id:'generate-container-sbom', name:'generate-container-sbom', tool:'Syft / CycloneDX',  duration:'21s',    artifacts:['container-sbom.json','container-sbom.xml'], findings:null, detail:'CycloneDX 1.4 SBOM for built container image. 183 layer components. 100% integrity verified.' },
+    { id:'git-metadata-analysis',   name:'git-metadata-analysis',   tool:'Karrier Git Analysis',duration:'14s',  artifacts:['git-metadata-report.json'], findings:null, detail:'Repository history analyzed for secure development practices: signed commits, branch protection, code review adherence.' },
+  ]},
+  { id:'compliance', name:'Compliance', icon:'🛡️', jobs:[
+    { id:'oscal-collect-evidence',     name:'oscal-collect-evidence',     tool:'Karrier OSCAL Engine', duration:'28s', artifacts:['evidence-bundle.json','risk-summary-report.json','ca7-pipeline-monitor-report.json'], findings:null, detail:'Evidence aggregated from 12 scanner outputs into unified bundle. 30 controls assessed across 4 frameworks.' },
+    { id:'oscal-component-definition', name:'oscal-component-definition', tool:'Karrier OSCAL Engine', duration:'15s', artifacts:['component-definition.json'], findings:null, detail:'OSCAL 1.1.2 component definition generated. Describes Karrier\'s implementation of 30 automated controls.' },
+    { id:'oscal-assessment-results',   name:'oscal-assessment-results',   tool:'Karrier OSCAL Engine', duration:'22s', artifacts:['assessment-results.json'], findings:null, detail:'OSCAL 1.1.2 assessment results: 22 Satisfied ✓ · 3 Not Satisfied · 5 Not Assessed. Machine-readable for GRC tools.' },
+    { id:'oscal-reports',              name:'oscal-reports',              tool:'Karrier Reports',       duration:'12s', artifacts:['compliance-status.md'], findings:null, detail:'Markdown compliance report generated. Control-by-control status table ready for program manager review.' },
+    { id:'oscal-html-dashboard',       name:'oscal-html-dashboard',       tool:'Karrier Dashboard',     duration:'18s', artifacts:['public/index.html'], findings:null, detail:'Interactive HTML5 compliance dashboard built. Chart.js visualizations, scanner mappings, and artifact links.' },
+  ]},
+  { id:'validation', name:'Validation', icon:'✅', jobs:[
+    { id:'oscal-validate', name:'oscal-validate', tool:'OSCAL Schema Validator', duration:'14s', artifacts:[], findings:null, detail:'assessment-results.json: ✓ valid (OSCAL 1.1.2)\ncomponent-definition.json: ✓ valid\nAll required fields present.' },
+  ]},
+  { id:'release', name:'Release', icon:'🚀', jobs:[
+    { id:'auto-semver-ci', name:'auto-semver-ci', tool:'Karrier Auto Semver', duration:'22s', artifacts:['CHANGELOG.md'], findings:null, detail:'Version bump: 1.4.1 → v1.4.2 (patch)\nGit tag v1.4.2 created and pushed.\nCHANGELOG.md auto-generated from conventional commits.' },
+  ]},
+];
+const JOB_MAP = {};
+STAGES.forEach(s => s.jobs.forEach(j => { JOB_MAP[j.id] = {...j, stageId:s.id}; }));
+const TOTAL_JOBS = Object.keys(JOB_MAP).length;
+
+// ── ARTIFACTS ─────────────────────────────────────────────────────────────
+const ARTIFACT_SECTIONS = [
+  { title:'OSCAL Compliance Documents', icon:'🏛️', items:[
+    { name:'evidence-bundle.json',          type:'json', size:'124 KB', job:'oscal-collect-evidence',     fw:'OSCAL 1.1.2', desc:'Unified evidence bundle aggregating findings from all 12 scanners. Fully auditable and timestamped to the pipeline run. Primary input to OSCAL assessment generation.' },
+    { name:'assessment-results.json',       type:'json', size:'48 KB',  job:'oscal-assessment-results',   fw:'OSCAL 1.1.2', desc:'Machine-readable OSCAL 1.1.2 assessment results. Control satisfaction status for all four frameworks — consumed directly by government GRC tooling and ATO packages.' },
+    { name:'component-definition.json',     type:'json', size:'32 KB',  job:'oscal-component-definition', fw:'OSCAL 1.1.2', desc:'OSCAL 1.1.2 component definition describing how Karrier implements each automated control. Required artifact for ATO package submission to authorizing officials.' },
+    { name:'risk-summary-report.json',      type:'json', size:'18 KB',  job:'oscal-collect-evidence',     desc:'Aggregated risk summary across all scanners. Severity distribution and framework-level pass/fail rolled up for executive review.' },
+    { name:'ca7-pipeline-monitor-report.json',type:'json',size:'9 KB',  job:'oscal-collect-evidence',     desc:'Pipeline health monitoring report for CA-7 (Continuous Monitoring) control evidence. Tracks pipeline execution frequency and artifact integrity.' },
+    { name:'compliance-status.md',          type:'md',   size:'18 KB',  job:'oscal-reports',              desc:'Human-readable Markdown compliance report. Control-by-control status table and scanner evidence summaries. Ready for program manager review or audit submission.' },
+    { name:'public/index.html',             type:'html', size:'284 KB', job:'oscal-html-dashboard',       fw:'GitLab Pages', desc:'Interactive HTML5 compliance dashboard with Chart.js visualizations. Displays control status, scanner-to-control mappings, and artifact links. Opens directly in any browser.' },
+  ]},
+  { title:'Security Scan Reports', icon:'🔍', items:[
+    { name:'gl-container-scanning-report-trivy.json', type:'json', size:'87 KB',  job:'container-scanning',  desc:'Trivy container image vulnerability report in GitLab Security format. Result: 0 CRIT · 0 HIGH · 7 MED · 12 LOW. Feeds SI-2, SA-4 control evidence.' },
+    { name:'scans/',                         type:'dir',  size:'~2 MB', job:'container-scanning',  desc:'Raw Trivy scan output directory. Contains per-layer vulnerability data and full CVE metadata for audit inspection and GRC tool import.' },
+    { name:'dependency-check-report.json',   type:'json', size:'62 KB', job:'dependency-check',    desc:'Trivy filesystem scan of all application dependencies. 847 packages checked against NVD, GitHub Advisory, and OSV databases. Result: 0 CRIT · 0 HIGH · 3 MED.' },
+    { name:'gitleaks-report.json',           type:'json', size:'4 KB',  job:'secrets-scanning',    desc:'Gitleaks secrets scan of full repository history (GIT_DEPTH=0). 1,247 commits examined. Result: 0 secrets detected. Feeds IA-5, SC-28 control evidence.' },
+    { name:'iac-scan-report.json',           type:'json', size:'29 KB', job:'iac-scanning',        desc:'Trivy IaC configuration scan of Terraform and Kubernetes manifests. Checks for misconfigurations against CIS benchmarks. Result: 0 CRIT · 0 HIGH.' },
+    { name:'checkov-report.json',            type:'json', size:'41 KB', job:'checkov-iac-scan',    desc:'Checkov policy-as-code scan. 247 built-in security policies checked across Terraform, Kubernetes, and CloudFormation. 241 passed · 6 informational warnings.' },
+    { name:'api-security-report.json',       type:'json', size:'11 KB', job:'api-security',        desc:'Spectral OpenAPI security lint report. API specification validated against OWASP API Security Top 10. 0 violations. Feeds SC-5, SC-7, SC-8 evidence.' },
+    { name:'container-hardening-report.json',type:'json', size:'16 KB', job:'container-hardening', desc:'Dockle + Hadolint combined container hardening report. Dockerfile best practices and runtime security posture. 0 fatal findings. Feeds CM-6, CM-7 evidence.' },
+    { name:'gl-sast-semgrep-report.json',    type:'json', size:'34 KB', job:'sast',                desc:'Semgrep SAST report in GitLab Security format. 8,234 lines analyzed for injection risks and framework-specific vulnerabilities. Feeds SA-11 evidence.' },
+    { name:'coverage-report.json',           type:'json', size:'8 KB',  job:'test-coverage',       desc:'pytest code coverage results. 142 tests, 0 failed. Coverage: 87.4% (exceeds 80% threshold). Feeds SA-11 Developer Testing and Evaluation evidence.' },
+    { name:'license-report.json',            type:'json', size:'19 KB', job:'license-compliance',  desc:'312 component licenses identified. 0 blocked. 2 GPL-flagged components reviewed and approved. Feeds SA-15 Development Standards evidence.' },
+    { name:'code-quality-report.json',       type:'json', size:'22 KB', job:'code-quality',        desc:'Aggregated code quality metrics. Complexity grade A (avg 2.1), Pylint 8.9/10. Technical debt: Low. Feeds SA-11 and SA-15 evidence.' },
+    { name:'git-metadata-report.json',       type:'json', size:'12 KB', job:'git-metadata-analysis',desc:'Repository development practice analysis. Signed commits, branch protection, code review coverage. Feeds CM-3, SA-10 evidence.' },
+  ]},
+  { title:'Software Bill of Materials (SBOM)', icon:'📦', items:[
+    { name:'repo-sbom.json',     type:'json', size:'156 KB', job:'generate-repo-sbom',      fw:'CycloneDX 1.4', desc:'CycloneDX 1.4 SBOM of application source dependencies. 247 components with provenance, version, and cryptographic hash data. EO 14028 compliant deliverable.' },
+    { name:'repo-sbom.xml',      type:'xml',  size:'198 KB', job:'generate-repo-sbom',      fw:'CycloneDX 1.4', desc:'CycloneDX 1.4 SBOM in XML format. Identical component data as JSON SBOM, provided for tooling compatibility with legacy GRC platforms.' },
+    { name:'container-sbom.json',type:'json', size:'211 KB', job:'generate-container-sbom', fw:'CycloneDX 1.4', desc:'CycloneDX 1.4 SBOM of the built container image. 183 layer components catalogued with full hash verification. 100% integrity data present.' },
+    { name:'container-sbom.xml', type:'xml',  size:'267 KB', job:'generate-container-sbom', fw:'CycloneDX 1.4', desc:'CycloneDX 1.4 container SBOM in XML format. Full component manifest including base OS packages and runtime dependencies.' },
+  ]},
+  { title:'Build Artifacts', icon:'🐳', items:[
+    { name:'container-images.txt', type:'txt', size:'1 KB', job:'create-container-images', desc:'Manifest of all container images built and pushed this run. Includes image names, tags, registry digest hashes, and push timestamps. Input to all container scanning jobs.' },
+  ]},
+  { title:'Release', icon:'🚀', items:[
+    { name:'CHANGELOG.md', type:'md', size:'7 KB', job:'auto-semver-ci', desc:'Auto-generated changelog for release v1.4.2. Lists commits parsed from conventional commit messages, categorized as breaking changes, features, and fixes. Git tag v1.4.2 created.' },
+  ]},
+];
+
+// ── ANIMATION TIMELINE ────────────────────────────────────────────────────
+const TIMELINE = [
+  {t:0,    j:'lint-shell',             a:'start'},{t:0,    j:'yaml-lint',               a:'start'},
+  {t:0,    j:'sast',                   a:'start'},{t:0,    j:'bandit-sast',             a:'start'},
+  {t:500,  j:'yaml-lint',              a:'pass' },{t:750,  j:'lint-shell',              a:'pass' },
+  {t:1200, j:'bandit-sast',            a:'pass' },{t:1700, j:'sast',                    a:'pass' },
+  {t:1900, j:'test-coverage',          a:'start'},{t:3000, j:'test-coverage',           a:'pass' },
+  {t:3200, j:'create-container-images',a:'start'},{t:4800, j:'create-container-images', a:'pass' },
+  {t:5000, j:'container-scanning',     a:'start'},{t:5000, j:'dependency-check',        a:'start'},
+  {t:5000, j:'secrets-scanning',       a:'start'},{t:5000, j:'iac-scanning',            a:'start'},
+  {t:5000, j:'checkov-iac-scan',       a:'start'},{t:5000, j:'license-compliance',      a:'start'},
+  {t:5000, j:'api-security',           a:'start'},{t:5000, j:'container-hardening',     a:'start'},
+  {t:5000, j:'code-quality',           a:'start'},{t:5000, j:'generate-repo-sbom',      a:'start'},
+  {t:5000, j:'generate-container-sbom',a:'start'},{t:5000, j:'git-metadata-analysis',   a:'start'},
+  {t:5450, j:'api-security',           a:'pass' },{t:5600, j:'git-metadata-analysis',   a:'pass' },
+  {t:5750, j:'iac-scanning',           a:'pass' },{t:5950, j:'secrets-scanning',        a:'pass' },
+  {t:6100, j:'generate-repo-sbom',     a:'pass' },{t:6250, j:'generate-container-sbom', a:'pass' },
+  {t:6400, j:'container-hardening',    a:'pass' },{t:6600, j:'license-compliance',      a:'pass' },
+  {t:6800, j:'code-quality',           a:'pass' },{t:7100, j:'checkov-iac-scan',        a:'pass' },
+  {t:7400, j:'dependency-check',       a:'pass' },{t:7900, j:'container-scanning',      a:'pass' },
+  {t:8100, j:'oscal-collect-evidence',     a:'start'},{t:8100, j:'oscal-component-definition',a:'start'},
+  {t:8100, j:'oscal-assessment-results',   a:'start'},{t:8100, j:'oscal-reports',              a:'start'},
+  {t:8100, j:'oscal-html-dashboard',       a:'start'},
+  {t:8550, j:'oscal-reports',              a:'pass' },{t:8750, j:'oscal-component-definition',a:'pass' },
+  {t:9000, j:'oscal-html-dashboard',       a:'pass' },{t:9300, j:'oscal-collect-evidence',    a:'pass' },
+  {t:9600, j:'oscal-assessment-results',   a:'pass' },
+  {t:9800, j:'oscal-validate',  a:'start'},{t:10300,j:'oscal-validate',  a:'pass' },
+  {t:10500,j:'auto-semver-ci',  a:'start'},{t:11200,j:'auto-semver-ci',  a:'pass' },
+  {t:11500,a:'pipeline-complete'},
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+let animationStarted = false, passedJobs = 0;
+let durationTimer = null, animStart = null;
+let popupHideTimeout = null;
+let currentPopupStage = null, artifactsOpen = false;
+const jobStates = {};
+STAGES.forEach(s => s.jobs.forEach(j => { jobStates[j.id] = 'pending'; }));
+
+// ── RENDER PIPELINE ───────────────────────────────────────────────────────
+function renderPipeline() {
+  const track = document.getElementById('stagesTrack');
+  if (!track) return;
+  track.innerHTML = '';
+  STAGES.forEach((stage, si) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'stage-wrapper';
+    const col = document.createElement('div');
+    col.className = 'stage-col';
+    col.id = 'stage-' + stage.id;
+    col.setAttribute('data-stage', stage.id);
+    col.innerHTML = `<div class="stage-icon-wrap" id="stage-icon-${stage.id}">${stage.icon}</div><div class="stage-name">${stage.name}</div><div class="stage-chips" id="chips-${stage.id}"></div><div class="stage-status-tag pending" id="stage-tag-${stage.id}">${stage.jobs.length} job${stage.jobs.length>1?'s':''}</div>`;
+    const chipsEl = col.querySelector('.stage-chips');
+    stage.jobs.forEach(job => {
+      const chip = document.createElement('div');
+      chip.className = 'job-chip pending';
+      chip.id = 'chip-' + job.id;
+      chipsEl.appendChild(chip);
+    });
+    col.addEventListener('mouseenter', () => { clearTimeout(popupHideTimeout); showStagePopup(stage.id, col); });
+    col.addEventListener('mouseleave', e => { if (!e.relatedTarget || !document.getElementById('stagePopup').contains(e.relatedTarget)) scheduleHidePopup(); });
+    wrapper.appendChild(col);
+    if (si < STAGES.length - 1) {
+      const conn = document.createElement('div');
+      conn.className = 'stage-connector';
+      conn.id = 'connector-' + si;
+      conn.innerHTML = `<div class="connector-line" id="cline-${si}"></div><span class="connector-arrow" id="carrow-${si}">▶</span>`;
+      wrapper.appendChild(conn);
+    }
+    track.appendChild(wrapper);
+  });
+}
+
+// ── JOB STATE ─────────────────────────────────────────────────────────────
+function setJobState(jobId, state) {
+  jobStates[jobId] = state;
+  const chip = document.getElementById('chip-' + jobId);
+  if (chip) { chip.className = 'job-chip ' + state; chip.innerHTML = state === 'passed' ? '<span class="chip-check">✓</span>' : ''; }
+  if (currentPopupStage) {
+    const row = document.querySelector(`.popup-job-row[data-job="${jobId}"]`);
+    if (row) { const sm = row.querySelector('.popup-chip-sm'); if (sm) { sm.className='popup-chip-sm '+state; sm.innerHTML=state==='passed'?'✓':''; } }
+  }
+  if (state === 'passed') {
+    passedJobs++;
+    const pg = document.getElementById('jobsProgress');
+    if (pg) pg.textContent = `${passedJobs} / ${TOTAL_JOBS} jobs`;
+    checkStageComplete(jobId);
+  }
+}
+
+function checkStageComplete(jobId) {
+  const stageData = STAGES.find(s => s.jobs.some(j => j.id === jobId));
+  if (!stageData) return;
+  if (!stageData.jobs.every(j => jobStates[j.id] === 'passed')) return;
+  const col = document.getElementById('stage-' + stageData.id);
+  const tag = document.getElementById('stage-tag-' + stageData.id);
+  if (col) { col.classList.remove('stage-running'); col.classList.add('stage-complete'); }
+  if (tag) { tag.className = 'stage-status-tag passed'; tag.textContent = '✓ passed'; }
+  const idx = STAGES.findIndex(s => s.id === stageData.id);
+  if (idx < STAGES.length - 1) {
+    setTimeout(() => {
+      const cl = document.getElementById('cline-' + idx);
+      const ca = document.getElementById('carrow-' + idx);
+      if (cl) cl.classList.add('lit');
+      if (ca) ca.classList.add('lit');
+    }, 100);
+  }
+}
+
+function setStageRunning(stageId) {
+  const col = document.getElementById('stage-' + stageId);
+  const tag = document.getElementById('stage-tag-' + stageId);
+  if (!col || col.classList.contains('stage-complete')) return;
+  col.classList.add('stage-running');
+  if (tag) { tag.className = 'stage-status-tag running'; tag.textContent = '⏳ running'; }
+}
+
+// ── ANIMATION ─────────────────────────────────────────────────────────────
+function startAnimation() {
+  if (animationStarted) return;
+  animationStarted = true;
+  animStart = performance.now();
+  const badge = document.getElementById('pipelineStatusBadge');
+  const dot   = document.getElementById('statusDot');
+  const stxt  = document.getElementById('statusText');
+  if (badge) badge.className = 'pipeline-status-badge running';
+  if (dot)   dot.classList.add('spinning');
+  if (stxt)  stxt.textContent = 'Running';
+  durationTimer = setInterval(() => {
+    const el = document.getElementById('pipelineDuration');
+    if (!el) return;
+    const e = Math.floor((performance.now() - animStart) / 1000);
+    el.textContent = `${Math.floor(e/60)}:${String(e%60).padStart(2,'0')}`;
+  }, 500);
+  setStageRunning('lint');
+  TIMELINE.forEach(evt => {
+    setTimeout(() => {
+      if (evt.a === 'pipeline-complete') { onPipelineComplete(); return; }
+      if (evt.a === 'start') {
+        jobStates[evt.j] = 'running';
+        const chip = document.getElementById('chip-' + evt.j);
+        if (chip) { chip.className = 'job-chip running'; chip.innerHTML = ''; }
+        const sd = STAGES.find(s => s.jobs.some(j => j.id === evt.j));
+        if (sd) setStageRunning(sd.id);
+        if (currentPopupStage) {
+          const row = document.querySelector(`.popup-job-row[data-job="${evt.j}"]`);
+          if (row) { const sm = row.querySelector('.popup-chip-sm'); if (sm) { sm.className='popup-chip-sm running'; sm.innerHTML=''; } }
+        }
+      }
+      if (evt.a === 'pass') setJobState(evt.j, 'passed');
+    }, evt.t);
+  });
+}
+
+function onPipelineComplete() {
+  clearInterval(durationTimer);
+  const badge = document.getElementById('pipelineStatusBadge');
+  const dot   = document.getElementById('statusDot');
+  const stxt  = document.getElementById('statusText');
+  const banner= document.getElementById('completeBanner');
+  if (badge) badge.className = 'pipeline-status-badge passed';
+  if (dot)   dot.classList.remove('spinning');
+  if (stxt)  stxt.textContent = 'Passed';
+  if (banner) banner.classList.add('show');
+  const panel = document.getElementById('pipelinePanel');
+  if (panel) {
+    const s = document.createElement('div');
+    s.className = 'shimmer-overlay';
+    panel.appendChild(s);
+    setTimeout(() => s.remove(), 900);
+  }
+}
+
+// ── POPUP ─────────────────────────────────────────────────────────────────
+function showStagePopup(stageId, colEl) {
+  const stageData = STAGES.find(s => s.id === stageId);
+  if (!stageData) return;
+  currentPopupStage = stageId;
+  const popup = document.getElementById('stagePopup');
+  const card  = document.getElementById('popupCard');
+  if (!popup || !card) return;
+
+  const jobsHtml = stageData.jobs.map(job => {
+    const state = jobStates[job.id] || 'pending';
+    return `<div class="popup-job-row" data-job="${job.id}" onmouseenter="hoverJob('${job.id}')" onmouseleave="unhoverJob()">
+      <div class="popup-chip-sm ${state}">${state==='passed'?'✓':''}</div>
+      <div class="popup-job-info"><div class="popup-job-name">${job.name}</div><div class="popup-job-meta">${job.tool} · ${job.duration}</div></div>
+      <div class="popup-job-arrow">›</div>
+    </div>`;
+  }).join('');
+
+  const allPassed = stageData.jobs.every(j => jobStates[j.id] === 'passed');
+  const stageBadge = allPassed
+    ? '<span class="popup-stage-badge">✓ passed</span>'
+    : '<span class="popup-stage-badge" style="background:rgba(59,130,246,.15);color:#60A5FA">running</span>';
+
+  card.innerHTML = `
+    <div class="popup-header">
+      <span class="popup-stage-icon">${stageData.icon}</span>
+      <span class="popup-stage-name">${stageData.name}</span>
+      <span class="popup-job-count">${stageData.jobs.length} job${stageData.jobs.length>1?'s':''}</span>
+      ${stageBadge}
+    </div>
+    <div class="popup-body">
+      <div class="popup-job-list">${jobsHtml}</div>
+      <div class="popup-detail-panel" id="popupDetailPanel">
+        <div class="popup-detail-placeholder" id="popupPlaceholder">
+          <div class="placeholder-icon">←</div>
+          <div>Hover a job to<br>see results</div>
+        </div>
+        <div class="popup-detail-content" id="popupDetailContent"></div>
+      </div>
+    </div>`;
+
+  // Position relative to pipelineWrapper (the popup's new parent)
+  const wrapper    = document.getElementById('pipelineWrapper');
+  const wrapperRect = wrapper.getBoundingClientRect();
+  // Use pipelinePanel width for clamping since wrapper may grow when artifacts open
+  const panelWidth = document.getElementById('pipelinePanel').getBoundingClientRect().width;
+  const colRect    = colEl.getBoundingClientRect();
+  const popupW     = 520;
+  const stageIdx   = STAGES.findIndex(s => s.id === stageId);
+  const ratio      = stageIdx / Math.max(STAGES.length - 1, 1);
+  const stageCX    = colRect.left - wrapperRect.left + colRect.width / 2;
+
+  let left;
+  if (ratio < 0.22)      left = stageCX - 40;
+  else if (ratio > 0.78) left = stageCX - popupW + 40;
+  else                   left = stageCX - popupW / 2;
+  left = Math.max(8, Math.min(left, panelWidth - popupW - 8));
+
+  const top = colRect.bottom - wrapperRect.top + 10;
+  const caretLeft = Math.max(14, Math.min(stageCX - left, popupW - 14));
+  popup.style.setProperty('--caret-left', (caretLeft - 7) + 'px');
+  popup.style.left = left + 'px';
+  popup.style.top  = top + 'px';
+  popup.style.display = 'block';
+  requestAnimationFrame(() => popup.classList.add('visible'));
+  colEl.classList.add('s-active');
+}
+
+function scheduleHidePopup() {
+  popupHideTimeout = setTimeout(() => {
+    currentPopupStage = null;
+    const popup = document.getElementById('stagePopup');
+    if (popup) { popup.classList.remove('visible'); setTimeout(() => { if (!popup.classList.contains('visible')) popup.style.display='none'; }, 200); }
+    document.querySelectorAll('.stage-col.s-active').forEach(c => c.classList.remove('s-active'));
+  }, 150);
+}
+
+const popupEl = document.getElementById('stagePopup');
+if (popupEl) {
+  popupEl.addEventListener('mouseenter', () => clearTimeout(popupHideTimeout));
+  popupEl.addEventListener('mouseleave', () => scheduleHidePopup());
+}
+
+function hoverJob(jobId) {
+  const job = JOB_MAP[jobId];
+  if (!job) return;
+  const ph = document.getElementById('popupPlaceholder');
+  const content = document.getElementById('popupDetailContent');
+  if (!ph || !content) return;
+  ph.style.display = 'none';
+  content.classList.remove('show');
+
+  let findingsHtml = '';
+  if (job.findings) {
+    const f = job.findings;
+    if (!f.label && f.crit !== undefined) {
+      findingsHtml = `<div class="detail-findings">
+        <div class="finding-badge ${f.crit===0?'ok':'crit'}"><span class="badge-label">CRIT</span><span class="badge-val">${f.crit}${f.crit===0?' <span class="badge-check">✓</span>':''}</span></div>
+        <div class="finding-badge ${f.high===0?'ok':'high'}"><span class="badge-label">HIGH</span><span class="badge-val">${f.high}${f.high===0?' <span class="badge-check">✓</span>':''}</span></div>
+        <div class="finding-badge med"><span class="badge-label">MED</span><span class="badge-val">${f.med}</span></div>
+        <div class="finding-badge low"><span class="badge-label">LOW</span><span class="badge-val">${f.low}</span></div>
+      </div>`;
+    } else if (f.label) {
+      const v1 = f.crit; const ok1 = v1===0;
+      if (f.label2) {
+        findingsHtml = `<div class="detail-findings">
+          <div class="finding-badge ${ok1?'ok':'crit'}"><span class="badge-label">${f.label.toUpperCase()}</span><span class="badge-val">${v1}${ok1?' <span class="badge-check">✓</span>':''}</span></div>
+          <div class="finding-badge info"><span class="badge-label">${f.label2.toUpperCase()}</span><span class="badge-val">${f.med}</span></div>
+        </div>`;
+      } else {
+        findingsHtml = `<div class="detail-findings">
+          <div class="finding-badge ${ok1?'ok':'crit'}"><span class="badge-label">${f.label.toUpperCase()}</span><span class="badge-val">${v1}${ok1?' <span class="badge-check">✓</span>':''}</span></div>
+          <div class="finding-badge info"><span class="badge-label">WARN</span><span class="badge-val">${f.low!==undefined?f.low:(f.med||0)}</span></div>
+        </div>`;
+      }
+    }
+  }
+
+  const artChips = job.artifacts.length
+    ? `<div class="detail-artifacts-label">artifacts</div><div class="detail-artifact-chips">${job.artifacts.map(a=>`<span class="detail-artifact-chip" onclick="openArtifactsFor('${a}')">${a}</span>`).join('')}</div>`
+    : '';
+
+  content.innerHTML = `<div class="detail-job-name">${job.name}</div><div class="detail-job-tool">${job.tool}</div>${findingsHtml}<div class="detail-text">${job.detail.replace(/\n/g,'<br>')}</div>${artChips}<div class="detail-duration">⏱ ${job.duration}</div>`;
+  void content.offsetWidth;
+  content.classList.add('show');
+  document.querySelectorAll('.popup-job-row').forEach(r => r.classList.remove('hovered'));
+  const row = document.querySelector(`.popup-job-row[data-job="${jobId}"]`);
+  if (row) row.classList.add('hovered');
+}
+function unhoverJob() { /* keep detail showing until popup closes */ }
+
+function openArtifactsFor(filename) {
+  if (!artifactsOpen) toggleArtifacts();
+  setTimeout(() => {
+    const el = document.querySelector(`[data-art-name="${filename}"]`);
+    if (el) { el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.borderColor='rgba(161,0,255,.5)'; setTimeout(()=>el.style.borderColor='',2000); }
+  }, 500);
+}
+
+// ── ARTIFACTS PANEL ───────────────────────────────────────────────────────
+function buildArtifactsPanel() {
+  const inner = document.getElementById('artifactsPanelInner');
+  if (!inner) return;
+  const typeIcon  = {json:'{}',html:'<>',md:'≣',txt:'≡',dir:'📁',xml:'⌥'};
+  const typeClass = {json:'icon-json',html:'icon-html',md:'icon-md',txt:'icon-txt',dir:'icon-dir',xml:'icon-xml'};
+  const total = ARTIFACT_SECTIONS.reduce((s,sec)=>s+sec.items.length,0);
+  inner.innerHTML = `
+    <div class="artifacts-panel-header">
+      <div class="artifacts-panel-title">📦 Pipeline Artifacts</div>
+      <div class="artifacts-total">${total} artifacts · Pipeline #847 · main · a1b2c3d4</div>
+    </div>
+    ${ARTIFACT_SECTIONS.map(sec=>`
+      <div class="art-section">
+        <div class="art-section-title">${sec.icon} ${sec.title}<span class="art-section-count">${sec.items.length}</span></div>
+        <div class="art-grid">
+          ${sec.items.map(item=>`
+            <div class="art-card" data-art-name="${item.name}">
+              <div class="art-type-icon ${typeClass[item.type]||'icon-txt'}">${typeIcon[item.type]||'📄'}</div>
+              <div class="art-card-body">
+                <div class="art-filename">${item.name}</div>
+                <div class="art-desc">${item.desc}</div>
+                <div class="art-meta">
+                  <span class="art-size">${item.size}</span>
+                  <span class="art-job">${item.job}</span>
+                  ${item.fw?`<span class="art-fw">${item.fw}</span>`:''}
+                </div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('')}`;
+}
+
+function toggleArtifacts() {
+  artifactsOpen = !artifactsOpen;
+  const panel = document.getElementById('artifactsPanel');
+  const btn   = document.getElementById('artifactsBtn');
+  if (panel) panel.classList.toggle('open', artifactsOpen);
+  if (btn)   btn.classList.toggle('open', artifactsOpen);
+  if (artifactsOpen) setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+}
+
+// ── MARKETING PAGE: FADE-IN & COUNTER ────────────────────────────────────
+function initFadeIn() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+}
+
+function initCounters() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      if (isNaN(target)) return;
+      const suffix = el.textContent.includes('+') ? '+' : '';
+      const start = performance.now();
+      const dur = 1800;
+      function tick(now) {
+        const p = Math.min((now-start)/dur,1);
+        const eased = 1 - Math.pow(1-p,3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-target]').forEach(el => obs.observe(el));
+}
+
+function initNavHighlight() {
+  const navLinks = document.querySelectorAll('.nav-links a:not(.btn-nav-cta)');
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => {
+          l.style.color = l.getAttribute('href') === '#'+e.target.id ? 'white' : '';
+        });
+      }
+    });
+  }, {threshold:.4});
+  document.querySelectorAll('section[id]').forEach(s => sectionObs.observe(s));
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (nav) nav.style.background = window.scrollY > 50 ? 'rgba(13,0,24,.98)' : 'rgba(13,0,24,.94)';
+  }, {passive:true});
+}
+
+// ── PIPELINE INTERSECTION OBSERVER ────────────────────────────────────────
+function initPipelineObserver() {
+  const pipelinePanel = document.getElementById('pipelinePanel');
+  if (!pipelinePanel) return;
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !animationStarted) {
+      setTimeout(startAnimation, 400);
+    }
+  }, {threshold:.25});
+  obs.observe(pipelinePanel);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderPipeline();
+  buildArtifactsPanel();
+  initFadeIn();
+  initCounters();
+  initNavHighlight();
+  initPipelineObserver();
+});
+</script>
+
+</body>
+</html>
