@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sanctuary Protocol · Ken</title>
+<meta name="description" content="AI hands everybody superpowers. The hardware under the cape is still savanna-spec. On Tom King, Sanctuary, and breathing room as a design requirement. By Ken Connell." />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="canonical" href="https://kensden.github.io/sanctuary-protocol.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sanctuary Protocol" />
+<meta property="og:description" content="Superpowers for everybody, sanctuary for the pilot." />
+<meta property="og:url" content="https://kensden.github.io/sanctuary-protocol.html" />
+<meta property="og:image" content="https://kensden.github.io/sanctuary.jpg" />
+<meta name="theme-color" content="#0a0e12" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730;
+    --ink:#e6edf3; --muted:#a7b4bf; --dim:#74838f;
+    --green:#3fb950; --cyan:#39d3c5; --violet:#a78bfa;
+    --amber:#e3b341; --pink:#f778ba; --red:#ff5f57;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 700px at 78% -8%, rgba(167,139,250,.07), transparent 60%),
+      radial-gradient(900px 600px at -5% 18%, rgba(63,185,80,.05), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+    mix-blend-mode:overlay;opacity:.5;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:26px 22px 60px}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;
+    font-family:"JetBrains Mono",monospace;font-size:13px;margin-bottom:38px}
+  .topnav a{color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    background:var(--panel);border-radius:8px;padding:8px 13px;transition:border-color .16s,color .16s}
+  .topnav a:hover{border-color:var(--green);color:var(--green)}
+  .topnav .loc{color:var(--dim)}
+
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);
+    margin:0 0 16px;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"$";color:var(--green);font-weight:700}
+
+  h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(30px,6vw,42px);
+    line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+  .byline{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim);margin:0 0 8px}
+  .byline .name{color:var(--ink)}
+  hr.rule{border:0;border-top:1px solid var(--line);margin:26px 0 34px}
+
+  article p{font-size:18px;line-height:1.8;color:var(--muted);margin:0 0 26px;
+    text-rendering:optimizeLegibility}
+  article p.lede{font-style:italic;color:var(--dim);font-size:17px}
+  h2.sub{font-family:"Space Grotesk",sans-serif;font-size:22px;letter-spacing:-.01em;
+    color:var(--ink);margin:38px 0 16px}
+  article a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(57,211,197,.45)}
+  article a:hover{border-bottom-style:solid}
+
+  figure.shot{margin:34px auto;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;background:#000}
+  figure.shot img{display:block;width:100%;height:auto}
+  figure.shot figcaption{font-family:"JetBrains Mono",monospace;font-size:12px;
+    line-height:1.55;color:var(--dim);padding:10px 14px;border-top:1px solid var(--line);
+    background:var(--panel)}
+  figure.shot figcaption .g{color:var(--green)}
+
+  /* the human process monitor */
+  pre.htop{margin:0;padding:15px 16px;overflow-x:auto;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.75;
+    color:var(--muted);background:linear-gradient(180deg,var(--panel-2),#0a0f14)}
+  pre.htop .g{color:var(--green)}
+  pre.htop .ink{color:var(--ink)}
+  pre.htop .dim{color:var(--dim)}
+  pre.htop .red{color:var(--red)}
+  pre.htop .amber{color:var(--amber)}
+
+  .closer{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);
+    margin:36px 0 34px}
+  .closer .g{color:var(--green)}
+
+  .eof{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--dim);margin:44px 0 0}
+  .eof .g{color:var(--green)}
+  .cursor{display:inline-block;width:9px;height:15px;background:var(--green);
+    margin-left:5px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+
+  .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:30px 0 0}
+
+  footer{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim)}
+  footer a{color:var(--cyan);text-decoration:none}
+  footer a:hover{color:var(--green)}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+  @media (max-width:640px){
+    .wrap{padding:20px 18px 48px}
+    article p{font-size:17px}
+    pre.htop{font-size:11px;line-height:1.7}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav">
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span class="loc">~/writing</span>
+  </nav>
+
+  <p class="eyebrow">cat ~/writing/sanctuary-protocol.md</p>
+  <h1>Sanctuary Protocol</h1>
+  <p class="byline">By <span class="name">Ken Connell</span> · written 2026</p>
+  <hr class="rule" />
+
+  <article>
+    <figure class="shot" style="max-width:640px">
+      <img src="sanctuary.jpg" alt="A lonely farmhouse on a vast darkening prairie at dusk, violet sky over an orange horizon, one window glowing terminal green" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> somewhere in Nebraska_</figcaption>
+    </figure>
+
+    <h2 class="sub">Everybody gets a cape</h2>
+
+    <p>Last Wednesday night I shipped more from my couch than the 2015 version of me shipped in a good month. A twenty-year-old photo collage edited down to the pixel. A full site deploy. A brand-new repo with a profile card designed over dinner. Four commits, every one reviewed and approved by a human before it moved: me. The heavy lifting came from an AI copilot that never gets tired, never gets bored, and never needs the mission explained twice.</p>
+
+    <p>That is a superpower. Not a metaphor for one. One person now carries the output of a small team in their pocket, on demand, for the price of a streaming subscription. And it is not just my trade. Writers, analysts, medics, mechanics, teachers: the capes are being handed out to everybody, right now, mid-flight.</p>
+
+    <p>Here is the part they leave out of the origin story. The cape is brand new. The pilot is not.</p>
+
+    <h2 class="sub">Savanna-spec hardware</h2>
+
+    <p>Your nervous system finalized its spec long before the first city, let alone the first push notification. We evolved to keep track of a small band of familiar faces and to react to threats we could see coming across open ground. That build has not had a meaningful hardware refresh since.</p>
+
+    <p>A paper published this July in Behavioral Sciences, from researchers in Singapore, argues that modern life has simply outrun the spec. They call it the Social Evolutionary Mismatch and Competition Hypothesis: vast networks instead of small bands, constant connection instead of episodic contact, and a permanent low-grade sense of competition against a feed of strangers our ancestors never had to measure themselves against. The authors stack up the compounding pressures of the era, pandemic aftershocks, economic churn, climate anxiety, and call it a polycrisis. The advance of AI is on their list. Sit with that for a second: the same wave handing out the capes is also part of the load.</p>
+
+    <figure class="shot" style="max-width:560px">
+      <img src="campfire.jpg" alt="A small circle of people in silhouette around a campfire on open grassland under the Milky Way" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> built for this_</figcaption>
+    </figure>
+
+    <figure class="shot" style="max-width:560px">
+      <img src="feed.jpg" alt="A lone seated figure in the dark facing an endless cascade of small glowing violet and blue screens" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> living in this_</figcaption>
+    </figure>
+
+    <p>It is a fresh hypothesis, peer reviewed but still waiting on real-world field tests, and I am presenting it as exactly that. But the prescription is the part I believe in my bones, because I have watched it hold true in uniform and in server rooms: the researchers do not argue for rolling the technology back. They argue for designing our environments, physical and digital, to work with evolved human nature instead of against it.</p>
+
+    <p>In other words, breathing room is not a wellness perk. It is a design requirement.</p>
+
+    <h2 class="sub">The writer who benches his gods</h2>
+
+    <p>Comics reached this conclusion ahead of the behavioral scientists. Or at least one writer did.</p>
+
+    <p>Tom King spent years as a CIA counterterrorism officer before he ever scripted a cape, and DC markets him exactly that way. His heroes are the most powerful beings in their universe and the most nakedly human: tired, haunted, holding a normal life together between apocalypses. He has been open about why. Talking about the period that inspired his most controversial book, King put it plainly: "The first thing I did when I broke was hide it."</p>
+
+    <p>Heroes in Crisis is that sentence built into architecture. Superman, Batman, and Wonder Woman quietly construct Sanctuary, a confidential trauma-recovery facility disguised as a lonely farmhouse in rural Nebraska. Kryptonian technology under the floorboards, patients masked so their anonymity survives even inside, the whole place staffed by AI. Read the roster of founders again. The three most capable beings on the planet surveyed everything they could possibly build and decided the missing infrastructure was a place to put the weight down. And in a detail almost too on-the-nose for this essay, the refuge itself is run by artificial intelligence: machines keeping confidence for humans who finally admitted they needed the room.</p>
+
+    <p>The series divided readers, and I understand why; the sanctuary becomes a crime scene, and the fallout is hard to sit with. But notice what the tragedy turns on: a grieving speedster breaking into the AI's confidential records. Even in fiction, the most dangerous asset in the building was the database of human vulnerability. Somewhere, a security architect just felt a chill.</p>
+
+    <p>If Heroes in Crisis is the thesis, Mister Miracle is the proof. Scott Free is the greatest escape artist in existence; the one trap he cannot spring is the inside of his own head. King and artist Mitch Gerads show him and Big Barda surviving a cosmic war by defending something smaller: a condo, a couch, a conversation about a vegetable tray while the sky burns. The domestic scenes are not filler between the fights. They are the fight. Dread in that book is ambient, always humming under the panels, and the counterprogram is never one more punch. It is a home.</p>
+
+    <p>He even ran the experiment in reverse in The Vision, an android who builds a suburban family because he wants what humans have; in King's work, the traffic between person and machine moves in both directions.</p>
+
+    <p>That is what humanizing a superhero actually means. Not weakness. Load-bearing honesty about the person under the power.</p>
+
+    <p>And you no longer need a comic shop to meet these ideas: Lanterns is arriving on HBO, Woman of Tomorrow just became the Supergirl film, and Mister Miracle is becoming an animated series about an escape artist living with PTSD.</p>
+
+    <h2 class="sub">Run below redline</h2>
+
+    <p>King has lately had to say out loud what most veterans of that era learned to carry quietly. Asked about his CIA years during the Lanterns press run, he was blunt: he was 23, he thought the invasion of Iraq was a mistake, and he went anyway, because the work in front of him was stopping attacks that would have killed people, and walking away from that was never a real option. Agree or disagree with any war; that is not the point here. The point is the weight. A duty can be heavier than your opinion of the policy that created it, and you carry it anyway, for years, mostly in silence.</p>
+
+    <p>I know that weight from the uniformed side of the same era. I finished initial entry training on the morning of September 11th, 2001; the date is printed on my diploma. Everything after was service in wartime's long shadow: Bosnia on peacekeeping orders, then the Middle East, including Iraq. What you believe about a policy does not get a vote in whether you go. The people next to you are going. The mission has people in it. So you go, you do the job in front of you, and the sorting out of what it all meant becomes homework you assign yourself for later. Sometimes decades later.</p>
+
+    <p>That homework is the weight Sanctuary was built for. King did not invent superhero trauma. He finally gave it a building.</p>
+
+    <p>From a junior-year enlistment in 2000 to retiring as a Major in Military Intelligence in 2024, field doctrine kept teaching me a blunt truth my civilian calendar keeps forgetting: rest is operational. You write sleep plans into a mission because exhausted soldiers make fatal errors, and no commander in history has called the sleep plan a perk.</p>
+
+    <p>Cybersecurity taught me the same lesson about machines. No system I have ever secured runs at one hundred percent utilization on purpose. We rate-limit. We schedule maintenance windows. We hand services error budgets and let them spend downtime without shame. We throttle a hot CPU before it cooks itself, and nobody accuses the CPU of quiet quitting.</p>
+
+    <p>Then we sit down at the keyboard and run the one legacy system we can never patch, never migrate, and never restore from backup at redline, every day, and we call it drive.</p>
+
+    <figure class="shot">
+      <pre class="htop"><span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">htop --human</span>
+<span class="dim">load average:</span> <span class="red">3.97, 3.97, 3.97</span>  <span class="dim">(design spec: 1.00)</span>
+
+<span class="dim"> PID  USER  CPU%   TIME+    COMMAND</span>
+ 001  ken   <span class="red">397%</span>   26y+     <span class="ink">cape.exe --always-on</span>
+ 002  ken   <span class="red"> 84%</span>   03:12    <span class="ink">comparison_engine (feed of strangers)</span>
+ 003  ken   <span class="amber"> 61%</span>   11:47    <span class="ink">doomscroll.service</span>
+ 004  ken   <span class="g"> 12%</span>   00:02    <span class="ink">breathing</span>
+
+<span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">systemctl status sanctuary.timer</span>
+<span class="g">&#9679;</span> <span class="ink">sanctuary.timer</span> <span class="dim">- nightly maintenance window for one (1) human</span>
+<span class="dim">   Trigger:</span> 22:00 America/New_York   <span class="dim">Next:</span> <span class="g">tonight</span>
+<span class="dim">   Docs: see Trinity et al., rural Nebraska deployment</span></pre>
+      <figcaption><span class="g">&gt;</span> the one system we run at redline_</figcaption>
+    </figure>
+
+    <p>Even King still runs hot. In the same press run he credits CIA sleep-deprivation training for surviving his schedule, months of two or three hours a night then, writing until 3 a.m. now, and his own three-word verdict on that training was "You go insane." The man who built Sanctuary on the page is still learning to visit it off the page. Insight is not a protocol. Which is exactly why the next part gets written down.</p>
+
+    <p>So here is my protocol, written down mostly so I have to keep it. The AI does the heavy lifting; I direct, review, and approve, and the gate stays human. Some evenings the laptop closes and the workbench opens, because a soldering iron cannot ping me. Comics get read on paper, slowly, the way the dime store intended. Walks happen with nothing in my ears. Sleep gets planned like the mission depends on it, because the mission is long and it does.</p>
+
+    <p>None of that slows the building down. It is what makes the building survivable. Ask the Trinity. They did not shut down the Justice League. They built Sanctuary next door.</p>
+
+    <h2 class="sub">The den</h2>
+
+    <p>This site is called a den on purpose. A den is where the animal goes to stop being hunted, and where a kid goes to read comics on the floor. Mine is both. It is where I file dispatches like this one, resurrect old hardware, and let an AI hand me superpowers a few hours at a time: human in the lead, disclosure on the art, approval gate on every push.</p>
+
+    <figure class="shot" style="max-width:560px">
+      <img src="cape.jpg" alt="A dim workshop den at night with a green CRT monitor, desk lamp, and soldering iron, and a violet cape hanging on a wall hook by the door" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> end of shift_</figcaption>
+    </figure>
+
+    <p>The future I am building toward is not humans working like robots alongside robots working like gods. It is people wearing capes who also know exactly where their sanctuary is.</p>
+
+    <p>Hang yours up tonight. The world will still need saving in the morning.</p>
+
+    <p class="closer"><span class="g">$</span> sleep 8h &amp;&amp; make future<span class="cursor" aria-hidden="true"></span></p>
+
+    <p class="lede">Further reading: <a href="https://www.sciencealert.com/modern-life-may-be-pushing-human-minds-beyond-their-limits-reflecting-an-evolutionary-mismatch" target="_blank" rel="noopener">ScienceAlert on the evolutionary mismatch research</a> and <a href="https://doi.org/10.3390/bs16050650" target="_blank" rel="noopener">the paper itself</a> in Behavioral Sciences; <a href="https://www.dc.com/blog/2018/09/21/welcome-to-sanctuary" target="_blank" rel="noopener">DC's introduction to Sanctuary</a>; Tom King on the origins of Heroes in Crisis at SDCC, via <a href="https://www.newsweek.com/heroes-crisis-tom-king-personal-story-sanctuary-sdcc-ptsd-comics-1035522" target="_blank" rel="noopener">Newsweek</a>, and on Lanterns, the CIA, and sleep, via <a href="https://variety.com/2026/tv/news/lanterns-hbo-tom-king-cia-green-lantern-1236810243/" target="_blank" rel="noopener">Variety</a>; and in print, The Sheriff of Babylon, King and Mitch Gerads writing the Iraq war directly.</p>
+  </article>
+
+  <p class="disclosure">Illustrations AI-generated, human-directed. The process table is handmade CSS; the load average is organic.</p>
+
+  <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
+
+  <footer>
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span>~/writing/sanctuary-protocol.md</span>
+  </footer>
+</div>
+</body>
+</html>
