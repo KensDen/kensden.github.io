@@ -132,6 +132,25 @@
   p.body .hl{color:var(--ink)}
   .lede{font-size:17px;color:var(--ink)}
 
+  /* projects */
+  .proj{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;margin-top:6px}
+  .proj-art{margin:0}
+  .proj-art img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+  .proj-body{padding:20px 22px 22px}
+  .proj-t{font-family:"Space Grotesk",sans-serif;font-size:20px;font-weight:600;
+    color:var(--ink);margin:0 0 10px}
+  .proj-t::before{content:"·> ";font-family:"JetBrains Mono",monospace;color:var(--green)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 18px;padding:0;list-style:none}
+  .tags li{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);
+    border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--panel-2)}
+  .proj-btn{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:13.5px;
+    color:var(--cyan);text-decoration:none;border:1px solid var(--line);background:var(--panel);
+    border-radius:8px;padding:9px 14px;transition:border-color .16s,color .16s}
+  .proj-btn:hover{border-color:var(--green);color:var(--green)}
+  .proj-btn::after{content:" ·>"}
+  .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:16px 0 0}
+
 /* inline screenshot / figure */
 .shot{margin:24px auto 4px;max-width:520px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}
 .shot img{display:block;width:100%;height:auto}
@@ -358,6 +377,31 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     </div>
   </section>
 
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <p class="eyebrow">ls ~/projects/</p>
+    <h2>Projects</h2>
+    <div class="proj">
+      <figure class="proj-art">
+        <img src="dc-card.webp" alt="Key art for Dark Constellation: a dark planet split along a razor-thin diagonal of light, a cyan aurora storming off one hemisphere and magenta debris fields off the other" loading="lazy" width="800" height="450" />
+      </figure>
+      <div class="proj-body">
+        <h3 class="proj-t">Dark Constellation</h3>
+        <p class="body">A turn-based space and drone cybersecurity strategy sim. Architect a smallsat constellation and ISR drone squadron, then hold the line through a 12-turn adversary campaign; jamming, LiDAR spoofing, supply-chain implants, and orbital debris all press at once. Every threat and countermeasure maps to live-verified SPARTA, MITRE ATT&amp;CK, and ATLAS techniques; the whole game runs client-side in the browser, free, no backend, no telemetry.</p>
+        <ul class="tags">
+          <li>Strategy Game</li>
+          <li>Space Cybersecurity</li>
+          <li>SPARTA</li>
+          <li>MITRE ATLAS</li>
+          <li>Turn-Based Sim</li>
+          <li>React/TypeScript</li>
+        </ul>
+        <a class="proj-btn" href="https://kensden.github.io/dark-constellation/">View Project</a>
+        <p class="disclosure">Card art AI-generated, human-directed.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ COLLECTOR'S ITEM ============ -->
   <section id="collect">
     <p class="eyebrow">man ken</p>
@@ -547,7 +591,7 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
       <a href="https://github.com/KensDen/kensden.github.io" target="_blank" rel="noopener">source ·&gt;</a>
     </div>
     <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> — thanks for stopping by 👋</p>
-    <p class="updated">last updated: <span id="last-updated">2026-07-21</span></p>
+    <p class="updated">last updated: <span id="last-updated">2026-07-22</span></p>
     <p class="future-line">&gt; hello future<span class="u">_</span></p>
   </footer>
 
