@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Building a Seat at the Table · Ken</title>
+<meta name="description" content="From policy and paperwork to the SOC floor to securing agentic AI. On the assessor's gap, imposter syndrome as a measurement error, and building credibility with your hands. By Ken Connell." />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="canonical" href="https://kensden.github.io/building-a-seat-at-the-table.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Building a Seat at the Table" />
+<meta property="og:description" content="Assess it, learn to do it, come back better at both." />
+<meta property="og:url" content="https://kensden.github.io/building-a-seat-at-the-table.html" />
+<meta property="og:image" content="https://kensden.github.io/chair.jpg" />
+<meta name="theme-color" content="#0a0e12" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪑</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730;
+    --ink:#e6edf3; --muted:#a7b4bf; --dim:#74838f;
+    --green:#3fb950; --cyan:#39d3c5; --violet:#a78bfa;
+    --amber:#e3b341; --pink:#f778ba; --red:#ff5f57;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 700px at 78% -8%, rgba(167,139,250,.07), transparent 60%),
+      radial-gradient(900px 600px at -5% 18%, rgba(63,185,80,.05), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+    mix-blend-mode:overlay;opacity:.5;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:26px 22px 60px}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;
+    font-family:"JetBrains Mono",monospace;font-size:13px;margin-bottom:38px}
+  .topnav a{color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    background:var(--panel);border-radius:8px;padding:8px 13px;transition:border-color .16s,color .16s}
+  .topnav a:hover{border-color:var(--green);color:var(--green)}
+  .topnav .loc{color:var(--dim)}
+
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);
+    margin:0 0 16px;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"$";color:var(--green);font-weight:700}
+
+  h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(30px,6vw,42px);
+    line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+  .byline{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim);margin:0 0 8px}
+  .byline .name{color:var(--ink)}
+  hr.rule{border:0;border-top:1px solid var(--line);margin:26px 0 34px}
+
+  article p{font-size:18px;line-height:1.8;color:var(--muted);margin:0 0 26px;
+    text-rendering:optimizeLegibility}
+  article p.lede{font-style:italic;color:var(--dim);font-size:17px}
+  h2.sub{font-family:"Space Grotesk",sans-serif;font-size:22px;letter-spacing:-.01em;
+    color:var(--ink);margin:38px 0 16px}
+  article a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(57,211,197,.45)}
+  article a:hover{border-bottom-style:solid}
+
+  figure.shot{margin:34px auto;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;background:#000}
+  figure.shot img{display:block;width:100%;height:auto}
+  figure.shot figcaption{font-family:"JetBrains Mono",monospace;font-size:12px;
+    line-height:1.55;color:var(--dim);padding:10px 14px;border-top:1px solid var(--line);
+    background:var(--panel)}
+  figure.shot figcaption .g{color:var(--green)}
+
+  /* the career, compiled */
+  pre.makelog{margin:0;padding:15px 16px;overflow-x:auto;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.75;
+    color:var(--muted);background:linear-gradient(180deg,var(--panel-2),#0a0f14)}
+  pre.makelog .g{color:var(--green)}
+  pre.makelog .ink{color:var(--ink)}
+  pre.makelog .dim{color:var(--dim)}
+  pre.makelog .amber{color:var(--amber)}
+
+  .closer{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);
+    margin:36px 0 34px}
+  .closer .g{color:var(--green)}
+
+  .eof{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--dim);margin:44px 0 0}
+  .eof .g{color:var(--green)}
+  .cursor{display:inline-block;width:9px;height:15px;background:var(--green);
+    margin-left:5px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+
+  .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:30px 0 0}
+
+  footer{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim)}
+  footer a{color:var(--cyan);text-decoration:none}
+  footer a:hover{color:var(--green)}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+  @media (max-width:640px){
+    .wrap{padding:20px 18px 48px}
+    article p{font-size:17px}
+    pre.makelog{font-size:11px;line-height:1.7}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav">
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span class="loc">~/writing</span>
+  </nav>
+
+  <p class="eyebrow">cat ~/writing/building-a-seat-at-the-table.md</p>
+  <h1>Building a Seat at the Table</h1>
+  <p class="byline">By <span class="name">Ken Connell</span> · written 2026</p>
+  <hr class="rule" />
+
+  <article>
+    <figure class="shot" style="max-width:640px">
+      <img src="chair.jpg" alt="A sturdy wooden chair mid-assembly on a workbench in a dim home workshop at night, clamps and hand tools laid out, warm lamp light with a faint terminal-green glow" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> built, not granted_</figcaption>
+    </figure>
+
+    <h2 class="sub">The notebook</h2>
+
+    <p>The room was full of people getting a company ready for a Department of Defense audit, and I was one of the assessors. A technical lead started walking us through telemetry across their cloud operations, and I lost the thread almost immediately. It sounded like rocket science. I had the compliance framework cold; the technology it was supposed to govern might as well have been narrated in another language.</p>
+
+    <p>So I did the only thing available to me. I took detailed notes. Not to fake comprehension in the meeting, but so I would have a syllabus for later. I did not know it at the time, but that notebook was the whole career plan.</p>
+
+    <h2 class="sub">The paper years</h2>
+
+    <p>I got my start on the policy and compliance side of security. My first job out of college put me in London, helping companies classify encrypted technologies for export controls and apply for trade licenses. I had never studied encryption. Nobody asked whether I had; the work was due. So the learning happened on my own time, one concept at a time, until the paperwork in front of me described something I could actually picture.</p>
+
+    <p>The loop closed for the first time in a job interview later on, when someone asked me to explain PKI and I could. Assess it, then go learn it, then come back better at both. I did not have words for the pattern yet. I just knew the interview went differently than it would have gone a year earlier.</p>
+
+    <p>Then came audit work, and audit made the gap impossible to ignore. I was assessing technologies I had never operated, writing findings about systems I could not have configured, rendering judgments on work I had never done. Plenty of people in governance, risk, and compliance know this feeling. Almost nobody says it out loud.</p>
+
+    <h2 class="sub">Moving toward the gap</h2>
+
+    <p>What I started doing, without ever calling it a strategy, was moving toward whatever I felt least qualified to judge. Certifications first, then cloud training, not for the frames on the wall but for the vocabulary, so the next technical lead who talked telemetry would be speaking a language I could at least read.</p>
+
+    <p>The certifications did more than expected. One of them, a genuinely tough cloud cert, carried me into my first role with the word engineer in it, and the title arrived before the experience did. I remember sitting in a room full of people with far more technical depth than me, years of it, all of it on-prem. Then the strangest thing happened: I was the one explaining. Cloud computing was new country to them, so I reached for analogies, translating virtualized environments into the on-prem terms they had spent careers mastering, until it started to land.</p>
+
+    <p>That room rearranged something. I had walked in feeling like an imposter, the least qualified person at the table by any resume math, and I walked out understanding that everyone at the table has a gap; mine was just the one I could see. Imposter syndrome is a measurement error. It counts your gaps and nobody else's. The veterans were not frauds for not knowing cloud, and I was not a fraud for knowing it only from study. We were all mid-syllabus on something.</p>
+
+    <p>Then the bigger move: I volunteered into an advanced security operations center. It is the same logic as starting out on a help desk, the classic on-ramp, except the stakes on a SOC floor are live. Tier 1 is a humbling place to stand when your entire incident response experience is certifications. The first time I sat in front of a real alerting dashboard, every credential I held got very quiet.</p>
+
+    <p>That is where the real learning happens, in the tiers. Alerts do not care what the framework says. They care whether you can tell signal from noise, at volume, under time, with consequences.</p>
+
+    <h2 class="sub">The seat</h2>
+
+    <p>About a year into SOC shifts, I was asked to train a new joiner on the triage process. I was mid-explanation, walking a new analyst through the same queue that had humbled me, when the distance registered. A year earlier I had never touched an alerting dashboard. Now I was the one teaching the floor.</p>
+
+    <p>Nobody granted that seat. It accreted, shift by shift, note by note, out of every gap I had walked toward instead of around. These days the work is Zero Trust architecture with a focus on securing agentic AI, which is to say: the newest work I feel underqualified to judge. That is not an accident. At this point it is the whole method.</p>
+
+    <figure class="shot">
+      <pre class="makelog"><span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">make seat</span>
+cc -c policy.c       -o policy.o       <span class="dim"># what the controls are for</span>
+cc -c audit.c        -o audit.o        <span class="dim"># the gap, documented</span>
+cc -c certs.c        -o certs.o        <span class="dim"># vocabulary</span>
+cc -c cloud_lab.c    -o cloud_lab.o    <span class="dim"># first hands</span>
+cc -c soc_shifts.c   -o soc_shifts.o   <span class="dim"># signal from noise</span>
+ld -o seat policy.o audit.o certs.o cloud_lab.o soc_shifts.o
+<span class="amber">warning: imposter_syndrome (non-fatal, recurring)</span>
+<span class="g">build complete.</span>
+<span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">./seat</span></pre>
+      <figcaption><span class="g">&gt;</span> the build, so far_</figcaption>
+    </figure>
+
+    <h2 class="sub">For the paper side of the house</h2>
+
+    <p>If you work in GRC or audit and you carry that quiet feeling, assessing technology you have never touched, I want to name it for you, because naming it was the thing nobody did for me. The gap is real, it is common, and it is not a verdict. It is a syllabus.</p>
+
+    <p>You do not need a new title or anyone's permission to start closing it. Take the notes in the meeting you do not understand. Build the lab. Volunteer for the floor, even at the bottom tier, especially at the bottom tier. Assess it, then go learn to do it, then come back better at both.</p>
+
+    <p>And do not write off the paper years while you do it. Policy taught me what the controls are for. The floor taught me how they fail. The most useful seat at any table is the one built from both sides of it.</p>
+
+    <h2 class="sub">Earning the lead</h2>
+
+    <p>There has been a motto on this site's front page for a while: builders over browsers. It turns out it was a career strategy before it was a slogan. There is a second one, trust but verify, and the arc above is just that rule pointed inward. I stopped trusting my own assessments until I could verify them with my own hands.</p>
+
+    <p>That habit matters more right now than it ever has. The newest systems do their work at machine speed, and the human's job is direction, review, and the final word. You earn the right to lead the machines the same way you earn the right to assess anything: by learning the work yourself.</p>
+
+    <p>Humans in the Lead. Bring a chair you built.</p>
+
+    <p class="closer"><span class="g">$</span> make seat<span class="cursor" aria-hidden="true"></span></p>
+  </article>
+
+  <p class="disclosure">Illustration AI-generated, human-directed. The build log is handmade CSS; the warnings were organic.</p>
+
+  <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
+
+  <footer>
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span>~/writing/building-a-seat-at-the-table.md</span>
+  </footer>
+</div>
+</body>
+</html>
