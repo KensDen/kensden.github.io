@@ -75,15 +75,6 @@
     background:var(--panel)}
   figure.shot figcaption .g{color:var(--green)}
 
-  /* the career, compiled */
-  pre.makelog{margin:0;padding:15px 16px;overflow-x:auto;
-    font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.75;
-    color:var(--muted);background:linear-gradient(180deg,var(--panel-2),#0a0f14)}
-  pre.makelog .g{color:var(--green)}
-  pre.makelog .ink{color:var(--ink)}
-  pre.makelog .dim{color:var(--dim)}
-  pre.makelog .amber{color:var(--amber)}
-
   .closer{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);
     margin:36px 0 34px}
   .closer .g{color:var(--green)}
@@ -106,7 +97,6 @@
   @media (max-width:640px){
     .wrap{padding:20px 18px 48px}
     article p{font-size:17px}
-    pre.makelog{font-size:11px;line-height:1.7}
   }
 </style>
 </head>
@@ -140,15 +130,50 @@
 
     <p>The loop closed for the first time in a job interview later on, when someone asked me to explain PKI and I could. Assess it, then go learn it, then come back better at both. I did not have words for the pattern yet. I just knew the interview went differently than it would have gone a year earlier.</p>
 
+    <h2 class="sub">From prototype to production</h2>
+
+    <p>Back stateside, I landed as a program manager over a SaaS product, which was my first real exposure to anything cloud. I was responsible for a team of offshore .NET developers and for a supply chain risk assessment application I did not build and could not have built.</p>
+
+    <p>That job taught by necessity, which is the fastest teacher there is. I taught myself the difference between agile and waterfall because I could not run a team without knowing it. I learned what a load balancer was for, and why a website certificate has an expiration date, through conversations with our hosting provider that started as logistics and ended as an education. Then I stood in front of trade show crowds and demoed the product live, as the lead.</p>
+
+    <p>Notice the rung. I was not yet assessing technology and I was certainly not building it. I was accountable for it, which is its own kind of exposed. You cannot hide behind a framework when the demo is live and the questions are real.</p>
+
+    <p>Up to then, everything I knew had been a prototype. It worked in controlled conditions, on paper, against questions I got to choose. This was the job that pushed it into production.</p>
+
     <p>Then came audit work, and audit made the gap impossible to ignore. I was assessing technologies I had never operated, writing findings about systems I could not have configured, rendering judgments on work I had never done. Plenty of people in governance, risk, and compliance know this feeling. Almost nobody says it out loud.</p>
 
     <h2 class="sub">Moving toward the gap</h2>
 
     <p>What I started doing, without ever calling it a strategy, was moving toward whatever I felt least qualified to judge. Certifications first, then cloud training, not for the frames on the wall but for the vocabulary, so the next technical lead who talked telemetry would be speaking a language I could at least read.</p>
 
-    <p>The certifications did more than expected. One of them, a genuinely tough cloud cert, carried me into my first role with the word engineer in it, and the title arrived before the experience did. I remember sitting in a room full of people with far more technical depth than me, years of it, all of it on-prem. Then the strangest thing happened: I was the one explaining. Cloud computing was new country to them, so I reached for analogies, translating virtualized environments into the on-prem terms they had spent careers mastering, until it started to land.</p>
+    <p>The certifications did more than expected. One of them, a genuinely tough cloud cert, carried me into my first role with the word engineer in it, and the title arrived well before the experience did.</p>
 
-    <p>That room rearranged something. I had walked in feeling like an imposter, the least qualified person at the table by any resume math, and I walked out understanding that everyone at the table has a gap; mine was just the one I could see. Imposter syndrome is a measurement error. It counts your gaps and nobody else's. The veterans were not frauds for not knowing cloud, and I was not a fraud for knowing it only from study. We were all mid-syllabus on something.</p>
+    <h2 class="sub">The room that rearranged something</h2>
+
+    <p>I remember sitting in a room full of people with far more technical depth than me, years of it, all of it on-prem. Then the strangest thing happened: I was the one explaining. Cloud computing was new country to them, so I reached for analogies, translating virtualized environments into the on-prem terms they had spent careers mastering, until it started to land.</p>
+
+    <p>I had walked in feeling like an imposter, the least qualified person at the table by any resume math, and I walked out understanding that everyone at the table has a gap; mine was just the one I could see. Imposter syndrome is a measurement error. It counts your gaps and nobody else's. The veterans were not frauds for not knowing cloud, and I was not a fraud for knowing it only from study. We were all mid-syllabus on something.</p>
+
+    <h2 class="sub">Week one</h2>
+
+    <p>That cloud track eventually took me into a senior consulting role focused on cloud security, and the work started before the onboarding finished. In my first week, a lead asked me to get to a pharmaceutical client in New York, where protected health information had turned up exposed in a sandbox environment. The team I had been hired to work alongside was in Dubai on another engagement. So I took the train up alone, ran the assessment, and wrote the report: key findings, what was already working, and what I called opportunities for improvement rather than weaknesses.</p>
+
+    <p>That phrasing was not softness. It came straight out of the paper years, where I had learned that a finding lands better when the person receiving it can act on it without first defending themselves. The technical work was new to me. The craft of delivering an assessment was not. The kudos that came back were for the second thing as much as the first.</p>
+
+    <figure class="shot" style="max-width:600px">
+      <img src="notebook.jpg" alt="An open notebook on a dark desk at night, both pages covered in dense illegible handwriting and small hand-drawn diagrams, a pen resting in the gutter, loose pages stacked beneath it, a coffee mug and the edge of a laptop nearby, warm lamplight with a green monitor glow in the background" loading="lazy" width="1440" height="810" />
+      <figcaption><span class="g">&gt;</span> the whole career plan_</figcaption>
+    </figure>
+
+    <h2 class="sub">The other side of the table</h2>
+
+    <p>Years later I was supporting an identity, credential, and access management program for the Department of Defense, and I owned compliance and audit findings for it. Which put me across from third-party auditors, and on the opposite side of the table from where this essay started.</p>
+
+    <p>They arrived with a checklist. Generic questions, written for systems that were not ours, aimed at a stack they had not been briefed on. So I walked them through it: the systems of record, the data integrations, how single sign-on and multifactor sat next to identity governance and privileged access, which sources were authoritative and which were downstream. Not to dodge anything. To get the questioning pointed at what was actually in scope, so the audit would find real risk instead of paperwork mismatches.</p>
+
+    <p>Somewhere in the middle of that, I realized I had become the person who could have helped the version of me from the first scene. The guy taking notes he did not understand had turned into the guy who could explain the stack to the people holding the checklist. Same table. Other chair.</p>
+
+    <h2 class="sub">The floor</h2>
 
     <p>Then the bigger move: I volunteered into an advanced security operations center. It is the same logic as starting out on a help desk, the classic on-ramp, except the stakes on a SOC floor are live. Tier 1 is a humbling place to stand when your entire incident response experience is certifications. The first time I sat in front of a real alerting dashboard, every credential I held got very quiet.</p>
 
@@ -158,29 +183,29 @@
 
     <p>About a year into SOC shifts, I was asked to train a new joiner on the triage process. I was mid-explanation, walking a new analyst through the same queue that had humbled me, when the distance registered. A year earlier I had never touched an alerting dashboard. Now I was the one teaching the floor.</p>
 
-    <p>Nobody granted that seat. It accreted, shift by shift, note by note, out of every gap I had walked toward instead of around. These days the work is Zero Trust architecture with a focus on securing agentic AI, which is to say: the newest work I feel underqualified to judge. That is not an accident. At this point it is the whole method.</p>
+    <p>Nobody granted that seat. It accreted, shift by shift, note by note, out of every gap I had walked toward instead of around.</p>
 
-    <figure class="shot">
-      <pre class="makelog"><span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">make seat</span>
-cc -c policy.c       -o policy.o       <span class="dim"># what the controls are for</span>
-cc -c audit.c        -o audit.o        <span class="dim"># the gap, documented</span>
-cc -c certs.c        -o certs.o        <span class="dim"># vocabulary</span>
-cc -c cloud_lab.c    -o cloud_lab.o    <span class="dim"># first hands</span>
-cc -c soc_shifts.c   -o soc_shifts.o   <span class="dim"># signal from noise</span>
-ld -o seat policy.o audit.o certs.o cloud_lab.o soc_shifts.o
-<span class="amber">warning: imposter_syndrome (non-fatal, recurring)</span>
-<span class="g">build complete.</span>
-<span class="g">ken@hello-future</span><span class="dim">:~$</span> <span class="ink">./seat</span></pre>
-      <figcaption><span class="g">&gt;</span> the build, so far_</figcaption>
-    </figure>
+    <p>These days the work is Zero Trust architecture with a focus on securing agentic AI, which is to say: the newest work I feel underqualified to judge. So the method is running again, in public, right now. I have been building my own threat-model reference for agentic systems against the OWASP AI Exchange body of knowledge, taking hands-on training on attacking LLM applications, and chasing a certification track that did not exist a year ago. Same notebook, new syllabus. That is not an accident. At this point it is the whole method.</p>
+
+    <h2 class="sub">How to learn</h2>
+
+    <p>Here is the part I would go back and tell myself in that first audit meeting.</p>
+
+    <p>In a technical field, the specific facts have a half-life. The console you memorized has been redesigned twice since. The exam objectives you drilled describe a service that has been deprecated, renamed, or absorbed. If what you acquired was a set of answers, you are already expiring. Anyone who has recertified knows this feeling.</p>
+
+    <p>What compounds instead is knowing how you learn. Where you go first. How fast you can get from "this sounds like rocket science" to a working mental model. Whether you can sit in a room, not follow it, and take useful notes anyway instead of shutting down. That skill did not show up on any of my certifications, and it is the only thing that has transferred across every role I have described here, from export controls to load balancers to alert triage to agentic AI.</p>
+
+    <p>Notes are the opening move, not the whole game. There is a point in most of those meetings where the more useful thing is to put the pen down, look up, and actually listen. Then ask the question that reveals you are lost. That costs something in the room. It is still faster, because a note preserves your confusion perfectly while a good question dissolves it.</p>
+
+    <p>The certifications were never the knowledge. They were scaffolding, put up so I could reach the work, and taken down once the work held its own weight.</p>
 
     <h2 class="sub">For the paper side of the house</h2>
 
     <p>If you work in GRC or audit and you carry that quiet feeling, assessing technology you have never touched, I want to name it for you, because naming it was the thing nobody did for me. The gap is real, it is common, and it is not a verdict. It is a syllabus.</p>
 
-    <p>You do not need a new title or anyone's permission to start closing it. Take the notes in the meeting you do not understand. Build the lab. Volunteer for the floor, even at the bottom tier, especially at the bottom tier. Assess it, then go learn to do it, then come back better at both.</p>
+    <p>You do not need a new title or anyone's permission to start closing it. Take the notes in the meeting you do not understand, then put the pen down and ask the question. Build the lab. Volunteer for the floor, even at the bottom tier, especially at the bottom tier. Assess it, then go learn to do it, then come back better at both.</p>
 
-    <p>And do not write off the paper years while you do it. Policy taught me what the controls are for. The floor taught me how they fail. The most useful seat at any table is the one built from both sides of it.</p>
+    <p>And do not write off the paper years while you do it. Policy taught me what the controls are for. The floor taught me how they fail. Both sides taught me how to deliver a finding someone can actually use. The most useful seat at any table is the one built from both sides of it.</p>
 
     <h2 class="sub">Earning the lead</h2>
 
@@ -193,7 +218,7 @@ ld -o seat policy.o audit.o certs.o cloud_lab.o soc_shifts.o
     <p class="closer"><span class="g">$</span> make seat<span class="cursor" aria-hidden="true"></span></p>
   </article>
 
-  <p class="disclosure">Illustration AI-generated, human-directed. The build log is handmade CSS; the warnings were organic.</p>
+  <p class="disclosure">Illustrations AI-generated, human-directed.</p>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
 
