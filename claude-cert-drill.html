@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Claude Cert Drill · Ken</title>
+<meta name="description" content="Practice drills for the Claude Certified Associate and Architect Foundations exams. Original scenario questions written against the public exam blueprints." />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="canonical" href="https://kensden.github.io/claude-cert-drill.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Claude Cert Drill" />
+<meta property="og:description" content="Blueprint-weighted practice for the Claude Associate and Architect Foundations exams." />
+<meta property="og:url" content="https://kensden.github.io/claude-cert-drill.html" />
+<meta property="og:image" content="https://kensden.github.io/social-card.png" />
+<meta name="theme-color" content="#0a0e12" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730; --line-2:#2a3742;
+    --ink:#e6edf3; --muted:#a7b4bf; --dim:#74838f;
+    --green:#3fb950; --cyan:#39d3c5; --violet:#a78bfa; --amber:#e3b341; --red:#ff6b62;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;min-height:100vh;
+    background:
+      radial-gradient(1100px 700px at 78% -8%, rgba(57,211,197,.07), transparent 60%),
+      radial-gradient(900px 600px at -5% 18%, rgba(167,139,250,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+  }
+  .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;
+    padding:18px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left))}
+  .mono,code,.opt .key{font-family:"JetBrains Mono", ui-monospace, monospace}
+  a{color:var(--cyan)}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;margin:4px 0 18px}
+  .topnav a{color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    background:var(--panel);border-radius:8px;padding:8px 12px;transition:border-color .16s,color .16s}
+  .topnav a:hover{border-color:var(--green);color:var(--green)}
+  .topnav .loc{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .topnav a{white-space:nowrap}
+  @media (max-width:430px){.topnav .loc{display:none}}
+
+  /* terminal header */
+  .term{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -40px rgba(0,0,0,.9)}
+  .term-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.015)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .term-title{margin-left:6px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim)}
+  .term-body{padding:18px 18px 20px}
+  .prompt{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);margin:0;word-break:break-word}
+  .prompt .path{color:var(--cyan)} .prompt .arg{color:var(--ink)}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--green);margin-left:3px;
+    vertical-align:-2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-size:clamp(28px,7vw,40px);line-height:1.05;margin:12px 0 6px;font-weight:700;letter-spacing:-.02em}
+  .tagline{color:var(--muted);font-size:14.5px;margin:0;max-width:56ch}
+
+  /* exam switch */
+  .switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0}
+  .switch button{font:inherit;cursor:pointer;text-align:left;padding:12px 13px;border-radius:10px;
+    border:1px solid var(--line);background:var(--panel);color:var(--muted);min-height:58px;
+    transition:border-color .16s,background .16s}
+  .switch button .code{display:block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim)}
+  .switch button .nm{display:block;font-weight:600;font-size:15px;color:var(--ink)}
+  .switch button[aria-pressed="true"]{border-color:var(--green);background:rgba(63,185,80,.07)}
+  .switch button[aria-pressed="true"] .code{color:var(--green)}
+
+  /* facts */
+  details.facts{margin:12px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--panel-2)}
+  details.facts summary{cursor:pointer;list-style:none;padding:11px 13px;font-family:"JetBrains Mono",monospace;
+    font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+  details.facts summary::-webkit-details-marker{display:none}
+  details.facts summary::after{content:"+";color:var(--green)}
+  details.facts[open] summary::after{content:"-"}
+  .facts-body{padding:0 13px 14px;font-size:14px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:2px 0 12px}
+  .kv dt{color:var(--dim);font-family:"JetBrains Mono",monospace;font-size:12px;padding-top:2px}
+  .kv dd{margin:0;color:var(--ink)}
+  .bp{margin:6px 0 4px}
+  .bp-row{display:grid;grid-template-columns:28px 1fr 38px;align-items:end;gap:10px;margin:8px 0}
+  .bp-row .dn{font-family:"JetBrains Mono",monospace;color:var(--dim);font-size:12px}
+  .bp-row .bpm{display:block;min-width:0}
+  .bp-row .lbl{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+  .bp-row .bar{display:block;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+  .bp-row .bar i{display:block;height:100%;background:var(--green);border-radius:3px}
+  .bp-row .pct{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink);text-align:right}
+  .sc{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px;color:var(--muted)}
+  .sc li{padding:3px 0}
+  .sc b{font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--cyan);font-size:12px;margin-right:6px}
+  .links{font-size:13px;color:var(--muted);margin:12px 0 0}
+
+  /* modes + stats */
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:22px 0 8px}
+  .eyebrow::before{content:"# ";color:var(--green)}
+  .chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+    border-radius:999px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+  .chip.on{border-color:var(--green);color:var(--green);background:rgba(63,185,80,.07)}
+  .chip:disabled{opacity:.4;cursor:default}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:4px 0 10px}
+  .stats b{color:var(--ink);font-weight:500}
+  .stats .timer b{color:var(--amber)}
+  .stats .timer.low b{color:var(--red)}
+
+  /* card */
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:12px;padding:16px}
+  .tag{display:flex;justify-content:space-between;gap:10px;font-family:"JetBrains Mono",monospace;
+    font-size:11.5px;color:var(--dim);margin-bottom:8px}
+  .tag .dom{color:var(--cyan)}
+  .scn{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--violet);margin:-2px 0 10px}
+  .selectn{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--bg);
+    background:var(--amber);border-radius:4px;padding:2px 7px;margin-bottom:10px;font-weight:700;letter-spacing:.04em}
+  .q{font-size:16.5px;line-height:1.5;margin:0 0 14px}
+  code{font-size:.86em;background:rgba(57,211,197,.08);color:var(--cyan);border:1px solid rgba(57,211,197,.16);
+    border-radius:4px;padding:0 4px;word-break:break-word}
+  .opt{display:flex;gap:10px;width:100%;text-align:left;margin:8px 0;padding:12px;min-height:50px;
+    border:1px solid var(--line);border-radius:9px;background:var(--panel-2);color:var(--ink);
+    font:inherit;font-size:15px;line-height:1.45;cursor:pointer;transition:border-color .12s,background .12s}
+  .opt .key{color:var(--dim);font-size:12.5px;padding-top:2px;flex:0 0 auto}
+  .opt:hover{border-color:var(--line-2)}
+  .opt:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .opt.picked{border-color:var(--amber);background:rgba(227,179,65,.06)}
+  .opt.picked .key{color:var(--amber)}
+  .opt.right{border-color:var(--green);background:rgba(63,185,80,.08)}
+  .opt.right .key{color:var(--green)}
+  .opt.wrong{border-color:var(--red);background:rgba(255,107,98,.07)}
+  .opt.wrong .key{color:var(--red)}
+  .opt[disabled]{cursor:default}
+  .fb{margin-top:14px;border-left:3px solid var(--green);background:rgba(255,255,255,.02);
+    border-radius:0 8px 8px 0;padding:12px 14px;font-size:14.5px;color:var(--muted)}
+  .fb.no{border-left-color:var(--red)}
+  .fb .verdict{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12.5px;letter-spacing:.05em;margin-bottom:6px;color:var(--green)}
+  .fb.no .verdict{color:var(--red)}
+  .btn{margin-top:14px;width:100%;min-height:50px;border:1px solid var(--green);border-radius:9px;
+    background:transparent;color:var(--green);font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:700;cursor:pointer}
+  .btn:hover{background:rgba(63,185,80,.08)}
+  .btn:disabled{opacity:.35;cursor:default}
+  .btn.ghost{border-color:var(--line-2);color:var(--muted)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row .btn{flex:1 1 180px}
+
+  /* results */
+  .done h2{font-size:20px;margin:0 0 4px}
+  .score{font-family:"JetBrains Mono",monospace;color:var(--muted);font-size:13px;margin:0 0 14px}
+  .score b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 10px}
+  th,td{border-bottom:1px solid var(--line);padding:8px 4px;text-align:left;vertical-align:top}
+  th{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+  td.n,th.n{text-align:right;font-family:"JetBrains Mono",monospace;white-space:nowrap}
+  .good{color:var(--green)} .mid{color:var(--amber)} .bad{color:var(--red)}
+  .focus{font-size:14px;color:var(--muted);margin:4px 0 0}
+  .focus b{color:var(--ink)}
+  .empty{color:var(--muted);font-size:14.5px}
+
+  .disclosure{font-size:12.5px;color:var(--dim);margin:28px 0 0;line-height:1.55}
+  footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+  footer a{color:var(--cyan);text-decoration:none}
+  footer button{background:none;border:none;color:var(--dim);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav">
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span class="loc">~/study/claude-cert-drill</span>
+  </nav>
+
+  <header class="term">
+    <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">drill.sh</span></div>
+    <div class="term-body">
+      <p class="prompt">ken@den:<span class="path">~/study</span>$ <span class="arg">./drill --exam <span id="promptCode">ccar-f</span></span><span class="cursor" aria-hidden="true"></span></p>
+      <h1>Claude cert drill</h1>
+      <p class="tagline">Scenario practice for two Claude certifications, weighted to the published blueprints. Wrong answers come back around until they stick.</p>
+    </div>
+  </header>
+
+  <div class="switch" role="group" aria-label="Choose exam">
+    <button type="button" data-exam="assoc"><span class="code">CCAO-F</span><span class="nm">Associate</span></button>
+    <button type="button" data-exam="arch"><span class="code">CCAR-F</span><span class="nm">Architect</span></button>
+  </div>
+
+  <details class="facts" id="facts">
+    <summary><span id="factsTitle">exam facts</span></summary>
+    <div class="facts-body" id="factsBody"></div>
+  </details>
+
+  <p class="eyebrow">mode</p>
+  <div class="chips" id="chips"></div>
+  <div class="stats" id="stats" aria-live="polite"></div>
+  <main id="stage"></main>
+
+  <p class="disclosure">Questions AI-generated, human-directed. Unofficial and not affiliated with Anthropic. Every scenario is original, written against the public exam guides, and none comes from the live exam. Product details change fast, so check anything feature-specific against <a href="https://docs.claude.com">docs.claude.com</a>. Your stats stay in this browser on this device.</p>
+
+  <footer>
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <button type="button" id="reset">reset stats for this exam</button>
+  </footer>
+</div>
+
+<script id="data" type="application/json">{"assoc": {"domains": [{"id": 1, "n": "Prompting & Task Execution", "w": 14}, {"id": 2, "n": "Output Evaluation & Validation", "w": 21}, {"id": 3, "n": "Product & Model Selection", "w": 12}, {"id": 4, "n": "Workflow Integration & Design", "w": 16}, {"id": 5, "n": "Configuration & Knowledge Mgmt", "w": 12}, {"id": 6, "n": "Governance, Risk & Responsible Use", "w": 15}, {"id": 7, "n": "Troubleshooting & Optimization", "w": 10}], "scenarios": {}, "meta": {"code": "CCAO-F", "name": "Associate: Foundations", "items": 60, "time": 120, "pass": "720 / 1000 scaled", "fee": "$99 list", "validity": "12 months", "format": "Multiple choice and multiple response", "extra": "Aimed at everyday business use of Claude; no coding required.", "mockMinutesPerItem": 2}, "bank": [{"id": "a101", "d": 1, "q": "A consultant needs Claude to produce a competitive analysis covering eight companies across four dimensions each. What approach most reliably produces usable output?", "opts": ["Research each company as its own step, then synthesize the comparison in a final pass", "Send one detailed prompt covering the full deliverable and ask for the finished analysis", "Ask for the executive summary first, then have Claude back-fill the supporting detail", "Request all eight companies at once, but cap each company at a short bullet list"], "a": 0, "why": "Task decomposition is a named objective. Breaking a large deliverable into defined sub-tasks keeps each step verifiable and avoids the thin, generic output one sweeping request tends to produce. Capping the format does not fix the underlying scope problem."}, {"id": "a102", "d": 1, "q": "Claude returns a draft that is factually sound but written in the wrong register for the audience. What is the most efficient next step?", "opts": ["Tell Claude who the audience is and what register you need, then ask for a revision", "Restate the whole original prompt from scratch with a tone requirement added at the end", "Accept the draft as-is and rewrite the tone yourself before sending it to the audience", "Rerun the same prompt on a more capable model tier and compare the two versions"], "a": 0, "why": "Iterating on prompts is a core objective, and targeted correction keeps the parts that already worked. Starting over discards useful context, and a bigger model does not fix an instruction gap."}, {"id": "a103", "d": 1, "q": "Which task type most benefits from a prompt that explicitly asks for several distinct options rather than one best answer?", "opts": ["Brainstorming", "Fact-based research", "Editing for grammar", "Data extraction"], "a": 0, "why": "Adapting strategy to task type is an objective. Brainstorming wants divergence, so asking for genuinely different directions matters. Research, editing, and extraction all converge on one correct result."}, {"id": "a104", "d": 1, "type": "multi", "n": 3, "q": "Select the THREE elements that most improve a prompt for a structured business task.", "opts": ["The intended audience for the output", "The output format and length required", "Relevant constraints, context, or source material", "A request that Claude respond as quickly as it can", "A general instruction to be as creative as possible"], "a": [0, 1, 2], "why": "Audience, format, and grounding context turn a vague request into a structured one. Speed is not something a prompt meaningfully controls, and a blanket creativity instruction gives no direction on a structured task."}, {"id": "a105", "d": 1, "q": "A request bundles three unrelated deliverables: a client email, a budget breakdown, and a risk summary. What is the better approach?", "opts": ["Split them into separate requests so each can be prompted and checked on its own", "Send all three in one prompt so Claude can share context across the deliverables", "Send all three together but ask for the shortest possible version of each one", "Ask for one combined document, then separate and edit the pieces afterward"], "a": 0, "why": "Decomposition applies to unrelated deliverables too. Separating them lets each be prompted, iterated, and validated on its own terms. The deliverables share no context worth bundling."}, {"id": "a106", "d": 1, "q": "An analyst's prompt consistently produces output that is accurate but too shallow for the intended use. What is the most likely fix?", "opts": ["State the depth, structure, and level of detail the deliverable actually requires", "Resubmit the same prompt a few times and keep whichever answer goes deepest", "Shorten the prompt so the core request is clearer and less likely to be diluted", "Add a line telling Claude to be thorough and detailed in its response"], "a": 0, "why": "Shallow output usually reflects an unstated expectation. Naming the required depth and structure is specific and checkable; 'be thorough' is not, and repetition without change changes nothing."}, {"id": "a201", "d": 2, "q": "Claude summarizes a regulation and cites a specific subsection number. The summary is bound for the compliance team. What should happen before it is sent?", "opts": ["Verify the cited subsection against the official regulation text before it goes out", "Send it as-is, since a specific subsection number shows the source was consulted", "Ask Claude to double-check its own citation and confirm the number is correct", "Reformat it into the compliance team's template, then send it for their review"], "a": 0, "why": "Specific-looking details such as citation numbers are a common hallucination pattern. Checking against the authoritative source is the required step. Asking the model to check itself is not independent verification."}, {"id": "a202", "d": 2, "q": "How much weight should a stated confidence level in Claude's own response carry when judging accuracy?", "opts": ["Little; expressed confidence is not a reliable signal of factual accuracy", "A lot; the model has direct insight into how certain it actually is", "It depends on the tier; larger models report confidence reliably", "It is reliable for factual claims, though not for opinions or judgments"], "a": 0, "why": "Self-reported confidence is not a dependable accuracy signal, which is why the objectives call for independent fact-checking rather than deference to the model's tone."}, {"id": "a203", "d": 2, "q": "An output answers the question asked but silently omits a section the deliverable requires. Which evaluation dimension caught this?", "opts": ["Completeness", "Accuracy", "Bias", "Formatting"], "a": 0, "why": "The objectives pair accuracy and completeness deliberately. Everything present can be correct while the response still fails because something required is missing."}, {"id": "a204", "d": 2, "q": "A summary of candidate profiles consistently emphasizes different attributes depending on the school each candidate attended. What is the appropriate response?", "opts": ["Treat it as a possible bias pattern, examine it, and correct it before use", "Accept it, since the model applied the same instructions to every profile", "Regenerate the summary and keep whichever version reads most neutral", "Log the pattern for later but proceed, since the source data is unchanged"], "a": 0, "why": "Identifying bias is an explicit objective, and it carries extra weight in a consequential context like hiring. Regenerating until it looks fine hides the pattern instead of examining it."}, {"id": "a205", "d": 2, "q": "Which situation most clearly requires human review before the output is used?", "opts": ["The output will inform a regulated decision affecting individuals", "The output is a first-pass draft of an internal team brainstorm", "The output is a formatting cleanup of an existing internal document", "The output is a list of suggested agenda items for a weekly meeting"], "a": 0, "why": "Consequence decides when human review is required. Regulated or individually consequential outputs warrant review; low-stakes internal drafts generally do not."}, {"id": "a206", "d": 2, "q": "A technically detailed analysis needs to go to an executive audience. What does adapting it well require?", "opts": ["Restructure around decisions and implications while keeping the facts precise", "Cut it down to the opening paragraph so executives can read it in a minute", "Swap technical terms for rough everyday equivalents throughout the document", "Leave it unchanged so no nuance is lost in translation for the executives"], "a": 0, "why": "Adapting for an audience changes emphasis and structure, not precision. Truncation and loose paraphrase both sacrifice accuracy; leaving it untouched fails the audience."}, {"id": "a207", "d": 2, "q": "A reusable reference document will be edited over time and shared outside the conversation. Which output format fits best?", "opts": ["An artifact", "An inline chat response", "A structured data block", "A series of short messages"], "a": 0, "why": "Selecting output formats is an objective. Standalone content meant to be iterated on and used elsewhere fits an artifact; inline responses suit answers that are read once."}, {"id": "a208", "d": 2, "type": "multi", "n": 3, "q": "Select the THREE signals that most warrant independent verification of a Claude output.", "opts": ["Specific figures, dates, or citation numbers", "Claims about recent events or current status", "Content that will inform a consequential decision", "The response is longer than you expected", "The response is formatted as a bulleted list"], "a": [0, 1, 2], "why": "Precise-looking specifics, currency-dependent claims, and consequential use are the risk markers behind the fact-checking objectives. Length and formatting say nothing about reliability."}, {"id": "a209", "d": 2, "q": "Two drafts of the same deliverable are produced. What is the sound basis for choosing between them?", "opts": ["Criteria defined in advance for what a correct, usable answer looks like", "Whichever draft reads more fluently and confidently to a first-time reader", "Whichever draft is longer, since length usually signals more completeness", "Whichever draft came from the more capable model tier on the account"], "a": 0, "why": "Comparing outputs presumes a standard. Fluency, length, and model tier are proxies that can all point away from the more accurate answer."}, {"id": "a301", "d": 3, "q": "A team needs several hundred short customer-reply drafts each day. Speed and cost matter more than depth of reasoning. Which choice fits?", "opts": ["A faster, lower-cost model tier suited to straightforward high-volume work", "The most capable, highest-cost tier, so every reply gets maximum quality", "Rotate across all tiers evenly so no single tier's budget is exhausted", "Keep the default tier and turn off product features to hold costs down"], "a": 0, "why": "Match tier to task shape. High-volume, low-complexity work belongs on a faster and cheaper tier; reserving the flagship for complex reasoning is the point of having tiers."}, {"id": "a302", "d": 3, "q": "A one-off analysis requires synthesizing conflicting sources and reasoning through an ambiguous tradeoff with real consequences. Which choice fits?", "opts": ["The most capable tier, since hard reasoning with real stakes justifies it", "The fastest tier, since a single task will not move the monthly budget", "Whichever tier the team uses by default, to keep outputs consistent", "Run it on every tier and pick the answer that most of the tiers agree on"], "a": 0, "why": "The tier tradeoff runs both ways. Cost discipline argues for cheaper tiers on routine volume, and the same logic argues for the most capable tier when the work is genuinely hard."}, {"id": "a303", "d": 3, "q": "A long working conversation has accumulated substantial history and responses are becoming less focused. What is the appropriate response?", "opts": ["Summarize the essential context and continue in a fresh conversation", "Stay in the same conversation and restate the instructions more firmly", "Switch to a different model tier partway through the same conversation", "Keep going; longer history always gives Claude more useful context"], "a": 0, "why": "Knowing when to restart, summarize, or persist is an explicit objective. A deliberate summary carries forward what matters without the accumulated noise."}, {"id": "a304", "d": 3, "q": "A recurring monthly report always draws on the same reference documents and follows the same standards. Which product feature fits best?", "opts": ["A Project holding those documents and the standing instructions", "A new chat each month with the documents uploaded again each time", "One long-running conversation reused every month indefinitely", "An artifact that stores the reference documents for reuse"], "a": 0, "why": "Recurring work with stable knowledge and standards is the case Projects exist for. Re-uploading each month repeats setup and invites drift."}, {"id": "a305", "d": 3, "type": "multi", "n": 3, "q": "Select the THREE factors that legitimately drive model tier selection.", "opts": ["Complexity of the reasoning required", "Cost budget for the volume of work", "Latency or speed requirements", "The number of people on the team", "Whether the output will be an artifact"], "a": [0, 1, 2], "why": "The objective names cost, speed, and quality as the axes. Team size and output format are unrelated to which tier suits the task."}, {"id": "a306", "d": 3, "q": "A colleague proposes always using the most capable model for every task to remove the risk of poor quality. What is the strongest objection?", "opts": ["It spends cost and latency on work that does not need the extra capability", "It produces lower-quality output on simple tasks than a faster tier would", "It is prohibited by most organizational AI policies for routine work", "It prevents the use of Projects and artifacts on the higher tiers"], "a": 0, "why": "There is no quality penalty, but there is a real cost and latency penalty. Balancing quality, efficiency, and cost is a stated capability of the credential."}, {"id": "a401", "d": 4, "q": "Which existing process is the strongest early candidate for Claude support?", "opts": ["A repetitive drafting task with consistent inputs and a clear quality bar", "A one-time negotiation with an external party that needs a careful approach", "A process that is already fully automated and meeting all of its targets", "A creative task where the team has not yet agreed what good looks like"], "a": 0, "why": "Repetition, consistent inputs, and a clear quality bar make a workflow both suitable and measurable. Without an output standard, improvement cannot be demonstrated."}, {"id": "a402", "d": 4, "q": "When presenting a Claude-supported workflow to stakeholders, what should accompany the description of its value?", "opts": ["Its limitations and the points where human review is still required", "A projection of the headcount reduction the workflow will enable", "A comparison of the workflow against every competing AI platform", "A technical explanation of how the underlying model was trained"], "a": 0, "why": "Communicating value and limitations is one paired objective. Presenting benefits without constraints sets up failures later."}, {"id": "a403", "d": 4, "q": "A request arrives to build a system that autonomously calls internal APIs and takes actions without human review. As an Associate, what is the right move?", "opts": ["Recognize it as outside Associate scope and escalate to an Architect or Developer", "Prototype it yourself using a Project, connectors, and detailed instructions", "Decline the request outright as an inappropriate use of AI in the business", "Build it as requested, then add a manual approval step before each action"], "a": 0, "why": "Recognizing limitations and escalating technical implementations is a defining capability of the credential. Agentic system design belongs to the Architect and Developer tracks."}, {"id": "a404", "d": 4, "q": "Before rolling a new Claude-supported process out across a department, what is the sound intermediate step?", "opts": ["Pilot it with a limited group and defined success criteria, then evaluate", "Announce the rollout to everyone and gather feedback in the first month", "Roll out department-wide and iterate based on the complaints that arrive", "Hold the release until the process is fully perfected for every case"], "a": 0, "why": "Iteration implies validating at small scale first. A pilot with defined criteria produces evidence; feedback after full rollout arrives too late to shape the design."}, {"id": "a405", "d": 4, "q": "A workflow is redesigned around Claude and the results are strong, but nobody outside the original team adopts it. What was most likely missing?", "opts": ["Explaining its value, limits, and fit to the people expected to adopt it", "Moving the workflow onto a more capable and more expensive model tier", "Adding a larger set of knowledge sources to the underlying Project", "More detailed prompt engineering on every step of the new workflow"], "a": 0, "why": "Integration is a people problem as much as a technical one. The objectives pair solution design with stakeholder communication for exactly this reason."}, {"id": "a406", "d": 4, "type": "multi", "n": 2, "q": "Select the TWO strongest indicators that a workflow will benefit from Claude.", "opts": ["The task recurs frequently with similar structure", "The output can be checked against a clear standard", "The task is highly sensitive and legally consequential", "The team has spare budget available this quarter"], "a": [0, 1], "why": "Recurrence makes the gain compound; a clear standard makes quality verifiable. High sensitivity argues for more caution, and spare budget is not a fit signal."}, {"id": "a407", "d": 4, "q": "Claude is used to analyze requirements for a new internal process. What is the appropriate treatment of its output?", "opts": ["Structured input to human decisions, validated before it drives commitments", "The requirements document of record, since it was generated systematically", "Useful only where it confirms what the team already believed going in", "Something to discard, since requirements work needs purely human judgment"], "a": 0, "why": "Analysis that will drive commitments gets reviewed. That is different from either rubber-stamping it or refusing to use it."}, {"id": "a501", "d": 5, "q": "A standard applies to every deliverable in a workstream, such as a required disclosure line. Where does it belong?", "opts": ["In the Project instructions, so it applies without being restated", "In each individual prompt, so it can be adjusted task by task", "In a knowledge file uploaded to the Project with other references", "In a saved template kept outside Claude and pasted in when needed"], "a": 0, "why": "Durable standards that must hold across every conversation belong in project instructions. Per-prompt restatement invites the one omission that matters."}, {"id": "a502", "d": 5, "q": "A Project's uploaded reference document has been superseded by a newer version. What is the appropriate action?", "opts": ["Replace the old knowledge file with the current version", "Add the new version alongside the old one for completeness", "Note the change in the instructions and keep both files", "Start a brand-new Project around the updated document"], "a": 0, "why": "Maintaining knowledge sources is an explicit objective. Leaving a superseded document in place lets the Project ground answers in information known to be wrong."}, {"id": "a503", "d": 5, "q": "Two unrelated workstreams both need Claude support, with different standards and reference material. What is the sound configuration?", "opts": ["Separate Projects, each with its own instructions and knowledge", "One Project holding both document sets and merged instructions", "One Project, swapping the instructions manually between workstreams", "Separate conversations inside one shared Project for both of them"], "a": 0, "why": "Project scoping keeps instructions and knowledge aligned to their purpose. Merging unrelated workstreams dilutes both and puts irrelevant material in scope."}, {"id": "a504", "d": 5, "q": "Which project instruction is most likely to change behavior reliably?", "opts": ["Cite the source document and section for every policy claim", "Always be helpful, thorough, and accurate in your responses", "Write clearly and match our company's voice and tone", "Double-check your work carefully and try to avoid errors"], "a": 0, "why": "Effective instructions are specific and checkable. You can see whether citations appeared; helpfulness, voice, and carefulness offer no observable standard."}, {"id": "a505", "d": 5, "q": "A connector is attached to pull from a shared drive. What ongoing responsibility does that create?", "opts": ["Keeping the source current and scoped to what should be accessible", "None; once authorized, a connector manages its own scope and freshness", "Re-authorizing the connector at the start of every working session", "Uploading copies of the connected files to the Project as a backup"], "a": 0, "why": "Connection is not a one-time act. What a connector exposes is a live configuration decision with accuracy and data-sensitivity consequences."}, {"id": "a506", "d": 5, "type": "multi", "n": 3, "q": "Select the THREE things that most belong in Project instructions rather than an individual prompt.", "opts": ["Formatting standards that apply to all outputs", "The audience the workstream usually writes for", "Recurring terminology to use or avoid", "The specific question being asked right now", "A one-time request to shorten a draft"], "a": [0, 1, 2], "why": "Instructions carry what is durable and repeated across the workstream. The immediate question and one-off adjustments belong in the prompt."}, {"id": "a601", "d": 6, "q": "A manager wants to upload a spreadsheet with customer names and account numbers for trend analysis. Policy restricts sharing regulated personal data. What is appropriate?", "opts": ["Remove or anonymize the identifiers before uploading, per policy", "Upload it as-is, since the analysis stays inside the organization", "Upload it, but instruct Claude not to retain the personal data", "Skip the analysis, since the file contains regulated data"], "a": 0, "why": "Data-sensitivity controls should enable the work within policy. Anonymization lets the analysis proceed; an instruction not to retain is not a policy control, and abandoning the task is unnecessary."}, {"id": "a602", "d": 6, "q": "Which use is clearly inappropriate without human decision authority?", "opts": ["Making a final determination on an individual's employment status", "Drafting interview questions for a hiring panel to review and edit", "Summarizing public market research for an internal planning deck", "Reformatting an internal status report into the standard template"], "a": 0, "why": "Consequential determinations about individuals require human authority. The others are support tasks with a human decision point downstream."}, {"id": "a603", "d": 6, "q": "An employee's personal judgment about acceptable AI use conflicts with the organization's published AI policy. What governs?", "opts": ["The organizational policy, with the concern raised through proper channels", "Personal judgment, since the individual understands the specific context", "Whichever of the two standards is more permissive for the task at hand", "Whichever of the two standards is more restrictive for the task at hand"], "a": 0, "why": "Policies exist to produce consistent decisions. Disagreement is legitimate but gets resolved through the governance process, not unilaterally."}, {"id": "a604", "d": 6, "q": "A client deliverable was substantially developed with Claude's assistance. What is the sound ethical position on disclosure?", "opts": ["Follow organization and client expectations, and be able to explain the review", "Never mention it, since only the quality of the final work product matters", "Add an AI disclosure to every document, regardless of client or context", "Disclose only if the client asks directly how the work was produced"], "a": 0, "why": "What is required varies by organization and client. The constant is that the practitioner can account for how the output was validated."}, {"id": "a605", "d": 6, "q": "What most distinguishes appropriate from inappropriate AI use in a regulated context?", "opts": ["Whether it follows applicable policy and keeps required human judgment", "Whether the output quality is consistently high enough to rely on", "Whether the time saved is large enough to justify the added risk", "Whether other teams in the organization are already doing the same"], "a": 0, "why": "Governance is about policy alignment and preserved accountability. Quality does not make a prohibited use permissible, and precedent elsewhere is not authorization."}, {"id": "a606", "d": 6, "type": "multi", "n": 2, "q": "Select the TWO practices that best support responsible use of Claude on sensitive work.", "opts": ["Minimizing sensitive data before it enters the workflow", "Defining where human review is mandatory", "Using the highest-capability model available", "Keeping all work in one Project for auditability"], "a": [0, 1], "why": "Data minimization and defined review points are governance controls. Model capability is unrelated to responsible use, and consolidating everything works against appropriate scoping."}, {"id": "a701", "d": 7, "q": "Output for a specialized task keeps coming back generic. What is the most productive first diagnostic step?", "opts": ["Check whether the prompt supplies the context and sources the task needs", "Switch to a more capable model tier and rerun the same prompt unchanged", "Ask the same question several different ways and compare the answers", "Shorten the prompt so the specialized request stands out more clearly"], "a": 0, "why": "Generic output usually signals missing grounding rather than insufficient model capability. Start with the most common cause."}, {"id": "a702", "d": 7, "q": "Results vary noticeably between runs of what should be a repeatable task. What most reliably reduces the variation?", "opts": ["Specify the format, criteria, and structure explicitly in the instructions", "Run the task several times and keep the best result from each batch", "Move the repeatable task onto a more capable and more consistent model tier", "Break the task into smaller pieces and run each separately"], "a": 0, "why": "Variation usually reflects underspecification. Best-of-N is a workaround that leaves the cause in place."}, {"id": "a703", "d": 7, "q": "A Claude-supported workflow saves less time than expected. What is the right diagnostic approach?", "opts": ["Find the step that actually consumes the time; it may not involve Claude", "Add Claude to more steps in the workflow to compound the time savings", "Move the entire workflow onto a faster, lower-cost model tier", "Increase the level of prompt detail on every step of the workflow"], "a": 0, "why": "Optimizing requires locating the real bottleneck. Time is often lost in handoffs, review, or rework rather than in generation."}, {"id": "a704", "d": 7, "q": "After several rounds of feedback, output quality has stopped improving. What does adjusting the approach mean here?", "opts": ["Rethink the framing, decomposition, or grounding, not the same prompt", "Repeat the same feedback more firmly until the output finally changes", "Accept the current quality as the ceiling for this type of task", "Start over in a new chat using the identical prompt from the beginning"], "a": 0, "why": "Plateaued output signals the current framing is exhausted. More refinement inside it yields diminishing returns."}, {"id": "a705", "d": 7, "q": "A prompt performs well for one team and poorly for another doing similar work. What is the most likely explanation?", "opts": ["Differences in the context, knowledge, or configuration each team uses", "One team is running the prompt on a lower, less capable model tier", "The prompt was tuned for one specific model version and has drifted", "Normal random variation that will even out across enough runs"], "a": 0, "why": "Identical prompts against different context and configuration produce different results. Check what surrounds the prompt before blaming the prompt."}]}, "arch": {"domains": [{"id": 1, "n": "Agentic Architecture & Orchestration", "w": 27}, {"id": 2, "n": "Tool Design & MCP Integration", "w": 18}, {"id": 3, "n": "Claude Code Config & Workflows", "w": 20}, {"id": 4, "n": "Prompt Engineering & Structured Output", "w": 20}, {"id": 5, "n": "Context Management & Reliability", "w": 15}], "scenarios": {"s1": "Customer support resolution agent", "s2": "Code generation with Claude Code", "s3": "Multi-agent research system", "s4": "Developer productivity agent", "s5": "Claude Code in CI/CD", "s6": "Structured data extraction"}, "meta": {"code": "CCAR-F", "name": "Architect: Foundations", "items": 60, "time": 120, "pass": "720 / 1000 scaled", "fee": "$125 list", "validity": "12 months", "format": "Multiple choice and multiple response", "extra": "Scenario-based: 4 scenarios drawn at random from a published bank of 6.", "mockMinutesPerItem": 2}, "bank": [{"id": "r101", "d": 1, "s": "s1", "q": "Your support agent's loop treats a turn as finished whenever the response contains assistant text. It sometimes stops right after Claude writes 'Let me look that up,' before the tool ever runs. What is the correct termination logic?", "opts": ["Continue while `stop_reason` is `\"tool_use\"`; finish when it is `\"end_turn\"`", "Finish when the response has no text blocks, since text means an answer", "Finish when the text contains a closing phrase like 'anything else?'", "Cap the loop at five iterations and treat the cap as normal completion"], "a": 0, "why": "The loop is driven by `stop_reason`. Checking for assistant text, parsing natural-language signals, and arbitrary iteration caps as the primary stop are all named anti-patterns in Task 1.1."}, {"id": "r102", "d": 1, "s": "s4", "q": "Claude returns `stop_reason: \"tool_use\"` requesting a Grep call, and your code runs the search. What must happen next for the loop to work?", "opts": ["Append the tool result to the conversation and send the next request", "Replace the conversation history with the tool result to save context", "Start a new conversation containing only the tool result", "Store the result locally and wait for Claude to ask for it again"], "a": 0, "why": "Tool results are appended to conversation history so the model can reason about its next action. Replacing or discarding history breaks the loop's continuity."}, {"id": "r103", "d": 1, "s": "s3", "q": "Your synthesis subagent writes a generic report that ignores the research the search and analysis subagents just finished. The coordinator invoked it with only 'Write the final cited report.' What is the most likely cause?", "opts": ["Subagents don't inherit history, and the findings weren't in its prompt", "The synthesis subagent needs a larger context window for the findings", "The coordinator didn't wait long enough for upstream work to finish", "The synthesis subagent lacks the search tools to re-find the sources"], "a": 0, "why": "Subagents operate with isolated context. Anything they need, including prior agents' findings, must be passed explicitly in their prompt (Task 1.3)."}, {"id": "r104", "d": 1, "s": "s3", "q": "A coordinator never spawns its subagents and tries to do all the research itself. Its `allowedTools` is `[\"WebSearch\", \"Read\"]`. What is the fix?", "opts": ["Add `\"Task\"` to `allowedTools` so the coordinator can spawn subagents", "Add each subagent's name directly to the coordinator's `allowedTools`", "Remove `WebSearch` from `allowedTools` so it is forced to delegate", "Tell the coordinator in its system prompt to always use subagents"], "a": 0, "why": "The Task tool is the mechanism for spawning subagents, and `allowedTools` must include it. Removing other tools or adding prompt instructions cannot grant a tool the agent isn't allowed to call."}, {"id": "r105", "d": 1, "s": "s3", "q": "Four independent research subtopics currently run one after another, with each subagent spawned in a separate coordinator turn. How do you run them in parallel?", "opts": ["Have the coordinator emit all four Task calls in a single response", "Keep one spawn per turn but shorten each subagent's system prompt", "Merge the four subtopics into one subagent with a combined prompt", "Call `fork_session` four times from the coordinator's current state"], "a": 0, "why": "Parallel subagents come from multiple Task tool calls in one coordinator response. `fork_session` branches a session for divergent exploration; it is not the parallel spawning mechanism."}, {"id": "r106", "d": 1, "s": "s3", "q": "Which style of coordinator prompt best lets subagents adapt to what they discover?", "opts": ["State the research goal and the quality criteria results must meet", "List every query each subagent must run and the order to run them", "Give each subagent a fixed checklist of sources to visit in order", "Set an exact number of findings each subagent must return"], "a": 0, "why": "Task 1.3 calls for coordinator prompts that specify goals and quality criteria rather than step-by-step procedure, which leaves room for subagent adaptability."}, {"id": "r107", "d": 1, "s": "s1", "q": "Policy requires identity verification before any change to a customer's payout account. The system prompt already says verification is mandatory, yet logs show occasional updates before verification. What guarantees the fix?", "opts": ["A prerequisite gate that blocks `update_payout` until verification passes", "Stronger system prompt wording, with the rule repeated in capital letters", "Few-shot examples showing the agent verifying before every account update", "A post-conversation audit that flags updates made without verification"], "a": 0, "why": "When compliance must be deterministic, prompt instructions alone have a non-zero failure rate. A programmatic prerequisite enforces the order; an audit only detects the failure afterward."}, {"id": "r108", "d": 1, "s": "s1", "q": "When the agent escalates, the human agent sees only the ticket, not the conversation transcript. What should the handoff contain?", "opts": ["A structured summary: customer ID, root cause, amounts, recommended action", "A note that the customer asked to speak with a person, and nothing more", "The agent's confidence score and a sentiment reading for the session", "A link to the model's reasoning trace so the human can reconstruct it"], "a": 0, "why": "Task 1.4: structured handoff summaries give a human who lacks the transcript what they need to act without restarting the investigation."}, {"id": "r109", "d": 1, "s": "s1", "q": "Three MCP tools return dates as Unix timestamps, ISO 8601 strings, and numeric codes. The agent sometimes misreads them. What is the most reliable place to normalize?", "opts": ["A `PostToolUse` hook that converts results before the model sees them", "A system prompt section explaining each tool's format and conversion", "Few-shot examples showing correct reading of all three date formats", "An instruction to restate every date in ISO 8601 before reasoning"], "a": 0, "why": "Hooks intercept tool results for transformation before the model processes them, which is deterministic. Prompt-based handling is probabilistic."}, {"id": "r110", "d": 1, "s": "s1", "q": "Refunds above a set threshold must always go to a human. Which implementation guarantees this?", "opts": ["A hook that intercepts `process_refund` calls over the limit and reroutes them", "A system prompt rule stating that refunds over the limit need human approval first", "Few-shot examples showing large refunds being escalated to a person", "A nightly report of large refunds for a supervisor to review later"], "a": 0, "why": "Tool-call interception hooks enforce business rules with guaranteed compliance and can redirect to an escalation workflow. Choose hooks over prompts when the rule must hold."}, {"id": "r111", "d": 1, "s": "s4", "q": "An engineer asks your agent to 'add comprehensive tests to this legacy codebase.' Which decomposition approach fits?", "opts": ["Map the structure, find high-impact areas, then follow an adaptive plan", "A fixed chain: write tests for each file alphabetically, then stop", "Generate the whole suite in one pass so the tests share one style", "Test only files changed in the last month, since those carry the risk"], "a": 0, "why": "Open-ended investigation calls for dynamic decomposition that adapts as dependencies are discovered. Fixed chains suit predictable, repeatable reviews."}, {"id": "r112", "d": 1, "s": "s5", "q": "Which task is best suited to a fixed sequential prompt chain rather than dynamic decomposition?", "opts": ["A standard per-file review followed by a cross-file integration pass", "Chasing an intermittent production bug whose cause is still unknown", "Exploring an unfamiliar codebase to decide where a feature belongs", "Researching a question where each finding reshapes the next step"], "a": 0, "why": "Prompt chaining fits predictable, multi-aspect reviews. The other three are open-ended, where the next step depends on what is found."}, {"id": "r113", "d": 1, "s": "s2", "type": "multi", "n": 2, "q": "Select the TWO correct session management choices.", "opts": ["Use `fork_session` to compare two refactors from one shared analysis", "Start fresh with an injected summary when earlier tool results are stale", "Resume unchanged after major code edits; the agent will notice them", "Use `--resume` with a new name to branch into parallel exploration", "Always resume rather than restart, since resumed sessions know more"], "a": [0, 1], "why": "`fork_session` creates independent branches from a shared baseline. When prior tool results are stale, a fresh session with a structured summary is more reliable than resuming. If you do resume after edits, tell the agent what changed."}, {"id": "r201", "d": 2, "s": "s3", "q": "A research agent has `analyze_content` ('Analyzes content') and `analyze_document` ('Analyzes a document'). It keeps picking the wrong one for web results. What fixes the root cause?", "opts": ["Rename to purpose-specific tools, like `extract_web_results`, with distinct descriptions", "Add a system prompt rule telling the agent which of the two tools to prefer for web pages", "Merge both into one analyze tool that takes a content-type parameter", "Force `analyze_document` with `tool_choice` whenever web results appear"], "a": 0, "why": "Tool descriptions are the primary mechanism for tool selection. Overlapping names and near-identical descriptions cause misrouting; renaming and differentiating removes the overlap."}, {"id": "r202", "d": 2, "s": "s1", "q": "Tool descriptions are detailed, yet the agent calls `search_kb` whenever a customer says 'policy,' even on simple refund requests. The system prompt says 'For anything about policy, search the knowledge base.' What is happening?", "opts": ["A keyword-sensitive system prompt instruction is overriding the descriptions", "The descriptions are too long, so the model falls back on the system prompt", "The model needs few-shot examples before descriptions can be used", "`search_kb` is listed first, and the model favors the first tool"], "a": 0, "why": "Task 2.1: keyword-sensitive system prompt wording can create unintended tool associations that override well-written descriptions. Review the prompt, not just the tools."}, {"id": "r203", "d": 2, "s": "s1", "q": "`process_refund` rejects a request because the order is outside the return window. What should the tool return?", "opts": ["`isError` true, a business category, `isRetryable` false, and a clear reason", "A generic 'Operation failed' so no internal policy detail reaches the agent", "`isError` true with `isRetryable` true, so the agent tries the same input again", "An empty success result, since the tool ran without any technical fault"], "a": 0, "why": "Structured errors let the agent choose the right recovery. A policy violation is not retryable, and a customer-friendly explanation lets the agent communicate it well."}, {"id": "r204", "d": 2, "s": "s3", "q": "A document search succeeds but finds no matching papers. How should that be reported differently from a search that timed out?", "opts": ["No matches as a valid empty result; the timeout as a retryable failure", "Both as failures, so the coordinator retries each the same way", "Both as empty results, so the coordinator isn't burdened with errors", "The timeout as empty, and the no-match case as a validation error"], "a": 0, "why": "An access failure needs a retry decision; a successful query with no matches is a real answer. Conflating them either wastes retries or silently hides failures."}, {"id": "r205", "d": 2, "s": "s3", "q": "A single research agent has 18 tools and increasingly chooses poorly among them. What design change best improves selection reliability?", "opts": ["Split work across specialized agents scoped to the few tools each role needs", "Keep all 18 tools but reorder them so the most commonly used ones appear first", "Add few-shot examples showing the correct use of each of the 18 tools", "Raise `max_tokens` so the model has more room to reason about tools"], "a": 0, "why": "Too many tools (18 versus 4 or 5) degrades selection by increasing decision complexity. Scoped tool access per role is the fix."}, {"id": "r206", "d": 2, "s": "s6", "q": "Documents arrive with unknown type, and there is one extraction tool per type. You need a tool call every time, never plain text. Which setting fits?", "opts": ["`tool_choice: \"any\"`", "`tool_choice: \"auto\"`", "`tool_choice` forced to `extract_invoice`", "`\"auto\"` plus a prompt rule to always use a tool"], "a": 0, "why": "`\"any\"` guarantees a tool call while letting the model pick which schema fits. `\"auto\"` can return text; forcing one tool picks the schema before the type is known."}, {"id": "r207", "d": 2, "s": "s6", "q": "`extract_metadata` must run before any enrichment tool on every document. Which configuration guarantees it runs first?", "opts": ["Force it with `{\"type\": \"tool\", \"name\": \"extract_metadata\"}`, then continue", "Set `tool_choice` to `\"any\"` and list `extract_metadata` first", "Set `tool_choice` to `\"auto\"` and describe it as the required first step", "Put 'always call extract_metadata first' at the top of the system prompt"], "a": 0, "why": "Forced tool selection guarantees a specific named tool is called. Handle the enrichment steps in follow-up turns."}, {"id": "r208", "d": 2, "s": "s4", "type": "multi", "n": 2, "q": "Select the TWO correct MCP configuration choices for a team repository.", "opts": ["Shared server in project `.mcp.json`, using `${GITHUB_TOKEN}` for the credential", "Your personal experimental server in `~/.claude.json`, not the shared file", "Commit the GitHub token directly in `.mcp.json` so teammates authenticate", "Shared server in `~/.claude.json` so each developer controls its settings", "Disable other MCP servers first, since only one can be active at a time"], "a": [0, 1], "why": "Project scope (`.mcp.json`) is for shared team tooling, with environment variable expansion so secrets aren't committed. User scope (`~/.claude.json`) is for personal servers. Tools from all configured servers are available simultaneously."}, {"id": "r209", "d": 2, "s": "s4", "q": "Agents keep making exploratory tool calls just to learn which issue summaries and database schemas exist. What reduces those calls?", "opts": ["Expose the catalogs as MCP resources the agent can see without a call", "Add a `list_everything` tool the agent must call at the start of tasks", "Paste the full catalog text into the system prompt of every request", "Raise the agent's tool call limit so exploration finishes sooner"], "a": 0, "why": "MCP resources expose content catalogs to give agents visibility into available data without exploratory tool calls."}, {"id": "r210", "d": 2, "s": "s4", "q": "You need every file named like `*.test.tsx` anywhere in the repo, then every call site of `formatCurrency`. Which built-in tools, in order?", "opts": ["Glob for the file pattern, then Grep for the function name", "Grep for the file pattern, then Glob for the function name", "Read every file in the repo, then Edit to mark the call sites", "Bash with `ls` for the files, then Read each file for calls"], "a": 0, "why": "Glob matches file paths by pattern; Grep searches file contents. Reading everything upfront wastes context."}, {"id": "r211", "d": 2, "s": "s2", "q": "An Edit call fails because its anchor text appears three times in the file. What is the reliable fallback?", "opts": ["Read the full file, then Write the corrected contents back", "Retry the same Edit until it happens to match the right spot", "Use Grep to replace the text directly inside the file", "Use Glob to locate the file again, then repeat the Edit"], "a": 0, "why": "Edit needs unique anchor text. When it can't find one, Read plus Write is the reliable fallback. Grep and Glob search; they don't modify."}, {"id": "r301", "d": 3, "s": "s2", "q": "A new developer's sessions ignore the team's testing conventions, while everyone else's follow them. The conventions live in the tech lead's `~/.claude/CLAUDE.md`. What is the fix?", "opts": ["Move the conventions into the project CLAUDE.md so they ship with the repo", "Have the new developer copy the tech lead's user-level file to their machine", "Paste the conventions into every prompt until the new developer learns them", "Put the conventions in a skill the new developer must run each session"], "a": 0, "why": "User-level CLAUDE.md applies only to that user and is not shared through version control. Team standards belong at project level."}, {"id": "r302", "d": 3, "s": "s2", "q": "Claude behaves differently across sessions for the same developer, and you suspect some memory files aren't loading. What is the first diagnostic?", "opts": ["Run `/memory` to see which memory files are actually loaded", "Run `/compact` to shrink the context, then compare the results", "Delete every CLAUDE.md and rebuild them one at a time", "Switch to plan mode so Claude explains its own configuration"], "a": 0, "why": "`/memory` verifies which memory files are loaded, which is the direct way to diagnose inconsistent behavior across sessions."}, {"id": "r303", "d": 3, "s": "s2", "type": "multi", "n": 2, "q": "You're writing a codebase-analysis skill that produces very long output and must never modify or delete files. Select the TWO frontmatter settings that fit.", "opts": ["`context: fork`, so the verbose output stays out of the main conversation", "`allowed-tools` limited to read and search operations for the run", "`argument-hint` set, so the skill can skip required parameters", "No context setting, so the analysis stays visible in the main session", "`allowed-tools` including Bash, so the skill can clean up temp files"], "a": [0, 1], "why": "`context: fork` isolates verbose output in a sub-agent context. `allowed-tools` restricts what the skill can do during execution. `argument-hint` prompts for parameters; it doesn't skip them."}, {"id": "r304", "d": 3, "s": "s2", "q": "You want your own variant of the team's `/review` skill without changing it for teammates. Where does it go?", "opts": ["`~/.claude/skills/`, under a different name from the team skill", "`~/.claude/skills/`, under the same name so yours overrides it", "`.claude/skills/` in the repo, under a name ending in `-personal`", "The project CLAUDE.md, as a section that only you will read"], "a": 0, "why": "Personal variants go in the user-level skills directory with a different name, so teammates are unaffected and there's no ambiguity with the shared skill."}, {"id": "r305", "d": 3, "s": "s2", "q": "A release-notes workflow is used a few times a month. The team's naming standards apply to every task. How should each be configured?", "opts": ["Release notes as an on-demand skill; naming standards in CLAUDE.md", "Both in CLAUDE.md, so neither is ever missed by Claude", "Both as skills, so the main context stays as small as possible", "Release notes in CLAUDE.md; naming standards as a skill"], "a": 0, "why": "Skills are for on-demand, task-specific workflows. CLAUDE.md is for always-loaded universal standards."}, {"id": "r306", "d": 3, "s": "s2", "q": "Terraform conventions should load only when Claude edits Terraform files under `terraform/`. What is the cleanest setup?", "opts": ["A `.claude/rules/` file with frontmatter `paths: [\"terraform/**/*\"]`", "A Terraform section in the root CLAUDE.md, headed by module name", "A `terraform` skill developers invoke before touching infrastructure", "An `@import` of the Terraform standards in the root CLAUDE.md"], "a": 0, "why": "Path-scoped rules load only when editing matching files, reducing irrelevant context. The root CLAUDE.md and its imports load every time."}, {"id": "r307", "d": 3, "s": "s2", "q": "Which task is best handled with direct execution rather than plan mode?", "opts": ["A single-file bug fix with a stack trace pointing at the faulty line", "Migrating a logging library used across roughly 50 files in the repo", "Choosing between two integrations with different infrastructure needs", "Splitting a shared data-access layer out into a separate service"], "a": 0, "why": "Direct execution fits well-understood changes with clear scope. Large-scale changes, multiple valid approaches, and architectural decisions call for plan mode."}, {"id": "r308", "d": 3, "s": "s4", "q": "A multi-phase task begins with heavy codebase discovery that floods the context before implementation starts. What best preserves the main context?", "opts": ["Run discovery through the Explore subagent and bring back a summary", "Run discovery in the main session and trust the model to skip noise", "Skip discovery and have Claude infer the structure from file names", "Run discovery in plan mode, since plan mode has no context limit"], "a": 0, "why": "The Explore subagent isolates verbose discovery output and returns summaries, preventing context exhaustion during multi-phase tasks."}, {"id": "r309", "d": 3, "s": "s2", "q": "Your prose description of a data transformation keeps producing inconsistent results. What is the most effective fix?", "opts": ["Give 2 or 3 concrete input and output examples of the transformation", "Rewrite the description at greater length with more precise wording", "Ask Claude to explain the transformation back before running it", "Move the description into CLAUDE.md so it applies to every session"], "a": 0, "why": "Concrete input/output examples are the most effective way to communicate a transformation when prose is interpreted inconsistently."}, {"id": "r310", "d": 3, "s": "s2", "q": "Three bugs interact: fixing one changes how the other two behave. How should you hand them to Claude?", "opts": ["All three in one detailed message, since the fixes affect each other", "One at a time, in order, so each fix can be verified separately", "Three parallel sessions, one per bug, then merge the results", "Only the most severe one, and let the rest surface in testing"], "a": 0, "why": "Interacting problems go in a single detailed message. Sequential iteration is for independent issues."}, {"id": "r311", "d": 3, "s": "s5", "q": "A CI job must post Claude Code's findings as inline PR comments parsed by a script. Which invocation fits?", "opts": ["`claude -p` with `--output-format json` and `--json-schema`", "`claude --output-format json`, run interactively in the runner", "`claude -p` with a prompt asking for findings formatted as JSON", "`claude -p`, then a regex over the plain-text output"], "a": 0, "why": "`-p` runs non-interactively so the job doesn't hang. `--output-format json` with `--json-schema` enforces machine-parseable structured output. Asking for JSON in the prompt is not enforcement."}, {"id": "r312", "d": 3, "s": "s5", "q": "Re-running the review after each new commit reposts the same comments. What stops the duplicates?", "opts": ["Include prior findings and ask only for new or unaddressed issues", "Lower the temperature so each review repeats less of its text", "Only run the review on the first commit of each pull request", "Delete all earlier bot comments before posting the new review"], "a": 0, "why": "Task 3.6: include prior review findings in context and instruct Claude to report only new or still-unaddressed issues."}, {"id": "r313", "d": 3, "s": "s5", "q": "Generated code is reviewed by the same Claude session that wrote it, and subtle bugs slip through. What most improves detection?", "opts": ["Review with a separate instance that lacks the generator's reasoning", "Ask the same session to review more critically with extended thinking", "Ask the same session to rate its confidence in each part of the code", "Have the same session re-read the code twice before approving it"], "a": 0, "why": "A model retains its reasoning context from generation, making it less likely to question its own decisions. An independent instance catches more than self-review instructions or extended thinking."}, {"id": "r401", "d": 4, "s": "s5", "q": "Automated review comments are 40% false positives. The prompt says 'be conservative and only report high-confidence issues.' What most improves precision?", "opts": ["Define which issue categories to report and which to skip, with criteria", "Strengthen it to 'only report issues you are absolutely certain about'", "Have the model score each finding and drop anything below 0.8", "Move to a larger model so its judgment about what to report improves"], "a": 0, "why": "General instructions like 'be conservative' don't improve precision the way specific categorical criteria do. Confidence-based filtering is weaker than explicit report/skip definitions."}, {"id": "r402", "d": 4, "s": "s5", "q": "One finding category is mostly wrong, and developers have started ignoring all bot comments. What is the sound short-term move?", "opts": ["Temporarily disable that category while you improve its criteria", "Keep every category on, since removing one reduces coverage", "Add a disclaimer to each comment that some may be inaccurate", "Raise the severity of the other categories so they stand out"], "a": 0, "why": "High false-positive categories undermine trust in accurate ones. Temporarily disabling them restores trust while you fix the prompt."}, {"id": "r403", "d": 4, "s": "s6", "q": "Extraction works on clean documents but returns null for dosages written informally, like 'half a tab twice daily.' What most improves this?", "opts": ["Few-shot examples showing correct extraction of informal measurements", "A longer instruction listing every informal phrasing the model might see", "Make the dosage field required so the model is forced to fill it in", "Retry extraction on each failed document until a value comes back"], "a": 0, "why": "Few-shot examples of varied formats address empty or null extraction and help the model generalize. Making the field required invites fabrication."}, {"id": "r404", "d": 4, "s": "s6", "q": "The schema marks `warranty_expiration` as required. Many contracts have no warranty, and the model invents plausible dates. What is the fix?", "opts": ["Make the field optional and nullable so absence can be reported", "Keep it required and add 'do not invent values' to the prompt", "Keep it required with a default of 12 months after signing", "Remove the field and derive warranties in a later pipeline step"], "a": 0, "why": "Required fields pressure the model to fabricate values. Optional, nullable fields let it report that the source doesn't contain the information."}, {"id": "r405", "d": 4, "s": "s6", "type": "multi", "n": 2, "q": "Select the TWO statements that are true about `tool_use` with a strict JSON schema.", "opts": ["It eliminates JSON syntax errors in the structured output", "It won't catch line items that fail to sum to the stated total", "It guarantees every extracted value is factually correct", "It removes the need for any validation after extraction", "It only works when `tool_choice` is set to `\"auto\"`"], "a": [0, 1], "why": "Strict schemas via tool use eliminate syntax errors but not semantic errors, such as values that don't sum or land in the wrong field. You still need validation."}, {"id": "r406", "d": 4, "s": "s6", "q": "A `document_type` enum keeps forcing unusual documents into the wrong category. What schema pattern handles new types gracefully?", "opts": ["Add `\"other\"` with a detail string, plus `\"unclear\"` for ambiguous cases", "Add every document type you can think of to the enum up front", "Replace the enum with a free-text field so any type can be recorded", "Keep the enum and retry until the model picks one of the options"], "a": 0, "why": "`\"other\"` plus a detail field keeps categories extensible, and `\"unclear\"` gives ambiguous cases an honest home. Free text loses the structure downstream systems need."}, {"id": "r407", "d": 4, "s": "s6", "q": "An extraction fails schema validation. What should the retry request include?", "opts": ["The document, the failed extraction, and the specific validation errors", "Only the original document, so the model starts again without bias", "Only the failed extraction, with a note to fix whatever is wrong", "The original document plus an instruction to be more careful"], "a": 0, "why": "Retry-with-error-feedback appends the specific validation errors so the model can self-correct against the source."}, {"id": "r408", "d": 4, "s": "s6", "q": "Which extraction failure will retries NOT fix?", "opts": ["The value exists only in an appendix that wasn't provided", "A date came back as MM/DD/YYYY when the schema wants ISO 8601", "A nested object came back flattened into a single string", "An amount landed in the tax field instead of the subtotal"], "a": 0, "why": "Retries help with format and structural errors. They're ineffective when the information is simply absent from the provided source."}, {"id": "r409", "d": 4, "s": "s5", "q": "Which workload is a good fit for the Message Batches API?", "opts": ["A weekly audit report reviewed the following Monday", "A pre-merge check developers wait on before merging", "A support agent that calls tools mid-conversation", "A live review a developer triggers and watches"], "a": 0, "why": "Batches offer 50% savings with up to a 24-hour window and no latency SLA, and they don't support multi-turn tool calling within a request. Latency-tolerant, non-blocking work only."}, {"id": "r410", "d": 4, "s": "s6", "q": "Batch processing can take up to 24 hours. Every document must be processed within 30 hours of arrival. Which submission cadence guarantees the SLA?", "opts": ["Submit a batch every 4 hours", "Submit a batch every 8 hours", "Submit a batch every 12 hours", "Submit one batch per day"], "a": 0, "why": "Worst case is waiting a full interval, then 24 hours of processing. Interval plus 24 must stay at or under 30, so anything over 6 hours can miss. Four-hour windows meet it with buffer."}, {"id": "r411", "d": 4, "s": "s6", "q": "Out of 1,000 batched documents, 37 fail because they exceeded context limits. What is the right recovery?", "opts": ["Resubmit only those 37, found by `custom_id`, after chunking them", "Resubmit all 1,000 so the results come back together in one set", "Resubmit the 37 unchanged, since batch failures are usually transient", "Process the 37 synchronously with no changes to the documents"], "a": 0, "why": "Use `custom_id` to resubmit only failures, with modifications that address the cause. Unchanged resubmission of oversized documents fails again."}, {"id": "r412", "d": 4, "s": "s5", "q": "Developers dismiss many findings, but you can't tell which code patterns trigger the bad ones. What should each structured finding include?", "opts": ["A `detected_pattern` field recording the construct that triggered it", "A timestamp showing when the finding was first generated", "A severity field limited to two levels, high and low, for easier sorting", "The full file contents so reviewers can check the context"], "a": 0, "why": "Tracking which code constructs trigger findings enables systematic analysis of dismissal patterns (Task 4.4)."}, {"id": "r501", "d": 5, "s": "s1", "q": "Over long support sessions, the running summary turns '$212.40 refund promised by Friday' into 'refund discussed.' What is the fix?", "opts": ["Keep a persistent case-facts block of amounts, dates, and IDs in each prompt", "Summarize more often so that each summary covers a shorter stretch of the chat", "Ask the model to summarize carefully and keep the important details", "Drop the summary and rely on the model to recall facts from history"], "a": 0, "why": "Progressive summarization compresses numbers, dates, and customer expectations into vague text. Extract transactional facts into a persistent block outside the summarized history."}, {"id": "r502", "d": 5, "s": "s1", "q": "Each order lookup returns 40+ fields, only 5 of which matter for returns, and context fills quickly. What helps most?", "opts": ["Trim lookup results to the relevant fields before they enter context", "Move to a model with a larger context window for support sessions", "Tell the agent to ignore irrelevant fields when reading each result", "Cache the lookup results in the system prompt to call less often"], "a": 0, "why": "Tool results accumulate and consume tokens out of proportion to their relevance. Trim verbose outputs to the fields that matter."}, {"id": "r503", "d": 5, "s": "s3", "q": "A synthesis agent reliably uses findings from the first and last sections of a long input but drops ones from the middle. What mitigates this?", "opts": ["Lead with a key-findings summary and organize details under headers", "Put the most important findings in the middle for extra attention", "Remove the headers so the input reads as one continuous narrative", "Repeat the whole input twice so the middle gets a second reading"], "a": 0, "why": "The 'lost in the middle' effect. Put key findings at the start and use explicit section headers to mitigate position effects."}, {"id": "r504", "d": 5, "s": "s1", "type": "multi", "n": 2, "q": "Select the TWO situations where the agent should escalate to a human.", "opts": ["The customer explicitly asks to speak with a human agent", "Policy is silent on the request, such as a competitor price match", "The customer sounds frustrated, but the issue is simple and in scope", "The agent's self-rated confidence on its reply falls below 7 of 10", "The lookup returns two customers who share the same name"], "a": [0, 1], "why": "Explicit requests for a human are honored immediately, and policy gaps warrant escalation. Frustration on a simple issue means acknowledge and resolve; self-rated confidence is unreliable; multiple matches mean ask for another identifier."}, {"id": "r505", "d": 5, "s": "s3", "q": "One source was unavailable for part of a research run. How should the final report handle it?", "opts": ["Annotate which findings are well supported and which areas have gaps", "Omit the affected topics so the report holds only complete sections", "Fail the whole run so it can be repeated once every source is back", "Fill the gaps with the model's general knowledge to stay complete"], "a": 0, "why": "Coverage annotations tell readers what is solid and what is thin. Silent omission and whole-workflow termination are both anti-patterns."}, {"id": "r506", "d": 5, "s": "s4", "q": "In long exploration sessions, the agent starts citing 'typical patterns' instead of the specific classes it found earlier. What counters this?", "opts": ["Have the agent record findings in a scratchpad file and consult it", "Restart the session from scratch whenever the answers start drifting", "Ask the agent to rely on its memory of the earlier discovery phase", "Raise `max_tokens` so the agent has room for more detailed answers"], "a": 0, "why": "That drift is context degradation. Scratchpad files persist key findings across context boundaries so later questions reference them."}, {"id": "r507", "d": 5, "s": "s3", "q": "A multi-agent run crashes midway. What design lets it resume cleanly?", "opts": ["Agents export state to a known location; the coordinator loads a manifest", "Rerun the whole pipeline from the start, since partial state is unreliable", "Resume the coordinator's last session and let it infer what finished", "Hold all agent state in the coordinator's context so nothing is lost"], "a": 0, "why": "Structured state persistence: each agent exports state, and on resume the coordinator loads a manifest and injects it into agent prompts."}, {"id": "r508", "d": 5, "s": "s6", "q": "Extraction is 97% accurate overall, and leadership wants to remove human review. What must happen first?", "opts": ["Check accuracy by document type and field, not just the overall average", "Confirm the 97% figure has held steady for at least one full month", "Raise the overall accuracy target to 99% before removing review", "Remove review only where the model reports high confidence"], "a": 0, "why": "Aggregate metrics can mask poor performance on specific document types or fields. Validate by segment before automating."}, {"id": "r509", "d": 5, "s": "s6", "q": "After automating high-confidence extractions, how do you keep measuring their error rate?", "opts": ["Stratified random sampling of high-confidence extractions for review", "Review only the extractions the model itself marks as low confidence", "Rely on downstream users to report errors they happen to notice", "Run each extraction twice and flag only the pairs that disagree"], "a": 0, "why": "Stratified random sampling measures error rates in high-confidence output and surfaces novel error patterns that confidence routing would miss."}, {"id": "r510", "d": 5, "s": "s3", "q": "Two credible sources report different market sizes for the same year. What should synthesis do?", "opts": ["Report both values with their sources and flag the conflict", "Use the value from the more recent publication and cite it", "Average the two values and cite both sources for the figure", "Leave the statistic out, since the sources don't agree on it"], "a": 0, "why": "Annotate conflicts with source attribution rather than arbitrarily selecting, averaging, or dropping a value."}, {"id": "r511", "d": 5, "s": "s3", "q": "Synthesis flags a 'contradiction' between two sources that actually describe different years. What prevents this?", "opts": ["Require subagents to include publication or data collection dates", "Tell synthesis to ignore any statistic older than one year", "Only accept sources published within the same calendar quarter", "Have synthesis keep the higher value whenever figures disagree"], "a": 0, "why": "Dates in structured outputs keep temporal differences from being misread as contradictions."}]}}</script>
+<script>
+(function(){
+"use strict";
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const LETTERS = "ABCDE";
+
+/* ---------- storage (per device; safe if blocked) ---------- */
+const store = {
+  get(k){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const skey = ex => "kd-certdrill-v2-" + ex;
+const fresh = () => ({seen:0,right:0,dom:{},miss:{}});
+
+/* ---------- state ---------- */
+let exam = store.get("kd-certdrill-exam") || "arch";
+if(!DATA[exam]) exam = "arch";
+let stats = store.get(skey(exam)) || fresh();
+let mode = "mix";
+let queue = [], cur = null, picks = [], streak = 0, runSeen = 0, runRight = 0;
+let timerEnd = 0, timerId = null, runLabel = "";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const fmt = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const D = () => DATA[exam];
+const domName = id => (D().domains.find(x=>x.id===id)||{}).n || "";
+
+function save(){ store.set(skey(exam), stats); }
+
+/* ---------- exam switch + facts ---------- */
+function setExam(ex){
+  exam = ex; store.set("kd-certdrill-exam", ex);
+  stats = store.get(skey(ex)) || fresh();
+  mode = "mix";
+  document.querySelectorAll(".switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.exam===ex)));
+  $("promptCode").textContent = D().meta.code.toLowerCase();
+  renderFacts(); renderChips(); build();
+}
+
+function renderFacts(){
+  const m = D().meta;
+  $("factsTitle").textContent = m.code + " exam facts";
+  const bp = D().domains.map(d => `<div class="bp-row"><span class="dn">D${d.id}</span>
+      <span class="bpm"><span class="lbl">${esc(d.n)}</span><span class="bar"><i style="width:${Math.min(100,d.w*3.3)}%"></i></span></span>
+      <span class="pct">${d.w}%</span></div>`).join("");
+  const sc = Object.keys(D().scenarios).length ? `<ul class="sc">${Object.entries(D().scenarios)
+      .map(([k,v]) => `<li><b>${k.toUpperCase()}</b>${esc(v)}</li>`).join("")}</ul>` : "";
+  $("factsBody").innerHTML = `
+    <dl class="kv">
+      <dt>items</dt><dd>${m.items} in ${m.time} minutes</dd>
+      <dt>format</dt><dd>${esc(m.format)}; each item says how many to pick</dd>
+      <dt>pass</dt><dd>${esc(m.pass)}</dd>
+      <dt>fee</dt><dd>${esc(m.fee)}; partner tier discounts apply at checkout</dd>
+      <dt>valid</dt><dd>${esc(m.validity)}; free renewal assessment if on time</dd>
+      <dt>note</dt><dd>${esc(m.extra)}</dd>
+    </dl>
+    <div class="bp">${bp}</div>${sc}
+    <p class="links">Official sources: the exam guide on Anthropic Partner Academy, the
+      <a href="https://claude.com/blog/four-role-based-claude-certifications">program announcement</a>, and
+      <a href="https://www.pearsonvue.com/us/en/anthropic.html">Pearson VUE</a> for scheduling.</p>`;
+}
+
+/* ---------- modes ---------- */
+function modes(){
+  const bank = D().bank, hasScn = Object.keys(D().scenarios).length > 0;
+  const missN = bank.filter(q => stats.miss[q.id]).length;
+  const mockN = bank.length, mockMin = mockN * D().meta.mockMinutesPerItem;
+  const list = [
+    {k:"mix", label:"Blueprint mix · 20"},
+    hasScn ? {k:"exam", label:"Exam day · 4 scenarios"} : null,
+    {k:"mock", label:`Timed mock · ${mockN} in ${mockMin}m`},
+    {k:"miss", label:`My misses · ${missN}`, off: missN===0},
+  ].filter(Boolean);
+  D().domains.forEach(d => list.push({k:"d"+d.id, label:`D${d.id} · ${d.w}%`}));
+  return list;
+}
+function renderChips(){
+  const el = $("chips"); el.innerHTML = "";
+  modes().forEach(m => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip" + (m.k===mode ? " on" : ""); b.textContent = m.label;
+    if(m.off) b.disabled = true;
+    b.onclick = () => { mode = m.k; renderChips(); build(); };
+    el.appendChild(b);
+  });
+}
+
+function build(){
+  stopTimer();
+  const bank = D().bank;
+  let items, label = "";
+  if(mode === "mix"){
+    const target = 20, picked = [];
+    D().domains.forEach(d => {
+      const want = Math.max(1, Math.round(target * d.w / 100));
+      picked.push(...shuffle(bank.filter(q => q.d===d.id)).slice(0, want));
+    });
+    items = shuffle(picked).slice(0, target); label = "blueprint mix";
+  } else if(mode === "exam"){
+    const keys = shuffle(Object.keys(D().scenarios)).slice(0, 4).sort();
+    items = []; keys.forEach(k => items.push(...shuffle(bank.filter(q => q.s===k))));
+    label = "scenarios " + keys.map(k => k.toUpperCase()).join(" ");
+  } else if(mode === "mock"){
+    items = shuffle(bank.slice()); label = "timed mock";
+    timerEnd = Date.now() + items.length * D().meta.mockMinutesPerItem * 60000;
+    timerId = setInterval(renderStats, 1000);
+  } else if(mode === "miss"){
+    items = shuffle(bank.filter(q => stats.miss[q.id])); label = "misses";
+  } else {
+    const d = +mode.slice(1); items = shuffle(bank.filter(q => q.d===d)); label = "D" + d;
+  }
+  runLabel = label;
+  queue = items.map(q => Object.assign({}, q, {tries:0}));
+  runSeen = 0; runRight = 0; streak = 0;
+  next();
+}
+
+function stopTimer(){ if(timerId){ clearInterval(timerId); timerId = null; } timerEnd = 0; }
+
+function renderStats(){
+  const pct = stats.seen ? Math.round(100*stats.right/stats.seen) : 0;
+  let t = "";
+  if(timerEnd){
+    const left = Math.max(0, timerEnd - Date.now()), mm = Math.floor(left/60000), ss = Math.floor(left/1000)%60;
+    t = `<span class="timer${left<10*60000?" low":""}">time <b>${mm}:${String(ss).padStart(2,"0")}</b></span>`;
+    if(left === 0){ stopTimer(); renderDone(true); return; }
+  }
+  $("stats").innerHTML = `<span>run <b>${runSeen}</b></span><span>streak <b>${streak}</b></span>`+
+    `<span>first-try all-time <b>${pct}%</b> (${stats.right}/${stats.seen})</span>${t}`;
+}
+
+/* ---------- question flow ---------- */
+function next(){
+  if(queue.length === 0) return renderDone(false);
+  cur = queue.shift(); picks = [];
+  const multi = cur.type === "multi";
+  const order = shuffle(cur.opts.map((_,i) => i));
+  cur.view = order.map(i => cur.opts[i]);
+  cur.viewA = multi ? cur.a.map(i => order.indexOf(i)) : [order.indexOf(cur.a)];
+  const scn = cur.s ? `<div class="scn">${cur.s.toUpperCase()} · ${esc(D().scenarios[cur.s])}</div>` : "";
+  $("stage").innerHTML = `
+    <div class="card">
+      <div class="tag"><span class="dom">D${cur.d} · ${esc(domName(cur.d))}</span><span>${queue.length} left</span></div>
+      ${scn}
+      ${multi ? `<span class="selectn">SELECT ${cur.n}</span>` : ""}
+      <p class="q">${fmt(cur.q)}</p>
+      <div id="opts">${cur.view.map((t,i) =>
+        `<button type="button" class="opt" data-i="${i}"><span class="key">${LETTERS[i]}</span><span>${fmt(t)}</span></button>`).join("")}</div>
+      ${multi ? `<button type="button" class="btn" id="submit" disabled>submit</button>` : ""}
+      <div id="fb"></div>
+    </div>`;
+  document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if(!multi) return answer([i]);
+    if(picks.includes(i)){ picks = picks.filter(x => x!==i); b.classList.remove("picked"); }
+    else if(picks.length < cur.n){ picks.push(i); b.classList.add("picked"); }
+    $("submit").disabled = picks.length !== cur.n;
+  });
+  if(multi) $("submit").onclick = () => answer(picks.slice());
+  renderStats();
+  const first = document.querySelector(".opt"); if(first && window.matchMedia("(hover:hover)").matches) first.focus({preventScroll:true});
+}
+
+function answer(chosen){
+  const correct = cur.viewA;
+  const ok = chosen.length === correct.length && chosen.every(i => correct.includes(i));
+  const first = cur.tries === 0; cur.tries++;
+  document.querySelectorAll(".opt").forEach((b,i) => {
+    b.disabled = true; b.classList.remove("picked");
+    if(correct.includes(i)) b.classList.add("right"); else if(chosen.includes(i)) b.classList.add("wrong");
+  });
+  const sb = $("submit"); if(sb) sb.remove();
+  if(first){
+    stats.seen++; runSeen++;
+    const ds = stats.dom[cur.d] || (stats.dom[cur.d] = {seen:0,right:0});
+    ds.seen++;
+    if(ok){ stats.right++; runRight++; ds.right++; delete stats.miss[cur.id]; }
+    else stats.miss[cur.id] = 1;
+    save();
+  }
+  if(ok) streak++;
+  else { streak = 0; queue.splice(Math.min(3, queue.length), 0, cur); }
+  const ans = correct.map(i => LETTERS[i]).sort().join(", ");
+  $("fb").innerHTML = `
+    <div class="fb${ok ? "" : " no"}"><div class="verdict">${ok ? "CORRECT" : "MISS · answer " + ans}</div>${fmt(cur.why)}</div>
+    <button type="button" class="btn" id="nextBtn">next &rarr;</button>`;
+  $("nextBtn").onclick = next;
+  $("fb").scrollIntoView({behavior: "smooth", block: "nearest"});
+  renderStats();
+}
+
+function renderDone(timedOut){
+  stopTimer();
+  const pct = runSeen ? Math.round(100*runRight/runSeen) : 0;
+  let best = null;
+  const rows = D().domains.map(d => {
+    const s = stats.dom[d.id];
+    if(!s || !s.seen) return `<tr><td>D${d.id} ${esc(d.n)}</td><td class="n">${d.w}%</td><td class="n">--</td></tr>`;
+    const p = Math.round(100*s.right/s.seen), cost = d.w * (100 - p);
+    if(!best || cost > best.cost) best = {d, p, cost};
+    const cls = p >= 80 ? "good" : p >= 65 ? "mid" : "bad";
+    return `<tr><td>D${d.id} ${esc(d.n)}</td><td class="n">${d.w}%</td><td class="n ${cls}">${p}% <span style="color:var(--dim)">(${s.seen})</span></td></tr>`;
+  }).join("");
+  const focus = best && best.p < 90
+    ? `<p class="focus">Biggest payoff next: <b>D${best.d.id} ${esc(best.d.n)}</b>. It's ${best.d.w}% of the exam and you're at ${best.p}%.</p>` : "";
+  const missN = D().bank.filter(q => stats.miss[q.id]).length;
+  $("stage").innerHTML = `
+    <div class="card done">
+      <h2>${timedOut ? "time's up" : "run complete"}</h2>
+      <p class="score">${esc(runLabel)} · first try <b>${runRight}/${runSeen}</b> (${pct}%)</p>
+      <table><tr><th>domain</th><th class="n">weight</th><th class="n">all-time</th></tr>${rows}</table>
+      ${focus}
+      <div class="row">
+        <button type="button" class="btn" id="again">run again</button>
+        ${missN ? `<button type="button" class="btn ghost" id="missRun">drill my ${missN} misses</button>` : ""}
+      </div>
+      <p class="disclosure" style="margin-top:14px">Spend time by weight, not by feel: a 10% domain at 60% costs less than a 27% domain at 75%. The real exam passes at a 720 scaled score, not a fixed percentage.</p>
+    </div>`;
+  $("again").onclick = build;
+  const m = $("missRun"); if(m) m.onclick = () => { mode = "miss"; renderChips(); build(); };
+  renderChips(); renderStats();
+}
+
+/* ---------- wiring ---------- */
+document.querySelectorAll(".switch button").forEach(b => b.onclick = () => { if(b.dataset.exam !== exam) setExam(b.dataset.exam); });
+$("reset").onclick = () => {
+  if(!window.confirm("Reset saved stats for " + D().meta.code + " on this device?")) return;
+  stats = fresh(); save(); renderChips(); build();
+};
+document.addEventListener("keydown", e => {
+  if(e.metaKey || e.ctrlKey || e.altKey) return;
+  const nb = $("nextBtn"); if(nb && e.key === "Enter"){ e.preventDefault(); nb.click(); return; }
+  const sb = $("submit"); if(sb && e.key === "Enter" && !sb.disabled){ e.preventDefault(); sb.click(); return; }
+  const opts = document.querySelectorAll(".opt:not([disabled])"); if(!opts.length) return;
+  const map = {a:0,b:1,c:2,d:3,e:4,"1":0,"2":1,"3":2,"4":3,"5":4}, k = e.key.toLowerCase();
+  if(k in map && map[k] < opts.length) opts[map[k]].click();
+});
+
+setExam(exam);
+})();
+</script>
+</body>
+</html>
