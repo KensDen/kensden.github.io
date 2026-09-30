@@ -149,6 +149,8 @@
     border-radius:8px;padding:9px 14px;transition:border-color .16s,color .16s}
   .proj-btn:hover{border-color:var(--green);color:var(--green)}
   .proj-btn::after{content:" ·>"}
+  .proj + .proj{margin-top:16px}
+  .proj-btns{display:flex;flex-wrap:wrap;gap:10px}
   .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:16px 0 0}
 
 /* inline screenshot / figure */
@@ -389,6 +391,22 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="projects">
     <p class="eyebrow">ls ~/projects/</p>
     <h2>Projects</h2>
+    <div class="proj">
+      <div class="proj-body">
+        <h3 class="proj-t">Claude Certified Associate: study guide and drill</h3>
+        <p class="body">An unofficial study plan for CCAO-F plus a practice drill for the Associate and Architect exams, built for phone review.</p>
+        <ul class="tags">
+          <li>Study Guide</li>
+          <li>Practice Drill</li>
+          <li>CCAO-F</li>
+          <li>CCAR-F</li>
+        </ul>
+        <div class="proj-btns">
+          <a class="proj-btn" href="claude-cert-study-guide.html">View Study Guide</a>
+          <a class="proj-btn" href="claude-cert-drill.html">Open Drill</a>
+        </div>
+      </div>
+    </div>
     <div class="proj">
       <figure class="proj-art">
         <img src="dc-card.webp" alt="Key art for Dark Constellation: a dark planet split along a razor-thin diagonal of light, a cyan aurora storming off one hemisphere and magenta debris fields off the other" loading="lazy" width="800" height="450" />

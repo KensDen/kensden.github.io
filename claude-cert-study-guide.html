@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Claude Certified Associate Study Guide · Ken</title>
+<meta name="description" content="An unofficial study plan for the Claude Certified Associate: Foundations exam (CCAO-F): exam facts, the blueprint, a study plan in priority order and a checklist for exam day." />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="canonical" href="https://kensden.github.io/claude-cert-study-guide.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Claude Certified Associate: Foundations (CCAO-F) Study Guide" />
+<meta property="og:description" content="A plan for the Associate exam, in priority order, with a practice drill to go with it." />
+<meta property="og:url" content="https://kensden.github.io/claude-cert-study-guide.html" />
+<meta property="og:image" content="https://kensden.github.io/social-card.png" />
+<meta name="theme-color" content="#0a0e12" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730; --line-2:#2a3742;
+    --ink:#e6edf3; --muted:#a7b4bf; --dim:#74838f;
+    --green:#3fb950; --cyan:#39d3c5; --violet:#a78bfa; --amber:#e3b341;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;min-height:100vh;
+    background:
+      radial-gradient(1100px 700px at 78% -8%, rgba(57,211,197,.07), transparent 60%),
+      radial-gradient(900px 600px at -5% 18%, rgba(167,139,250,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+  }
+  .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;
+    padding:18px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left))}
+  a{color:var(--cyan)}
+  .nowrap{white-space:nowrap}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;margin:4px 0 18px}
+  .topnav a{color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    background:var(--panel);border-radius:8px;padding:8px 12px;transition:border-color .16s,color .16s}
+  .topnav a:hover{border-color:var(--green);color:var(--green)}
+  .topnav .loc{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .topnav a{white-space:nowrap}
+  @media (max-width:430px){.topnav .loc{display:none}}
+
+  /* terminal header */
+  .term{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -40px rgba(0,0,0,.9)}
+  .term-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.015)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .term-title{margin-left:6px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim)}
+  .term-body{padding:18px 18px 20px}
+  .prompt{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);margin:0;word-break:break-word}
+  .prompt .path{color:var(--cyan)} .prompt .arg{color:var(--ink)}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--green);margin-left:3px;
+    vertical-align:-2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-size:clamp(26px,6.4vw,38px);line-height:1.08;margin:12px 0 8px;font-weight:700;letter-spacing:-.02em}
+  .tagline{color:var(--muted);font-size:15px;margin:0;max-width:58ch}
+  .tagline strong{color:var(--ink);font-weight:600}
+
+  /* guide body */
+  .guide{margin-top:18px}
+  .guide p{font-size:16px;line-height:1.65;color:var(--muted);margin:0 0 14px}
+  .guide strong{color:var(--ink);font-weight:600}
+  .guide em{color:var(--ink)}
+  .guide h2{font-size:21px;line-height:1.25;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin:36px 0 12px}
+  .guide h3{font-size:17px;line-height:1.3;font-weight:600;color:var(--ink);margin:26px 0 10px}
+  .guide h2::before{content:"# ";content:"# " / "";font-family:"JetBrains Mono",monospace;color:var(--green);font-weight:500}
+  .guide h3::before{content:"## ";content:"## " / "";font-family:"JetBrains Mono",monospace;color:var(--green);font-weight:500;font-size:.9em}
+  .guide ul,.guide ol{margin:0 0 16px;padding-left:22px;color:var(--muted);font-size:16px;line-height:1.6}
+  .guide li{margin:0 0 8px;padding-left:2px}
+  .guide li::marker{color:var(--green);font-family:"JetBrains Mono",monospace}
+  .note{border:1px solid var(--line);border-left:3px solid var(--amber);background:var(--panel-2);
+    border-radius:0 10px 10px 0;padding:12px 14px}
+  .guide p.note{font-size:14.5px;line-height:1.6}
+
+  /* tables: sized to fit a 360 px screen without sideways scrolling */
+  table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.45;margin:4px 0 18px}
+  th,td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+  thead th{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:11px;color:var(--dim);
+    text-transform:uppercase;letter-spacing:.06em}
+  .facts th{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:12.5px;color:var(--dim);
+    white-space:nowrap;width:1%;padding-right:14px;padding-top:11px}
+  .facts td{color:var(--ink)}
+  .bp td{color:var(--ink)}
+  .bp .n{font-family:"JetBrains Mono",monospace;color:var(--dim);width:1%;white-space:nowrap;padding-right:10px}
+  .bp .w{font-family:"JetBrains Mono",monospace;text-align:right;white-space:nowrap;width:1%;padding-left:10px}
+  .bp tbody .w{color:var(--green)}
+
+  /* exam-day checklist: empty boxes, no script */
+  .guide ul.check{list-style:none;padding:0;margin:0 0 16px}
+  .guide ul.check li{position:relative;padding:8px 0 8px 30px;margin:0;border-bottom:1px dashed var(--line);color:var(--ink);font-size:15.5px}
+  .guide ul.check li::before{content:"";position:absolute;left:2px;top:12px;width:15px;height:15px;
+    border:1.5px solid var(--green);border-radius:3px}
+
+  /* about */
+  .guide h2.about{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500;color:var(--dim);
+    letter-spacing:0;margin:40px 0 8px}
+  .disclosure{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);line-height:1.6}
+  .guide p.disclosure{font-size:12.5px;color:var(--dim);margin:0}
+
+  footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;
+    align-items:center;gap:10px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+  footer a{color:var(--cyan);text-decoration:none}
+  footer a:hover{color:var(--green)}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav">
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span class="loc">~/study/claude-cert-study-guide</span>
+  </nav>
+
+  <header class="term">
+    <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">study-guide.md</span></div>
+    <div class="term-body">
+      <p class="prompt">ken@den:<span class="path">~/study</span>$ <span class="arg">cat ccao-f.md</span><span class="cursor" aria-hidden="true"></span></p>
+      <h1>Claude Certified Associate: Foundations <span class="nowrap">(CCAO-F)</span> Study Guide</h1>
+      <p class="tagline"><strong>A plan for the Associate exam, in priority order, with a practice drill to go with it.</strong></p>
+    </div>
+  </header>
+
+  <main class="guide">
+    <p class="note">Unofficial and not affiliated with Anthropic. Written from Anthropic's exam guide for CCAO-F and Anthropic's public documentation, checked 30 September 2026. Exam details change: confirm everything below against the current exam guide before you book.</p>
+
+    <p>Practice with the companion drill: <a href="claude-cert-drill.html">Claude Cert Drill</a>.</p>
+
+    <h2 id="exam-facts">Exam facts</h2>
+    <table class="facts" aria-labelledby="exam-facts">
+      <tbody>
+        <tr><th scope="row">Exam code</th><td>CCAO-F</td></tr>
+        <tr><th scope="row">Items</th><td>60</td></tr>
+        <tr><th scope="row">Format</th><td>Multiple choice and multiple response (each item says how many to pick)</td></tr>
+        <tr><th scope="row">Time</th><td>120 minutes, about 2 minutes per item</td></tr>
+        <tr><th scope="row">Passing score</th><td>720 on a scaled range of 100 to 1,000</td></tr>
+        <tr><th scope="row">Delivery</th><td>Pearson VUE, online proctored or at a test center</td></tr>
+        <tr><th scope="row">Fee</th><td>$99 list</td></tr>
+        <tr><th scope="row">Validity</th><td>12 months</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Two things to know up front.</strong></p>
+    <p>The credential lasts 12 months, not the two or three years many certifications give. Renewal on time is a free, unproctored assessment covering what changed. Let it lapse and you sit the full exam again. Put the renewal date on your calendar the day you pass.</p>
+    <p>Multiple-response items are where prepared candidates lose points. Each one says how many answers to pick. Read that number every time.</p>
+
+    <h2 id="blueprint">The blueprint, and where the risk usually is</h2>
+    <table class="bp" aria-labelledby="blueprint">
+      <thead>
+        <tr><th scope="col" class="n">#</th><th scope="col">Domain</th><th scope="col" class="w">Weight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="n">1</td><td>Prompting and Task Execution</td><td class="w">14%</td></tr>
+        <tr><td class="n">2</td><td>Output Evaluation and Validation</td><td class="w">21%</td></tr>
+        <tr><td class="n">3</td><td>Product and Model Selection</td><td class="w">12%</td></tr>
+        <tr><td class="n">4</td><td>Workflow Integration and Solution Design</td><td class="w">16%</td></tr>
+        <tr><td class="n">5</td><td>Configuration and Knowledge Management</td><td class="w">12%</td></tr>
+        <tr><td class="n">6</td><td>Governance, Risk, and Responsible Use</td><td class="w">15%</td></tr>
+        <tr><td class="n">7</td><td>Troubleshooting and Optimization</td><td class="w">10%</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Calibrate first.</strong> This is not a security exam and not a developer exam. The candidate it is written for uses Claude every day in operations, marketing, project management or a similar role. Good judgment about work carries you a long way.</p>
+    <p><strong>Where experienced people slip.</strong> Daily use does not guarantee you know the whole feature surface. Domains 3 and 5, 24% together, test exactly that: model tier tradeoffs, context and memory, Projects configuration, connectors and instructions. Most candidates' study hours belong there.</p>
+
+    <h2 id="study-plan">Study plan, in priority order</h2>
+
+    <h3>First: Domains 3 and 5 (24%, the feature surface)</h3>
+    <p><strong>Domain 3, Product and Model Selection.</strong> Choosing among Claude's features (Projects, research, chat, artifacts), telling the model tiers apart, matching a model to cost, speed and quality needs, and managing context and memory: when to restart, summarize or carry forward.</p>
+    <ul>
+      <li>Read the current model overview in Anthropic's documentation. Lineups change, so read it now rather than trusting what you remember.</li>
+      <li>For each tier, be able to say in one sentence what kind of task it fits. High-volume, low-complexity drafting belongs on a faster, cheaper tier, not the most capable one.</li>
+      <li>Get precise on context limits and memory, and on when to start a fresh conversation versus summarize and carry forward. That judgment shows up as scenario items.</li>
+    </ul>
+    <p><strong>Domain 5, Configuration and Knowledge Management.</strong> Setting up Projects with instructions and knowledge, managing uploaded knowledge and connectors, writing effective instructions, and keeping configurations current.</p>
+    <ul>
+      <li>Go past your personal habits into the full feature surface: what a Project accepts as knowledge, how connectors attach, and how project instructions differ from steering inside one conversation.</li>
+      <li>Build one throwaway Project from scratch with instructions, an uploaded file and a connector, just to touch every setting once.</li>
+      <li>Don't skim the maintenance objective. Knowing when instructions and knowledge go stale is its own testable idea.</li>
+    </ul>
+    <p>Primary sources: <a href="https://support.claude.com">Claude Help Center</a> for app features, and <a href="https://docs.claude.com">Claude Docs</a> for models and the platform. Review Projects, Artifacts, Memory, Skills and Code Execution in particular.</p>
+
+    <h3>Second: Domain 2 (21%, the largest domain)</h3>
+    <p>Judging outputs for accuracy and completeness, spotting hallucinations, inconsistency and bias, fact-checking, deciding when a human must review, adapting output for an audience, and choosing the output format.</p>
+    <ul>
+      <li>Learn hallucination <em>patterns</em>, especially fabricated specifics that look authoritative, like citation numbers or exact figures.</li>
+      <li>Treat format choice (an artifact, inline text or structured data) as a judgment call. It is a product-feature question dressed as an evaluation question, and it is easy to under-study.</li>
+    </ul>
+
+    <h3>Third: Domains 1, 4 and 7 (40%, confirm rather than learn)</h3>
+    <p>Prompting, workflow integration and stakeholder communication, and troubleshooting prompts that underperform. Read each objective and rate yourself honestly. Anything unfamiliar becomes a study item; the rest you likely do already.</p>
+
+    <h3>Last: Domain 6 (15%, verify)</h3>
+    <p>Appropriate and inappropriate uses, data sensitivity and privacy, organizational AI policy and ethics. If you work under an AI use policy already, read the objectives, confirm nothing surprises you and spend the time elsewhere.</p>
+
+    <h2 id="resources">Resources, in order of authority</h2>
+    <ol>
+      <li><strong>The official exam guide for CCAO-F.</strong> Its blueprint section is the checklist: rate yourself against every objective. Its sample items show the question style.</li>
+      <li><strong>Anthropic's prep course for CCAO-F.</strong> The primary prep material where you have access to it.</li>
+      <li><strong>Anthropic's documentation:</strong> the <a href="https://support.claude.com">Claude Help Center</a> and <a href="https://docs.claude.com">Claude Docs</a>.</li>
+      <li><strong>People who have sat it.</strong> They can describe difficulty and emphasis, but not content.</li>
+      <li><strong>Third-party practice sets,</strong> including the <a href="claude-cert-drill.html">Claude Cert Drill</a>. Treat all of them, mine included, as unofficial and never as a substitute for items 1 to 3.</li>
+    </ol>
+
+    <h2 id="exam-day">Before exam day</h2>
+    <ul class="check">
+      <li>Seat booked at <a href="https://www.pearsonvue.com/us/en/anthropic.html">Pearson VUE</a></li>
+      <li>Fee confirmed at checkout</li>
+      <li>Government photo ID, unexpired, with your name exactly as registered</li>
+      <li>Testing online: desk clear of notes, phone and second monitor</li>
+      <li>Rated yourself against every objective in all seven domains</li>
+      <li>Built one throwaway Project with instructions, knowledge and a connector</li>
+      <li>Read the current model overview within the last week</li>
+      <li>One "Timed mock" run on the drill, scored</li>
+      <li>Renewal date on the calendar, 12 months from the day you pass</li>
+    </ul>
+
+    <h2 class="about" id="about">About this guide</h2>
+    <p class="disclosure">Written by Ken Connell with Claude, from my own exam prep. Unofficial and not affiliated with Anthropic; nothing here comes from the live exam. AI-generated, human-commanded.</p>
+  </main>
+
+  <footer>
+    <a href="/">cd ~ &nbsp;·&gt;&nbsp; back to the den</a>
+    <span>~/study/ccao-f.md</span>
+  </footer>
+</div>
+</body>
+</html>
