@@ -238,6 +238,10 @@ const fresh = () => ({seen:0,right:0,dom:{},miss:{}});
 /* ---------- state ---------- */
 let exam = store.get("kd-certdrill-exam") || "arch";
 if(!DATA[exam]) exam = "arch";
+/* ?exam=ccao-f or ?exam=ccar-f opens that exam for this visit; the saved choice stays as it was */
+const linked = (new URLSearchParams(location.search).get("exam") || "").toLowerCase();
+const fromLink = Object.keys(DATA).find(k => DATA[k].meta.code.toLowerCase() === linked);
+if(fromLink) exam = fromLink;
 let stats = store.get(skey(exam)) || fresh();
 let mode = "mix";
 let queue = [], cur = null, picks = [], streak = 0, runSeen = 0, runRight = 0;
@@ -253,8 +257,8 @@ const domName = id => (D().domains.find(x=>x.id===id)||{}).n || "";
 function save(){ store.set(skey(exam), stats); }
 
 /* ---------- exam switch + facts ---------- */
-function setExam(ex){
-  exam = ex; store.set("kd-certdrill-exam", ex);
+function setExam(ex, remember = true){
+  exam = ex; if(remember) store.set("kd-certdrill-exam", ex);
   stats = store.get(skey(ex)) || fresh();
   mode = "mix";
   document.querySelectorAll(".switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.exam===ex)));
@@ -310,15 +314,30 @@ function renderChips(){
   });
 }
 
+/* Items per domain for an n-item mix, by largest remainder, so the counts always add up to n.
+   A tie for the last item is drawn at random (CCAO-F's D3 and D5 are both 12%). */
+function allocate(domains, n){
+  const total = domains.reduce((s,d) => s + d.w, 0);
+  const seats = domains.map(d => Math.floor(n * d.w / total));
+  const rem = domains.map(d => (n * d.w) % total);
+  let left = n - seats.reduce((s,x) => s + x, 0);
+  for(const r of [...new Set(rem)].sort((a,b) => b - a)){
+    if(left === 0) break;
+    const tied = domains.map((_,i) => i).filter(i => rem[i] === r);
+    const take = tied.length > left ? shuffle(tied).slice(0, left) : tied;
+    take.forEach(i => seats[i]++); left -= take.length;
+  }
+  return seats;
+}
+
 function build(){
   stopTimer();
   const bank = D().bank;
   let items, label = "";
   if(mode === "mix"){
-    const target = 20, picked = [];
-    D().domains.forEach(d => {
-      const want = Math.max(1, Math.round(target * d.w / 100));
-      picked.push(...shuffle(bank.filter(q => q.d===d.id)).slice(0, want));
+    const target = 20, picked = [], seats = allocate(D().domains, target);
+    D().domains.forEach((d,i) => {
+      picked.push(...shuffle(bank.filter(q => q.d===d.id)).slice(0, seats[i]));
     });
     items = shuffle(picked).slice(0, target); label = "blueprint mix";
   } else if(mode === "exam"){
@@ -447,7 +466,14 @@ function renderDone(timedOut){
 }
 
 /* ---------- wiring ---------- */
-document.querySelectorAll(".switch button").forEach(b => b.onclick = () => { if(b.dataset.exam !== exam) setExam(b.dataset.exam); });
+/* a hand switch drops ?exam= from the address, so a reload keeps the exam the visitor chose */
+function dropExamParam(){
+  const u = new URL(location.href);
+  if(!u.searchParams.has("exam")) return;
+  u.searchParams.delete("exam");
+  try{ history.replaceState(history.state, "", u.pathname + u.search + u.hash); }catch(e){}
+}
+document.querySelectorAll(".switch button").forEach(b => b.onclick = () => { if(b.dataset.exam !== exam){ setExam(b.dataset.exam); dropExamParam(); } });
 $("reset").onclick = () => {
   if(!window.confirm("Reset saved stats for " + D().meta.code + " on this device?")) return;
   stats = fresh(); save(); renderChips(); build();
@@ -461,7 +487,7 @@ document.addEventListener("keydown", e => {
   if(k in map && map[k] < opts.length) opts[map[k]].click();
 });
 
-setExam(exam);
+setExam(exam, !fromLink);
 })();
 </script>
 </body>
