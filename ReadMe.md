@@ -18,4 +18,3 @@ Securing agentic AI and Zero Trust · Army Major (Ret.) · maker and dad.
 
 - LinkedIn: [kendallconnell](https://www.linkedin.com/in/kendallconnell)
 - Mastodon: [@KenDC@infosec.exchange](https://infosec.exchange/@KenDC)
-- Bluesky: [krypticcomix.bsky.social](https://bsky.app/profile/krypticcomix.bsky.social)
