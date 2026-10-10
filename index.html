@@ -115,6 +115,14 @@
   .chip.top::after{content:none}
   .chip.top{gap:1ch}
   @media (max-width:360px){.chips{gap:8px}}
+  /* hero contact row on phones: one row of three equal-width chips (the footer row is untouched) */
+  @media (max-width:519.98px){
+    header .chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    header .chips li{min-width:0}
+    header .chip{width:100%;justify-content:center;padding:0 8px;white-space:nowrap}
+    header .chip::after{content:none}
+  }
+  @media (max-width:359.98px){header .chip{font-size:12.5px;padding:0 5px}}
   .proj-btn.sub{color:var(--muted)}
 
   /* jump row */
