@@ -4,10 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>root@KensDen:~# whoami</title>
-<meta name="description" content="Ken — technologist, lifelong self-learner, U.S. Army Veteran (Ret.), countering threats and mitigating risks with advanced AI. Tech for good." />
+<meta name="description" content="Ken: technologist, lifelong self-learner, U.S. Army Veteran (Ret.), countering threats and mitigating risks with advanced AI. Tech for good." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ken","url":"https://kensden.github.io/","description":"Technologist, lifelong self-learner, U.S. Army Veteran (Ret.)","sameAs":["https://github.com/KensDen","https://infosec.exchange/@KenDC","https://www.linkedin.com/in/kendallconnell"]}</script>
 <meta name="theme-color" content="#0a0e12" />
+<meta name="color-scheme" content="dark" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="root@KensDen:~# whoami" />
@@ -17,11 +18,13 @@
 <meta property="og:image" content="https://kensden.github.io/social-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="root@KensDen:~# whoami — technologist, lifelong self-learner, countering threats and mitigating risks with advanced AI" />
+<meta property="og:image:alt" content="root@KensDen:~# whoami · technologist, lifelong self-learner, countering threats and mitigating risks with advanced AI" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://kensden.github.io/social-card.png" />
 <link rel="canonical" href="https://kensden.github.io/" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230a0e12'/><path d='M4 5 8 8 4 11' fill='none' stroke='%233fb950' stroke-width='2' stroke-linecap='square'/><rect x='9' y='10' width='5' height='2' fill='%233fb950'/></svg>" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="me" href="https://infosec.exchange/@KenDC" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -127,7 +130,7 @@
   .pub:hover{border-color:var(--green);transform:translateY(-1px)}
   .pub-t{display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
     color:var(--ink);font-size:16.5px;margin-bottom:5px}
-  .pub-t::before{content:"·> ";font-family:"JetBrains Mono",monospace;color:var(--green)}
+  .pub-t::before{content:"·> ";content:"·> " / "";font-family:"JetBrains Mono",monospace;color:var(--green)}
   .pub-m{display:block;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim)}
   p.body .hl{color:var(--ink)}
   .lede{font-size:17px;color:var(--ink)}
@@ -142,15 +145,15 @@
   .proj-body{padding:20px 22px 22px}
   .proj-t{font-family:"Space Grotesk",sans-serif;font-size:20px;font-weight:600;
     color:var(--ink);margin:0 0 10px}
-  .proj-t::before{content:"·> ";font-family:"JetBrains Mono",monospace;color:var(--green)}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 18px;padding:0;list-style:none}
+  .proj-t::before{content:"·> ";content:"·> " / "";font-family:"JetBrains Mono",monospace;color:var(--green)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px;padding:0;list-style:none}
   .tags li{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);
     border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--panel-2)}
   .proj-btn{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:13.5px;
     color:var(--cyan);text-decoration:none;border:1px solid var(--line);background:var(--panel);
     border-radius:8px;padding:9px 14px;transition:border-color .16s,color .16s}
   .proj-btn:hover{border-color:var(--green);color:var(--green)}
-  .proj-btn::after{content:" ·>"}
+  .proj-btn::after{content:" ·>";content:" ·>" / ""}
   .proj + .proj{margin-top:16px}
   .proj-btns{display:flex;flex-wrap:wrap;gap:10px}
   .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:16px 0 0}
@@ -165,9 +168,9 @@ padding:10px 14px;border-top:1px solid var(--line);background:var(--panel)}
 
 /* two-up image row (maker bench) */
 .shot-row{display:flex;gap:14px;margin:24px 0 4px;align-items:stretch}
-.shot-row .shot{margin:0;flex:1 1 0;min-width:0}
-.shot-row .shot img{height:100%;object-fit:cover}
-@media (max-width:640px){.shot-row{flex-direction:column}.shot-row .shot img{height:auto}}
+.shot-row .shot{margin:0;flex:1 1 0;min-width:0;display:flex;flex-direction:column}
+.shot-row .shot img{flex:1;min-height:0;height:auto;object-fit:cover}
+@media (max-width:640px){.shot-row{flex-direction:column}.shot-row .shot{flex:none;width:100%;margin:0 auto}.shot-row .shot img{flex:none}}
 
 /* neofetch-style system card */
 .neo{display:flex;gap:28px;align-items:center;background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -190,8 +193,7 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
 .neo-swatch{display:flex;gap:6px;margin-top:16px}
 .neo-swatch span{width:16px;height:16px;border-radius:3px;display:block}
 
-  /* tags */
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  /* hashtag pills (layout comes from .tags above) */
   .tag{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);
     border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px}
   .tag b{color:var(--green);font-weight:500}
@@ -263,6 +265,14 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   }
+  /* keyboard focus mirrors hover */
+  a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+  p.body a:focus-visible,cite a:focus-visible{border-radius:4px}
+  .pub:focus-visible,.proj-btn:focus-visible,.links a:focus-visible{border-color:var(--green)}
+  .infl a:focus-visible{border-color:var(--cyan)}
+  .shot > a{display:block}
+  .shot > a:focus-visible{outline-offset:-4px}
+  .proj-btn:focus-visible,.links a:focus-visible{color:var(--green)}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style>
 </head>
@@ -278,9 +288,9 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
       </div>
       <div class="term-body">
         <p class="prompt"><span class="usr">root@KensDen</span>:<span class="path">~</span># whoami</p>
-        <h1>Hello, world <span class="wave">🤖</span></h1>
+        <h1>Hello, world <span class="wave" aria-hidden="true">🤖</span></h1>
         <p class="role">Technologist · <b>lifelong self-learner</b> · U.S. Army Veteran (Ret.) · countering threats and mitigating risks with advanced AI<span class="cursor"></span></p>
-        <p class="tagline">I build and break things to understand them. Lately that means <span class="hl">agentic AI security</span> — red, blue, and purple teaming the systems we're all about to depend on. <span class="hl">Tech for good</span> — made in the South; building a secure future for the world from Northern Virginia, with 💚 for the betterment of the 🌎.</p>
+        <p class="tagline">I build and break things to understand them. Lately that means <span class="hl">agentic AI security</span>: red, blue, and purple teaming the systems we're all about to depend on. <span class="hl">Tech for good</span>: made in the South; building a secure future for the world from Northern Virginia, with 💚 for the betterment of the 🌎.</p>
       </div>
     </div>
   </header>
@@ -291,7 +301,7 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">neofetch</p>
     <h2 class="sr-only">System info</h2>
     <div class="neo">
-<div class="neo-art">
+<div class="neo-art" aria-hidden="true">
 <pre class="neo-logo-inv">   ┌─┐      ┌─┐
    │ └──────┘ │
  ┌─┘  ┌┐  ┌┐  └─┐
@@ -303,17 +313,17 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
 <pre class="neo-logo-txt"> _                    
 | | __   ___   _ __  
 | |/ /  / _ \ | '_ \ 
-| ' <  |  __/ | | | |
+| ' &lt;  |  __/ | | | |
 |_|\_\  \___| |_| |_|</pre>
       </div>
       <div class="neo-info">
         <p class="neo-head"><span class="u">ken</span>@<span class="h">hello-future</span></p>
-        <p class="neo-rule">———————————————————</p>
+        <p class="neo-rule" aria-hidden="true">───────────────────</p>
         <dl>
           <div><dt>OS</dt><dd>MakerOS <span class="m">(rolling release)</span></dd></div>
           <div><dt>Host</dt><dd>hello-future</dd></div>
           <div><dt>Kernel</dt><dd>maker/dad</dd></div>
-          <div><dt>Uptime</dt><dd>20+ years of public service</dd></div>
+          <div><dt>Uptime</dt><dd>20+ yrs Army <span class="m">(ret. 2024)</span></dd></div>
           <div><dt>Shell</dt><dd>/usr/bin/cybersecurity</dd></div>
           <div><dt>Packages</dt><dd>circuits, comics, code</dd></div>
           <div><dt>CPU</dt><dd>curiosity <span class="m">(overclocked)</span></dd></div>
@@ -339,19 +349,19 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <h2 class="sr-only">Work ethic</h2>
     <div class="pillars">
       <div class="pillar k">
-        <div class="p-key">01 ·&gt;</div>
+        <div class="p-key">01 <span aria-hidden="true">·&gt;</span></div>
         <div class="p-name">Be Knowledgeable</div>
-        <p class="p-desc">Go deep and know your tools. Read the primary source. Earn the understanding instead of borrowing the headline. 🤓📖</p>
+        <p class="p-desc">Go deep and know your tools. Read the primary source. Earn the understanding instead of borrowing the headline. <span aria-hidden="true">🤓📖</span></p>
       </div>
       <div class="pillar r">
-        <div class="p-key">02 ·&gt;</div>
+        <div class="p-key">02 <span aria-hidden="true">·&gt;</span></div>
         <div class="p-name">Be Relevant</div>
-        <p class="p-desc">Aim the knowledge at problems that matter — right now, in the real world. 🎯📈</p>
+        <p class="p-desc">Aim the knowledge at problems that matter: right now, in the real world. <span aria-hidden="true">🎯📈</span></p>
       </div>
       <div class="pillar e">
-        <div class="p-key">03 ·&gt;</div>
+        <div class="p-key">03 <span aria-hidden="true">·&gt;</span></div>
         <div class="p-name">Be Engaged</div>
-        <p class="p-desc">Show up. Collaborate, ship, teach, and keep moving. 🤝🌎✈️</p>
+        <p class="p-desc">Show up. Collaborate, ship, teach, and keep moving. <span aria-hidden="true">🤝🌎✈️</span></p>
       </div>
     </div>
   </section>
@@ -434,7 +444,7 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
       </figure>
       <div class="proj-body">
         <h3 class="proj-t">Zero Trust Accelerator: Field Guide</h3>
-        <p class="body">A Zero Trust study guide and one-page quick references for anyone leading or learning Zero Trust: eight weeks from practitioner to lead, with a shared core, then DoW, federal civilian and private-sector tracks. Public sources only.</p>
+        <p class="body">A Zero Trust study guide and one-page quick references for anyone leading or learning Zero Trust: eight weeks from practitioner to lead, with a shared core, then Department of War (DoW), federal civilian and private-sector tracks. Public sources only.</p>
         <ul class="tags">
           <li>Study Guide</li>
           <li>Quick References</li>
@@ -468,11 +478,11 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     </div>
     <div class="proj">
       <figure class="proj-art">
-        <img src="dc-card.webp" alt="Key art for Dark Constellation: a dark planet split along a razor-thin diagonal of light, a cyan aurora storming off one hemisphere and magenta debris fields off the other" loading="lazy" width="800" height="450" />
+        <img src="dc-card.webp" srcset="dc-card.webp 800w, dc-card-1254.webp 1254w" sizes="(min-width: 880px) 834px, calc(100vw - 46px)" alt="Key art for Dark Constellation: a dark planet split along a razor-thin diagonal of light, a cyan aurora storming off one hemisphere and magenta debris fields off the other" loading="lazy" width="800" height="450" />
       </figure>
       <div class="proj-body">
         <h3 class="proj-t">Dark Constellation</h3>
-        <p class="body">A turn-based space and drone cybersecurity strategy sim. Architect a smallsat constellation and ISR drone squadron, then hold the line through a 12-turn adversary campaign; jamming, LiDAR spoofing, supply-chain implants, and orbital debris all press at once. Every threat and countermeasure maps to live-verified SPARTA, MITRE ATT&amp;CK, and ATLAS techniques; the whole game runs client-side in the browser, free, no backend, no telemetry.</p>
+        <p class="body">A turn-based space and drone cyber strategy sim. Build a smallsat constellation and ISR drone squadron, then survive a six-turn adversary campaign. Every threat maps to SPARTA, ATT&amp;CK and ATLAS. Free, runs in your browser, no telemetry.</p>
         <ul class="tags">
           <li>Strategy Game</li>
           <li>Space Cybersecurity</li>
@@ -491,18 +501,18 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="collect">
     <p class="eyebrow">man ken</p>
     <h2>Collector's item</h2>
-    <p class="body">What happens when a lifelong comic collector spends two decades in security? Eventually you make yourself the action figure. Mission first. People always. <span class="hl">Not a toy.</span> 🦸</p>
+    <p class="body">What happens when a lifelong comic collector spends two decades in security? Eventually you make yourself the action figure. Mission first. People always. <span class="hl">Not a toy.</span> <span aria-hidden="true">🦸</span></p>
     <p class="body">Now I've finally made it into the toy aisle. Sort of. One evening spent directing an AI image model, and here I am in blister packaging. Not magic. Just a tool, built on human effort.</p>
     <p class="body">And yes, the early versions misspelled several words. "Counterintelligence" among them. Took a human to catch the mistakes. Moral of the story… Even the machine needs a <span class="hl">human in the lead</span>!</p>
     <figure class="shot" style="max-width:640px">
-      <a href="kc-01.jpg" target="_blank" rel="noopener">
-        <img src="kc-01.jpg" alt="A collector action-figure card: Ken Connell, Cyberspace Operator — blister pack front with mission essentials, and mission dossier back with profile, QR code, and challenge coin" loading="lazy" width="1537" height="1023" />
+      <a href="kc-01.webp" target="_blank" rel="noopener">
+        <img src="kc-01.webp" alt="A collector action-figure card: Ken Connell, Cyberspace Operator. Blister pack front with mission essentials, and mission dossier back with profile, QR code, and challenge coin" loading="lazy" width="1280" height="852" />
       </a>
       <figcaption><span class="g">&gt;</span> limited edition · 001/007 · tap to inspect_</figcaption>
     </figure>
     <figure class="shot" style="max-width:640px">
-      <a href="kc-02.jpg" target="_blank" rel="noopener">
-        <img src="kc-02.jpg" alt="A product-photography sheet of the action figure packaging: front, three-quarter, side, top, bottom, and back views, the opened blister package, the figure outside the box, and accessory close-ups including challenge coins, a Mission First coffee mug, encrypted laptop, YubiKey, and field notes" loading="lazy" width="1536" height="1024" />
+      <a href="kc-02.webp" target="_blank" rel="noopener">
+        <img src="kc-02.webp" alt="A product-photography sheet of the action figure packaging: front, three-quarter, side, top, bottom, and back views, the opened blister package, the figure outside the box, and accessory close-ups including challenge coins, a Mission First coffee mug, encrypted laptop, YubiKey, and field notes" loading="lazy" width="1280" height="853" />
       </a>
       <figcaption><span class="g">&gt;</span> production spec sheet · every angle inspected_</figcaption>
     </figure>
@@ -512,48 +522,48 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="about">
     <p class="eyebrow">whoami</p>
     <h2>The story so far</h2>
-    <p class="body lede">I've been tinkering with tech out of a lifelong, passionate self-interest since I built my first PC from a pile of parts acquired in 8th grade — teaching myself from an old Microsoft VHS learning series and VCR player borrowed from a local library. 📼</p>
-    <p class="body">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer; typing up the "www-dot" addresses I scribbled down from the ends of TV commercials, building a hand-written index of an internet I couldn't reach yet. The real thing came piece-by-piece, with money earned mowing yards and dodging fire ants during long, hot South Georgia summers. ⌨️</p>
-    <p class="body">Only booting to a DOS command line before I was able to upgrade to Windows 3.1; with dial-up internet arriving not long after. Back then "the network" was sneakernet — a stack of floppies hand-carried across the room — and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing. 💾</p>
+    <p class="body lede">I've been tinkering with tech since 8th grade, when I built my first PC from a pile of parts. I taught myself from an old Microsoft VHS series on a VCR borrowed from the local library. <span aria-hidden="true">📼</span></p>
+    <p class="body">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer, typing up the "www-dot" addresses I scribbled down from the ends of TV commercials, building a hand-written index of an internet I couldn't reach yet. The real thing came piece-by-piece, with money earned mowing yards and dodging fire ants during long, hot South Georgia summers. <span aria-hidden="true">⌨️</span></p>
+    <p class="body">It only booted to a DOS prompt until I could afford Windows 3.1. Dial-up arrived not long after. Back then "the network" was sneakernet (a stack of floppies hand-carried across the room), and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing. <span aria-hidden="true">💾</span></p>
 
         <figure class="shot">
-          <img src="dos.png" alt="An MS-DOS 6.22 boot screen running the command: echo hello, future — which prints: hello, future" loading="lazy" width="1600" height="900" />
+          <img src="dos.webp" alt="An MS-DOS 6.22 boot screen running the command: echo hello, future. It prints: hello, future" loading="lazy" width="1040" height="585" />
           <figcaption><span class="g">C:\&gt;</span> where it all started_</figcaption>
         </figure>
 
         <figure class="shot" style="max-width:480px">
-          <img src="floppy.jpg" alt="A 5.25-inch floppy disk with a modern 128GB microSD card resting on top of it" loading="lazy" width="1000" height="750" />
-          <figcaption><span class="g">C:\&gt;</span> same idea, 40 years apart &mdash; that card holds ~350,000 floppies</figcaption>
+          <img src="floppy.webp" alt="A 5.25-inch floppy disk with a modern 128GB microSD card resting on top of it" loading="lazy" width="960" height="720" />
+          <figcaption><span class="g">C:\&gt;</span> same idea, 40 years apart: that card holds ~350,000 floppies</figcaption>
         </figure>
-    <p class="body">I later enlisted in the U.S. Army Reserve in 2000, my junior year of high school, and shipped off the summer before my senior year to Basic Combat Training at Fort Sill, Oklahoma — Home of the Field Artillery. The next year brought Advanced Individual Training at Fort Jackson, South Carolina, where I took my final exam on the morning of September 11th, 2001 — the same date printed on my diploma, and the day I officially completed initial entry training and was qualified to serve as a soldier. 🪖</p>
+    <p class="body">I later enlisted in the U.S. Army Reserve in 2000, my junior year of high school, and shipped off the summer before my senior year to Basic Combat Training at Fort Sill, Oklahoma (Home of the Field Artillery). The next year brought Advanced Individual Training at Fort Jackson, South Carolina, where I took my final exam on the morning of September 11th, 2001: the same date printed on my AIT certificate, and the day I officially completed initial entry training and was qualified to serve as a soldier. <span aria-hidden="true">🪖</span></p>
 
     <figure class="shot" style="max-width:560px">
-      <img src="army-early.jpg" alt="A collage of early Army photos: basic training portrait, drill sergeant handshake at graduation, peacekeeping duty in Bosnia beside a general at a Dayton Peace Accord backdrop, and field training exercises" loading="lazy" width="1440" height="810" />
+      <img src="army-early.webp" alt="A collage of early Army photos: basic training portrait, drill sergeant handshake at graduation, peacekeeping duty in Bosnia beside a general at a Dayton Peace Accord backdrop, and field training exercises" loading="lazy" width="1120" height="630" />
       <figcaption><span class="g">&gt;</span> reporting for duty, 2000_</figcaption>
     </figure>
-    <p class="body">From there I came up through the enlisted ranks to Staff Sergeant, earned my commission as an officer, and more recently retired as a Major in 2024 — more than two decades of service; #TempusFugit. Along the way I deployed to Bosnia-Herzegovina for peacekeeping and across the Middle East, including Iraq. 🎖️</p>
+    <p class="body">From there I came up through the enlisted ranks to Staff Sergeant, earned my commission as an officer, and retired as a Major in 2024: more than two decades of service; #TempusFugit. Along the way I deployed to Bosnia-Herzegovina for peacekeeping and across the Middle East, including Iraq. <span aria-hidden="true">🎖️</span></p>
 
     <figure class="shot" style="max-width:560px">
-      <img src="army-deployed.jpg" alt="A collage of deployment photos from the Middle East: standing guard by a Humvee and fuel tanker, grilling in Army PT gear, kevlar and body armor portraits, and mounted patrol" loading="lazy" width="1440" height="810" />
+      <img src="army-deployed.webp" alt="A collage of deployment photos from the Middle East: standing guard by a Humvee and fuel tanker, grilling in Army PT gear, kevlar and body armor portraits, and mounted patrol" loading="lazy" width="1120" height="630" />
       <figcaption><span class="g">&gt;</span> downrange_</figcaption>
     </figure>
 
     <figure class="shot" style="max-width:560px">
-      <img src="army-officer.jpg" alt="A collage of the commission and officer years: an award ceremony as a Staff Sergeant, a send-off with Mom, posing with the Georgia Bulldogs mascot in uniform, the framed officer commission certificate, and formal portraits in Army dress blues" loading="lazy" width="1440" height="810" />
+      <img src="army-officer.webp" alt="A collage of the commission and officer years: an award ceremony as a Staff Sergeant, a send-off with Mom, posing with the Georgia Bulldogs mascot in uniform, the framed officer commission certificate, and formal portraits in Army dress blues" loading="lazy" width="1120" height="630" />
       <figcaption><span class="g">&gt;</span> stripes to oak leaves_</figcaption>
     </figure>
-    <p class="body">Out of the University of Georgia in 2009, my first job took me across the Atlantic — a security consultant at Deloitte in London, advising commercial clients throughout Europe on global trade compliance. 🌍</p>
-    <p class="body">Since London, I've spent more than a decade in management consulting and risk advisory — leading enterprise cybersecurity work for Fortune 100 and global clients across the commercial and federal worlds, from cyber threat intelligence and cloud security to compliance across international frameworks. 🛡️</p>
-    <p class="body">These days I work in security — <span class="hl">countering threats and mitigating risks by harnessing advanced AI</span>. I pair an analyst's mindset with an operator's instinct to transform and reinvent all aspects of security. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn't just a department — it's a mission. 👾</p>
-    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on — building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together — prompts and patterns one day, soldering irons the next. I'd rather raise <span class="hl">builders than browsers</span>; kids who create, build, and delegate, not just swipe and scroll. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. I wrote the longer version of that thought in <a href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-ejeqe/" target="_blank" rel="noopener">Batman Has No Superpowers. That's the Whole Point.</a></p>
+    <p class="body">Out of the University of Georgia in 2009, my first job took me across the Atlantic: a security consultant at Deloitte in London, advising commercial clients throughout Europe on global trade compliance. <span aria-hidden="true">🌍</span></p>
+    <p class="body">Since London, I've spent fifteen-plus years in management consulting and risk advisory, leading enterprise cybersecurity work for Fortune 100 and global clients across the commercial and federal worlds, from cyber threat intelligence and cloud security to compliance across international frameworks. <span aria-hidden="true">🛡️</span></p>
+    <p class="body">These days I work in security: <span class="hl">countering threats and mitigating risks by harnessing advanced AI</span>. I pair an analyst's mindset with an operator's instinct to transform and reinvent all aspects of security. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn't just a department. It's a mission. <span aria-hidden="true">👾</span></p>
+    <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on, building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together: prompts and patterns one day, soldering irons the next. I'd rather raise <span class="hl">builders than browsers</span>; kids who create, build, and delegate, not just swipe and scroll. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. I wrote the longer version of that thought in <a href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-ejeqe/" target="_blank" rel="noopener">Batman Has No Superpowers. That's the Whole Point.</a></p>
 
     <div class="shot-row">
       <figure class="shot">
-        <img src="pitop.jpg" alt="An open green pi-top modular laptop with the Raspberry Pi board, trackball, and internals exposed" loading="lazy" width="780" height="1040" />
+        <img src="pitop.webp" alt="An open green pi-top modular laptop with the Raspberry Pi board, trackball, and internals exposed" loading="lazy" width="780" height="1040" />
         <figcaption><span class="g">$</span> some assembly required</figcaption>
       </figure>
       <figure class="shot">
-        <img src="batmobile.jpg" alt="A CircuitMess Batmobile kit being built, showing the ESP32 board and components" loading="lazy" width="780" height="1040" />
+        <img src="batmobile.webp" alt="A CircuitMess Batmobile kit being built, showing the ESP32 board and components" loading="lazy" width="780" height="1040" />
         <figcaption><span class="g">$</span> no superpowers required</figcaption>
       </figure>
     </div>
@@ -571,10 +581,10 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">ls ~/now/</p>
     <h2>What I'm into right now</h2>
     <div class="focus">
-      <div class="item"><span class="arr">·&gt;</span><span class="t">Agentic AI SecOps &amp; Harnessing the AI Security Trifecta (aka: Red / Blue / Purple Teaming) ♥️💙💜</span></div>
-      <div class="item"><span class="arr">·&gt;</span><span class="t">Counter Insider Threat &amp; AI Risk Mitigation 🕵️</span></div>
-      <div class="item"><span class="arr">·&gt;</span><span class="t">Hands-on Electronic Tinkering &amp; Teaching the Next Builders to Build 🔌</span></div>
-      <div class="item"><span class="arr">·&gt;</span><span class="t">Lifelong Comicbook Aficionado 🤓 (aka: Praetorian Pannapictagraphist 🦸‍♀️)</span></div>
+      <div class="item"><span class="arr" aria-hidden="true">·&gt;</span><span class="t">Agentic AI SecOps &amp; Harnessing the AI Security Trifecta (aka: Red / Blue / Purple Teaming) <span aria-hidden="true">♥️💙💜</span></span></div>
+      <div class="item"><span class="arr" aria-hidden="true">·&gt;</span><span class="t">Counter Insider Threat &amp; AI Risk Mitigation <span aria-hidden="true">🕵️</span></span></div>
+      <div class="item"><span class="arr" aria-hidden="true">·&gt;</span><span class="t">Hands-on Electronic Tinkering &amp; Teaching the Next Builders to Build <span aria-hidden="true">🔌</span></span></div>
+      <div class="item"><span class="arr" aria-hidden="true">·&gt;</span><span class="t">Lifelong Comicbook Aficionado <span aria-hidden="true">🤓</span> (aka: Praetorian Pannapictagraphist <span aria-hidden="true">🦸‍♀️</span>)</span></div>
     </div>
   </section>
 
@@ -583,11 +593,11 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">fortune</p>
     <blockquote>
       <p>"Progress brings with it the amelioration of the human condition."</p>
-      <cite>·&gt; the reason any of this is worth doing 🛠💡</cite>
+      <cite><span aria-hidden="true">·&gt;</span> the reason any of this is worth doing <span aria-hidden="true">🛠💡</span></cite>
     </blockquote>
     <blockquote>
       <p>"Always work hard on something uncomfortably exciting."</p>
-      <cite>·&gt; Larry Page — co-founder of <a href="https://google.com/" target="_blank" rel="noopener">Google</a> &amp; <a href="https://abc.xyz/" target="_blank" rel="noopener">Alphabet</a></cite>
+      <cite><span aria-hidden="true">·&gt;</span> Larry Page, co-founder of <a href="https://google.com/" target="_blank" rel="noopener">Google</a> &amp; <a href="https://abc.xyz/" target="_blank" rel="noopener">Alphabet</a></cite>
     </blockquote>
   </section>
 
@@ -596,17 +606,17 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">cat ~/influences.log</p>
     <h2>Standing on shoulders</h2>
     <div class="infl">
-      <a href="https://plato.stanford.edu/entries/reasoning-automated/" target="_blank" rel="noopener">
-        <span><span class="name">Prof. Byron Cook</span><span class="what">Automated Reasoning — proving systems correct</span></span>
-        <span class="go">read ·&gt;</span>
+      <a href="https://www.amazon.science/blog/a-gentle-introduction-to-automated-reasoning" target="_blank" rel="noopener">
+        <span><span class="name">Prof. Byron Cook</span><span class="what">Automated Reasoning: proving systems correct</span></span>
+        <span class="go">read <span aria-hidden="true">·&gt;</span></span>
       </a>
       <a href="https://fellows.fablearn.org/constructionism-a-learning-theory-and-a-model-for-maker-education/" target="_blank" rel="noopener">
-        <span><span class="name">Prof. Seymour Papert</span><span class="what">Constructionism — we learn by making</span></span>
-        <span class="go">read ·&gt;</span>
+        <span><span class="name">Prof. Seymour Papert</span><span class="what">Constructionism: we learn by making</span></span>
+        <span class="go">read <span aria-hidden="true">·&gt;</span></span>
       </a>
       <a href="https://www.pi-top.com/blog/2018/11/06/defining-constructionist-learning" target="_blank" rel="noopener">
-        <span><span class="name">pi-top</span><span class="what">"Defining Constructionist Learning" — learning by building</span></span>
-        <span class="go">read ·&gt;</span>
+        <span><span class="name">pi-top</span><span class="what">"Defining Constructionist Learning": learning by building</span></span>
+        <span class="go">read <span aria-hidden="true">·&gt;</span></span>
       </a>
     </div>
   </section>
@@ -615,10 +625,10 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="pitop">
     <p class="eyebrow">make future</p>
     <h2>We make the future</h2>
-    <p class="body">From <a href="https://www.pi-top.com/blog/2018/11/06/defining-constructionist-learning" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">pi-top</a> — the spirit behind everything on this page: the world as classroom and laboratory, and the makers who build it. 🔨</p>
+    <p class="body">From <a href="https://www.pi-top.com/blog/2018/11/06/defining-constructionist-learning" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">pi-top</a>. The spirit behind everything on this page: the world as classroom and laboratory, and the makers who build it. <span aria-hidden="true">🔨</span></p>
     <div class="video-card">
       <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/_iaMQymrm0c" title="pi-top — We make the future" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/_iaMQymrm0c" title="pi-top: We make the future" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -628,7 +638,7 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
     <p class="eyebrow">cat /etc/creed</p>
     <h2 class="sr-only">The maker's creed</h2>
     <div class="maker">
-      <p><span class="hl">The world is our classroom, our laboratory.</span> We're the makers and the modders, the dreamers and the hackers — the "what if?" and the "I wonder why?" Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn — and <span class="hl">together, we make the future.</span> 🔭📡🔨</p>
+      <p><span class="hl">The world is our classroom, our laboratory.</span> We're the makers and the modders, the dreamers and the hackers: the "what if?" and the "I wonder why?" Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn, and <span class="hl">together, we make the future.</span> <span aria-hidden="true">🔭📡🔨</span></p>
     </div>
   </section>
 
@@ -636,10 +646,10 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="electricity">
     <p class="eyebrow">history</p>
     <h2>The Electricity Metaphor</h2>
-    <p class="body">Jeff Bezos on how a transformative technology — like electricity a century ago — eventually fades into invisible infrastructure, unleashing inventions nobody saw coming. It's how I think about AI now: we're still in the early, electrifying days. ⚡</p>
+    <p class="body">Jeff Bezos on how a transformative technology (like electricity a century ago) eventually fades into invisible infrastructure, unleashing inventions nobody saw coming. It's how I think about AI now: we're still in the early, electrifying days. <span aria-hidden="true">⚡</span></p>
     <div class="video-card">
       <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/vMKNUylmanQ" title="Jeff Bezos — The Electricity Metaphor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/vMKNUylmanQ" title="Jeff Bezos: The Electricity Metaphor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-meta">
         <p class="v-name">Jeff Bezos · founder of Amazon</p>
@@ -652,10 +662,10 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <section id="watch">
     <p class="eyebrow">play talk.mp4</p>
     <h2>Hire the Scrapper</h2>
-    <p class="body">This one hits close to home. Regina Hartley on why the best hire might not have the perfect resume — and why <span class="hl">passion and purpose</span> tend to beat pedigree. Reminds me where I came from. 🪛</p>
+    <p class="body">This one hits close to home. Regina Hartley on why the best hire might not have the perfect resume, and why <span class="hl">passion and purpose</span> tend to beat pedigree. Reminds me where I came from. <span aria-hidden="true">🪛</span></p>
     <div class="video-card">
       <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/jiDQDLnEXdA" title="Regina Hartley — Why the best hire might not have the perfect resume" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/jiDQDLnEXdA" title="Regina Hartley: Why the best hire might not have the perfect resume" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-meta">
         <p class="v-name">Regina Hartley · TED@UPS</p>
@@ -670,13 +680,13 @@ text-shadow:0 0 12px rgba(63,185,80,.4)}
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="links">
-      <a href="https://github.com/KensDen" target="_blank" rel="noopener">github ·&gt;</a>
-      <a href="https://infosec.exchange/@KenDC" target="_blank" rel="me noopener">mastodon ·&gt;</a>
-      <a href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">linkedin ·&gt;</a>
-      <a href="https://github.com/KensDen/kensden.github.io" target="_blank" rel="noopener">source ·&gt;</a>
+      <a href="https://github.com/KensDen" target="_blank" rel="noopener">github <span aria-hidden="true">·&gt;</span></a>
+      <a href="https://infosec.exchange/@KenDC" target="_blank" rel="me noopener">mastodon <span aria-hidden="true">·&gt;</span></a>
+      <a href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">linkedin <span aria-hidden="true">·&gt;</span></a>
+      <a href="https://github.com/KensDen/kensden.github.io" target="_blank" rel="noopener">source <span aria-hidden="true">·&gt;</span></a>
     </div>
-    <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> — thanks for stopping by 👋</p>
-    <p class="updated">last updated: <span id="last-updated">2026-10-08</span></p>
+    <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> · thanks for stopping by <span aria-hidden="true">👋</span></p>
+    <p class="updated">last updated: <span id="last-updated">2026-10-10</span></p>
     <p class="future-line">&gt; hello future<span class="u">_</span></p>
   </footer>
 
