@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-I3EDr+BJMHglRlWmGLSjIve5uL7T0mBhEE9nwyI0SIs='; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
 <title>Claude Cert Drill · Ken</title>
 <meta name="description" content="Practice drills for the Claude Certified Associate and Architect Foundations exams. Original scenario questions written against the public exam blueprints, with a companion study guide for CCAO-F." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -11,15 +12,27 @@
 <meta property="og:title" content="Claude Cert Drill" />
 <meta property="og:description" content="Blueprint-weighted practice for the Claude Associate and Architect Foundations exams, with a companion CCAO-F study guide." />
 <meta property="og:url" content="https://kensden.github.io/claude-cert-drill.html" />
-<meta property="og:image" content="https://kensden.github.io/social-card.png" />
+<meta property="og:image" content="https://kensden.github.io/social-card-drill.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="root@KensDen:~# ./drill --exam ccao-f · Claude Cert Drill · Associate and Architect Foundations · blueprint-weighted practice, built for phone review · Unofficial" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kensden.github.io/social-card-drill.png" />
+<meta name="twitter:image:alt" content="root@KensDen:~# ./drill --exam ccao-f · Claude Cert Drill · Associate and Architect Foundations · blueprint-weighted practice, built for phone review · Unofficial" />
 <meta name="theme-color" content="#0a0e12" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
+  /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
+  @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:400 700;font-display:swap;
+    src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 700;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   :root{
     --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730; --line-2:#2a3742;
     --ink:#e6edf3; --muted:#a7b4bf; --dim:#74838f;
