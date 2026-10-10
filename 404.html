@@ -3,16 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
 <title>404 — command not found</title>
 <meta name="robots" content="noindex" />
 <meta name="theme-color" content="#0a0e12" />
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230a0e12'/><path d='M4 5 8 8 4 11' fill='none' stroke='%233fb950' stroke-width='2' stroke-linecap='square'/><rect x='9' y='10' width='5' height='2' fill='%233fb950'/></svg>" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
+  /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
+  @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:400 700;font-display:swap;
+    src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 700;font-display:swap;
+    src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   :root{
     --bg:#0a0e12; --panel:#11161c; --panel-2:#0d1217; --line:#1d2730;
     --ink:#e6edf3; --muted:#8b9aa7; --dim:#74838f;
@@ -78,7 +85,7 @@
       <p class="ln err">zsh: 404: this-page: command not found</p>
 
       <figure class="snap">
-        <img src="invasion.jpg" alt="A black-and-white retro sci-fi scene: a giant tin toy robot looming over a small town square while flying saucers hover above the rooftops" width="1280" height="794" />
+        <img src="/invasion.jpg" alt="A black-and-white retro sci-fi scene: a giant tin toy robot looming over a small town square while flying saucers hover above the rooftops" width="1280" height="794" />
         <figcaption><span class="g">&gt;</span> last known footage_</figcaption>
       </figure>
 
