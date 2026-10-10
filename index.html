@@ -162,13 +162,12 @@
   .wlist{margin:6px 0 0;padding:0;list-style:none;background:linear-gradient(180deg,var(--panel),var(--panel-2));
     border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .wlist li + li{border-top:1px solid var(--line)}
-  .wlist a{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:4px 16px;
-    min-height:44px;padding:12px 18px;text-decoration:none;transition:background .16s}
+  .wlist a{display:block;min-height:44px;padding:12px 18px;text-decoration:none;transition:background .16s}
   .wlist a:hover{background:#121a20}
-  .w-t{font-weight:600;font-size:16px;color:var(--ink)}
+  .w-t{display:block;font-weight:600;font-size:16px;color:var(--ink);letter-spacing:-.005em;padding-left:1.785em;text-indent:-1.785em}
   .w-t::before{content:"·> ";content:"·> " / "";font-family:"JetBrains Mono",monospace;color:var(--green)}
-  .w-where{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim)}
-  .wlist a:hover .w-where{color:var(--cyan)}
+  .w-ext{font-size:.85em;font-weight:400;color:var(--dim)}
+  .wlist a:hover .w-ext{color:var(--cyan)}
 
   /* now + ethos */
   .duo{display:grid;gap:16px;padding:30px 0;border-top:1px solid var(--line)}
@@ -462,12 +461,12 @@
     <h2>Dispatches</h2>
     <p class="body">Occasional long-form writing. Stories first, tech second.</p>
     <ul class="wlist">
-      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span><span class="w-where">essay · here</span></a></li>
-      <li><a href="building-a-seat-at-the-table.html"><span class="w-t">Building a Seat at the Table</span><span class="w-where">essay · here</span></a></li>
-      <li><a href="sanctuary-protocol.html"><span class="w-t">Sanctuary Protocol</span><span class="w-where">essay · here</span></a></li>
-      <li><a href="multiverse-control-plane.html"><span class="w-t">The Multiverse Has a Control Plane</span><span class="w-where">essay · here</span></a></li>
-      <li><a href="10-cent-dreams.html"><span class="w-t">10-Cent Dreams of a Two-Sided Coin</span><span class="w-where">essay · here</span></a></li>
-      <li><a href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-ejeqe/" target="_blank" rel="noopener"><span class="w-t">Batman Has No Superpowers. That's the Whole Point.</span><span class="w-where">LinkedIn</span></a></li>
+      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span></a></li>
+      <li><a href="building-a-seat-at-the-table.html"><span class="w-t">Building a Seat at the Table</span></a></li>
+      <li><a href="sanctuary-protocol.html"><span class="w-t">Sanctuary Protocol</span></a></li>
+      <li><a href="multiverse-control-plane.html"><span class="w-t">The Multiverse Has a Control Plane</span></a></li>
+      <li><a href="10-cent-dreams.html"><span class="w-t">10-Cent Dreams of a Two-Sided Coin</span></a></li>
+      <li><a href="https://www.linkedin.com/pulse/batman-has-superpowers-thats-whole-point-ken-connell-ejeqe/" target="_blank" rel="noopener"><span class="w-t">Batman Has No Superpowers. That's the Whole Point.<span class="w-ext" aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (on LinkedIn, opens in a new tab)</span></span></a></li>
     </ul>
   </section>
 
