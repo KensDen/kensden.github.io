@@ -84,6 +84,22 @@
   article p.credit{max-width:640px;margin:-22px auto 34px;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.6;color:var(--dim);font-style:normal}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
+  /* the prune-or-grow timeline diagram (inline SVG, two panels; stacked under 520px; no right padding so the lines run to the edge) */
+  figure.tl{background:var(--panel-2)}
+  .tl-wrap{display:grid;grid-template-columns:1fr 1fr}
+  .tl-p{padding:12px 0 6px 12px;border-left:3px solid var(--amber);background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .tl-p.grown{border-left-color:var(--cyan)}
+  .tl-l{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--amber);margin:0 0 4px}
+  .tl-p.grown .tl-l{color:var(--cyan)}
+  .tl svg{display:block;width:100%;height:auto}
+  .tl .mg{fill:none;stroke:var(--green);stroke-width:7;stroke-opacity:.14}
+  .tl .m{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round}
+  .tl .b{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-linecap:round}
+  .tl .grown .b{stroke:var(--cyan)}
+  .tl .grown .b.s{stroke-width:1.4;stroke-opacity:.8}
+  .tl .n{fill:var(--green)}
+  .tl .grown .n.s{fill:var(--cyan)}
+
   /* the stack diagram */
   .stack{margin:30px 0 34px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .stack-cap{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
@@ -115,6 +131,10 @@
   footer a:hover{color:var(--green)}
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+  @media (max-width:519.98px){
+    .tl-wrap{grid-template-columns:1fr}
+    .tl-p.grown{border-top:1px solid var(--line)}
+  }
   @media (max-width:640px){
     .wrap{padding:20px 18px 48px}
     article p{font-size:17px}
@@ -153,6 +173,28 @@
     <p>It started in 1961 with The Flash #123, "Flash of Two Worlds." Barry Allen vibrated into another Earth and met Jay Garrick, the Flash from the 1940s. DC needed a way to keep its older heroes around without breaking the newer ones, so it spun up a second environment and called it Earth-Two. That was the first fork.</p>
     <p>Forks multiply. By the 1980s there were Earths for the Golden Age heroes, for characters bought from other publishers, for evil twins, and for one-off jokes. Readers needed a guidebook to follow along. So in 1985, Marv Wolfman and George Pérez ran Crisis on Infinite Earths, the most famous migration in comics. The infinite Earths collapsed into one. A cosmic being called the Monitor gave his life so something would survive, and heroes died by the dozen. It was a monolith consolidation, and like every consolidation I've ever lived through, it left a lot of orphaned data behind.</p>
     <p>The patches came fast. Zero Hour in 1994 tried to fix the timeline. Then in 1998, Mark Waid's The Kingdom introduced Hypertime, an idea he cooked up with Grant Morrison. It was basically an admission: the branches never really went away, so stop fighting them and document them.</p>
+    <p>Marvel fans will recognize this fight. In Loki, the Time Variance Authority spends its days pruning branch timelines to protect a single <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>, which is basically Crisis on Infinite Earths run as a government agency. By the end of the second season, Loki stops the pruning and holds the branches together instead, letting every timeline grow. DC's Hypertime made the same call twenty-five years earlier.</p>
+
+    <figure class="shot" style="max-width:640px">
+      <img src="loki-sacred-timeline.webp" alt="The TVA's monitor in Loki, showing the bright Sacred Timeline with branch timelines splitting off and being marked for pruning." loading="lazy" width="800" height="450" />
+      <figcaption><span class="g">&gt;</span> The Sacred Timeline, as the TVA sees it_</figcaption>
+    </figure>
+    <p class="credit">Still from Loki (2021). © Marvel Studios / Disney.</p>
+
+    <figure class="shot tl" style="max-width:640px">
+      <div class="tl-wrap" role="img" aria-label="Two diagrams: the Sacred Timeline with its branches pruned, as in Crisis on Infinite Earths and the TVA, and the same timeline with every branch allowed to grow, as in Hypertime and the end of Loki.">
+        <div class="tl-p pruned">
+          <div class="tl-l">pruned</div>
+          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" d="M34 82C48 82 46 38 60 38H68M69.5 34.5L76.5 41.5M76.5 34.5L69.5 41.5"/><path class="b" d="M84 82C98 82 96 126 110 126H118M119.5 122.5L126.5 129.5M126.5 122.5L119.5 129.5"/><path class="b" d="M134 82C148 82 146 60 160 60H168M169.5 56.5L176.5 63.5M176.5 56.5L169.5 63.5"/><path class="b" d="M184 82C198 82 196 104 210 104H218M219.5 100.5L226.5 107.5M226.5 100.5L219.5 107.5"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/></svg>
+        </div>
+        <div class="tl-p grown">
+          <div class="tl-l">grown</div>
+          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" d="M34 82C48 82 46 38 60 38H300"/><path class="b" d="M84 82C98 82 96 126 110 126H300"/><path class="b" d="M134 82C148 82 146 60 160 60H300"/><path class="b" d="M184 82C198 82 196 104 210 104H300"/><path class="b s" d="M118 38C132 38 130 18 144 18H300"/><path class="b s" d="M168 126C182 126 180 146 194 146H300"/><path class="b s" d="M214 60C228 60 226 49 240 49H300"/><path class="b s" d="M240 104C254 104 252 115 266 115H300"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/><circle class="n s" cx="118" cy="38" r="2"/><circle class="n s" cx="168" cy="126" r="2"/><circle class="n s" cx="214" cy="60" r="2"/><circle class="n s" cx="240" cy="104" r="2"/></svg>
+        </div>
+      </div>
+      <figcaption><span class="g">&gt;</span> Prune it, or let it grow_</figcaption>
+    </figure>
+
     <p>Infinite Crisis (2005) and the weekly series 52 (2006 to 2007) brought the Multiverse back, this time capped at exactly 52 worlds. Final Crisis (2008) stress-tested it. Flashpoint (2011) rebooted the whole line. Then in 2014, Morrison's The Multiversity did what nobody had done in fifty years of production: it published the first official architecture diagram.</p>
     <p>After that the pace picked up. Dark Nights: Metal (2017) added a basement. Snyder's Justice League (2018 to 2020) went looking for the original architect. Dark Nights: Death Metal (2020) declared that every story ever told counts. Dark Crisis on Infinite Earths (2022) lifted the 52-world cap and restored the infinite Multiverse. And in 2024, DC All In started the current era.</p>
     <p>If that sounds like a codebase, it's because it is one. Hundreds of writers, thousands of issues, no single owner, and a business that can't take the system down for maintenance. Every Crisis is a migration, and every reboot is a reimage. And somehow the lights stay on.</p>
@@ -268,10 +310,10 @@
       <figcaption><span class="g">&gt;</span> Appendix: panel by panel · tap to inspect_</figcaption>
     </figure>
 
-    <p class="lede">Further reading: <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">DC's own Map of the Multiverse</a>, <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">DC's own history of the Multiverse</a>, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse</a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum</a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe</a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega</a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1</a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature</a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up</a>.</p>
+    <p class="lede">Further reading: <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">DC's own Map of the Multiverse</a>, <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">DC's own history of the Multiverse</a>, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse</a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum</a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe</a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega</a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1</a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline</a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature</a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up</a>.</p>
   </article>
 
-  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map. A few of the machine's spellings slipped through this time. Nobody's perfect.</p>
+  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map and the Loki still. A few of the machine's spellings slipped through this time. Nobody's perfect.</p>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
 
