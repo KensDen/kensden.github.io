@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
 <title>The Multiverse Is a System Architecture, Complete with a Control Plane · Ken</title>
 <meta name="description" content="DC Comics' Multiverse, read as a system architecture: six layers, a control plane, and a duality at the heart of the new era. By Ken Connell." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -121,13 +121,14 @@
 
   /* the git-log timeline: a semantic <ol>; motion only with scroll-timeline support and no reduced-motion preference */
   figure.glog{background:linear-gradient(180deg,var(--panel),var(--panel-2));overflow:clip} /* clip, not hidden: a scroll container would capture the rows' view timelines */
-  .glog ol{--rail:19px;list-style:none;margin:0;padding:14px 16px 12px calc(var(--rail) + 17px);
+  .glog ol{--rail:19px;list-style:none;margin:0;padding:14px 16px 12px 0;display:grid;
+    grid-template-columns:calc(var(--rail) + 17px) minmax(0,1fr);grid-template-rows:repeat(8,auto);
     font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.6}
-  .glog li{position:relative;display:grid;grid-template-columns:4ch 7ch minmax(0,1fr);column-gap:1.2ch;padding:5px 0;view-timeline:--glog-row block}
+  /* the connector: one static line in the rail column, from the first dot's centre (row 1) to the last dot's centre (top of row 8 plus the dot offset) */
+  .glog ol::before{content:"";grid-column:1;grid-row:1 / -2;justify-self:start;width:1px;
+    margin:calc(5px + .8em) 0 calc(-5px - .8em) calc(var(--rail) - .5px);background:rgba(116,131,143,.4)}
+  .glog li{grid-column:2;position:relative;display:grid;grid-template-columns:4ch 7ch minmax(0,1fr);column-gap:1.2ch;padding:5px 0;view-timeline:--glog-row block}
   .glog li::before{content:"";position:absolute;z-index:1;left:-21px;top:calc(5px + .8em - 4px);width:8px;height:8px;border-radius:50%;background:var(--c)}
-  .glog li::after{content:"";position:absolute;left:-17.5px;top:0;bottom:0;width:1px;background:rgba(116,131,143,.4)}
-  .glog li:first-child::after{top:calc(5px + .8em)}
-  .glog li:last-child::after{bottom:auto;height:calc(5px + .8em)}
   .glog .fork{--c:var(--amber)}
   .glog .migrate{--c:var(--red)}
   .glog .docs{--c:var(--cyan)}
@@ -145,6 +146,131 @@
     @supports (animation-timeline: view()){
       .glog li{animation:glog-in linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
       .glog li::before{animation:glog-dot linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
+    }
+  }
+
+  /* ===== animations (spec v1.0). Everything below is decorative: with JS off, reduced motion or no
+     scroll-timeline support each figure shows its finished still state. multiverse.js adds .js to <html>,
+     toggles .in-view on figures (loops run only then) and adds .run once to start one-shot sequences. ===== */
+  figure.has-replay{position:relative}
+  figure.has-replay figcaption{overflow-wrap:anywhere}
+  .replay{display:none;position:absolute;right:4px;bottom:0;height:44px;min-width:44px;padding:0 10px;
+    align-items:center;justify-content:center;font:12px/1 "JetBrains Mono",monospace;color:var(--cyan);background:none;border:0;border-radius:8px;cursor:pointer}
+  .replay:hover{color:var(--green)}
+  .replay:focus-visible{outline:2px solid var(--cyan);outline-offset:-6px}
+
+  /* 1. prune vs grow */
+  .tl .x{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-linecap:round;transform-box:fill-box;transform-origin:center}
+
+  /* 2. Monitor audit log */
+  figure.audit{background:linear-gradient(180deg,var(--panel),var(--panel-2));overflow:clip}
+  .alog{margin:0;padding:14px 16px 12px;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.6;color:var(--muted);
+    white-space:pre-wrap;font-variant-ligatures:none}
+  .alog .ln{display:block;padding-left:2ch;text-indent:-2ch}
+  .alog .tk{white-space:nowrap}
+  .alog .cmd{color:var(--ink)}
+  .alog .pr,.alog .ok{color:var(--green)}
+  .alog .r,.alog .warn{color:var(--red)}
+  .acur{display:inline-block;width:.6em;height:1.1em;vertical-align:-.2em;background:var(--green);border-radius:1px}
+  .alog.sr-only{padding:0;margin:-1px;white-space:pre}
+  .alog-v .h{color:transparent}
+  .alog-v .cur{background:linear-gradient(var(--green),var(--green)) 0 50%/100% 1.1em no-repeat;color:transparent}
+  .alog-v .acur{visibility:hidden}
+  .audit.done .alog-v .acur{visibility:visible}
+
+  /* 3. signal through the stack, and the stack-to-table highlight */
+  .layer{position:relative;transition:box-shadow .2s}
+  .layer>div{position:relative;z-index:1}
+  .osi tbody tr>*{transition:box-shadow .2s;height:44px} /* rows double as tap targets for the stack highlight */
+  [data-l="6"]{--lc:var(--violet)} [data-l="5"]{--lc:var(--pink);--k:4} [data-l="4"]{--lc:var(--cyan);--k:3}
+  [data-l="3"]{--lc:var(--green);--k:2} [data-l="2"]{--lc:var(--amber);--k:1} [data-l="1"]{--lc:var(--red);--k:0}
+  .layer.hl,.osi tr.hl>*{box-shadow:inset 0 0 0 100vmax rgba(255,255,255,.05);box-shadow:inset 0 0 0 100vmax color-mix(in srgb,var(--lc) 12%,transparent)}
+
+  /* 4. the Orrery */
+  figure.orrery,figure.ao{background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .orrery svg{display:block;width:100%;height:auto}
+  .orrery .ring{fill:none;stroke:rgba(116,131,143,.28)}
+  .orrery .wall{fill:none;stroke:var(--amber);stroke-opacity:.55}
+  .orrery .core{fill:var(--ink)}
+  .orrery .halo{fill:none;stroke:var(--green);stroke-opacity:.45}
+  .orrery .dot.on{stroke:var(--ink);stroke-width:1.6}
+  .orrery text{font-family:"JetBrains Mono",monospace;font-size:10.5px;fill:var(--muted);letter-spacing:.04em}
+  .orrery .wl{font-size:9.5px;fill:var(--amber);fill-opacity:.85;letter-spacing:.12em}
+  article p.orr-out{margin:0;padding:0 14px 12px;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.5;color:var(--dim);text-align:center}
+
+  /* 5. Alpha and Omega disc */
+  .ao-wrap{position:relative;width:200px;height:200px;margin:30px auto}
+  .ao-glow,.ao-disc{position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 90deg,var(--red),var(--pink) 22%,var(--violet) 38%,var(--cyan) 50%,var(--violet) 62%,var(--pink) 78%,var(--red))}
+  .ao-glow{inset:8%;filter:blur(22px);opacity:.4}
+  .ao-disc{-webkit-mask:radial-gradient(circle,transparent 0 30%,#000 37% 60%,transparent 71%);mask:radial-gradient(circle,transparent 0 30%,#000 37% 60%,transparent 71%)}
+  .ao-oa,.ao-a,.ao-o{position:absolute;font-family:"JetBrains Mono",monospace;line-height:1}
+  .ao-oa{inset:0;display:grid;place-items:center;font-size:15px;font-weight:700;letter-spacing:.08em;color:var(--ink)}
+  .ao-a,.ao-o{top:50%;margin-top:-.5em;font-size:13px}
+  .ao-a{left:-24px;color:var(--cyan)}
+  .ao-o{right:-24px;color:var(--red)}
+
+  @keyframes tl-draw{from{stroke-dashoffset:1.05}to{stroke-dashoffset:0}}
+  @keyframes tl-dim{to{opacity:.35}}
+  @keyframes tl-x{0%{opacity:0;transform:scale(1.9);stroke-width:3;filter:drop-shadow(0 0 3px var(--amber))}
+    60%{opacity:1;transform:none;stroke-width:2.4;filter:drop-shadow(0 0 3px var(--amber))}100%{opacity:1;transform:none}}
+  @keyframes tl-in{from{opacity:0}to{opacity:1}}
+  @keyframes au-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes au-pulse{50%{text-shadow:0 0 10px rgba(255,95,87,.8)}}
+  @keyframes au-blink{50%{opacity:0}}
+  @keyframes stk-pulse{0%{transform:translateY(8px);opacity:0}.5%{opacity:1}13.33%{transform:translateY(calc(8px - 100%));opacity:1}13.34%,100%{transform:translateY(calc(8px - 100%));opacity:0}}
+  @keyframes stk-scan{0%{transform:translateX(-100%);opacity:1}30%{transform:none;opacity:1}30.01%,100%{transform:none;opacity:0}}
+  @keyframes orr-wob{50%{transform:translate(var(--dx),var(--dy))}}
+  @keyframes ao-turn{to{transform:rotate(1turn)}}
+  @keyframes ao-breathe{from{opacity:.25}to{opacity:.6}}
+
+  @media print{
+    .alog-v{display:none}
+    .alog.sr-only{position:static;width:auto;height:auto;margin:0;padding:14px 16px 12px;overflow:visible;clip:auto;white-space:pre-wrap}
+  }
+  @media screen and (prefers-reduced-motion: no-preference){
+    figure.has-replay figcaption{min-height:44px;padding:12.7px 96px 12.7px 14px}
+    .js .replay{display:inline-flex}
+
+    /* JS: one-shots wait in their start frame until .run, then play once at normal speed */
+    .js .tl .b{stroke-dasharray:1 2;stroke-dashoffset:1.05}
+    .js .tl .x,.js .tl .n.s{opacity:0}
+    .js .tl.run .b{animation:tl-draw .6s ease-out calc(.2s + var(--i) * .35s) both}
+    .js .tl.run .pruned .b{animation:tl-draw .6s ease-out calc(.2s + var(--i) * .35s) both,tl-dim .4s ease calc(1.05s + var(--i) * .35s) both}
+    .js .tl.run .x{animation:tl-x .25s ease-out calc(.8s + var(--i) * .35s) both}
+    .js .tl.run .b.s{animation:tl-draw .7s ease-out calc(.85s + var(--i) * .35s) both}
+    .js .tl.run .n.s{animation:tl-in .2s ease calc(.85s + var(--i) * .35s) both}
+
+    .js .audit.pulse .alog-v .warn{animation:au-pulse 1.5s ease-in-out 2}
+    .js .audit.done .alog-v .acur{animation:au-blink 1.1s steps(1) infinite paused}
+    .js .audit.in-view.done .alog-v .acur{animation-play-state:running}
+
+    /* JS: loops run only while their figure is in view */
+    /* the pulse: a 16px bar at the foot of a full-height strip, carried up by transform (no layout work, no layout shift) */
+    .js .stack .layer:not([data-l="6"])::before{content:"";position:absolute;left:-3px;top:0;bottom:0;width:3px;
+      background:linear-gradient(to top,#fff 0 16px,transparent 16px);background:linear-gradient(to top,color-mix(in srgb,var(--lc) 45%,#fff) 0 16px,transparent 16px);
+      filter:drop-shadow(0 0 2px var(--lc)) drop-shadow(0 0 6px var(--lc));opacity:0;pointer-events:none;
+      animation:stk-pulse 6s linear calc(var(--k) * .8s) infinite paused}
+    .js .stack .layer[data-l="6"]::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transform:translateX(-100%);
+      background:linear-gradient(90deg,transparent calc(100% - 48px),rgba(167,139,250,.07) calc(100% - 1px),rgba(167,139,250,.35));animation:stk-scan 6s linear infinite paused}
+    .js .orrery .dot{animation:orr-wob var(--p) ease-in-out var(--d) infinite paused}
+    .js .ao .ao-disc{animation:ao-turn 24s linear infinite paused}
+    .js .ao .ao-glow{animation:ao-breathe 6s ease-in-out infinite alternate paused}
+    .js .stack.in-view .layer::before,.js .stack.in-view .layer::after,.js .orrery.in-view .dot,
+    .js .ao.in-view .ao-disc,.js .ao.in-view .ao-glow{animation-play-state:running}
+
+    /* no JS: the one-shots follow the scrollbar where scroll-driven animations exist; loops stay still */
+    @supports (animation-timeline: view()){
+      html:not(.js) .tl{view-timeline:--tlv block}
+      html:not(.js) .tl .b{stroke-dasharray:1 2;animation:tl-draw linear both;animation-timeline:--tlv;
+        animation-range:cover calc(12.7% + var(--i) * 4.7%) cover calc(20.8% + var(--i) * 4.7%)}
+      html:not(.js) .tl .pruned .b{animation:tl-draw linear both,tl-dim linear both;animation-timeline:--tlv,--tlv;
+        animation-range:cover calc(12.7% + var(--i) * 4.7%) cover calc(20.8% + var(--i) * 4.7%),cover calc(24.2% + var(--i) * 4.7%) cover calc(29.6% + var(--i) * 4.7%)}
+      html:not(.js) .tl .x{animation:tl-x linear both;animation-timeline:--tlv;animation-range:cover calc(20.8% + var(--i) * 4.7%) cover calc(24.2% + var(--i) * 4.7%)}
+      html:not(.js) .tl .b.s{animation:tl-draw linear both;animation-timeline:--tlv;animation-range:cover calc(20.8% + var(--i) * 4.7%) cover calc(30.3% + var(--i) * 4.7%)}
+      html:not(.js) .tl .n.s{animation:tl-in linear both;animation-timeline:--tlv;animation-range:cover calc(20.8% + var(--i) * 4.7%) cover calc(23.5% + var(--i) * 4.7%)}
+      html:not(.js) .audit{view-timeline:--auv block}
+      html:not(.js) .alog .ln{animation:au-in linear both;animation-timeline:--auv;animation-range:cover calc(10% + var(--i) * 4%) cover calc(16% + var(--i) * 4%)}
     }
   }
 
@@ -192,10 +318,12 @@
     .osi th,.osi td{padding:10px 8px}
     .osi thead th{font-size:11px;padding-top:8px;padding-bottom:8px}
     .osi tbody th{padding-left:calc(8px + 1.4em);white-space:normal}
-    .glog ol{--rail:15px;font-size:12px;padding:12px 12px 10px calc(var(--rail) + 17px)}
+    .glog ol{--rail:15px;font-size:12px;padding:12px 12px 10px 0}
     .glog li{column-gap:1ch}
+    .alog{font-size:12px;padding:12px 12px 10px}
   }
   @media (max-width:379.98px){
+    .alog{font-size:11px}
     .osi table{font-size:11.5px}
     .osi th,.osi td{padding:9px 6px}
     .osi tbody th{padding-left:6px;text-indent:0}
@@ -204,6 +332,7 @@
     .osi table{font-size:11px}
   }
 </style>
+<script src="multiverse.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -244,17 +373,18 @@
     </figure>
     <p class="credit">Still from Loki (2021). © Marvel Studios / Disney.</p>
 
-    <figure class="shot tl" style="max-width:640px">
+    <figure class="shot tl has-replay" style="max-width:640px" data-anim="once">
       <div class="tl-wrap" role="img" aria-label="Two diagrams: the Sacred Timeline with its branches pruned, as in Crisis on Infinite Earths and the TVA, and the same timeline with every branch allowed to grow, as in Hypertime and the end of Loki.">
         <div class="tl-p pruned">
           <div class="tl-l">pruned</div>
-          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" d="M34 82C48 82 46 38 60 38H68M69.5 34.5L76.5 41.5M76.5 34.5L69.5 41.5"/><path class="b" d="M84 82C98 82 96 126 110 126H118M119.5 122.5L126.5 129.5M126.5 122.5L119.5 129.5"/><path class="b" d="M134 82C148 82 146 60 160 60H168M169.5 56.5L176.5 63.5M176.5 56.5L169.5 63.5"/><path class="b" d="M184 82C198 82 196 104 210 104H218M219.5 100.5L226.5 107.5M226.5 100.5L219.5 107.5"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/></svg>
+          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" pathLength="1" style="--i:0" d="M34 82C48 82 46 38 60 38H68"/><path class="x" style="--i:0" d="M69.5 34.5L76.5 41.5M76.5 34.5L69.5 41.5"/><path class="b" pathLength="1" style="--i:1" d="M84 82C98 82 96 126 110 126H118"/><path class="x" style="--i:1" d="M119.5 122.5L126.5 129.5M126.5 122.5L119.5 129.5"/><path class="b" pathLength="1" style="--i:2" d="M134 82C148 82 146 60 160 60H168"/><path class="x" style="--i:2" d="M169.5 56.5L176.5 63.5M176.5 56.5L169.5 63.5"/><path class="b" pathLength="1" style="--i:3" d="M184 82C198 82 196 104 210 104H218"/><path class="x" style="--i:3" d="M219.5 100.5L226.5 107.5M226.5 100.5L219.5 107.5"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/></svg>
         </div>
         <div class="tl-p grown">
           <div class="tl-l">grown</div>
-          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" d="M34 82C48 82 46 38 60 38H300"/><path class="b" d="M84 82C98 82 96 126 110 126H300"/><path class="b" d="M134 82C148 82 146 60 160 60H300"/><path class="b" d="M184 82C198 82 196 104 210 104H300"/><path class="b s" d="M118 38C132 38 130 18 144 18H300"/><path class="b s" d="M168 126C182 126 180 146 194 146H300"/><path class="b s" d="M214 60C228 60 226 49 240 49H300"/><path class="b s" d="M240 104C254 104 252 115 266 115H300"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/><circle class="n s" cx="118" cy="38" r="2"/><circle class="n s" cx="168" cy="126" r="2"/><circle class="n s" cx="214" cy="60" r="2"/><circle class="n s" cx="240" cy="104" r="2"/></svg>
+          <svg viewBox="0 0 300 164" width="300" height="164" aria-hidden="true" focusable="false"><path class="mg" d="M0 82H300"/><path class="m" d="M0 82H300"/><path class="b" pathLength="1" style="--i:0" d="M34 82C48 82 46 38 60 38H300"/><path class="b" pathLength="1" style="--i:1" d="M84 82C98 82 96 126 110 126H300"/><path class="b" pathLength="1" style="--i:2" d="M134 82C148 82 146 60 160 60H300"/><path class="b" pathLength="1" style="--i:3" d="M184 82C198 82 196 104 210 104H300"/><path class="b s" pathLength="1" style="--i:0" d="M118 38C132 38 130 18 144 18H300"/><path class="b s" pathLength="1" style="--i:1" d="M168 126C182 126 180 146 194 146H300"/><path class="b s" pathLength="1" style="--i:2" d="M214 60C228 60 226 49 240 49H300"/><path class="b s" pathLength="1" style="--i:3" d="M240 104C254 104 252 115 266 115H300"/><circle class="n" cx="34" cy="82" r="2.5"/><circle class="n" cx="84" cy="82" r="2.5"/><circle class="n" cx="134" cy="82" r="2.5"/><circle class="n" cx="184" cy="82" r="2.5"/><circle class="n s" style="--i:0" cx="118" cy="38" r="2"/><circle class="n s" style="--i:1" cx="168" cy="126" r="2"/><circle class="n s" style="--i:2" cx="214" cy="60" r="2"/><circle class="n s" style="--i:3" cx="240" cy="104" r="2"/></svg>
         </div>
       </div>
+      <button type="button" class="replay" aria-label="Replay prune and grow animation">↻ replay</button>
       <figcaption><span class="g">&gt;</span> Prune it, or let it grow_</figcaption>
     </figure>
 
@@ -289,6 +419,13 @@
     <p class="credit">The Map of the Multiverse, from The Multiversity (2014). Grant Morrison, text and concept. Rian Hughes, design. © DC Comics. <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Interactive version on dc.com<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
 
     <p>At the center sits the Orrery of Worlds: 52 universes occupying the same space, each vibrating at a different frequency so they don't collide. It's multi-tenancy: same hardware, separate tenants, with isolation done by frequency instead of by VLAN. Right in the middle of it, the House of Heroes and the Rock of Eternity act as the shared services that every tenant can reach.</p>
+
+    <figure class="shot orrery" style="max-width:360px" data-anim="loop">
+      <svg viewBox="0 0 360 360" width="360" height="360" role="img" aria-label="The Orrery of Worlds: 52 universes sharing one space, each vibrating at its own frequency, around the House of Heroes."><path id="orr-wall-arc" d="M1 180A179 179 0 0 0 359 180" fill="none"/><circle class="wall" cx="180" cy="180" r="168"/><circle class="ring" cx="180" cy="180" r="62"/><circle class="ring" cx="180" cy="180" r="102"/><circle class="ring" cx="180" cy="180" r="142"/><circle class="halo" cx="180" cy="180" r="11"/><circle class="core" cx="180" cy="180" r="6"/><text x="180" y="204" text-anchor="middle">House of Heroes</text><text class="wl"><textPath href="#orr-wall-arc" startOffset="50%" text-anchor="middle">Speed Force Wall</textPath></text><circle class="dot" cx="180.0" cy="118.0" r="3.2" style="fill:var(--green);--p:1.60s;--d:0.0s;--dx:0.00px;--dy:-1.30px"/><circle class="dot" cx="211.0" cy="126.3" r="3.2" style="fill:var(--cyan);--p:3.55s;--d:-1.3s;--dx:1.37px;--dy:-2.38px"/><circle class="dot" cx="233.7" cy="149.0" r="3.2" style="fill:var(--violet);--p:2.23s;--d:-2.6s;--dx:2.08px;--dy:-1.20px"/><circle class="dot" cx="242.0" cy="180.0" r="3.2" style="fill:var(--amber);--p:4.17s;--d:-3.9s;--dx:2.06px;--dy:0.00px"/><circle class="dot" cx="233.7" cy="211.0" r="3.2" style="fill:var(--pink);--p:2.85s;--d:-1.2s;--dx:1.49px;--dy:0.86px"/><circle class="dot" cx="211.0" cy="233.7" r="3.2" style="fill:var(--red);--p:4.80s;--d:-2.5s;--dx:0.69px;--dy:1.20px"/><circle class="dot" cx="180.0" cy="242.0" r="3.2" style="fill:var(--green);--p:3.48s;--d:-3.8s;--dx:0.00px;--dy:2.83px"/><circle class="dot" cx="149.0" cy="233.7" r="3.2" style="fill:var(--cyan);--p:2.16s;--d:-1.1s;--dx:-1.24px;--dy:2.16px"/><circle class="dot" cx="126.3" cy="211.0" r="3.2" style="fill:var(--violet);--p:4.11s;--d:-2.4s;--dx:-1.86px;--dy:1.07px"/><circle class="dot" cx="118.0" cy="180.0" r="3.2" style="fill:var(--amber);--p:2.79s;--d:-3.7s;--dx:-1.81px;--dy:0.00px"/><circle class="dot" cx="126.3" cy="149.0" r="3.2" style="fill:var(--pink);--p:4.74s;--d:-1.0s;--dx:-1.27px;--dy:-0.73px"/><circle class="dot" cx="149.0" cy="126.3" r="3.2" style="fill:var(--red);--p:3.42s;--d:-2.3s;--dx:-1.46px;--dy:-2.52px"/><circle class="dot" cx="197.7" cy="79.5" r="3.2" style="fill:var(--green);--p:2.10s;--d:-3.6s;--dx:0.45px;--dy:-2.54px"/><circle class="dot" cx="231.0" cy="91.7" r="3.2" style="fill:var(--cyan);--p:4.05s;--d:-0.9s;--dx:1.12px;--dy:-1.94px"/><circle class="dot" cx="258.1" cy="114.4" r="3.2" style="fill:var(--violet);--p:2.73s;--d:-2.2s;--dx:1.45px;--dy:-1.22px"/><circle class="dot" cx="275.8" cy="145.1" r="3.2" style="fill:var(--amber);--p:4.67s;--d:-3.5s;--dx:1.46px;--dy:-0.53px"/><circle class="dot" cx="282.0" cy="180.0" r="3.2" style="fill:var(--pink);--p:3.36s;--d:-0.8s;--dx:3.00px;--dy:0.00px"/><circle class="dot" cx="275.8" cy="214.9" r="3.2" style="fill:var(--red);--p:2.04s;--d:-2.1s;--dx:2.50px;--dy:0.91px"/><circle class="dot" cx="258.1" cy="245.6" r="3.2" style="fill:var(--green);--p:3.98s;--d:-3.4s;--dx:1.78px;--dy:1.49px"/><circle class="dot" cx="231.0" cy="268.3" r="3.2" style="fill:var(--cyan);--p:2.67s;--d:-0.7s;--dx:0.99px;--dy:1.71px"/><circle class="dot" cx="197.7" cy="280.5" r="3.2" style="fill:var(--violet);--p:4.61s;--d:-2.0s;--dx:0.28px;--dy:1.62px"/><circle class="dot" cx="162.3" cy="280.5" r="3.2" style="fill:var(--amber);--p:3.29s;--d:-3.3s;--dx:-0.23px;--dy:1.28px"/><circle class="dot" cx="129.0" cy="268.3" r="3.2" style="fill:var(--pink);--p:1.98s;--d:-0.6s;--dx:-1.37px;--dy:2.38px"/><circle class="dot" cx="101.9" cy="245.6" r="3.2" style="fill:var(--red);--p:3.92s;--d:-1.9s;--dx:-1.84px;--dy:1.55px"/><circle class="dot" cx="84.2" cy="214.9" r="3.2" style="fill:var(--green);--p:2.60s;--d:-3.2s;--dx:-1.94px;--dy:0.71px"/><circle class="dot" cx="78.0" cy="180.0" r="3.2" style="fill:var(--cyan);--p:4.55s;--d:-0.5s;--dx:-1.73px;--dy:0.00px"/><circle class="dot" cx="84.2" cy="145.1" r="3.2" style="fill:var(--violet);--p:3.23s;--d:-1.8s;--dx:-1.30px;--dy:-0.47px"/><circle class="dot" cx="101.9" cy="114.4" r="3.2" style="fill:var(--amber);--p:1.91s;--d:-3.1s;--dx:-2.17px;--dy:-1.82px"/><circle class="dot" cx="129.0" cy="91.7" r="3.2" style="fill:var(--pink);--p:3.86s;--d:-0.4s;--dx:-1.25px;--dy:-2.16px"/><circle class="dot" cx="162.3" cy="79.5" r="3.2" style="fill:var(--red);--p:2.54s;--d:-1.7s;--dx:-0.37px;--dy:-2.12px"/><circle class="dot" cx="190.1" cy="38.4" r="3.2" style="fill:var(--green);--p:4.49s;--d:-3.0s;--dx:0.13px;--dy:-1.81px"/><circle class="dot" cx="229.6" cy="47.0" r="3.2" style="fill:var(--cyan);--p:3.17s;--d:-0.3s;--dx:0.51px;--dy:-1.38px"/><circle class="dot" cx="265.1" cy="66.3" r="3.2" style="fill:var(--violet);--p:1.85s;--d:-1.6s;--dx:1.75px;--dy:-2.33px"/><circle class="dot" cx="293.7" cy="94.9" r="3.2" style="fill:var(--amber);--p:3.80s;--d:-2.9s;--dx:2.06px;--dy:-1.54px"/><circle class="dot" cx="313.0" cy="130.4" r="3.2" style="fill:var(--pink);--p:2.48s;--d:-0.2s;--dx:2.09px;--dy:-0.78px"/><circle class="dot" cx="321.6" cy="169.9" r="3.2" style="fill:var(--red);--p:4.42s;--d:-1.5s;--dx:1.89px;--dy:-0.13px"/><circle class="dot" cx="318.8" cy="210.2" r="3.2" style="fill:var(--green);--p:3.11s;--d:-2.8s;--dx:1.52px;--dy:0.33px"/><circle class="dot" cx="304.6" cy="248.1" r="3.2" style="fill:var(--cyan);--p:1.79s;--d:-0.1s;--dx:2.63px;--dy:1.44px"/><circle class="dot" cx="280.4" cy="280.4" r="3.2" style="fill:var(--violet);--p:3.73s;--d:-1.4s;--dx:1.88px;--dy:1.88px"/><circle class="dot" cx="248.1" cy="304.6" r="3.2" style="fill:var(--amber);--p:2.42s;--d:-2.7s;--dx:1.11px;--dy:2.04px"/><circle class="dot" cx="210.2" cy="318.8" r="3.2" style="fill:var(--pink);--p:4.36s;--d:0.0s;--dx:0.42px;--dy:1.93px"/><circle class="dot" cx="169.9" cy="321.6" r="3.2" style="fill:var(--red);--p:3.04s;--d:-1.3s;--dx:-0.12px;--dy:1.64px"/><circle class="dot" cx="130.4" cy="313.0" r="3.2" style="fill:var(--green);--p:1.73s;--d:-2.6s;--dx:-0.45px;--dy:1.22px"/><circle class="dot" cx="94.9" cy="293.7" r="3.2" style="fill:var(--cyan);--p:3.67s;--d:-3.9s;--dx:-1.64px;--dy:2.20px"/><circle class="dot" cx="66.3" cy="265.1" r="3.2" style="fill:var(--violet);--p:2.35s;--d:-1.2s;--dx:-1.93px;--dy:1.44px"/><circle class="dot" cx="47.0" cy="229.6" r="3.2" style="fill:var(--amber);--p:4.30s;--d:-2.5s;--dx:-1.93px;--dy:0.72px"/><circle class="dot" cx="38.4" cy="190.1" r="3.2" style="fill:var(--pink);--p:2.98s;--d:-3.8s;--dx:-1.72px;--dy:0.12px"/><circle class="dot" cx="41.2" cy="149.8" r="3.2" style="fill:var(--red);--p:1.66s;--d:-1.1s;--dx:-1.35px;--dy:-0.29px"/><circle class="dot" cx="55.4" cy="111.9" r="3.2" style="fill:var(--green);--p:3.61s;--d:-2.4s;--dx:-2.48px;--dy:-1.36px"/><circle class="dot" cx="79.6" cy="79.6" r="3.2" style="fill:var(--cyan);--p:2.29s;--d:-3.7s;--dx:-1.76px;--dy:-1.76px"/><circle class="dot" cx="111.9" cy="55.4" r="3.2" style="fill:var(--violet);--p:4.24s;--d:-1.0s;--dx:-1.03px;--dy:-1.89px"/><circle class="dot" cx="149.8" cy="41.2" r="3.2" style="fill:var(--amber);--p:2.92s;--d:-2.3s;--dx:-0.38px;--dy:-1.77px"/></svg>
+      <p class="orr-out" aria-hidden="true">&gt; 52 worlds: earth-0 to earth-51_</p>
+      <figcaption><span class="g">&gt;</span> 52 tenants, one space, different frequencies_</figcaption>
+    </figure>
+
     <p>The space between those worlds is the Bleed, a concept DC borrowed from Warren Ellis's Wildstorm books. It's the transit network. Ships cross it, and things leak through it. The legend even notes that the Monitors drilled siphons from their sphere down into the Orrery to harvest it, about the most honest picture of a control plane tapping a data plane I've ever seen on a poster.</p>
     <p>Around the Orrery runs the Speed Force Wall. The map calls it the speed of light for the people inside, and only a limit to matter. Think of it as a rate limit. You can go fast, but not that fast, unless you're a speedster with the right credentials.</p>
     <p>Then come the outer rings. The Sphere of the Gods holds every pantheon: Asgard and Olympus, Heaven and Hell, New Genesis and Apokolips, Dream and Nightmare. Past that is Limbo, which the map describes as the edge where matter and memory break down. Every org has one of those: the recycle bin nobody ever empties.</p>
@@ -299,34 +436,34 @@
     <h2 class="sub">The stack</h2>
     <p>Morrison's map is drawn as rings, seen from above. Add what Metal and Snyder's Justice League put on top of it, turn it on its side, and you get something you could hang in any network operations center:</p>
 
-    <div class="stack">
+    <div class="stack" data-anim="loop">
       <div class="stack-cap"><span class="g">&gt;</span> the stack, top to bottom_</div>
-      <div class="layer" style="border-left-color:var(--violet)">
+      <div class="layer" data-l="6" style="border-left-color:var(--violet)">
         <span class="n" style="color:var(--violet)">6</span>
         <div><span class="nm">Monitor Sphere</span><span class="role">// the control plane</span>
         <div class="d">Reality's observability tier, where the Multiverse gets watched, tuned, and now and then rebooted. It may well be the same paradise dimension where Alex Luthor led the last survivors at the end of Crisis on Infinite Earths. Every serious system has a tier like this. DC just staffed theirs with Monitors.</div></div>
       </div>
-      <div class="layer" style="border-left-color:var(--pink)">
+      <div class="layer" data-l="5" style="border-left-color:var(--pink)">
         <span class="n" style="color:var(--pink)">5</span>
         <div><span class="nm">Sphere of the Gods</span><span class="role">// the design layer</span>
         <div class="d">Imagination, belief, and archetype, and home to every pantheon on the map. The ideas live here before, and above, anything gets built.</div></div>
       </div>
-      <div class="layer" style="border-left-color:var(--cyan)">
+      <div class="layer" data-l="4" style="border-left-color:var(--cyan)">
         <span class="n" style="color:var(--cyan)">4</span>
         <div><span class="nm">Time</span><span class="role">// the branching graph</span>
         <div class="d">Not a line but a graph, thanks to Hypertime: branching, looping, merging. Every Elseworld and alternate timeline is a branch that never got merged back to main.</div></div>
       </div>
-      <div class="layer" style="border-left-color:var(--green)">
+      <div class="layer" data-l="3" style="border-left-color:var(--green)">
         <span class="n" style="color:var(--green)">3</span>
         <div><span class="nm">Space</span><span class="role">// production</span>
         <div class="d">The known universe. The environment where the stories actually run.</div></div>
       </div>
-      <div class="layer" style="border-left-color:var(--amber)">
+      <div class="layer" data-l="2" style="border-left-color:var(--amber)">
         <span class="n" style="color:var(--amber)">2</span>
         <div><span class="nm">Dark Multiverse</span><span class="role">// the failed-build graveyard</span>
         <div class="d">Every possibility that never came true, every nightmare version, clawing upward toward existence. Only the strongest stories make it through and deploy to Layer 3.</div></div>
       </div>
-      <div class="layer" style="border-left-color:var(--red)">
+      <div class="layer" data-l="1" style="border-left-color:var(--red)">
         <span class="n" style="color:var(--red)">1</span>
         <div><span class="nm">Cosmic Forge</span><span class="role">// the foundry</span>
         <div class="d">Raw potential, underneath everything. This is where realities get compiled in the first place.</div></div>
@@ -348,32 +485,32 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-l="6">
             <th scope="row" style="border-left-color:var(--violet)"><span class="n" style="color:var(--violet)">6</span> Monitor Sphere</th>
             <td><span class="none">no layer: governance, visibility, orchestration</span></td>
             <td><span class="none">no layer</span></td>
           </tr>
-          <tr>
+          <tr data-l="5">
             <th scope="row" style="border-left-color:var(--pink)"><span class="n" style="color:var(--pink)">5</span> Sphere of the Gods</th>
             <td><span class="nw">7 Application,</span> <span class="nw">6 Presentation,</span> <span class="nw">5 Session</span></td>
             <td>Application</td>
           </tr>
-          <tr>
+          <tr data-l="4">
             <th scope="row" style="border-left-color:var(--cyan)"><span class="n" style="color:var(--cyan)">4</span> Time</th>
             <td>4 Transport</td>
             <td>Transport</td>
           </tr>
-          <tr>
+          <tr data-l="3">
             <th scope="row" style="border-left-color:var(--green)"><span class="n" style="color:var(--green)">3</span> Space</th>
             <td>3 Network</td>
             <td>Internet</td>
           </tr>
-          <tr>
+          <tr data-l="2">
             <th scope="row" style="border-left-color:var(--amber)"><span class="n" style="color:var(--amber)">2</span> Dark Multiverse</th>
             <td>2 Data Link</td>
             <td>Link</td>
           </tr>
-          <tr>
+          <tr data-l="1">
             <th scope="row" style="border-left-color:var(--red)"><span class="n" style="color:var(--red)">1</span> Cosmic Forge</th>
             <td>1 Physical</td>
             <td>Link</td>
@@ -395,6 +532,19 @@
     <p>Every architecture has a weak spot, and in DC's it's the operators.</p>
     <p>The first Monitor, back in 1985, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
     <p>By the time of Final Crisis, there were 52 Monitors, one assigned to each world. Then Morrison pulled the rug out. The Monitors had been feeding on the stories they were supposed to protect. One of them, Mandrakk, became a vampire of the Multiverse itself. The people with the most privileged access in all of creation turned out to be the threat. When the dust settled, only one Monitor was kept on: the young Nix Uotan.</p>
+
+    <figure class="shot audit has-replay" style="max-width:640px" data-anim="once" aria-label="A Monitor audit log in which one privileged account starts consuming the stories it guards">
+      <pre class="alog"><span class="ln cmd" style="--i:0"><span class="pr">$</span> tail -f <span class="tk">/monitor-sphere/audit.log</span>
+</span><span class="ln" style="--i:1"><span class="tk">monitor[earth-08]</span>  <span class="tk">solomon</span>    <span class="tk">observe</span>  <span class="tk">earth-08/stories</span>       <span class="tk ok">ok</span>
+</span><span class="ln" style="--i:2"><span class="tk">monitor[earth-12]</span>  <span class="tk">bob</span>        <span class="tk">tune</span>     <span class="tk">earth-12/timeline</span>      <span class="tk ok">ok</span>
+</span><span class="ln" style="--i:3"><span class="tk">monitor[earth-51]</span>  <span class="tk">nix-uotan</span>  <span class="tk">observe</span>  <span class="tk">earth-51/heroes</span>        <span class="tk ok">ok</span>
+</span><span class="ln" style="--i:4"><span class="tk">monitor[earth-08]</span>  <span class="tk">solomon</span>    <span class="tk">write</span>    <span class="tk">monitor-sphere/policy</span>  <span class="tk ok">ok</span>
+</span><span class="ln bad" style="--i:5"><span class="tk">monitor[nil]</span>       <span class="tk">mandrakk</span>   <span class="tk r">consume</span>  <span class="tk r">orrery/*</span>               <span class="tk r">ALERT</span>
+</span><span class="ln warn" style="--i:6">!! privileged account consuming the data it protects<span class="acur" aria-hidden="true"></span></span></pre>
+      <button type="button" class="replay" aria-label="Replay audit log animation">↻ replay</button>
+      <figcaption><span class="g">&gt;</span> tail -f monitor-sphere/audit.log_</figcaption>
+    </figure>
+
     <p>I've spent a good part of my career in counterintelligence and insider threat work, so you can imagine how hard I laughed at that one. It's the oldest lesson in the field. The access that lets someone protect a system is the same access that lets them hurt it. That's why the best insider programs watch behavior, not just badges.</p>
     <p>Snyder took it one step further back. His Justice League introduced Perpetua, the original architect of the Multiverse and mother of the Monitor, the Anti-Monitor, and the World Forger. She'd built the first version to serve her, not the people living in it. Her own sons turned her in, she was sealed in the Source Wall, and the Multiverse was restarted on new rules. It's a supply-chain story at heart: the scariest vulnerability is the one the designer put there.</p>
 
@@ -408,6 +558,14 @@
     </figure>
 
     <p>The oldest name for that shape is yin and yang. Star Wars fans might call it a dyad in the Force. My favorite parallel comes from Shinto, where a single kami has two sides: the ara-mitama, its wild and destructive face, and the nigi-mitama, its calm and gentle one. Same spirit, two expressions, only whole together.</p>
+
+    <figure class="shot ao" style="max-width:360px" data-anim="loop">
+      <div class="ao-wrap" role="img" aria-label="Alpha and Omega energies blending into one turning cycle, labeled OA.">
+        <div class="ao-glow"></div><div class="ao-disc"></div><span class="ao-oa">OA</span><span class="ao-a">α</span><span class="ao-o">Ω</span>
+      </div>
+      <figcaption><span class="g">&gt;</span> Omega-Alpha: one cycle_</figcaption>
+    </figure>
+
     <p>And yes, a guy who spends his working hours pairing red teams with blue teams to make purple was always going to fall for that one. The opposition is part of the design, not a flaw in it.</p>
     <p>When I first wrote this piece, I said I might be reading tea leaves, and that I'd wait for the next big event to see. Then DC K.O. wrapped up in March 2026. The tournament for Darkseid's power ended with Superman giving up the crown instead of keeping it, and the fighters came out carrying both Alpha and Omega energy. I'm not claiming I called it. But I'm not not claiming it, either.</p>
 
