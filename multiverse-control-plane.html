@@ -306,6 +306,8 @@
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:519.98px){
+    /* compact audit log: name, action, status on one line; prefix and path stay for screen readers */
+    .alog .px{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     .tl-wrap{grid-template-columns:1fr}
     .tl-p.grown{border-top:1px solid var(--line)}
     .glog .src{display:block;white-space:normal}
@@ -535,11 +537,11 @@
 
     <figure class="shot audit has-replay" style="max-width:640px" data-anim="once" aria-label="A Monitor audit log in which one privileged account starts consuming the stories it guards">
       <pre class="alog"><span class="ln cmd" style="--i:0"><span class="pr">$</span> tail -f <span class="tk">/monitor-sphere/audit.log</span>
-</span><span class="ln" style="--i:1"><span class="tk">monitor[earth-08]</span>  <span class="tk">solomon</span>    <span class="tk">observe</span>  <span class="tk">earth-08/stories</span>       <span class="tk ok">ok</span>
-</span><span class="ln" style="--i:2"><span class="tk">monitor[earth-12]</span>  <span class="tk">bob</span>        <span class="tk">tune</span>     <span class="tk">earth-12/timeline</span>      <span class="tk ok">ok</span>
-</span><span class="ln" style="--i:3"><span class="tk">monitor[earth-51]</span>  <span class="tk">nix-uotan</span>  <span class="tk">observe</span>  <span class="tk">earth-51/heroes</span>        <span class="tk ok">ok</span>
-</span><span class="ln" style="--i:4"><span class="tk">monitor[earth-08]</span>  <span class="tk">solomon</span>    <span class="tk">write</span>    <span class="tk">monitor-sphere/policy</span>  <span class="tk ok">ok</span>
-</span><span class="ln bad" style="--i:5"><span class="tk">monitor[nil]</span>       <span class="tk">mandrakk</span>   <span class="tk r">consume</span>  <span class="tk r">orrery/*</span>               <span class="tk r">ALERT</span>
+</span><span class="ln" style="--i:1"><span class="px"><span class="tk">monitor[earth-08]</span>  </span><span class="tk">solomon</span>    <span class="tk">observe</span>  <span class="px"><span class="tk">earth-08/stories</span>       </span><span class="tk ok">ok</span>
+</span><span class="ln" style="--i:2"><span class="px"><span class="tk">monitor[earth-12]</span>  </span><span class="tk">bob</span>        <span class="tk">tune</span>     <span class="px"><span class="tk">earth-12/timeline</span>      </span><span class="tk ok">ok</span>
+</span><span class="ln" style="--i:3"><span class="px"><span class="tk">monitor[earth-51]</span>  </span><span class="tk">nix-uotan</span>  <span class="tk">observe</span>  <span class="px"><span class="tk">earth-51/heroes</span>        </span><span class="tk ok">ok</span>
+</span><span class="ln" style="--i:4"><span class="px"><span class="tk">monitor[earth-08]</span>  </span><span class="tk">solomon</span>    <span class="tk">write</span>    <span class="px"><span class="tk">monitor-sphere/policy</span>  </span><span class="tk ok">ok</span>
+</span><span class="ln bad" style="--i:5"><span class="px"><span class="tk">monitor[nil]</span>       </span><span class="tk">mandrakk</span>   <span class="tk r">consume</span>  <span class="px"><span class="tk r">orrery/*</span>               </span><span class="tk r">ALERT</span>
 </span><span class="ln warn" style="--i:6">!! privileged account consuming the data it protects<span class="acur" aria-hidden="true"></span></span></pre>
       <button type="button" class="replay" aria-label="Replay audit log animation">↻ replay</button>
       <figcaption><span class="g">&gt;</span> tail -f monitor-sphere/audit.log_</figcaption>

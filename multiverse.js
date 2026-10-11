@@ -3,27 +3,29 @@
 (function () {
   'use strict';
   var doc = document;
-  doc.documentElement.classList.add('js'); // shows replay buttons
+  doc.documentElement.classList.add('js');
   var mq = window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)');
-  function moving() { return !!(mq && mq.matches); } // as the CSS
+  function moving() { return !!(mq && mq.matches); }
   function $$(sel, el) { return [].slice.call((el || doc).querySelectorAll(sel)); }
 
   /* 2. Audit log: type a hidden copy; the real <pre> stays for readers. */
   function typer(fig) {
-    var pre = fig.querySelector('.alog'), vis = pre.cloneNode(true), chars = [], at = 0, raf = 0;
+    var pre = fig.querySelector('.alog'), vis = pre.cloneNode(true), chars = [], at = 0, gap = 0, raf = 0;
+    var narrow = matchMedia('(max-width: 519.98px)').matches; // phone layout
     vis.classList.add('alog-v');
     vis.setAttribute('aria-hidden', 'true');
     $$('.ln', vis).forEach(function (ln, i) {
-      if (i) at += 90; // a beat per line
-      if (ln.classList.contains('bad')) at += 600; // Mandrakk hesitates
+      if (i) gap += 90; // a beat per line
+      if (ln.classList.contains('bad')) gap += 600; // Mandrakk hesitates
       var walk = doc.createTreeWalker(ln, NodeFilter.SHOW_TEXT), nodes = [], t;
       while ((t = walk.nextNode())) nodes.push(t);
       nodes.forEach(function (node) {
-        var frag = doc.createDocumentFragment();
+        var frag = doc.createDocumentFragment(), skip = narrow && node.parentNode.closest('.px');
         for (var k = 0; k < node.data.length; k++) {
           var c = frag.appendChild(doc.createElement('span'));
           c.textContent = node.data[k];
-          chars.push({ el: c, at: at += 7 }); // ~4 s total
+          if (!skip) { at += 7 + gap; gap = 0; } // pause on visible chars
+          chars.push({ el: c, at: at });
         }
         node.parentNode.replaceChild(frag, node);
       });
@@ -55,9 +57,9 @@
     try { if (!log && auditFig) log = typer(auditFig); } catch (err) { log = null; }
     return log;
   }
-  if (moving()) getLog(); // blank until in view
+  if (moving()) getLog();
 
-  /* One-shots: prune/grow (.run) and the log; reduced motion finishes them. */
+  /* One-shots: prune/grow and the log. */
   function start(fig) {
     if (fig !== auditFig) { fig.classList.remove('run'); void fig.offsetWidth; fig.classList.add('run'); }
     else if (moving()) { if (getLog()) log.play(); }
@@ -68,7 +70,7 @@
     b.addEventListener('click', function () { start(b.closest('figure')); });
   });
 
-  /* .in-view runs loops (paused off screen); one-shots start once at 35%. */
+  /* .in-view runs loops; one-shots start once at 35%. */
   var figs = $$('[data-anim]'), begun = [];
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -84,7 +86,7 @@
     figs.forEach(function (f) { io.observe(f); });
   } else figs.forEach(function (f) { if (f.dataset.anim === 'once') start(f); });
 
-  /* 3. Stack <-> table: hover or tap lights the same layer in both. */
+  /* 3. Stack <-> table: hover or tap lights a layer in both. */
   var lit = null;
   function light(n) {
     if (n === lit) return;
@@ -97,7 +99,7 @@
     el.addEventListener('pointerleave', hover);
   });
 
-  /* 4. Orrery readout: the dot nearest the pointer, anywhere on the SVG. */
+  /* 4. Orrery readout: the dot nearest the pointer. */
   var orr = doc.querySelector('.orrery svg'), out = doc.querySelector('.orr-out');
   var dots = orr ? $$('.dot', orr) : [], base = out ? out.textContent : '', on = -1;
   function show(i) {
@@ -119,7 +121,7 @@
   function track(e) { if (e.pointerType === 'mouse') show(e.type === 'pointerleave' ? -1 : nearest(e)); }
   if (orr && out) { orr.addEventListener('pointermove', track); orr.addEventListener('pointerleave', track); }
 
-  /* Taps via pointerup (iOS sends no click for plain elements); tap elsewhere clears. */
+  /* Taps via pointerup: iOS sends no click for these. */
   var down = null;
   doc.addEventListener('pointerdown', function (e) { down = e; }, true);
   doc.addEventListener('pointerup', function (e) {
