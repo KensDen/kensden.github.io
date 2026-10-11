@@ -154,8 +154,7 @@
   .proj-head{display:flex;gap:16px;align-items:center}
   .tile{flex:none;width:64px;height:64px;border-radius:14px;box-shadow:0 0 0 1px var(--line);background:var(--panel-2);
     display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .tile img{display:block;width:64px;height:64px}
-  .tile.term-tile{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:19px;color:var(--green)}
+  .tile img,.tile svg{display:block;width:64px;height:64px}
   .proj-t{font-family:"Space Grotesk",sans-serif;font-size:20px;font-weight:600;line-height:1.25;color:var(--ink);margin:0}
   .proj-t::before{content:"·> ";content:"·> " / "";font-family:"JetBrains Mono",monospace;color:var(--green)}
   .proj-k{display:block;margin-top:3px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
@@ -440,7 +439,13 @@
       </article>
       <article class="proj">
         <div class="proj-head">
-          <div class="tile term-tile" aria-hidden="true">&gt;_</div>
+          <div class="tile" aria-hidden="true"><svg viewBox="16 12 64 72" width="64" height="64" aria-hidden="true" focusable="false">
+            <rect x="22" y="16" width="52" height="64" rx="5" style="fill:var(--panel);stroke:var(--green)" stroke-width="2.5"/>
+            <g style="fill:var(--dim)" font-family="JetBrains Mono, monospace" font-size="8"><text x="28" y="30">A</text><text x="28" y="44">B</text><text x="28" y="58">C</text><text x="28" y="72">D</text></g>
+            <g fill="none" style="stroke:var(--dim)" stroke-width="1.5"><circle cx="46" cy="27" r="4"/><circle cx="46" cy="55" r="4"/><circle cx="46" cy="69" r="4"/><circle cx="60" cy="27" r="4"/><circle cx="60" cy="41" r="4"/><circle cx="60" cy="69" r="4"/></g>
+            <circle cx="46" cy="41" r="4.5" style="fill:var(--green)"/>
+            <circle cx="60" cy="55" r="4.5" style="fill:var(--green)"/>
+          </svg></div>
           <div>
             <h3 class="proj-t">Claude Certification: study guide and drill</h3>
             <span class="proj-k">exam prep · unofficial</span>
