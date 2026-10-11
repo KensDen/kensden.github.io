@@ -6,7 +6,7 @@
   doc.documentElement.classList.add('js');
   function $$(sel, el) { return [].slice.call((el || doc).querySelectorAll(sel)); }
 
-  /* One-shots (prune/grow, badge vs behavior): CSS keyed to .run; replay restarts them. */
+  /* One-shots (prune/grow, badge vs behavior, decode OA): CSS keyed to .run; replay restarts them. */
   function start(fig) { fig.classList.remove('run'); void fig.offsetWidth; fig.classList.add('run'); }
   $$('.replay').forEach(function (b) {
     b.addEventListener('click', function () { start(b.closest('figure')); });
@@ -50,7 +50,7 @@
   });
 
   /* 4. Tune the Orrery: the chips are a radiogroup (arrows move), the card is aria-live,
-     and a tap on one of the nine dots picks it. Card text comes from the no-JS list. */
+     and a tap on a mapped dot picks it. Card text comes from the no-JS list. */
   var tune = doc.querySelector('.tune');
   if (tune) {
     var chips = $$('[role=radio]', tune), items = $$('.tune-list li', tune), svg = tune.querySelector('svg');
@@ -76,7 +76,7 @@
         if (to >= 0) { e.preventDefault(); pick(to, true); }
       });
     });
-    svg.addEventListener('click', function (e) { // a tap near one of the nine dots picks it
+    svg.addEventListener('click', function (e) { // a tap near a mapped dot picks it
       var m = svg.getScreenCTM(), best = -1, bd = 784; // within 28 units
       if (!m) return;
       var p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
