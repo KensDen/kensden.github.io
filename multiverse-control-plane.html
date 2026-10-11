@@ -100,6 +100,24 @@
   .tl .n{fill:var(--green)}
   .tl .grown .n.s{fill:var(--cyan)}
 
+  /* the OSI / TCP-IP comparison table (no scroll container: cells wrap and padding tightens on small screens) */
+  .osi{margin:30px 0 34px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2)}
+  .osi table{width:100%;border-collapse:separate;border-spacing:0;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.5}
+  .osi caption{caption-side:bottom;text-align:left;font-size:12px;line-height:1.55;color:var(--dim);padding:10px 14px;
+    border-top:1px solid var(--line);background:var(--panel);border-radius:0 0 11px 11px}
+  .osi caption .g{color:var(--green)}
+  .osi th,.osi td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+  .osi thead th{font-size:11.5px;font-weight:400;letter-spacing:.02em;color:var(--dim);background:var(--panel);padding-top:9px;padding-bottom:9px}
+  .osi thead th:first-child{border-left:3px solid transparent;border-top-left-radius:11px}
+  .osi thead th:last-child{border-top-right-radius:11px}
+  .osi tbody th,.osi tbody td{background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .osi tbody tr:last-child>*{border-bottom:0}
+  .osi tbody th{font-weight:700;color:var(--ink);letter-spacing:.02em;border-left:3px solid var(--dim);padding-left:calc(14px + 1.4em);text-indent:-1.4em;white-space:nowrap}
+  .osi tbody th .n{display:inline-block;width:.8em;text-indent:0}
+  .osi td{color:var(--muted)}
+  .osi .none{color:var(--dim)}
+  .osi .nw{white-space:nowrap}
+
   /* the stack diagram */
   .stack{margin:30px 0 34px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .stack-cap{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
@@ -139,6 +157,18 @@
     .wrap{padding:20px 18px 48px}
     article p{font-size:17px}
     .layer{gap:10px;padding:13px 13px 12px}
+    .osi table{font-size:12px}
+    .osi th,.osi td{padding:10px 8px}
+    .osi thead th{font-size:11px;padding-top:8px;padding-bottom:8px}
+    .osi tbody th{padding-left:calc(8px + 1.4em);white-space:normal}
+  }
+  @media (max-width:379.98px){
+    .osi table{font-size:11.5px}
+    .osi th,.osi td{padding:9px 6px}
+    .osi tbody th{padding-left:6px;text-indent:0}
+  }
+  @media (max-width:339.98px){
+    .osi table{font-size:11px}
   }
 </style>
 </head>
@@ -256,6 +286,55 @@
     </div>
 
     <p>Between the layers sit the connectors and buffers. The Speed Force links Space and Time like a message bus. The Antimatter Universe runs as the mirror-image environment. And Limbo holds every character the story forgot about but never quite deallocated.</p>
+
+    <p>If you came up through networking, this probably looks familiar. The OSI model starts with raw bits on a wire and climbs to meaning at the Application layer. DC's stack makes the same climb, from the raw potential of the Forge to the ideas in the Sphere of the Gods. The fit is loose, and I won't pretend otherwise, but it's there:</p>
+
+    <div class="osi">
+      <table>
+        <caption><span class="g" aria-hidden="true">&gt; </span>a loose fit, not a spec<span aria-hidden="true">_</span></caption>
+        <thead>
+          <tr>
+            <th scope="col">DC layer</th>
+            <th scope="col">OSI (7)</th>
+            <th scope="col">TCP/IP (4)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" style="border-left-color:var(--violet)"><span class="n" style="color:var(--violet)">6</span> Monitor Sphere</th>
+            <td><span class="none">no layer: governance, visibility, orchestration</span></td>
+            <td><span class="none">no layer</span></td>
+          </tr>
+          <tr>
+            <th scope="row" style="border-left-color:var(--pink)"><span class="n" style="color:var(--pink)">5</span> Sphere of the Gods</th>
+            <td><span class="nw">7 Application,</span> <span class="nw">6 Presentation,</span> <span class="nw">5 Session</span></td>
+            <td>Application</td>
+          </tr>
+          <tr>
+            <th scope="row" style="border-left-color:var(--cyan)"><span class="n" style="color:var(--cyan)">4</span> Time</th>
+            <td>4 Transport</td>
+            <td>Transport</td>
+          </tr>
+          <tr>
+            <th scope="row" style="border-left-color:var(--green)"><span class="n" style="color:var(--green)">3</span> Space</th>
+            <td>3 Network</td>
+            <td>Internet</td>
+          </tr>
+          <tr>
+            <th scope="row" style="border-left-color:var(--amber)"><span class="n" style="color:var(--amber)">2</span> Dark Multiverse</th>
+            <td>2 Data Link</td>
+            <td>Link</td>
+          </tr>
+          <tr>
+            <th scope="row" style="border-left-color:var(--red)"><span class="n" style="color:var(--red)">1</span> Cosmic Forge</th>
+            <td>1 Physical</td>
+            <td>Link</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Two things stand out. Neither model has a slot for the Monitor Sphere, because it isn't a layer. In Zero Trust terms, it's the cross-cutting capabilities: visibility and analytics, automation and orchestration, and governance, applied across every pillar at once. CISA's model treats them that way, and DoD's goes further, making visibility and automation pillars of their own. Either way, that's the control plane this essay is named for. And OSI versus TCP/IP is the same split DC lives with: seven tidy layers in the textbook, four that actually ship. Morrison's map is the textbook. The monthly comics are what ships.</p>
 
     <figure class="shot" style="max-width:480px">
       <img src="forge.jpg" alt="A colossal pillar of violet energy erupting through a dark eclipsed sphere above a jagged alien landscape" loading="lazy" width="1000" height="979" />
