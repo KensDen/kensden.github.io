@@ -119,6 +119,35 @@
   .osi .none{color:var(--dim)}
   .osi .nw{white-space:nowrap}
 
+  /* the git-log timeline: a semantic <ol>; motion only with scroll-timeline support and no reduced-motion preference */
+  figure.glog{background:linear-gradient(180deg,var(--panel),var(--panel-2));overflow:clip} /* clip, not hidden: a scroll container would capture the rows' view timelines */
+  .glog ol{--rail:19px;list-style:none;margin:0;padding:14px 16px 12px calc(var(--rail) + 17px);
+    font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.6}
+  .glog li{position:relative;display:grid;grid-template-columns:4ch 7ch minmax(0,1fr);column-gap:1.2ch;padding:5px 0;view-timeline:--glog-row block}
+  .glog li::before{content:"";position:absolute;z-index:1;left:-21px;top:calc(5px + .8em - 4px);width:8px;height:8px;border-radius:50%;background:var(--c)}
+  .glog li::after{content:"";position:absolute;left:-17.5px;top:0;bottom:0;width:1px;background:rgba(116,131,143,.4)}
+  .glog li:first-child::after{top:calc(5px + .8em)}
+  .glog li:last-child::after{bottom:auto;height:calc(5px + .8em)}
+  .glog .fork{--c:var(--amber)}
+  .glog .migrate{--c:var(--red)}
+  .glog .docs{--c:var(--cyan)}
+  .glog .feat{--c:var(--green)}
+  .glog .reboot{--c:var(--violet)}
+  .glog .merge{--c:var(--pink)}
+  .glog .y{color:var(--muted)}
+  .glog .t{color:var(--c);font-weight:700}
+  .glog .m{color:var(--ink)}
+  .glog .src{color:var(--dim);white-space:nowrap}
+  .glog .src::before{content:"// ";content:"// " / "source: "}
+  @keyframes glog-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes glog-dot{0%{transform:scale(.5);box-shadow:0 0 0 0 transparent}60%{transform:none;box-shadow:0 0 10px 2px var(--c)}100%{transform:none;box-shadow:0 0 0 0 transparent}}
+  @media (prefers-reduced-motion: no-preference){
+    @supports (animation-timeline: view()){
+      .glog li{animation:glog-in linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
+      .glog li::before{animation:glog-dot linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
+    }
+  }
+
   /* the stack diagram */
   .stack{margin:30px 0 34px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .stack-cap{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
@@ -153,6 +182,7 @@
   @media (max-width:519.98px){
     .tl-wrap{grid-template-columns:1fr}
     .tl-p.grown{border-top:1px solid var(--line)}
+    .glog .src{display:block;white-space:normal}
   }
   @media (max-width:640px){
     .wrap{padding:20px 18px 48px}
@@ -162,6 +192,8 @@
     .osi th,.osi td{padding:10px 8px}
     .osi thead th{font-size:11px;padding-top:8px;padding-bottom:8px}
     .osi tbody th{padding-left:calc(8px + 1.4em);white-space:normal}
+    .glog ol{--rail:15px;font-size:12px;padding:12px 12px 10px calc(var(--rail) + 17px)}
+    .glog li{column-gap:1ch}
   }
   @media (max-width:379.98px){
     .osi table{font-size:11.5px}
@@ -228,6 +260,21 @@
 
     <p>Infinite Crisis (2005) and the weekly series 52 (2006 to 2007) brought the Multiverse back, this time capped at exactly 52 worlds. Final Crisis (2008) stress-tested it. Flashpoint (2011) rebooted the whole line. Then in 2014, after more than fifty years in production, Morrison's The Multiversity finally published the first official architecture diagram.</p>
     <p>After that the pace picked up. Dark Nights: Metal (2017) added a basement. Snyder's Justice League (2018 to 2020) went looking for the original architect. Dark Nights: Death Metal (2020) declared that every story ever told counts. Dark Crisis on Infinite Earths (2022) lifted the 52-world cap and restored the infinite Multiverse. And in 2024, DC All In started the current era.</p>
+
+    <figure class="shot glog" style="max-width:640px">
+      <ol role="list">
+        <li class="fork"><span class="y">1961</span> <span class="t">fork</span> <span class="m">spin up Earth-Two <span class="src">The Flash #123</span></span></li>
+        <li class="migrate"><span class="y">1985</span> <span class="t">migrate</span> <span class="m">consolidate infinite Earths into one <span class="src">Crisis on Infinite Earths</span></span></li>
+        <li class="docs"><span class="y">1998</span> <span class="t">docs</span> <span class="m">admit the branches never left <span class="src">Hypertime, The Kingdom</span></span></li>
+        <li class="feat"><span class="y">2006</span> <span class="t">feat</span> <span class="m">restore the Multiverse, capped at 52 <span class="src">52</span></span></li>
+        <li class="reboot"><span class="y">2011</span> <span class="t">reboot</span> <span class="m">reimage the whole line <span class="src">Flashpoint</span></span></li>
+        <li class="docs"><span class="y">2014</span> <span class="t">docs</span> <span class="m">publish the architecture diagram <span class="src">The Multiversity</span></span></li>
+        <li class="feat"><span class="y">2022</span> <span class="t">feat</span> <span class="m">lift the 52-world cap <span class="src">Dark Crisis on Infinite Earths</span></span></li>
+        <li class="merge"><span class="y">2024</span> <span class="t">merge</span> <span class="m">Alpha and Omega <span class="src">DC All In, DC&nbsp;K.O.</span></span></li>
+      </ol>
+      <figcaption><span class="g">&gt;</span> git log --oneline multiverse_</figcaption>
+    </figure>
+
     <p>If that sounds like a codebase, it's because it is one. Hundreds of writers, thousands of issues, no single owner, and a business that can't take the system down for maintenance. Every Crisis is a migration, and every reboot is a reimage. And somehow the lights stay on.</p>
 
     <h2 class="sub">Reading the official map</h2>
@@ -344,13 +391,6 @@
 
     <p>None of this is physics, of course. DC borrowed science's vocabulary and built a theology out of it. Marvel shipped a cinematic universe. DC has spent more than eighty years maintaining a mythology, and you can see the maintenance history in the architecture.</p>
 
-    <figure class="shot" style="max-width:640px">
-      <a href="cosmology-map.jpg" target="_blank" rel="noopener">
-        <img src="cosmology-map.jpg" alt="A fan-made infographic poster mapping DC's six-dimensional cosmology: the stacked realms from the Cosmic Forge up to the Monitor Sphere, with side panels on the six dimensions and the liminal realms" loading="lazy" width="1536" height="1024" />
-      </a>
-      <figcaption><span class="g">&gt;</span> The full map · tap to inspect_</figcaption>
-    </figure>
-
     <h2 class="sub">Who watches the Monitors?</h2>
     <p>Every architecture has a weak spot, and in DC's it's the operators.</p>
     <p>The first Monitor, back in 1985, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
@@ -383,17 +423,10 @@
     <p>Taken as a whole, DC's cosmology is a modern myth built from quantum vocabulary, metaphysics, comparative religion, and pure story logic. It's messy and it sometimes contradicts itself, like any production system that's been running this long. It still works.</p>
     <p>A forge of raw potential sits at the bottom, a watchtower sits at the top, and strung between them is every story anyone ever believed in hard enough. And somewhere above all of it, past the Source Wall, someone is holding the book and turning the page. The architecture just tells you where the story runs.</p>
 
-    <figure class="shot" style="max-width:640px">
-      <a href="cosmology-panels.jpg" target="_blank" rel="noopener">
-        <img src="cosmology-panels.jpg" alt="A fan-made six-panel infographic breaking down DC's cosmology: the dimensional hierarchy, how the layers connect, the Sphere of the Gods, the six dimensions side by side, the liminal realms, and the journey of reality" loading="lazy" width="1536" height="1024" />
-      </a>
-      <figcaption><span class="g">&gt;</span> Appendix: panel by panel · tap to inspect_</figcaption>
-    </figure>
-
     <p class="lede">Further reading: DC's official <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Map of the Multiverse</a> and its <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">history of the Multiverse</a>, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse</a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum</a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe</a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega</a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1</a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline</a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature</a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up</a>.</p>
   </article>
 
-  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map and the Loki still. A few of the machine's spellings slipped through this time. Nobody's perfect.</p>
+  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map and the Loki still.</p>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
 
