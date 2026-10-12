@@ -6,27 +6,45 @@
   doc.documentElement.classList.add('js');
   function $$(sel, el) { return [].slice.call((el || doc).querySelectorAll(sel)); }
 
-  /* One-shots (prune/grow, badge vs behavior, decode OA): CSS keyed to .run; replay restarts them. */
+  /* One-shots (prune/grow, containment, badge vs behavior, decode OA): CSS keyed to .run; replay restarts them. */
   function start(fig) { fig.classList.remove('run'); void fig.offsetWidth; fig.classList.add('run'); }
   $$('.replay').forEach(function (b) {
     b.addEventListener('click', function () { start(b.closest('figure')); });
   });
 
-  /* .in-view runs loops (CSS pauses them off screen); one-shots start once at 35%. */
+  /* .in-view runs loops (CSS pauses them off screen); one-shots start once at 35%, or at data-at (containment
+     waits for 90% so its first beats aren't played below the fold), capped at what fits in a short viewport. */
   var figs = $$('[data-anim]'), begun = [];
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var f = e.target;
         f.classList.toggle('in-view', e.isIntersecting);
-        if (f.dataset.anim === 'once' && e.intersectionRatio >= 0.35 && begun.indexOf(f) < 0) {
+        var at = Math.min(+f.dataset.at || 0.35, 0.9 * innerHeight / e.boundingClientRect.height);
+        if (f.dataset.anim === 'once' && e.intersectionRatio >= at && begun.indexOf(f) < 0) {
           begun.push(f);
           start(f);
         }
       });
-    }, { threshold: [0, 0.35] });
+    }, { threshold: [0, 0.35, 0.5, 0.7, 0.9] });
     figs.forEach(function (f) { io.observe(f); });
   } else figs.forEach(function (f) { if (f.dataset.anim === 'once') start(f); });
+
+  /* Same word, two meanings: two aria-pressed buttons switch the figure between physics and DC (CSS does
+     the morph), and a polite live region reads out the new caption. */
+  var dim = doc.querySelector('.dim');
+  if (dim) {
+    var sw = $$('.dim-switch button', dim), said = dim.querySelector('.dim-live');
+    sw.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dc = b.dataset.v === 'dc';
+        if (dim.classList.contains('is-dc') === dc) return;
+        dim.classList.toggle('is-dc', dc);
+        sw.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        said.textContent = dim.querySelector(dc ? '.c-dc' : '.c-phys').textContent;
+      });
+    });
+  }
 
   /* 3. Stack <-> table: hover or tap lights a layer in both. */
   var lit = null;
