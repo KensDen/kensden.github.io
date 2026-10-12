@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
 <title>The Multiverse Is a System Architecture, Complete with a Control Plane · Ken</title>
-<meta name="description" content="DC Comics' Multiverse, read as a system architecture: six layers, a control plane, and a duality at the heart of the new era. By Ken Connell." />
+<meta name="description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all. By Ken Connell." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <link rel="canonical" href="https://kensden.github.io/multiverse-control-plane.html" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="The Multiverse Is a System Architecture, Complete with a Control Plane" />
-<meta property="og:description" content="DC Comics' Multiverse, read as a system architecture: six layers, a control plane, and a duality at the heart of the new era." />
-<meta name="twitter:description" content="DC Comics' Multiverse, read as a system architecture: six layers, a control plane, and a duality at the heart of the new era." />
+<meta property="og:description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all." />
+<meta name="twitter:description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all." />
 <meta property="og:url" content="https://kensden.github.io/multiverse-control-plane.html" />
 <meta property="og:image" content="https://kensden.github.io/vortex.jpg" />
 <meta name="theme-color" content="#0a0e12" />
@@ -193,7 +193,7 @@
   .tune-chips button:hover{color:var(--cyan);border-color:rgba(57,211,197,.45)}
   .tune-chips button[aria-checked="true"]{color:var(--bg);background:var(--cyan);border-color:var(--cyan)}
   .tune-chips button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-  .tune-card{margin:12px 14px 14px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:8px;background:var(--panel-2);
+  .tune-card{display:none;margin:12px 14px 14px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:8px;background:var(--panel-2);
     font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.55}
   article .tune-card p{margin:0;font-size:inherit;line-height:inherit}
   article .tune-card .tc-h{color:var(--cyan);font-weight:700}
@@ -202,12 +202,88 @@
   .tune-list{margin:0 14px 14px;padding:0;list-style:none;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.55;color:var(--muted)}
   .tune-list li{padding:5px 0;border-top:1px solid var(--line)}
   .tune-list .tc-h{color:var(--ink)}
+  .js .tune-card{display:block}
   .js .tune-list{display:none}
-  @media print{.js .tune-chips{display:none}.js .tune-list{display:block}}
+  @media print{.js .tune-chips,.js .tune-card{display:none}.js .tune-list{display:block}}
   @media (forced-colors: active){
     .tune-chips button[aria-checked="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText;border-color:Highlight}
     .tune .dot.sel{fill:Highlight}
   }
+
+  /* A. Same word, two meanings: physics axes vs DC layers. Without JS both states sit side by side. With JS a
+     two-button switch (aria-pressed) morphs the x, y and z axes into Space and the t arrow into Time. */
+  figure.dim{max-width:640px;background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .js figure.dim{max-width:480px}
+  .dim-switch{display:none;justify-content:center;padding:14px 14px 0}
+  .js .dim-switch{display:flex}
+  .dim-switch button{min-width:76px;height:44px;padding:0 14px;border:1px solid var(--line);background:var(--panel-2);color:var(--muted);
+    font:13px/1 "JetBrains Mono",monospace;cursor:pointer}
+  .dim-switch button:first-child{border-radius:8px 0 0 8px}
+  .dim-switch button+button{border-left:0;border-radius:0 8px 8px 0}
+  .dim-switch button:hover{color:var(--cyan)}
+  .dim-switch button[aria-pressed="true"]{color:var(--bg);background:var(--cyan);border-color:var(--cyan)}
+  .dim-switch button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;position:relative;z-index:1}
+  .dim-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 14px 14px}
+  .js .dim-wrap{display:block;padding-top:10px}
+  .js .dim-s{display:none}
+  .dim-svg{display:block;width:100%;max-width:320px;height:auto;margin:0 auto}
+  .dim-m .dim-svg{overflow:visible} /* the z bar swings past the viewBox mid-morph */
+  .dim-h{margin-bottom:8px;font:12.5px/1.5 "JetBrains Mono",monospace;color:var(--cyan);text-align:center} /* panel names, only without the switch */
+  .js .dim-h{display:none}
+  .dim .s1{--c:var(--red)} .dim .s2{--c:var(--amber)} .dim .s3{--c:var(--green)} .dim .s4{--c:var(--cyan)} .dim .s5{--c:var(--pink)} .dim .s6{--c:var(--violet)}
+  .dim .sl{fill:var(--c);fill-opacity:.2}
+  .dim .acc,.dim .n{fill:var(--c)}
+  .dim .lb{font:12.5px "JetBrains Mono",monospace;fill:var(--ink)}
+  /* physics, the default: four 2px bars from one corner (each a slab: the g turns and stretches it with --m, the rect is
+     squeezed to 2px), arrowheads, a dashed t and the axis letters */
+  .dim .mg{transform-box:fill-box;transform-origin:0 50%;transform:var(--m)}
+  .dim .mb{transform-box:fill-box;transform-origin:0 50%;transform:scaleY(.0833);fill:var(--muted);fill-opacity:1}
+  .dim .mt{opacity:0}
+  .dim .tline{stroke:var(--muted);stroke-width:2;stroke-dasharray:5 4}
+  .dim .ah{fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .dim .al{font:13px "JetBrains Mono",monospace;fill:var(--muted)}
+  .dim .rise{opacity:0;transform:translateY(14px)}
+  .dim .dl{opacity:0}
+  .dim-c{display:grid;margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.5;color:var(--muted);text-align:center;text-wrap:balance}
+  .dim-c>span{grid-area:1/1}
+  .dim-m .c-dc{opacity:0;visibility:hidden}
+  @media screen{
+    /* DC: the bars open into the Space and Time slabs and the rest of the stack fills in */
+    .dim.is-dc .mg,.dim.is-dc .mb{transform:none}
+    .dim.is-dc .mb{fill:var(--c);fill-opacity:.2}
+    .dim.is-dc .my,.dim.is-dc .mz,.dim.is-dc .ph{opacity:0}
+    .dim.is-dc .mt,.dim.is-dc .dl{opacity:1}
+    .dim.is-dc .rise{opacity:1;transform:none}
+    .dim.is-dc .c-phys{opacity:0;visibility:hidden}
+    .dim.is-dc .c-dc{opacity:1;visibility:visible}
+  }
+  @media print{.js .dim-switch{display:none}.js .dim-wrap{display:grid}.js .dim-s,.js .dim-h{display:block}}
+  @media (forced-colors: active){
+    .dim-switch button[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText;border-color:Highlight}
+    .dim-wrap{forced-color-adjust:none;background:var(--panel-2)} /* Chromium doesn't force SVG paint: keep the authored dark palette */
+  }
+
+  /* B. Containment: the only light panel on the page, on purpose. The static frame is the last beat. */
+  figure.cnt{background:#f3f0e8}
+  .cnt-stage{background:#f3f0e8;padding:18px 14px 16px;text-align:center}
+  .cnt-svg{display:block;width:100%;max-width:360px;height:auto;margin:0 auto;overflow:visible}
+  .cs-ring{fill:none;stroke:#6f52d9;stroke-width:1.6}
+  .cs-speck{fill:#c4362d;opacity:0;transform-box:fill-box;transform-origin:center}
+  .cs-worlds circle{fill:#2f77c8;transform-box:fill-box;transform-origin:center}
+  .cs-probe line{fill:none;stroke-linecap:round}
+  .cs-out{stroke:#8f2f28;stroke-width:2.2;transform:translate(27.93px,-27.93px)} /* the half that came back carries the Flaw too */
+  .cs-in{stroke:#c4362d;stroke-width:2.2}
+  .cs-glow{stroke:#c4362d;stroke-width:8;opacity:.18}
+  .cs-dax{font:700 13.5px "JetBrains Mono",monospace;fill:#2b2f36}
+  .cnt-lbls{display:grid;margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.5;color:#2b2f36}
+  .cnt-lbls>div{grid-area:1/1;visibility:hidden}
+  .cnt-lbls>.c5{visibility:visible;font-weight:700}
+  @media (forced-colors: active){.cnt-stage{forced-color-adjust:none}}
+
+  /* C. the two Superman Beyond pages, stacked; each opens at native size */
+  .sb a{display:block}
+  .sb a+a{border-top:1px solid var(--line)}
+  .sb a:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
 
   /* 3. signal through the stack, and the stack-to-table highlight */
   .layer{position:relative;transition:box-shadow .2s}
@@ -227,7 +303,7 @@
   .oa-word{white-space:pre}
   .oa-o{color:var(--red)} .oa-a{color:var(--cyan)} .oa-sep{color:var(--dim)}
   .oa-l{display:inline-block;position:relative;transform-origin:50% 60%}
-  .oa-lc{position:absolute;left:0;top:0;visibility:hidden}
+  .oa-a .oa-l::after{content:"a";position:absolute;left:0;top:0;visibility:hidden} /* beat 1's "a" is generated content, so copy and screen readers get "Omega · Alpha" */
   .oa-loop{display:block;width:100%;height:auto;overflow:visible;margin-top:2px}
   .oa-loop path{fill:none;stroke:var(--muted);stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
   .oa-l1,.oa-l2,.oa-note{font-size:12.5px;line-height:1.5}
@@ -249,6 +325,15 @@
   @keyframes tune-pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.4);opacity:0}}
   @keyframes oa-split-o{from{transform:translateX(5.25ch) scale(1.5);color:var(--green)}to{transform:none;color:var(--red)}}
   @keyframes oa-split-a{from{transform:translateX(-1.25ch) scale(1.5);color:var(--green)}to{transform:none;color:var(--cyan)}}
+  @keyframes cs-pop{from{transform:scale(0)}to{transform:scale(1)}}
+  @keyframes cs-shatter{from{transform:scale(1);opacity:1}to{transform:scale(2.6);opacity:0}}
+  @keyframes cs-tint{from{stroke:#2b2f36}to{stroke:#6f52d9}}
+  @keyframes cs-world{from{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}to{opacity:1;transform:none}}
+  @keyframes cs-flick-out{0%,50%{stroke:#2b2f36}25%,75%{stroke:#c4362d}100%{stroke:#8f2f28}}
+  @keyframes cs-flick-in{0%,50%{stroke:#2b2f36}25%,75%,100%{stroke:#c4362d}}
+  @keyframes cs-jitter{0%,100%{transform:none}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,-2px)}80%{transform:translate(2px,1px)}}
+  @keyframes cs-retract{from{transform:none}to{transform:translate(27.93px,-27.93px)}}
+  @keyframes cs-pulse{from{opacity:0}to{opacity:.35}}
   @keyframes oa-out{from{opacity:1}to{opacity:0;visibility:hidden}}
   @keyframes oa-rise{from{transform:translateY(var(--oa-drop))}to{transform:none}}
 
@@ -272,19 +357,67 @@
     .js .bvb.run tr.bad .v>span{animation:bvb-in .4s ease-out 2.45s both}
     .js .bvb.run tr.bad>*{animation:bvb-tint .45s ease 2.85s both}
 
+    /* A. the switch morph. To DC: the bars fold into Space and Time, then the rest of the stack rises in.
+       Back to physics: the stack clears first, then the bars unfold. */
+    .dim .mg{transition:transform .5s ease-in-out .3s,opacity .15s ease .25s}
+    .dim .mt{transition:transform .5s ease-in-out .3s,opacity .25s ease .75s}
+    .dim .mb{transition:transform .25s ease-in .05s,fill .25s ease .05s,fill-opacity .25s ease .05s}
+    .dim .ph{transition:opacity .3s ease .8s}
+    .dim .rise,.dim .dl{transition:opacity .2s ease,transform .2s ease}
+    .dim .c-phys{transition:opacity .3s ease .8s,visibility 0s .8s}
+    .dim .c-dc{transition:opacity .15s ease,visibility 0s .15s}
+    .dim .rise.s2{--d:.7s} .dim .rise.s1{--d:.8s} .dim .rise.s5{--d:.85s} .dim .rise.s6{--d:1s}
+    .dim.is-dc .mg{transition:transform .5s ease-in-out,opacity .15s ease .45s}
+    .dim.is-dc .mt{transition:transform .5s ease-in-out,opacity .2s ease}
+    .dim.is-dc .mb{transition:transform .3s ease-out .45s,fill .3s ease .45s,fill-opacity .3s ease .45s}
+    .dim.is-dc .ph{transition:opacity .2s ease}
+    .dim.is-dc .rise{transition:opacity .3s ease var(--d),transform .4s ease-out var(--d)}
+    .dim.is-dc .dl{transition:opacity .25s ease 1.15s}
+    /* Space and Time are named as soon as their slabs form; the others follow their slabs */
+    .dim.is-dc .dl.s3,.dim.is-dc .dl.s4{transition-delay:.7s} .dim.is-dc .dl.s2{transition-delay:.9s} .dim.is-dc .dl.s1{transition-delay:1s}
+    .dim.is-dc .dl.s5{transition-delay:1.05s} .dim.is-dc .dl.s6{transition-delay:1.2s}
+    .dim.is-dc .c-phys{transition:opacity .15s ease,visibility 0s .15s}
+    .dim.is-dc .c-dc{transition:opacity .3s ease 1.1s,visibility 0s 1.1s}
+
+    /* B. containment start frame: a blank page. .run plays the five beats once (about 6.4 s, labels 2 to 4 held 1.2 s, the glitch under
+       its own label);
+       the glow pulses only while in view */
+    .js .cnt .cs-speck{opacity:1;transform:scale(0)}
+    .js .cnt .cs-ring{stroke:#2b2f36;stroke-dasharray:1.02 2;stroke-dashoffset:1.05} /* 1.02 so the drawn ring closes */
+    .js .cnt .cs-worlds circle{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}
+    .js .cnt .cs-out{transform:none}
+    .js .cnt .cs-out,.js .cnt .cs-in{stroke-dasharray:1 2;stroke-dashoffset:1.05}
+    .js .cnt .cs-in{stroke:#2b2f36}
+    .js .cnt .cs-glow,.js .cnt .cs-dax{opacity:0}
+    .js .cnt .cnt-lbls>div{visibility:visible;opacity:0}
+    .js .cnt.run .cs-speck{animation:cs-pop .3s ease-out .1s both,cs-shatter .3s ease-in 2.7s forwards}
+    .js .cnt.run .cs-ring{animation:tl-draw .75s ease-in-out 1s both,cs-tint .35s ease 1.75s both}
+    .js .cnt.run .cs-dax{animation:tl-in .3s ease 2.25s both}
+    .js .cnt.run .cs-out{animation:tl-draw .25s linear 2.2s both,cs-flick-out .4s steps(1,end) 4.5s both,cs-retract .5s ease-in-out 4.9s both}
+    .js .cnt.run .cs-in{animation:tl-draw .25s linear 2.45s both,cs-flick-in .4s steps(1,end) 4.5s both}
+    .js .cnt.run .cs-worlds circle{animation:cs-world .35s ease-out calc(2.7s + var(--i) * .02s) both}
+    .js .cnt.run .cs-probe{animation:cs-jitter .4s steps(1,end) 4.5s both}
+    .js .cnt.run .cs-glow{animation:cs-pulse 1.4s ease-in-out 5.5s infinite alternate both paused}
+    .js .cnt.run.in-view .cs-glow{animation-play-state:running}
+    .js .cnt.run .c1{animation:tl-in .2s ease .3s both,oa-out .2s ease 1.1s forwards}
+    .js .cnt.run .c2{animation:tl-in .2s ease 1.3s both,oa-out .2s ease 2.7s forwards}
+    .js .cnt.run .c3{animation:tl-in .2s ease 2.9s both,oa-out .2s ease 4.3s forwards}
+    .js .cnt.run .c4{animation:tl-in .2s ease 4.5s both,oa-out .2s ease 5.9s forwards}
+    .js .cnt.run .c5{animation:tl-in .3s ease 6.1s both}
+
     /* Decode OA start frame: "Oa" in green at 1.5x, O and a side by side at the centre (5.25ch and -1.25ch from home),
        dropped by --oa-drop (about half the label and note space below) so beat 1 sits mid-panel; it rises as it splits */
     .js .oa .oa-art{transform:translateY(var(--oa-drop))}
     .js .oa .oa-o .oa-l{transform:translateX(5.25ch) scale(1.5);color:var(--green)}
     .js .oa .oa-a .oa-l{transform:translateX(-1.25ch) scale(1.5);color:var(--green)}
-    .js .oa .oa-lc,.js .oa .oa-l1{visibility:visible}
+    .js .oa .oa-a .oa-l::after,.js .oa .oa-l1{visibility:visible}
     .js .oa .oa-uc,.js .oa .oa-t,.js .oa .oa-sep,.js .oa .oa-l2,.js .oa .oa-note,.js .oa .oa-head{opacity:0}
     .js .oa .oa-arc{stroke-dasharray:1 2;stroke-dashoffset:1.05}
     .js .oa.run .oa-l1{animation:oa-out .3s ease .75s both}
     .js .oa.run .oa-art{animation:oa-rise .6s ease-in-out .8s both}
     .js .oa.run .oa-o .oa-l{animation:oa-split-o .6s ease-in-out .8s both}
     .js .oa.run .oa-a .oa-l{animation:oa-split-a .6s ease-in-out .8s both}
-    .js .oa.run .oa-lc{animation:oa-out .25s ease .95s both}
+    .js .oa.run .oa-a .oa-l::after{animation:oa-out .25s ease .95s both}
     .js .oa.run .oa-uc{animation:tl-in .25s ease .95s both}
     .js .oa.run .oa-sep{animation:tl-in .3s ease 1.25s both}
     .js .oa.run .oa-t{animation:tl-in .06s linear calc(1.45s + var(--k) * .12s) both}
@@ -349,7 +482,8 @@
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:519.98px){
-    .tune-chips{max-width:294px;margin:6px auto 0} /* six 44px chips to a row: three rows of 17 */
+    .dim-wrap{grid-template-columns:1fr;gap:18px}
+    .tune-chips{max-width:194px;margin:6px auto 0} /* four 44px chips to a row: two rows of 8 */
     .oa-art{--oa-drop:43px}
     .tl-wrap{grid-template-columns:1fr}
     .tl-p.grown{border-top:1px solid var(--line)}
@@ -381,7 +515,6 @@
   }
   @media (max-width:339.98px){
     .osi table{font-size:11px}
-    .tune-chips{gap:5px 2px;max-width:274px}
   }
 </style>
 <script src="multiverse.js" defer></script>
@@ -399,7 +532,9 @@
   <hr class="rule" />
 
   <article>
-    <p class="lede">Occupational hazard: I read comic books the way I read system diagrams. This one's about DC Comics, home of Superman, Batman, and a Multiverse of alternate Earths stacked on top of each other. Somewhere around my third pass through DC's map of that reality, I realized it wasn't a map at all. It was an architecture document, with sixty-five years of commit history behind it.</p>
+    <p class="lede">Here is the strangest security story I know, and it is a comic book.</p>
+    <p class="lede">The beings with the most privileged access in all of creation, the ones whose only job was to watch over reality, turned out to be feeding on it. Every one of them had cleared every check. They were the checks. And the operator who first touched the system got owned by the system the moment he plugged in.</p>
+    <p class="lede">This one's about DC Comics, home of Superman, Batman, and a Multiverse of alternate Earths stacked on top of each other. Occupational hazard: I read comic books the way I read system diagrams. Somewhere around my third pass through DC's map of that reality, I realized it wasn't a map at all. It was an architecture document, with sixty-five years of commit history behind it, and the operators were the weak spot.</p>
     <p class="lede">So here's my design review. Fair warning: I've been collecting these books since I was a kid, and I've been doing security for most of my adult life. This is the way.</p>
 
     <figure class="shot" style="max-width:520px">
@@ -408,16 +543,34 @@
     </figure>
 
     <h2 class="sub">Two kinds of “dimension”</h2>
-    <p>In physics, a dimension is a direction you can measure: up and down, left and right, forward and back, plus time if you're feeling relativistic. M-theory asks for eleven of them, but it's still just adding directions, and most of those are curled up too small to ever notice.</p>
+    <p>In physics, a dimension is a direction you can measure: up and down, left and right, forward and back, plus time if you're feeling relativistic.</p>
     <p>DC uses the word for something else entirely. When the comics talk about the Fifth Dimension, home of Mister Mxyzptlk and his fellow imps, they don't mean a fifth direction. They mean a higher level of reality. Scott Snyder's Justice League run spelled it out: the Third Dimension is Space, the Fourth is Time, the Fifth is Imagination, and the Sixth is Control.</p>
     <p>So in physics, dimensions are coordinates. In DC, they're layers. Every direction we can point lives inside the Third. Our one arrow of time runs inside the Fourth. Above that, it stops being geometry and starts being meaning.</p>
+
+    <figure class="shot dim">
+      <div class="dim-switch" role="group" aria-label="Meaning of dimension"><button type="button" aria-pressed="true" data-v="phys">physics</button><button type="button" aria-pressed="false" data-v="dc">DC</button></div>
+      <div class="dim-wrap" role="img" aria-label="Same word, two meanings. In physics, dimensions are directions you can point at: three axes, x, y and z, drawn from one corner, plus a dashed fourth arrow for time, t. In DC, dimensions are layers you climb: six stacked slabs, 1 Cosmic Forge, 2 Dark Multiverse, 3 Space, 4 Time, 5 Sphere of the Gods and 6 Monitor Sphere. The DC view folds the three axes into Space and the time arrow into Time.">
+        <div class="dim-p dim-m" aria-hidden="true">
+          <div class="dim-h">physics</div>
+          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1 rise" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2 rise" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s5 rise" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6 rise" x="24" y="26" width="232" height="24" rx="3"/><g class="mg mx" style="--m:translate(76px,22px) rotate(0deg) scale(0.6034,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg my" style="--m:translate(76px,22px) rotate(-90deg) scale(0.5172,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mz" style="--m:translate(76px,22px) rotate(135deg) scale(0.3017,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mt" style="--m:translate(76px,52px) rotate(-30deg) scale(0.5172,1)"><rect class="mb s4" x="24" y="86" width="232" height="24" rx="3"/></g><line class="ph tline" x1="100" y1="150" x2="203.9" y2="90"/><path class="ph ah" d="M233.8 146.7L240 150L233.8 153.3"/><path class="ph ah" d="M96.7 36.2L100 30L103.3 36.2"/><path class="ph ah" d="M57.2 197.5L50.5 199.5L52.5 192.8"/><path class="ph ah" d="M196.9 90.2L203.9 90L200.2 95.9"/><text class="ph al" x="248" y="154">x</text><text class="ph al" x="96" y="24">y</text><text class="ph al" x="40.5" y="209.5">z</text><text class="ph al" x="209.9" y="88">t</text><rect class="acc s1 dl" x="24" y="176" width="3" height="24"/><rect class="acc s2 dl" x="24" y="146" width="3" height="24"/><rect class="acc s3 dl" x="24" y="116" width="3" height="24"/><rect class="acc s4 dl" x="24" y="86" width="3" height="24"/><rect class="acc s5 dl" x="24" y="56" width="3" height="24"/><rect class="acc s6 dl" x="24" y="26" width="3" height="24"/><text class="lb s1 dl" x="36" y="192.5"><tspan class="n">1</tspan> Cosmic Forge</text><text class="lb s2 dl" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3 dl" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4 dl" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5 dl" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6 dl" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
+          <div class="dim-c"><span class="c-phys">dimensions are directions. you can point at them.</span><span class="c-dc">dimensions are layers. you climb them.</span></div>
+        </div>
+        <div class="dim-p dim-s" aria-hidden="true">
+          <div class="dim-h">DC</div>
+          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s3" x="24" y="116" width="232" height="24" rx="3"/><rect class="sl s4" x="24" y="86" width="232" height="24" rx="3"/><rect class="sl s5" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6" x="24" y="26" width="232" height="24" rx="3"/><rect class="acc s1" x="24" y="176" width="3" height="24"/><rect class="acc s2" x="24" y="146" width="3" height="24"/><rect class="acc s3" x="24" y="116" width="3" height="24"/><rect class="acc s4" x="24" y="86" width="3" height="24"/><rect class="acc s5" x="24" y="56" width="3" height="24"/><rect class="acc s6" x="24" y="26" width="3" height="24"/><text class="lb s1" x="36" y="192.5"><tspan class="n">1</tspan> Cosmic Forge</text><text class="lb s2" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
+          <div class="dim-c"><span>dimensions are layers. you climb them.</span></div>
+        </div>
+      </div>
+      <div class="sr-only dim-live" aria-live="polite"></div>
+      <figcaption><span class="g">&gt;</span> same word, two meanings_</figcaption>
+    </figure>
 
     <h2 class="sub">Sixty-five years of refactoring</h2>
     <p>None of this was designed up front. Like most systems that last, it grew one urgent fix at a time.</p>
     <p>It started in 1961 with The Flash #123, "Flash of Two Worlds." Barry Allen vibrated into another Earth and met Jay Garrick, the Flash from the 1940s. DC needed a way to keep its older heroes around without breaking the newer ones, so it spun up a second environment and called it Earth-Two. That was the first fork.</p>
     <p>Forks multiply. By the 1980s there were Earths for the Golden Age heroes, for characters bought from other publishers, for evil twins, and for one-off jokes. Readers needed a guidebook to follow along. So in 1985, Marv Wolfman and George Pérez ran Crisis on Infinite Earths, the most famous migration in comics. The infinite Earths collapsed into one. A cosmic being called the Monitor gave his life in the middle of it, and heroes died by the dozen. It was a monolith consolidation, and like every consolidation I've ever lived through, it left a lot of orphaned data behind.</p>
-    <p>The patches came fast. Zero Hour in 1994 tried to fix the timeline. Then in 1998, Mark Waid's The Kingdom introduced Hypertime, an idea he cooked up with Grant Morrison. It was an admission, really: the branches never went away, so stop fighting them and document them.</p>
-    <p>Marvel fans will recognize this fight. In Loki, the Time Variance Authority spends its days pruning branch timelines to protect a single <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>, which is basically Crisis on Infinite Earths run as a government agency. By the end of the second season, Loki stops the pruning and holds the branches together instead, letting every timeline grow. DC's Hypertime made the same call twenty-five years earlier.</p>
+    <p>The patches came fast. Zero Hour in 1994 tried to fix the timeline. Then, at the end of 1998, Mark Waid's The Kingdom introduced Hypertime, an idea he cooked up with Grant Morrison. It was an admission, really: the branches never went away, so stop fighting them and document them.</p>
+    <p>Marvel fans will recognize this fight. In Loki, the Time Variance Authority spends its days pruning branch timelines to protect a single <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>, which is basically Crisis on Infinite Earths run as a government agency. By the end of the second season, Loki takes hold of the branches himself and lets every timeline grow. DC's Hypertime made the same call twenty-five years earlier.</p>
 
     <figure class="shot" style="max-width:640px">
       <img src="loki-sacred-timeline.webp" alt="The TVA's monitor in Loki, showing the bright Sacred Timeline with branch timelines splitting off and being marked for pruning." loading="lazy" width="800" height="450" />
@@ -460,7 +613,7 @@
     <p>If that sounds like a codebase, it's because it is one. Hundreds of writers, thousands of issues, no single owner, and a business that can't take the system down for maintenance. Every Crisis is a migration, and every reboot is a reimage. And somehow the lights stay on.</p>
 
     <h2 class="sub">Reading the official map</h2>
-    <p>Here's the diagram Morrison and designer Rian Hughes drew for The Multiversity. Take a minute with it.</p>
+    <p>Here's the diagram Morrison and designer Rian Hughes drew for The Multiversity. Take a minute with it. I needed three passes before the rings stopped looking like a dartboard.</p>
 
     <figure class="shot" style="max-width:640px">
       <a href="dc-multiverse-map-full.webp" target="_blank" rel="noopener">
@@ -473,36 +626,26 @@
     <p>At the center sits the Orrery of Worlds: 52 universes occupying the same space, each vibrating at a different frequency so they don't collide. It's multi-tenancy: same hardware, separate tenants, with isolation done by frequency instead of by VLAN. Right in the middle of it, the House of Heroes and the Rock of Eternity act as the shared services that every tenant can reach.</p>
 
     <figure class="shot tune" style="max-width:480px" data-anim="loop">
-      <svg viewBox="0 0 360 360" width="360" height="360" aria-hidden="true" focusable="false"><path id="tune-wall-arc" d="M1 180A179 179 0 0 0 359 180" fill="none"/><circle class="wall" cx="180" cy="180" r="168"/><circle class="ring" cx="180" cy="180" r="62"/><circle class="ring" cx="180" cy="180" r="102"/><circle class="ring" cx="180" cy="180" r="142"/><circle class="core" cx="180" cy="180" r="6"/><text x="180" y="204" text-anchor="middle">House of Heroes</text><text class="wl"><textPath href="#tune-wall-arc" startOffset="50%" text-anchor="middle">Speed Force Wall</textPath></text><circle class="dot sel" data-e="0" cx="180.0" cy="118.0" r="3.4"/><circle class="dot" cx="211.0" cy="126.3" r="3.4"/><circle class="dot" data-e="2" cx="233.7" cy="149.0" r="3.4"/><circle class="dot" data-e="3" cx="242.0" cy="180.0" r="3.4"/><circle class="dot" data-e="4" cx="233.7" cy="211.0" r="3.4"/><circle class="dot" data-e="5" cx="211.0" cy="233.7" r="3.4"/><circle class="dot" cx="180.0" cy="242.0" r="3.4"/><circle class="dot" cx="149.0" cy="233.7" r="3.4"/><circle class="dot" data-e="8" cx="126.3" cy="211.0" r="3.4"/><circle class="dot" cx="118.0" cy="180.0" r="3.4"/><circle class="dot" cx="126.3" cy="149.0" r="3.4"/><circle class="dot" data-e="11" cx="149.0" cy="126.3" r="3.4"/><circle class="dot" data-e="12" cx="197.7" cy="79.5" r="3.4"/><circle class="dot" cx="231.0" cy="91.7" r="3.4"/><circle class="dot" cx="258.1" cy="114.4" r="3.4"/><circle class="dot" cx="275.8" cy="145.1" r="3.4"/><circle class="dot" cx="282.0" cy="180.0" r="3.4"/><circle class="dot" cx="275.8" cy="214.9" r="3.4"/><circle class="dot" cx="258.1" cy="245.6" r="3.4"/><circle class="dot" cx="231.0" cy="268.3" r="3.4"/><circle class="dot" cx="197.7" cy="280.5" r="3.4"/><circle class="dot" data-e="21" cx="162.3" cy="280.5" r="3.4"/><circle class="dot" data-e="22" cx="129.0" cy="268.3" r="3.4"/><circle class="dot" data-e="23" cx="101.9" cy="245.6" r="3.4"/><circle class="dot" cx="84.2" cy="214.9" r="3.4"/><circle class="dot" cx="78.0" cy="180.0" r="3.4"/><circle class="dot" cx="84.2" cy="145.1" r="3.4"/><circle class="dot" cx="101.9" cy="114.4" r="3.4"/><circle class="dot" cx="129.0" cy="91.7" r="3.4"/><circle class="dot" cx="162.3" cy="79.5" r="3.4"/><circle class="dot" data-e="30" cx="190.1" cy="38.4" r="3.4"/><circle class="dot" cx="229.6" cy="47.0" r="3.4"/><circle class="dot" cx="265.1" cy="66.3" r="3.4"/><circle class="dot" data-e="33" cx="293.7" cy="94.9" r="3.4"/><circle class="dot" cx="313.0" cy="130.4" r="3.4"/><circle class="dot" cx="321.6" cy="169.9" r="3.4"/><circle class="dot" cx="318.8" cy="210.2" r="3.4"/><circle class="dot" cx="304.6" cy="248.1" r="3.4"/><circle class="dot" cx="280.4" cy="280.4" r="3.4"/><circle class="dot" cx="248.1" cy="304.6" r="3.4"/><circle class="dot" cx="210.2" cy="318.8" r="3.4"/><circle class="dot" cx="169.9" cy="321.6" r="3.4"/><circle class="dot" cx="130.4" cy="313.0" r="3.4"/><circle class="dot" data-e="43" cx="94.9" cy="293.7" r="3.4"/><circle class="dot" data-e="44" cx="66.3" cy="265.1" r="3.4"/><circle class="dot" cx="47.0" cy="229.6" r="3.4"/><circle class="dot" cx="38.4" cy="190.1" r="3.4"/><circle class="dot" cx="41.2" cy="149.8" r="3.4"/><circle class="dot" cx="55.4" cy="111.9" r="3.4"/><circle class="dot" cx="79.6" cy="79.6" r="3.4"/><circle class="dot" data-e="50" cx="111.9" cy="55.4" r="3.4"/><circle class="dot" data-e="51" cx="149.8" cy="41.2" r="3.4"/><circle class="sel-halo" cx="180.0" cy="118.0" r="7"/></svg>
-      <div class="tune-chips" role="radiogroup" aria-label="Pick a world"><button type="button" role="radio" aria-checked="true" tabindex="0" data-e="0" aria-label="Earth 0">0</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="2" aria-label="Earth 2">2</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="3" aria-label="Earth 3">3</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="4" aria-label="Earth 4">4</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="5" aria-label="Earth 5">5</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="8" aria-label="Earth 8">8</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="11" aria-label="Earth 11">11</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="12" aria-label="Earth 12">12</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="21" aria-label="Earth 21">21</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="22" aria-label="Earth 22">22</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="23" aria-label="Earth 23">23</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="30" aria-label="Earth 30">30</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="33" aria-label="Earth 33">33</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="43" aria-label="Earth 43">43</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="44" aria-label="Earth 44">44</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="50" aria-label="Earth 50">50</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="51" aria-label="Earth 51">51</button></div>
+      <svg viewBox="0 0 360 360" width="360" height="360" aria-hidden="true" focusable="false"><path id="tune-wall-arc" d="M1 180A179 179 0 0 0 359 180" fill="none"/><circle class="wall" cx="180" cy="180" r="168"/><circle class="ring" cx="180" cy="180" r="62"/><circle class="ring" cx="180" cy="180" r="102"/><circle class="ring" cx="180" cy="180" r="142"/><circle class="core" cx="180" cy="180" r="6"/><text x="180" y="204" text-anchor="middle">House of Heroes</text><text class="wl"><textPath href="#tune-wall-arc" startOffset="50%" text-anchor="middle">Speed Force Wall</textPath></text><circle class="dot sel" data-e="0" cx="180.0" cy="118.0" r="3.4"/><circle class="dot" cx="211.0" cy="126.3" r="3.4"/><circle class="dot" data-e="2" cx="233.7" cy="149.0" r="3.4"/><circle class="dot" data-e="3" cx="242.0" cy="180.0" r="3.4"/><circle class="dot" cx="233.7" cy="211.0" r="3.4"/><circle class="dot" cx="211.0" cy="233.7" r="3.4"/><circle class="dot" cx="180.0" cy="242.0" r="3.4"/><circle class="dot" cx="149.0" cy="233.7" r="3.4"/><circle class="dot" cx="126.3" cy="211.0" r="3.4"/><circle class="dot" cx="118.0" cy="180.0" r="3.4"/><circle class="dot" cx="126.3" cy="149.0" r="3.4"/><circle class="dot" cx="149.0" cy="126.3" r="3.4"/><circle class="dot" cx="197.7" cy="79.5" r="3.4"/><circle class="dot" cx="231.0" cy="91.7" r="3.4"/><circle class="dot" cx="258.1" cy="114.4" r="3.4"/><circle class="dot" cx="275.8" cy="145.1" r="3.4"/><circle class="dot" cx="282.0" cy="180.0" r="3.4"/><circle class="dot" cx="275.8" cy="214.9" r="3.4"/><circle class="dot" cx="258.1" cy="245.6" r="3.4"/><circle class="dot" cx="231.0" cy="268.3" r="3.4"/><circle class="dot" cx="197.7" cy="280.5" r="3.4"/><circle class="dot" cx="162.3" cy="280.5" r="3.4"/><circle class="dot" data-e="22" cx="129.0" cy="268.3" r="3.4"/><circle class="dot" data-e="23" cx="101.9" cy="245.6" r="3.4"/><circle class="dot" cx="84.2" cy="214.9" r="3.4"/><circle class="dot" cx="78.0" cy="180.0" r="3.4"/><circle class="dot" cx="84.2" cy="145.1" r="3.4"/><circle class="dot" cx="101.9" cy="114.4" r="3.4"/><circle class="dot" cx="129.0" cy="91.7" r="3.4"/><circle class="dot" cx="162.3" cy="79.5" r="3.4"/><circle class="dot" data-e="30" cx="190.1" cy="38.4" r="3.4"/><circle class="dot" cx="229.6" cy="47.0" r="3.4"/><circle class="dot" cx="265.1" cy="66.3" r="3.4"/><circle class="dot" data-e="33" cx="293.7" cy="94.9" r="3.4"/><circle class="dot" cx="313.0" cy="130.4" r="3.4"/><circle class="dot" cx="321.6" cy="169.9" r="3.4"/><circle class="dot" cx="318.8" cy="210.2" r="3.4"/><circle class="dot" cx="304.6" cy="248.1" r="3.4"/><circle class="dot" cx="280.4" cy="280.4" r="3.4"/><circle class="dot" cx="248.1" cy="304.6" r="3.4"/><circle class="dot" cx="210.2" cy="318.8" r="3.4"/><circle class="dot" cx="169.9" cy="321.6" r="3.4"/><circle class="dot" cx="130.4" cy="313.0" r="3.4"/><circle class="dot" data-e="43" cx="94.9" cy="293.7" r="3.4"/><circle class="dot" cx="66.3" cy="265.1" r="3.4"/><circle class="dot" cx="47.0" cy="229.6" r="3.4"/><circle class="dot" cx="38.4" cy="190.1" r="3.4"/><circle class="dot" cx="41.2" cy="149.8" r="3.4"/><circle class="dot" cx="55.4" cy="111.9" r="3.4"/><circle class="dot" cx="79.6" cy="79.6" r="3.4"/><circle class="dot" cx="111.9" cy="55.4" r="3.4"/><circle class="dot" cx="149.8" cy="41.2" r="3.4"/><circle class="sel-halo" cx="180.0" cy="118.0" r="7"/></svg>
+      <div class="tune-chips" role="radiogroup" aria-label="Pick a world"><button type="button" role="radio" aria-checked="true" tabindex="0" data-e="0" aria-label="Earth 0">0</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="2" aria-label="Earth 2">2</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="3" aria-label="Earth 3">3</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="22" aria-label="Earth 22">22</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="23" aria-label="Earth 23">23</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="30" aria-label="Earth 30">30</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="33" aria-label="Earth 33">33</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-e="43" aria-label="Earth 43">43</button></div>
       <div class="tune-card" aria-live="polite"><p class="tc-h">earth-0 · Prime Earth</p><p class="tc-d">The main DC universe, where the monthly books live.</p><p class="tc-m">same hardware, separate tenant</p></div>
       <ul class="tune-list" role="list">
         <li data-e="0"><span class="tc-h">earth-0 · Prime Earth</span>: <span class="tc-d">The main DC universe, where the monthly books live.</span></li>
         <li data-e="2"><span class="tc-h">earth-2 · Golden Age</span>: <span class="tc-d">Modern takes on the 1940s heroes, a young Jay Garrick's Flash among them.</span></li>
         <li data-e="3"><span class="tc-h">earth-3 · Crime Syndicate</span>: <span class="tc-d">Evil twins of the Justice League run the world.</span></li>
-        <li data-e="4"><span class="tc-h">earth-4 · Pax Americana</span>: <span class="tc-d">The Charlton heroes, The Question and Blue Beetle, in a Watchmen-style world.</span></li>
-        <li data-e="5"><span class="tc-h">earth-5 · Thunderworld</span>: <span class="tc-d">Sunny home of Captain Marvel (today's Shazam) and the Marvel Family.</span></li>
-        <li data-e="8"><span class="tc-h">earth-8 · Retaliators</span>: <span class="tc-d">DC's affectionate parody of Marvel's heroes.</span></li>
-        <li data-e="11"><span class="tc-h">earth-11 · Reversed</span>: <span class="tc-d">Many heroes' genders are flipped: Superwoman, Batwoman, Wonder Man.</span></li>
-        <li data-e="12"><span class="tc-h">earth-12 · Beyond</span>: <span class="tc-d">A future Gotham with a new, younger Batman.</span></li>
-        <li data-e="21"><span class="tc-h">earth-21 · New Frontier</span>: <span class="tc-d">The heroes of the 1950s, on the edge of the space age.</span></li>
         <li data-e="22"><span class="tc-h">earth-22 · Kingdom Come</span>: <span class="tc-d">An aging Superman ends his exile to rein in a reckless new generation.</span></li>
         <li data-e="23"><span class="tc-h">earth-23 · President Superman</span>: <span class="tc-d">Calvin Ellis is both Superman and President of the United States.</span></li>
         <li data-e="30"><span class="tc-h">earth-30 · Red Son</span>: <span class="tc-d">Superman landed in the Soviet Union instead of Kansas.</span></li>
         <li data-e="33"><span class="tc-h">earth-33 · Earth-Prime</span>: <span class="tc-d">Our world, where the heroes are only comics.</span></li>
         <li data-e="43"><span class="tc-h">earth-43 · Blood League</span>: <span class="tc-d">Batman became a vampire and turned the rest of the League.</span></li>
-        <li data-e="44"><span class="tc-h">earth-44 · Metal League</span>: <span class="tc-d">A robot Justice League, built by Doc Tornado from the comics he grew up on.</span></li>
-        <li data-e="50"><span class="tc-h">earth-50 · Justice Lords</span>: <span class="tc-d">The League decided to rule the world instead of protect it.</span></li>
-        <li data-e="51"><span class="tc-h">earth-51 · Kamandi</span>: <span class="tc-d">A post-apocalyptic world of talking animals, where Kamandi is the last boy on Earth.</span></li>
       </ul>
       <figcaption><span class="g">&gt;</span> tune in to one world, the rest stay isolated_</figcaption>
     </figure>
 
     <p>The space between those worlds is the Bleed, a concept DC borrowed from Warren Ellis's Wildstorm books. It's the transit network. Ships cross it, and things leak through it. The legend even notes that the Monitors drilled siphons from their sphere down into the Orrery to harvest it, about the most honest picture of a control plane tapping a data plane I've ever seen on a poster.</p>
-    <p>Around the Orrery runs the Speed Force Wall. The map calls it the speed of light for the people inside, and only a limit to matter. Think of it as a rate limit. You can go fast, but not that fast, unless you're a speedster with the right credentials.</p>
-    <p>Then come the outer rings. The Sphere of the Gods holds every pantheon: Asgard and Olympus, Heaven and Hell, New Genesis and Apokolips, Dream and Nightmare. Past that is Limbo, which the map describes as the edge where matter and memory break down. Every org has one of those: the recycle bin nobody ever empties.</p>
-    <p>Outside everything sits the Monitor Sphere, where the operators live. Beyond it is the Source Wall, the limit even to thought, borrowed from Jack Kirby's Fourth World, and it's the perimeter. Nothing gets past it, at least in theory, and DC has spent decades testing that theory.</p>
-    <p>And at the very top, above the whole diagram, a hooded figure reads a book. Morrison calls it the Overvoid and has described it as something like God, looking at the Multiverse the way you'd look at a spot of ink on a blank white page. I read it more simply. That figure is you, holding the comic, with more access than anyone inside the book.</p>
+    <p>Around the Orrery runs the Speed Force Wall, which the map calls the speed of light for the people inside, and only a limit to matter. Think of it as a rate limit. Then come the outer rings: the Sphere of the Gods, holding every pantheon from Olympus to Apokolips, and past that Limbo, where the map says matter and memory break down. Every org has one of those. It's the recycle bin nobody ever empties.</p>
+    <p>Outside everything sits the Monitor Sphere, where the operators live. Beyond it is the Source Wall, the limit even to thought, borrowed from Jack Kirby's Fourth World. That's the perimeter. Nothing gets past it, at least in theory, and DC has spent decades testing that theory.</p>
+    <p>And at the very top, above the whole diagram, a hooded figure reads a book. Morrison calls it the Overvoid and has described it as something like God, looking at the Multiverse the way you'd look at a spot of ink on a blank white page. I read it more simply. That figure is you, holding the comic, with more access than anyone inside the book. Hold that thought. It's where this ends.</p>
     <p>Don't skip the sidebar on the right, either. It catalogs the Monitors' Shift Ships: destroyers, carriers, tankers, hunters, and explorers, each built for a job. The destroyers exist to sterilize universes that have become contaminated. If you've ever reimaged a compromised fleet instead of trying to clean it, you know exactly how those Monitors felt.</p>
 
     <h2 class="sub">The stack</h2>
@@ -591,7 +734,7 @@
       </table>
     </div>
 
-    <p>Two things stand out. Neither model has a slot for the Monitor Sphere, because it isn't a layer. In Zero Trust terms, it's the cross-cutting capabilities: visibility and analytics, automation and orchestration, and governance, applied across every pillar at once. CISA's model treats them that way, and DoD's goes further, making visibility and automation pillars of their own. Either way, that's the control plane this essay is named for. And OSI versus TCP/IP is the same split DC lives with: seven tidy layers in the textbook, four that actually ship. Morrison's map is the textbook. The monthly comics are what ships.</p>
+    <p>Notice what neither model has: a slot for the Monitor Sphere. It isn't a layer. In Zero Trust terms, it's the cross-cutting capabilities, visibility and analytics, automation and orchestration, and governance, applied across every pillar at once. CISA's model treats them that way, and DoD's goes further, making visibility and automation pillars of their own. Either way, that's the control plane this essay is named for. And OSI versus TCP/IP is the same split DC lives with: seven tidy layers in the textbook, four that actually ship. Morrison's map is the textbook. The monthly comics are what ships.</p>
 
     <figure class="shot" style="max-width:480px">
       <img src="forge.jpg" alt="A colossal pillar of violet energy erupting through a dark eclipsed sphere above a jagged alien landscape" loading="lazy" width="1000" height="979" />
@@ -600,10 +743,37 @@
 
     <p>None of this is physics, of course. DC borrowed science's vocabulary and built a theology out of it. Marvel shipped a cinematic universe. DC has spent more than eighty years maintaining a mythology, and you can see the maintenance history in the architecture.</p>
 
+    <h2 class="sub">The flaw in the perfection</h2>
+    <p>Which brings me back to the operators, and to how Morrison says the whole thing started. He told it in Final Crisis: Superman Beyond, and it reads like an incident report.</p>
+    <p>In the beginning there is a perfect, empty mind, the Overvoid, and it discovers a flaw in itself. A speck. Something that "is" everything perfection is not. The mind defines itself by its relationship to the flaw and takes a name: Monitor-Mind. Then it does what any operator does with an anomaly. It acts to contain it. It bottles the flaw to prevent its spread.</p>
+    <p>Two things are born in that moment. The Monitor, and its opposite, the Anti-Monitor, which Morrison calls "the Conflict generator, the Story Machine." File that away. It matters later.</p>
+    <p>Then Monitor-Mind does the next thing any of us would do. It sends in a probe to study the anomaly up close: the Science Monitor, Dax Novu. Novu enters the flaw and starts cataloguing. He numbers every variation on the basic theme, every alternative twist, and in the act of cataloguing, what had been a Universe becomes a Multiverse. The observer creates the thing he was sent to observe.</p>
+    <p>Novu looks too close, too deep. He is "infected by activity and process, by the endless play of matter and narrative," blinded by the flaw's lightning, and split in two.</p>
+
+    <figure class="shot sb" style="max-width:520px">
+      <a href="superman-beyond-flaw.webp" target="_blank" rel="noopener"><img src="superman-beyond-flaw.webp" alt="Comic page headed “And Then!”, with a red speck, a bottle-shaped vessel and a pair of giant glowing eyes. The narration tells how a flaw appears in a perfect void, which names itself Monitor-Mind. Monitor is born, and with it its opposite, the Anti-Monitor, the Conflict generator, the Story Machine. Monitor-Mind bottles the Flaw to stop it spreading and sends in the Science Monitor Dax Novu, who enters it, is contaminated, and is split in two." loading="lazy" width="502" height="713" /><span class="sr-only"> (full size, opens in a new tab)</span></a>
+      <a href="superman-beyond-novu.webp" target="_blank" rel="noopener"><img src="superman-beyond-novu.webp" alt="Two panels of a towering glass vessel packed with glowing blue worlds. The narration says what had been Universe becomes Multiverse as a divided, deranged Novu catalogues and numbers each variation on a basic theme. Looking too close, too deep, he is infected by activity and process, and blinded and corrupted by the Flaw's lightning." loading="lazy" width="710" height="480" /><span class="sr-only"> (full size, opens in a new tab)</span></a>
+      <figcaption><span class="g">&gt;</span> Superman Beyond, the origin pages · tap to inspect_</figcaption>
+    </figure>
+    <p class="credit">Final Crisis: Superman Beyond #2 (2009). Grant Morrison, writer. Doug Mahnke, artist. © DC Comics.</p>
+
+    <p>Read that as an engineer. The first operator to touch the system was contaminated by it. The probe came back changed, and nobody checked what came back with it. Nobody in this origin is a villain yet. The problem is a probe that came back dirty and went straight back into service.</p>
+
+    <figure class="shot cnt has-replay" style="max-width:420px" data-anim="once" data-at="0.9">
+      <div class="cnt-stage" role="img" aria-label="Incident report, first entry, in five beats. A red speck, the Flaw, appears on a blank white page. Monitor-Mind draws a violet ring around it to contain it. A probe, Dax Novu, reaches in from the edge of the ring, and when it touches the speck, the speck shatters into small blue worlds that fill the ring: Universe becomes Multiverse. The probe glitches red and splits in two. One half returns to the edge of the ring, the other stays inside, pulsing faintly red. Nobody checked what came back.">
+        <div aria-hidden="true">
+          <svg class="cnt-svg" viewBox="0 20 300 192" width="300" height="192" focusable="false"><g class="cs-worlds"><circle style="--i:0;--tx:9px;--ty:-8.2px" cx="141" cy="126.2" r="5"/><circle style="--i:1;--tx:-1.5px;--ty:17.2px" cx="151.5" cy="100.8" r="4.2"/><circle style="--i:2;--tx:-12.8px;--ty:-16.7px" cx="162.8" cy="134.7" r="6.2"/><circle style="--i:3;--tx:24px;--ty:4.2px" cx="126" cy="113.8" r="5"/><circle style="--i:4;--tx:7.7px;--ty:-28.8px" cx="142.3" cy="146.8" r="6.2"/><circle style="--i:5;--tx:14.8px;--ty:28.6px" cx="135.2" cy="89.4" r="5"/><circle style="--i:6;--tx:-32.3px;--ty:-11.8px" cx="182.3" cy="129.8" r="4.2"/><circle style="--i:7;--tx:33.8px;--ty:-13.9px" cx="116.2" cy="131.9" r="6.2"/><circle style="--i:8;--tx:-16.3px;--ty:34.9px" cx="166.3" cy="83.1" r="5"/><circle style="--i:9;--tx:-12.1px;--ty:-38.5px" cx="162.1" cy="156.5" r="4.2"/><circle style="--i:10;--tx:36.5px;--ty:21.2px" cx="113.5" cy="96.8" r="6.2"/><circle style="--i:11;--tx:-42.9px;--ty:9.4px" cx="192.9" cy="108.6" r="5"/><circle style="--i:12;--tx:26.2px;--ty:-37.3px" cx="123.8" cy="155.3" r="4.2"/><circle style="--i:13;--tx:6.1px;--ty:46.8px" cx="143.9" cy="71.2" r="6.2"/><circle style="--i:14;--tx:-37.2px;--ty:-31.4px" cx="187.2" cy="149.4" r="5"/><circle style="--i:15;--tx:50.2px;--ty:-2.1px" cx="99.8" cy="120.1" r="4.2"/><circle style="--i:16;--tx:2.5px;--ty:-53px" cx="147.5" cy="171" r="5"/><circle style="--i:17;--tx:34.9px;--ty:41.8px" cx="115.1" cy="76.2" r="4.2"/><circle style="--i:18;--tx:-55.3px;--ty:-7.4px" cx="205.3" cy="125.4" r="6.2"/><circle style="--i:19;--tx:46.9px;--ty:-32.6px" cx="103.1" cy="150.6" r="5"/><circle style="--i:20;--tx:-12.8px;--ty:57px" cx="162.8" cy="61" r="4.2"/><circle style="--i:21;--tx:-29.7px;--ty:-51.8px" cx="179.7" cy="169.8" r="6.2"/><circle style="--i:22;--tx:58px;--ty:18.5px" cx="92" cy="99.5" r="5"/><circle style="--i:23;--tx:-56.4px;--ty:26px" cx="206.4" cy="92" r="4.2"/><circle style="--i:24;--tx:24.4px;--ty:-58.4px" cx="125.6" cy="176.4" r="6.2"/><circle style="--i:25;--tx:21.8px;--ty:60.6px" cx="128.2" cy="57.4" r="5"/><circle style="--i:26;--tx:-58px;--ty:-30.5px" cx="208" cy="148.5" r="4.2"/><circle style="--i:27;--tx:64.5px;--ty:-17px" cx="85.5" cy="135" r="6.2"/><circle style="--i:28;--tx:-36.7px;--ty:57px" cx="186.7" cy="61" r="5"/><circle style="--i:29;--tx:-11.7px;--ty:-67.9px" cx="161.7" cy="185.9" r="4.2"/><circle style="--i:30;--tx:55.3px;--ty:42.8px" cx="94.7" cy="75.2" r="6.2"/><circle style="--i:31;--tx:-70.8px;--ty:5.9px" cx="220.8" cy="112.1" r="5"/></g><circle class="cs-speck" cx="150" cy="118" r="5"/><circle class="cs-ring" cx="150" cy="118" r="86" pathLength="1" transform="rotate(-90 150 118)"/><g class="cs-probe"><line class="cs-glow" x1="182.9" y1="85.1" x2="154.9" y2="113.1"/><line class="cs-out" pathLength="1" x1="210.8" y1="57.2" x2="182.9" y2="85.1"/><line class="cs-in" pathLength="1" x1="182.9" y1="85.1" x2="154.9" y2="113.1"/></g><text class="cs-dax" x="226" y="66">Dax Novu</text></svg>
+          <div class="cnt-lbls"><div class="c1">the Flaw</div><div class="c2">Monitor-Mind: contain it</div><div class="c3">Universe becomes Multiverse</div><div class="c4">contaminated. split in two.</div><div class="c5">nobody checked what came back</div></div>
+        </div>
+      </div>
+      <button type="button" class="replay" aria-label="Replay containment">↻ replay</button>
+      <figcaption><span class="g">&gt;</span> incident report, first entry_</figcaption>
+    </figure>
+
     <h2 class="sub">Who watches the Monitors?</h2>
-    <p>Every architecture has a weak spot, and in DC's it's the operators.</p>
-    <p>The first Monitor, back in 1985, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
-    <p>By the time of Final Crisis, there were 52 Monitors, one assigned to each world. Then Morrison pulled the rug out. The Monitors had been feeding on the stories they were supposed to protect. One of them, Mandrakk, became a vampire of the Multiverse itself. The people with the most privileged access in all of creation turned out to be the threat. When the dust settled, only one Monitor was kept on: the young Nix Uotan.</p>
+    <p>So every architecture has a weak spot, and in DC's it's the operators. I don't think that's a design failure. Build a watchtower out of the thing it watches and this is what you get.</p>
+    <p>The first Monitor we met, back in 1985, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
+    <p>By the time of Final Crisis there were 52 Monitors, one assigned to each world. Then Morrison finished the thought he started with Novu. The Monitors had been feeding on the stories they were supposed to protect. The one who saw it clearly, Dax Novu himself, became the vampire of the Multiverse: Mandrakk, the Dark Monitor. The most privileged account in creation was also the oldest. When the dust settled, only one Monitor was kept on, the young Nix Uotan, Novu's own son.</p>
 
     <figure class="shot bvb has-replay" style="max-width:640px" data-anim="once">
       <table>
@@ -642,18 +812,19 @@
       <figcaption><span class="g">&gt;</span> every badge passed. one behavior didn't_</figcaption>
     </figure>
 
-    <p>I've spent a good part of my career in counterintelligence and insider threat work, so you can imagine how hard I laughed at that one. It's the oldest lesson in the field. The access that lets someone protect a system is the same access that lets them hurt it. That's why the best insider programs watch behavior, not just badges.</p>
+    <p>I've spent a good part of my career in counterintelligence and insider threat work, so you can imagine how hard I laughed at that one. It's the oldest lesson in the field. The access that lets someone protect a system is the same access that lets them hurt it, and tenure makes it worse, not better. That's why the best insider programs watch what people do, not just what they're cleared for.</p>
     <p>Snyder took it one step further back. His Justice League introduced Perpetua, the original architect of the Multiverse and mother of the Monitor, the Anti-Monitor, and the World Forger. She'd built the first version to serve her, not the people living in it. Her own sons turned her in, she was sealed in the Source Wall, and the Multiverse was restarted on new rules. It's a supply-chain story at heart: the scariest vulnerability is the one the designer put there.</p>
 
     <h2 class="sub">The Alpha and the Omega</h2>
-    <p>Which brings me to the current era. DC launched its "All In" initiative in October 2024. Yes, it abbreviates to "AI." And yes, I'm sure somebody in that marketing meeting knew it. It opened with a special that split the line in two. On one side, Superman, later tied to Alpha energy. On the other, Darkseid, seeding a whole new reality, the Absolute Universe, with Omega energy.</p>
-    <p>At first it read as hero world versus dark world. The further it went, the more it read as a duality: two halves that oppose <em>and</em> complete each other. Al Ewing's Absolute Green Lantern made the hint hard to miss. Oa has been the Green Lantern Corps' home planet for decades. In this book, the people who get judged are sent away to wait in "OA," spelled out as Omega-Alpha. Once Oa became Omega-Alpha, I couldn't unsee the shape: one cycle that keeps itself going, not two rivals.</p>
+    <p>Remember the Story Machine? Morrison's origin says the opposite was born in the same breath as the Monitor, and that the opposite is where stories come from. DC's current era is running that idea at full scale.</p>
+    <p>DC launched its "All In" initiative in October 2024. Yes, it abbreviates to "AI." And yes, I'm sure somebody in that marketing meeting knew it. It opened with a special that split the line in two. On one side, Superman, later tied to Alpha energy. On the other, Darkseid, seeding a whole new reality, the Absolute Universe, with Omega energy.</p>
+    <p>At first it read as hero world versus dark world. The further it went, the more it read as a duality: two halves that oppose <em>and</em> complete each other. Al Ewing's Absolute Green Lantern made the hint hard to miss. Oa has been the Green Lantern Corps' home planet for decades. In this book, the people who get judged are sent away to wait in "OA," spelled out as Omega-Alpha. Once Oa became Omega-Alpha, I couldn't unsee the shape: one cycle that keeps itself going.</p>
 
     <figure class="shot oa has-replay" style="max-width:480px" data-anim="once">
       <div class="oa-stage" role="img" aria-label="Oa, home of the Green Lantern Corps, decoded as OA: Omega-Alpha. The author reads the end-before-beginning order as a cycle.">
         <div aria-hidden="true">
           <div class="oa-art">
-            <div class="oa-word"><span class="oa-o"><span class="oa-l">O</span><span class="oa-t" style="--k:0">m</span><span class="oa-t" style="--k:1">e</span><span class="oa-t" style="--k:2">g</span><span class="oa-t" style="--k:3">a</span></span><span class="oa-sep"> · </span><span class="oa-a"><span class="oa-l"><span class="oa-uc">A</span><span class="oa-lc">a</span></span><span class="oa-t" style="--k:0">l</span><span class="oa-t" style="--k:1">p</span><span class="oa-t" style="--k:2">h</span><span class="oa-t" style="--k:3">a</span></span></div>
+            <div class="oa-word"><span class="oa-o"><span class="oa-l">O</span><span class="oa-t" style="--k:0">m</span><span class="oa-t" style="--k:1">e</span><span class="oa-t" style="--k:2">g</span><span class="oa-t" style="--k:3">a</span></span><span class="oa-sep"> · </span><span class="oa-a"><span class="oa-l"><span class="oa-uc">A</span></span><span class="oa-t" style="--k:0">l</span><span class="oa-t" style="--k:1">p</span><span class="oa-t" style="--k:2">h</span><span class="oa-t" style="--k:3">a</span></span></div>
             <svg class="oa-loop" viewBox="0 0 130 24" width="130" height="24" focusable="false"><path class="oa-arc" pathLength="1" d="M127 1C134 15 110 22 65 22C20 22-4 15 3 1"/><path class="oa-head" d="M-2 4.3L3 1L3.4 7"/></svg>
             <div class="oa-l1">home of the Green Lantern Corps</div>
           </div>
@@ -670,27 +841,28 @@
       <figcaption><span class="g">&gt;</span> Two halves of one cycle</figcaption>
     </figure>
 
-    <p>The oldest name for that shape is yin and yang. Star Wars fans might call it a dyad in the Force. My favorite parallel comes from Shinto, where a single kami has two sides: the ara-mitama, its wild and destructive face, and the nigi-mitama, its calm and gentle one. Same spirit, two expressions, only whole together.</p>
+    <p>The oldest name for that shape is yin and yang. My favorite parallel comes from Shinto, where a single kami has two sides: the ara-mitama, its wild and destructive face, and the nigi-mitama, its calm and gentle one. Same spirit, two expressions, only whole together.</p>
 
-    <p>And yes, a guy who spends his working hours pairing red teams with blue teams to make purple was always going to fall for that one. The opposition is part of the design, not a flaw in it.</p>
-    <p>When I first wrote this piece, I said I might be reading tea leaves, and that I'd wait for the next big event to see. Then DC K.O. wrapped up in March 2026. The tournament for Darkseid's power ended with Superman giving up the crown instead of keeping it, and the fighters came out carrying both Alpha and Omega energy. I'm not claiming I called it. But I'm not not claiming it, either.</p>
+    <p>And yes, a guy who spends his working hours pairing red teams with blue teams to make purple was always going to fall for that one. Morrison built the opposition into the origin story. The Conflict generator is the Story Machine.</p>
+    <p>When I first wrote this piece, I said I might be reading tea leaves, and that I'd wait for the next big event to see. Then DC K.O. wrapped up in March 2026. Lex Luthor was the one wearing the crown at the end of the tournament, which, for an insider-threat guy, is the least surprising sentence in this essay. Then the Time Trapper poured Alpha and Omega energy into Superman at once. Superman took the crown off Luthor, ran Darkseid out of the universe, and gave the power up: "I am not a King Omega. Because we don't need one." One man carried both energies, and he handed them back. I'm not claiming I called it. But I'm not not claiming it, either.</p>
 
     <h2 class="sub">What a security person takes from all this</h2>
     <p>Strip away the capes and you're left with lessons I'd put in front of any architecture review board.</p>
-    <p>Systems that last get refactored, not replaced. DC never got to start over with a clean sheet. Every Crisis was a migration done live, with readers watching. Most of our environments are the same.</p>
+    <p>Systems that last get refactored. DC never got to start over with a clean sheet. Every Crisis was a migration done live, with readers watching. Most of our environments are the same.</p>
     <p>Write the diagram down. DC ran a Multiverse for decades before anyone published an official map. Once Morrison did, every writer after him had something to build against. That's how the next team avoids breaking things.</p>
-    <p>The failed builds don't disappear. The Dark Multiverse is every abandoned idea, still running somewhere underneath, still trying to get back in. Technical debt and shadow IT, in one picture.</p>
-    <p>Watch the watchers. The Monitors are the clearest insider threat story I know. Privileged access needs oversight, and the oversight needs oversight.</p>
-    <p>And opposition is a feature. Alpha and Omega, red and blue, ara and nigi. The systems that hold up are the ones that test themselves against their own shadow.</p>
+    <p>Quarantine the probe. Novu came back from the flaw changed, and the change took a few billion years to show. Anything that touches a compromised system is suspect until proven otherwise, including your own tools.</p>
+    <p>Watch the watchers. The Monitors are the clearest insider threat story I know, and the oldest account was the worst one. Being there longest is not the same as being trustworthy.</p>
+    <p>Keep an adversary on the payroll. Alpha and Omega, red and blue, ara and nigi. Morrison wrote the Anti-Monitor into the first second of creation and called it the Story Machine. The systems that hold up are the ones that keep a working adversary around.</p>
 
     <h2 class="sub">Why it holds up</h2>
-    <p>Taken as a whole, DC's cosmology is a modern myth built from quantum vocabulary, metaphysics, comparative religion, and pure story logic. It's messy and it sometimes contradicts itself, like any production system that's been running this long. It still works.</p>
-    <p>A forge of raw potential sits at the bottom, a watchtower sits at the top, and strung between them is every story anyone ever believed in hard enough. And somewhere above all of it, past the Source Wall, someone is holding the book and turning the page. The architecture just tells you where the story runs.</p>
+    <p>DC's cosmology is a modern myth built from quantum vocabulary, metaphysics, comparative religion, and pure story logic. It's messy and it sometimes contradicts itself, like any production system that's been running this long. It still works.</p>
+    <p>A forge of raw potential sits at the bottom, a watchtower sits at the top, and strung between them is every story anyone ever believed in hard enough. The watchtower got compromised. Of course it did. The only operator in the whole design who never gets owned is the one above the control plane, outside the perimeter, holding the book and turning the page.</p>
+    <p>That's you. Keep your hands on the book.</p>
 
-    <p class="lede">Further reading: DC's official <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Map of the Multiverse</a> and its <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">history of the Multiverse</a>, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse</a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum</a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe</a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega</a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1</a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline</a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature</a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up</a>.</p>
+    <p class="lede">Further reading: DC's official <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Map of the Multiverse</a> and its <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">history of the Multiverse</a>, <a href="https://dc.fandom.com/wiki/Final_Crisis:_Superman_Beyond_Vol_1" target="_blank" rel="noopener">Final Crisis: Superman Beyond #1 and #2</a> (2008 to 2009), Grant Morrison and Doug Mahnke, for the Overvoid origin, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse</a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum</a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe</a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega</a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1</a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline</a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature</a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up</a>.</p>
   </article>
 
-  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map and the Loki still.</p>
+  <p class="disclosure">Illustrations AI-generated, human-commanded, except DC's official map, the Loki still and the two Final Crisis: Superman Beyond panels.</p>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
 
