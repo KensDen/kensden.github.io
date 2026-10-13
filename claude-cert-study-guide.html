@@ -126,11 +126,14 @@
   .disclosure{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);line-height:1.6}
   .guide p.disclosure{font-size:12.5px;color:var(--dim);margin:0}
 
+  .guide ul.changelog{margin:0;padding:0;list-style:none;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.7;color:var(--dim)}
+  .guide ul.changelog li{margin:0}
   footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;
     align-items:center;gap:10px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
   footer a{color:var(--cyan);text-decoration:none}
   footer a:hover{color:var(--green)}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -142,7 +145,7 @@
 
   <header class="term">
     <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="term-title">study-guide.md</span></div>
+      <span class="term-title">ccao-f.md</span></div>
     <div class="term-body">
       <p class="prompt">ken@den:<span class="path">~/study</span>$ <span class="arg">cat ccao-f.md</span><span class="cursor" aria-hidden="true"></span></p>
       <h1>Claude Certified Associate: Foundations <span class="nowrap">(CCAO-F)</span> Study Guide</h1>
@@ -151,7 +154,7 @@
   </header>
 
   <main class="guide">
-    <p class="note">Unofficial and not affiliated with Anthropic. Written from Anthropic's exam guide for CCAO-F and Anthropic's public documentation, checked 30 September 2026. Exam details change: confirm everything below against the current exam guide before you book.</p>
+    <p class="note">Unofficial and not affiliated with Anthropic. Written from Anthropic's exam guides for CCAO-F and CCAR-F and Anthropic's public documentation, checked 12 October 2026. Exam details change: confirm everything below against the current exam guide before you book.</p>
 
     <p>Practice with the companion drill: <a href="claude-cert-drill.html?exam=ccao-f">Claude Cert Drill</a>.</p>
 
@@ -172,6 +175,33 @@
     <p><strong>Two things to know up front.</strong></p>
     <p>The credential lasts 12 months, not the two or three years many certifications give. Renewal on time is a free, unproctored assessment covering what changed. Let it lapse and you sit the full exam again. Put the renewal date on your calendar the day you pass.</p>
     <p>Multiple-response items are where prepared candidates lose points. Each one says how many answers to pick. Read that number every time.</p>
+
+    <h3 id="architect-facts">Architect exam facts</h3>
+    <table class="facts" aria-labelledby="architect-facts">
+      <tbody>
+        <tr><th scope="row">Exam code</th><td>CCAR-F</td></tr>
+        <tr><th scope="row">Items</th><td>60</td></tr>
+        <tr><th scope="row">Format</th><td>Scenario-based: 4 scenarios drawn at random from a published bank of 6. Multiple choice and multiple response (each item says how many to pick)</td></tr>
+        <tr><th scope="row">Time</th><td>120 minutes</td></tr>
+        <tr><th scope="row">Passing score</th><td>720 on a scaled range of 100 to 1,000</td></tr>
+        <tr><th scope="row">Delivery</th><td>Pearson VUE, online proctored or at a test center</td></tr>
+        <tr><th scope="row">Fee</th><td>$125 list</td></tr>
+        <tr><th scope="row">Validity</th><td>12 months</td></tr>
+      </tbody>
+    </table>
+    <table class="bp" aria-label="Architect blueprint">
+      <thead>
+        <tr><th scope="col" class="n">#</th><th scope="col">Domain</th><th scope="col" class="w">Weight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="n">1</td><td>Agentic Architecture and Orchestration</td><td class="w">27%</td></tr>
+        <tr><td class="n">2</td><td>Tool Design and MCP Integration</td><td class="w">18%</td></tr>
+        <tr><td class="n">3</td><td>Claude Code Configuration and Workflows</td><td class="w">20%</td></tr>
+        <tr><td class="n">4</td><td>Prompt Engineering and Structured Output</td><td class="w">20%</td></tr>
+        <tr><td class="n">5</td><td>Context Management and Reliability</td><td class="w">15%</td></tr>
+      </tbody>
+    </table>
+    <p>The two blueprints test different jobs. The Associate is about everyday use and judgment, while the Architect is scenario-based and about building agents, tools and Claude Code workflows.</p>
 
     <h2 id="blueprint">The blueprint, and where the risk usually is</h2>
     <table class="bp" aria-labelledby="blueprint">
@@ -207,7 +237,7 @@
       <li>Build one throwaway Project from scratch with instructions, an uploaded file and a connector, just to touch every setting once.</li>
       <li>Don't skim the maintenance objective. Knowing when instructions and knowledge go stale is its own testable idea.</li>
     </ul>
-    <p>Primary sources: <a href="https://support.claude.com">Claude Help Center</a> for app features, and <a href="https://docs.claude.com">Claude Docs</a> for models and the platform. Review Projects, Artifacts, Memory, Skills and Code Execution in particular.</p>
+    <p>Primary sources: <a href="https://support.claude.com" target="_blank" rel="noopener">Claude Help Center<span class="sr-only"> (opens in a new tab)</span></a> for app features, and <a href="https://docs.claude.com" target="_blank" rel="noopener">Claude Docs<span class="sr-only"> (opens in a new tab)</span></a> for models and the platform. Review Projects, Artifacts, Memory, Skills and Code Execution in particular.</p>
 
     <h3>Second: Domain 2 (21%, the largest domain)</h3>
     <p>Judging outputs for accuracy and completeness, spotting hallucinations, inconsistency and bias, fact-checking, deciding when a human must review, adapting output for an audience, and choosing the output format.</p>
@@ -226,14 +256,14 @@
     <ol>
       <li><strong>The official exam guide for CCAO-F.</strong> Its blueprint section is the checklist: rate yourself against every objective. Its sample items show the question style.</li>
       <li><strong>Anthropic's prep course for CCAO-F.</strong> The primary prep material where you have access to it.</li>
-      <li><strong>Anthropic's documentation:</strong> the <a href="https://support.claude.com">Claude Help Center</a> and <a href="https://docs.claude.com">Claude Docs</a>.</li>
+      <li><strong>Anthropic's documentation:</strong> the <a href="https://support.claude.com" target="_blank" rel="noopener">Claude Help Center<span class="sr-only"> (opens in a new tab)</span></a> and <a href="https://docs.claude.com" target="_blank" rel="noopener">Claude Docs<span class="sr-only"> (opens in a new tab)</span></a>.</li>
       <li><strong>People who have sat it.</strong> They can describe difficulty and emphasis, but not content.</li>
       <li><strong>Third-party practice sets,</strong> including the <a href="claude-cert-drill.html?exam=ccao-f">Claude Cert Drill</a>. Treat all of them, mine included, as unofficial and never as a substitute for items 1 to 3.</li>
     </ol>
 
     <h2 id="exam-day">Before exam day</h2>
     <ul class="check">
-      <li>Seat booked at <a href="https://www.pearsonvue.com/us/en/anthropic.html">Pearson VUE</a></li>
+      <li>Seat booked at <a href="https://www.pearsonvue.com/us/en/anthropic.html" target="_blank" rel="noopener">Pearson VUE<span class="sr-only"> (opens in a new tab)</span></a></li>
       <li>Fee confirmed at checkout</li>
       <li>Government photo ID, unexpired, with your name exactly as registered</li>
       <li>Testing online: desk clear of notes, phone and second monitor</li>
@@ -246,6 +276,12 @@
 
     <h2 class="about" id="about">About this guide</h2>
     <p class="disclosure">Written by Ken Connell with Claude, from my own exam prep. Unofficial and not affiliated with Anthropic; nothing here comes from the live exam. AI-generated, human-commanded.</p>
+
+    <h2 class="about" id="changelog">Changelog</h2>
+    <ul class="changelog">
+      <li>12 Oct 2026: Architect exam facts added, exam facts re-checked.</li>
+      <li>30 Sep 2026: first published.</li>
+    </ul>
   </main>
 
   <footer>
