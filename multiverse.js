@@ -68,11 +68,12 @@
   });
 
   /* 4. Tune the Orrery: the chips are a radiogroup (arrows move), the card is aria-live,
-     and a tap on a mapped dot picks it. Card text comes from the no-JS list. */
+     and a tap on a mapped dot picks it. Card text comes from the no-JS list; data-w sets the colour. */
   var tune = doc.querySelector('.tune');
   if (tune) {
-    var chips = $$('[role=radio]', tune), items = $$('.tune-list li', tune), svg = tune.querySelector('svg');
+    var chips = $$('[role=radio]', tune), items = $$('.tune-list li', tune), svg = tune.querySelector('.orr');
     var card = tune.querySelector('.tune-card'), halo = tune.querySelector('.sel-halo');
+    var tag = card.querySelector('.tc-m').textContent.split(' · ')[0];
     var dotOf = function (c) { return /^\d+$/.test(c.dataset.e) && tune.querySelector('.dot[data-e="' + c.dataset.e + '"]'); };
     var pick = function (k, focus) {
       var dot = dotOf(chips[k]), li = items[k];
@@ -82,8 +83,12 @@
       dot.classList.add('sel');
       halo.setAttribute('cx', dot.getAttribute('cx'));
       halo.setAttribute('cy', dot.getAttribute('cy'));
-      card.querySelector('.tc-h').textContent = li.querySelector('.tc-h').textContent;
+      tune.setAttribute('data-w', chips[k].dataset.e); // digits: dotOf checked
+      card.querySelector('use').setAttribute('href', '#tm-' + chips[k].dataset.e);
+      card.querySelector('.tc-t').textContent = li.querySelector('.tc-h').textContent;
       card.querySelector('.tc-d').textContent = li.querySelector('.tc-d').textContent;
+      card.querySelector('.tc-f').textContent = li.querySelector('.tc-f').textContent;
+      card.querySelector('.tc-m').textContent = tag + ' · ' + li.querySelector('.tc-mood').textContent;
       if (focus) chips[k].focus();
     };
     chips.forEach(function (c, j) {
