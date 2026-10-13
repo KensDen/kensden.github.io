@@ -85,15 +85,16 @@
   /* data to decisions */
   .dikw{padding:30px 18px 26px;display:flex;flex-direction:column;align-items:center;gap:9px;
     background:linear-gradient(180deg,var(--panel-2),#0a0f14)}
+  .dikw .stack{width:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:9px} /* tiers size against this, so desktop keeps its proportions */
   .dikw .tier{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;
     letter-spacing:.16em;text-align:center;border:1px solid var(--line);border-radius:8px;
-    padding:11px 8px;background:var(--panel);width:100%}
-  .dikw .t4{max-width:170px;color:var(--violet);border-color:rgba(167,139,250,.4)}
-  .dikw .t3{max-width:290px;color:var(--green);border-color:rgba(63,185,80,.4)}
+    padding:11px 8px;background:var(--panel);width:100%;box-sizing:border-box}
+  .dikw .t4{max-width:34%;color:var(--violet);border-color:rgba(167,139,250,.4)}
+  .dikw .t3{max-width:56%;color:var(--green);border-color:rgba(63,185,80,.4)}
   .dikw .t3 .gloss{display:block;font-weight:400;font-size:10px;letter-spacing:.08em;
     color:var(--dim);margin-top:4px;text-transform:lowercase}
-  .dikw .t2{max-width:400px;color:var(--cyan);border-color:rgba(57,211,197,.35)}
-  .dikw .t1{max-width:500px;color:var(--dim)}
+  .dikw .t2{max-width:78%;color:var(--cyan);border-color:rgba(57,211,197,.35)}
+  .dikw .t1{max-width:100%;color:var(--dim)}
 
   .closer{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);
     margin:36px 0 34px}
@@ -160,10 +161,12 @@
 
     <figure class="shot">
       <div class="dikw">
-        <div class="tier t4">WISDOM</div>
-        <div class="tier t3">KNOWLEDGE<span class="gloss">actionable intelligence</span></div>
-        <div class="tier t2">INFORMATION</div>
-        <div class="tier t1">DATA</div>
+        <div class="stack">
+          <div class="tier t4">WISDOM</div>
+          <div class="tier t3">KNOWLEDGE<span class="gloss">actionable intelligence</span></div>
+          <div class="tier t2">INFORMATION</div>
+          <div class="tier t1">DATA</div>
+        </div>
       </div>
       <figcaption><span class="g">&gt;</span> data to decisions_</figcaption>
     </figure>
