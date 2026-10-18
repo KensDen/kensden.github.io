@@ -67,15 +67,14 @@
 
   article p{font-size:18px;line-height:1.8;color:var(--muted);margin:0 0 26px;
     text-rendering:optimizeLegibility}
-  article p.lede{font-style:italic;color:var(--dim);font-size:17px}
   h2.sub{font-family:"Space Grotesk",sans-serif;font-size:22px;letter-spacing:-.01em;
     color:var(--ink);margin:38px 0 16px}
   .closer{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);
     margin:36px 0 34px}
   .closer .g{color:var(--green)}
   .disclosure{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:30px 0 0}
-  /* the drop cap stays on the essay's first paragraph, after the archive preface */
-  article p.lede + p::first-letter{
+  /* the drop cap on the essay's first paragraph */
+  article > p:first-of-type::first-letter{
     font-family:"Space Grotesk",sans-serif;font-size:52px;line-height:.9;
     float:left;padding:6px 10px 0 0;color:var(--ink)}
 
@@ -124,8 +123,6 @@
   <hr class="rule" />
 
   <article>
-    <p class="lede">From the archive. I wrote this in 2018 for my mom, and posted it on LinkedIn. It is republished here as written, apart from two trimmed paragraphs, a few small fixes and the captions. A short afterword follows.</p>
-
     <p>Mom, did I ever tell you everywhere I go I carry a small coin? Yes, a thin silver-colored American dime minted in Denver, Colorado in the year 2001. The same 10-cent cost of the very first comic books of the late 1930s; with their self-contained gifted dreams of hope transcribed across pages transporting readers beyond literary verse and artistic design down pathways of endless imagination.</p>
 
     <figure class="shot coin" style="max-width:480px">
