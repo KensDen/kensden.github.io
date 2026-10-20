@@ -4,7 +4,7 @@ My personal site: a casually technical "about me," built as static HTML pages an
 
 **→ Live at [kensden.github.io](https://kensden.github.io)**
 
-Securing Agentic AI and Zero Trust · Army Major (Ret.) · maker and dad.
+Securing Agentic AI with Zero Trust · Army Major (Ret.) · maker and dad.
 
 ## About this repo
 
