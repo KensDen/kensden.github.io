@@ -622,7 +622,7 @@
       <figcaption><span class="g">&gt;</span> Prune it, or let it grow_</figcaption>
     </figure>
 
-    <p>If you've ever used git, you've already lived this. Every Elseworld is a branch. Every issue is a commit. Crisis on Infinite Earths was a squash merge that deleted every branch it touched. Flashpoint was a force push that rewrote history into the New 52, and Rebirth was the revert that brought much of it back. Hypertime is just the team finally agreeing to leave the long-lived branches alone.</p>
+    <p>If you've ever used git, you've already lived this. Every Elseworld is a branch. Every issue is a commit. Crisis on Infinite Earths was an octopus merge that deleted every branch it touched. Flashpoint was a force push that rewrote history into the New 52, and Rebirth was the revert that brought much of it back. Hypertime is just the team finally agreeing to leave the long-lived branches alone.</p>
 
     <figure class="shot gg" style="max-width:640px">
       <pre role="img" aria-label="A git history of the DC Multiverse: Earth-2 branches off in 1961, Crisis on Infinite Earths merges and deletes the branches in 1985, Hypertime allows long-lived branches in 1998, 52 restores the multiverse in 2007, Flashpoint force-pushes the New 52 in 2011, Rebirth reverts in 2016, and All In opens the Absolute line in 2024."><code><span class="p">$</span> git log --graph --oneline multiverse
@@ -631,7 +631,7 @@
 <span class="m">*</span> <span class="r">2011 Flashpoint: force push, New 52</span>
 <span class="m">*</span> 2007 52: 52 Earths restored
 <span class="m">*</span> 1998 Hypertime: long-lived branches OK
-<span class="m">*</span><span class="c">-.</span>   1985 Crisis: squash, branches gone
+<span class="m">*</span><span class="c">-.</span>   1985 Crisis: octopus merge, pruned
 <span class="m">|</span><span class="a">\</span> <span class="c">\</span>
 <span class="m">|</span> <span class="a">|</span> <span class="c">*</span> 1964 Earth-3 branches off main
 <span class="m">|</span> <span class="a">|</span><span class="c">/</span>
