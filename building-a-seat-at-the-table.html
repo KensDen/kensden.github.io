@@ -26,7 +26,7 @@
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
-  h1,h2,h3,h4,.w-t{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
+  h1,h2,h3,h4,.w-t,article p.lede.next{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
   /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
   @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;
     src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
@@ -227,6 +227,8 @@
     <p>Humans in Command. Bring a chair you built.</p>
 
     <p class="lede">Further reading: <a href="https://owaspai.org/" target="_blank" rel="noopener">the OWASP AI Exchange<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="measuring-security.html">Measuring Security</a>, a 2019 piece from the paper years about counting what matters.</p>
+    <p class="lede next">Next dispatch: <a href="sanctuary-protocol.html">Sanctuary Protocol</a></p>
+    <p class="lede">Want to talk? Find me on <a href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>.</p>
   </article>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>

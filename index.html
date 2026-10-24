@@ -271,6 +271,7 @@
     border:1px solid var(--line);border-left:2px solid var(--pink);border-radius:0 12px 12px 0;padding:18px 18px}
   .maker p{margin:0;color:var(--muted);font-size:15.5px;max-width:68ch}
   .maker p .hl{color:var(--ink)}
+  .maker cite{display:block;font-style:normal;margin-top:9px;font-size:12.5px;color:var(--dim);font-family:"JetBrains Mono",monospace}
   .talks{display:grid;gap:14px;margin-top:4px}
   @media (min-width:720px){.talks{grid-template-columns:repeat(3,1fr)}}
   .talk{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -339,7 +340,7 @@
       <div class="term-body">
         <p class="prompt"><span class="usr">root@KensDen</span>:<span class="path">~</span># whoami</p>
         <h1>Ken Connell</h1>
-        <p class="role">Securing Agentic AI with Zero Trust · Army Major (Ret.) · maker and <span class="nowrap">dad<span class="cursor"></span></span></p>
+        <p class="role">Securing Agentic AI with Zero&nbsp;Trust&nbsp;· Army Major (Ret.)&nbsp;· maker and <span class="nowrap">dad<span class="cursor"></span></span></p>
         <p class="tagline">I love tinkering with tech and teaching myself how it works. These days that means <span class="hl">Agentic AI security and Zero Trust</span>: the controls that keep a <span class="hl">human in command</span> when software starts acting on its own. Build the unicorn; secure the reins. 🦄</p>
         <ul class="chips" aria-label="Contact">
           <li><a class="chip" href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">linkedin<span class="sr-only"> (opens in a new tab)</span></a></li>
@@ -439,11 +440,11 @@
     <h2>Dispatches</h2>
     <p class="body">Occasional long-form writing. Stories first, tech second.</p>
     <ul class="wlist">
-      <li><a href="/batman-no-superpowers.html"><span class="w-t">Batman Has No Superpowers. That's the Whole Point.</span><span class="w-hook">2026 · The homework is the point.</span></a></li>
-      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span><span class="w-hook">2019 · Closing tickets isn't security.</span></a></li>
       <li><a href="building-a-seat-at-the-table.html"><span class="w-t">Building a Seat at the Table</span><span class="w-hook">2026 · Assess it, learn it, come back better.</span></a></li>
       <li><a href="sanctuary-protocol.html"><span class="w-t">Sanctuary Protocol</span><span class="w-hook">2026 · Everybody gets a cape. Nobody gets a manual.</span></a></li>
       <li><a href="multiverse-control-plane.html"><span class="w-t">The Multiverse Is a System Architecture, Complete with a Control Plane</span><span class="w-hook">2026 · DC's cosmology, read as an incident report.</span></a></li>
+      <li><a href="/batman-no-superpowers.html"><span class="w-t">Batman Has No Superpowers. That's the Whole Point.</span><span class="w-hook">2026 · The homework is the point.</span></a></li>
+      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span><span class="w-hook">2019 · Closing tickets isn't security.</span></a></li>
       <li><a href="10-cent-dreams.html"><span class="w-t">10-Cent Dreams of a Two-Sided Coin</span><span class="w-hook">2018 · A dime, my mom, and a two-sided coin.</span></a></li>
     </ul>
   </section>
@@ -520,7 +521,7 @@
 
           <div class="shot-row">
             <figure class="shot">
-              <img src="pitop.webp" alt="An open green pi-top modular laptop with the Raspberry Pi board, trackball, and internals exposed" loading="lazy" width="780" height="1040" />
+              <img src="pitop.webp" alt="An open green pi-top modular laptop with the Raspberry Pi board, trackpad, and internals exposed" loading="lazy" width="780" height="1040" />
               <figcaption><span class="g">$</span> some assembly required</figcaption>
             </figure>
             <figure class="shot">
@@ -605,7 +606,7 @@
   <section id="inspiration">
     <p class="eyebrow">ls ~/inspiration/</p>
     <h2>Inspiration</h2>
-    <p class="body">The maker's creed, quotes I keep, the people who shaped how I think, and three talks worth your time.</p>
+    <p class="body">The maker's creed, quotes I keep, the people who shaped how I think, and three videos worth your time.</p>
     <details class="more">
       <summary><span aria-hidden="true">$ </span>cat ~/inspiration/*</summary>
       <div class="more-body">
@@ -615,6 +616,7 @@
           <h3>The maker's creed</h3>
           <div class="maker">
             <p><span class="hl">The world is our classroom, our laboratory.</span> We're the makers and the modders, the dreamers and the hackers: the "what if?" and the "I wonder why?" Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn, and <span class="hl">together, we make the future.</span> <span aria-hidden="true">🔭📡🔨</span></p>
+<cite><span aria-hidden="true">·&gt;</span> adapted from pi-top</cite>
           </div>
         </div>
 
@@ -652,12 +654,12 @@
 
         <div class="insp-block" id="talks">
           <p class="eyebrow">ls ~/talks/</p>
-          <h3>Three talks</h3>
+          <h3>Three videos</h3>
           <div class="talks">
             <article class="talk">
               <a href="https://www.youtube-nocookie.com/embed/_iaMQymrm0c" target="_blank" rel="noopener">
                 <span class="talk-thumb" style="background-image:url(https://i.ytimg.com/vi/_iaMQymrm0c/hqdefault.jpg)"></span>
-                <span class="talk-t">We make the future</span>
+                <span class="talk-t">pi-top [4]: Inspiring a generation of makers</span>
                 <span class="talk-s">pi-top · plays on YouTube</span>
               <span class="sr-only"> (opens in a new tab)</span></a>
               <p>The spirit behind everything on this page: the world as classroom and laboratory, and the makers who build it. <span aria-hidden="true">🔨</span></p>
@@ -668,7 +670,7 @@
                 <span class="talk-t">The Electricity Metaphor</span>
                 <span class="talk-s">Jeff Bezos · founder of Amazon · plays on YouTube</span>
               <span class="sr-only"> (opens in a new tab)</span></a>
-              <p>How a transformative technology (like electricity a century ago) eventually fades into invisible infrastructure, unleashing inventions nobody saw coming. It's how I think about AI now: we're still in the early, electrifying days. The world-changing inventions come <span class="hl">after</span> the technology fades into the background. <span aria-hidden="true">⚡</span></p>
+              <p>Why the dot-com boom and bust looks less like a gold rush and more like the early electric industry, with most of the inventions still ahead. It's how I think about AI now: we're still in the early, electrifying days. The world-changing inventions come <span class="hl">after</span> the technology fades into the background. <span aria-hidden="true">⚡</span></p>
             </article>
             <article class="talk">
               <a href="https://www.youtube-nocookie.com/embed/jiDQDLnEXdA" target="_blank" rel="noopener">
@@ -697,6 +699,7 @@
       <li><a class="chip top" href="#top" aria-label="cd ~, back to top">cd ~ <span aria-hidden="true">↑</span></a></li>
     </ul>
     <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> · thanks for stopping by <span aria-hidden="true">👋</span></p>
+    <p class="updated">Views are my own and don't represent any employer.</p>
     <p class="updated">last updated: <span id="last-updated">2026-10-23</span></p>
     <p class="future-line">&gt; hello future<span class="u">_</span></p>
   </footer>

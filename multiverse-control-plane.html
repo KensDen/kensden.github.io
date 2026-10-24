@@ -14,19 +14,19 @@
 <meta property="og:description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all." />
 <meta name="twitter:description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all." />
 <meta property="og:url" content="https://kensden.github.io/multiverse-control-plane.html" />
-<meta property="og:image" content="https://kensden.github.io/vortex.jpg" />
-<meta property="og:image:width" content="1000" />
-<meta property="og:image:height" content="1000" />
+<meta property="og:image" content="https://kensden.github.io/social-card-multiverse.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="A lone caped figure standing before an immense glowing violet vortex ringed with lightning, above a dark futuristic city" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://kensden.github.io/vortex.jpg" />
+<meta name="twitter:image" content="https://kensden.github.io/social-card-multiverse.jpg" />
 <meta name="twitter:image:alt" content="A lone caped figure standing before an immense glowing violet vortex ringed with lightning, above a dark futuristic city" />
 <meta name="theme-color" content="#0a0e12" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌀</text></svg>" />
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
-  h1,h2,h3,h4,.w-t{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
+  h1,h2,h3,h4,.w-t,article p.lede.next{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
   /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
   @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;
     src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
@@ -128,27 +128,6 @@
   .osi .none{color:var(--dim)}
   .osi .nw{white-space:nowrap}
 
-  /* the git-log timeline: a semantic <ol>; motion only with scroll-timeline support and no reduced-motion preference */
-  figure.glog{background:linear-gradient(180deg,var(--panel),var(--panel-2));overflow:clip} /* clip, not hidden: a scroll container would capture the rows' view timelines */
-  .glog ol{--rail:19px;list-style:none;margin:0;padding:14px 16px 12px 0;display:grid;
-    grid-template-columns:calc(var(--rail) + 17px) minmax(0,1fr);grid-template-rows:repeat(8,auto);
-    font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.6}
-  /* the connector: one static line in the rail column, from the first dot's centre (row 1) to the last dot's centre (top of row 8 plus the dot offset) */
-  .glog ol::before{content:"";grid-column:1;grid-row:1 / -2;justify-self:start;width:1px;
-    margin:calc(5px + .8em) 0 calc(-5px - .8em) calc(var(--rail) - .5px);background:rgba(116,131,143,.4)}
-  .glog li{grid-column:2;position:relative;display:grid;grid-template-columns:4ch 7ch minmax(0,1fr);column-gap:1.2ch;padding:5px 0;view-timeline:--glog-row block}
-  .glog li::before{content:"";position:absolute;z-index:1;left:-21px;top:calc(5px + .8em - 4px);width:8px;height:8px;border-radius:50%;background:var(--c)}
-  .glog .fork{--c:var(--amber)}
-  .glog .migrate{--c:var(--red)}
-  .glog .docs{--c:var(--cyan)}
-  .glog .feat{--c:var(--green)}
-  .glog .reboot{--c:var(--violet)}
-  .glog .merge{--c:var(--pink)}
-  .glog .y{color:var(--muted)}
-  .glog .t{color:var(--c);font-weight:700}
-  .glog .m{color:var(--ink)}
-  .glog .src{color:var(--dim);white-space:nowrap}
-  .glog .src::before{content:"// ";content:"// " / "source: "}
   /* the git-branching graph: real git log --graph characters in a pre; markers coloured by branch, text in the terminal ink */
   figure.gg{background:linear-gradient(180deg,var(--panel),var(--panel-2))}
   .gg pre{margin:0;padding:14px 16px;overflow-x:auto;font:12.5px/1.6 "JetBrains Mono",monospace;color:var(--ink);white-space:pre}
@@ -157,14 +136,6 @@
   .gg .a{color:var(--amber);font-weight:700}
   .gg .c{color:var(--cyan);font-weight:700}
   .gg .r{color:var(--red)}
-  @keyframes glog-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @keyframes glog-dot{0%{transform:scale(.5);box-shadow:0 0 0 0 transparent}60%{transform:none;box-shadow:0 0 10px 2px var(--c)}100%{transform:none;box-shadow:0 0 0 0 transparent}}
-  @media (prefers-reduced-motion: no-preference){
-    @supports (animation-timeline: view()){
-      .glog li{animation:glog-in linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
-      .glog li::before{animation:glog-dot linear both;animation-timeline:--glog-row;animation-range:entry 0% cover 30%}
-    }
-  }
 
   /* ===== animations (spec v1.0). Everything below is decorative: with JS off, reduced motion or no
      scroll-timeline support each figure shows its finished still state. multiverse.js adds .js to <html>,
@@ -313,7 +284,7 @@
   .cnt-lbls>.c5{visibility:visible;font-weight:700}
   @media (forced-colors: active){.cnt-stage{forced-color-adjust:none}}
 
-  /* C. the two Superman Beyond pages, stacked; each opens at native size */
+  /* C. the two Multiversity Guidebook origin pages, stacked; each opens at native size */
   .sb a{display:block}
   .sb a+a{border-top:1px solid var(--line)}
   .sb a:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
@@ -522,7 +493,6 @@
     .oa-art{--oa-drop:43px}
     .tl-wrap{grid-template-columns:1fr}
     .tl-p.grown{border-top:1px solid var(--line)}
-    .glog .src{display:block;white-space:normal}
   }
   @media (max-width:640px){
     .wrap{padding:20px 18px 48px}
@@ -532,8 +502,6 @@
     .osi th,.osi td{padding:10px 8px}
     .osi thead th{font-size:11px;padding-top:8px;padding-bottom:8px}
     .osi tbody th{padding-left:calc(8px + 1.4em);white-space:normal}
-    .glog ol{--rail:15px;font-size:12px;padding:12px 12px 10px 0}
-    .glog li{column-gap:1ch}
     .bvb table{font-size:12px}
     .bvb th,.bvb td{padding:9px 8px}
     .bvb thead th{font-size:11px}
@@ -586,15 +554,15 @@
 
     <figure class="shot dim">
       <div class="dim-switch" role="group" aria-label="Meaning of dimension"><button type="button" aria-pressed="true" data-v="phys">physics</button><button type="button" aria-pressed="false" data-v="dc">DC</button></div>
-      <div class="dim-wrap" role="img" aria-label="Same word, two meanings. In physics, dimensions are directions you can point at: three axes, x, y and z, drawn from one corner, plus a dashed fourth arrow for time, t. In DC, dimensions are layers you climb: six stacked slabs, 1 Cosmic Forge, 2 Dark Multiverse, 3 Space, 4 Time, 5 Sphere of the Gods and 6 Monitor Sphere. The DC view folds the three axes into Space and the time arrow into Time.">
+      <div class="dim-wrap" role="img" aria-label="Same word, two meanings. In physics, dimensions are directions you can point at: three axes, x, y and z, drawn from one corner, plus a dashed fourth arrow for time, t. In DC, as I stack them, dimensions are layers you climb: six stacked slabs, 1 World Forge, 2 Dark Multiverse, 3 Space, 4 Time, 5 Sphere of the Gods and 6 Monitor Sphere. The DC view folds the three axes into Space and the time arrow into Time.">
         <div class="dim-p dim-m" aria-hidden="true">
           <div class="dim-h">physics</div>
-          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1 rise" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2 rise" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s5 rise" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6 rise" x="24" y="26" width="232" height="24" rx="3"/><g class="mg mx" style="--m:translate(76px,22px) rotate(0deg) scale(0.6034,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg my" style="--m:translate(76px,22px) rotate(-90deg) scale(0.5172,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mz" style="--m:translate(76px,22px) rotate(135deg) scale(0.3017,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mt" style="--m:translate(76px,52px) rotate(-30deg) scale(0.5172,1)"><rect class="mb s4" x="24" y="86" width="232" height="24" rx="3"/></g><line class="ph tline" x1="100" y1="150" x2="203.9" y2="90"/><path class="ph ah" d="M233.8 146.7L240 150L233.8 153.3"/><path class="ph ah" d="M96.7 36.2L100 30L103.3 36.2"/><path class="ph ah" d="M57.2 197.5L50.5 199.5L52.5 192.8"/><path class="ph ah" d="M196.9 90.2L203.9 90L200.2 95.9"/><text class="ph al" x="248" y="154">x</text><text class="ph al" x="96" y="24">y</text><text class="ph al" x="40.5" y="209.5">z</text><text class="ph al" x="209.9" y="88">t</text><rect class="acc s1 dl" x="24" y="176" width="3" height="24"/><rect class="acc s2 dl" x="24" y="146" width="3" height="24"/><rect class="acc s3 dl" x="24" y="116" width="3" height="24"/><rect class="acc s4 dl" x="24" y="86" width="3" height="24"/><rect class="acc s5 dl" x="24" y="56" width="3" height="24"/><rect class="acc s6 dl" x="24" y="26" width="3" height="24"/><text class="lb s1 dl" x="36" y="192.5"><tspan class="n">1</tspan> Cosmic Forge</text><text class="lb s2 dl" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3 dl" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4 dl" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5 dl" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6 dl" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
+          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1 rise" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2 rise" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s5 rise" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6 rise" x="24" y="26" width="232" height="24" rx="3"/><g class="mg mx" style="--m:translate(76px,22px) rotate(0deg) scale(0.6034,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg my" style="--m:translate(76px,22px) rotate(-90deg) scale(0.5172,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mz" style="--m:translate(76px,22px) rotate(135deg) scale(0.3017,1)"><rect class="mb s3" x="24" y="116" width="232" height="24" rx="3"/></g><g class="mg mt" style="--m:translate(76px,52px) rotate(-30deg) scale(0.5172,1)"><rect class="mb s4" x="24" y="86" width="232" height="24" rx="3"/></g><line class="ph tline" x1="100" y1="150" x2="203.9" y2="90"/><path class="ph ah" d="M233.8 146.7L240 150L233.8 153.3"/><path class="ph ah" d="M96.7 36.2L100 30L103.3 36.2"/><path class="ph ah" d="M57.2 197.5L50.5 199.5L52.5 192.8"/><path class="ph ah" d="M196.9 90.2L203.9 90L200.2 95.9"/><text class="ph al" x="248" y="154">x</text><text class="ph al" x="96" y="24">y</text><text class="ph al" x="40.5" y="209.5">z</text><text class="ph al" x="209.9" y="88">t</text><rect class="acc s1 dl" x="24" y="176" width="3" height="24"/><rect class="acc s2 dl" x="24" y="146" width="3" height="24"/><rect class="acc s3 dl" x="24" y="116" width="3" height="24"/><rect class="acc s4 dl" x="24" y="86" width="3" height="24"/><rect class="acc s5 dl" x="24" y="56" width="3" height="24"/><rect class="acc s6 dl" x="24" y="26" width="3" height="24"/><text class="lb s1 dl" x="36" y="192.5"><tspan class="n">1</tspan> World Forge</text><text class="lb s2 dl" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3 dl" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4 dl" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5 dl" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6 dl" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
           <div class="dim-c"><span class="c-phys">dimensions are directions. you can point at them.</span><span class="c-dc">dimensions are layers. you climb them.</span></div>
         </div>
         <div class="dim-p dim-s" aria-hidden="true">
           <div class="dim-h">DC</div>
-          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s3" x="24" y="116" width="232" height="24" rx="3"/><rect class="sl s4" x="24" y="86" width="232" height="24" rx="3"/><rect class="sl s5" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6" x="24" y="26" width="232" height="24" rx="3"/><rect class="acc s1" x="24" y="176" width="3" height="24"/><rect class="acc s2" x="24" y="146" width="3" height="24"/><rect class="acc s3" x="24" y="116" width="3" height="24"/><rect class="acc s4" x="24" y="86" width="3" height="24"/><rect class="acc s5" x="24" y="56" width="3" height="24"/><rect class="acc s6" x="24" y="26" width="3" height="24"/><text class="lb s1" x="36" y="192.5"><tspan class="n">1</tspan> Cosmic Forge</text><text class="lb s2" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
+          <svg class="dim-svg" viewBox="0 0 280 216" width="280" height="216" focusable="false"><rect class="sl s1" x="24" y="176" width="232" height="24" rx="3"/><rect class="sl s2" x="24" y="146" width="232" height="24" rx="3"/><rect class="sl s3" x="24" y="116" width="232" height="24" rx="3"/><rect class="sl s4" x="24" y="86" width="232" height="24" rx="3"/><rect class="sl s5" x="24" y="56" width="232" height="24" rx="3"/><rect class="sl s6" x="24" y="26" width="232" height="24" rx="3"/><rect class="acc s1" x="24" y="176" width="3" height="24"/><rect class="acc s2" x="24" y="146" width="3" height="24"/><rect class="acc s3" x="24" y="116" width="3" height="24"/><rect class="acc s4" x="24" y="86" width="3" height="24"/><rect class="acc s5" x="24" y="56" width="3" height="24"/><rect class="acc s6" x="24" y="26" width="3" height="24"/><text class="lb s1" x="36" y="192.5"><tspan class="n">1</tspan> World Forge</text><text class="lb s2" x="36" y="162.5"><tspan class="n">2</tspan> Dark Multiverse</text><text class="lb s3" x="36" y="132.5"><tspan class="n">3</tspan> Space</text><text class="lb s4" x="36" y="102.5"><tspan class="n">4</tspan> Time</text><text class="lb s5" x="36" y="72.5"><tspan class="n">5</tspan> Sphere of the Gods</text><text class="lb s6" x="36" y="42.5"><tspan class="n">6</tspan> Monitor Sphere</text></svg>
           <div class="dim-c"><span>dimensions are layers. you climb them.</span></div>
         </div>
       </div>
@@ -604,7 +572,7 @@
 
     <h2 class="sub">Sixty-five years of refactoring</h2>
     <p>None of this was designed up front. Like most systems that last, it grew one urgent fix at a time.</p>
-    <p>It started in 1961 with The Flash #123, "Flash of Two Worlds." Barry Allen vibrated into another Earth and met Jay Garrick, the Flash from the 1940s. DC needed a way to keep its older heroes around without breaking the newer ones, so it spun up a second environment and called it Earth-Two. That was the first fork.</p>
+    <p>It started in 1961 with The Flash #123, "Flash of Two Worlds." Barry Allen vibrated into another Earth and met Jay Garrick, the Flash from the 1940s. DC needed a way to keep its older heroes around without breaking the newer ones, so it spun up a second environment, later named Earth-Two. That was the first fork.</p>
     <p>Forks multiply. By the 1980s there were Earths for the Golden Age heroes, for characters bought from other publishers, for evil twins, and for one-off jokes. Readers needed a guidebook to follow along. So in 1985, Marv Wolfman and George Pérez ran Crisis on Infinite Earths, the most famous migration in comics. The infinite Earths collapsed into one. A cosmic being called the Monitor gave his life in the middle of it, and heroes died by the dozen. It was a monolith consolidation, and like every consolidation I've ever lived through, it left a lot of orphaned data behind.</p>
     <p>The patches came fast. Zero Hour in 1994 tried to fix the timeline. Then, at the end of 1998, Mark Waid's The Kingdom introduced Hypertime, an idea he cooked up with Grant Morrison. It was an admission, really: the branches never went away, so stop fighting them and document them.</p>
     <p>Marvel fans will recognize this fight. In Loki, the Time Variance Authority spends its days pruning branch timelines to protect a single <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>, which is basically Crisis on Infinite Earths run as a government agency. By the end of the second season, Loki takes hold of the branches himself and lets every timeline grow. DC's Hypertime made the same call twenty-five years earlier.</p>
@@ -633,9 +601,12 @@
     <p>If you've ever used git, you've already lived this. Every Elseworld is a branch. Every issue is a commit. Crisis on Infinite Earths was an octopus merge that deleted every branch it touched. Flashpoint was a force push that rewrote history into the New 52, and Rebirth was the revert that brought much of it back. Hypertime is just the team finally agreeing to leave the long-lived branches alone.</p>
 
     <figure class="shot gg" style="max-width:640px">
-      <pre role="img" aria-label="A git history of the DC Multiverse: Earth-2 branches off in 1961, Crisis on Infinite Earths merges and deletes the branches in 1985, Hypertime allows long-lived branches in 1998, 52 restores the multiverse in 2007, Flashpoint force-pushes the New 52 in 2011, Rebirth reverts in 2016, and All In opens the Absolute line in 2024."><code><span class="p">$</span> git log --graph --oneline multiverse
+      <pre role="img" aria-label="A git history of the DC Multiverse: Earth-2 branches off in 1961, Crisis on Infinite Earths merges and deletes the branches in 1985, Hypertime allows long-lived branches in 1998, 52 restores the multiverse in 2007, Flashpoint force-pushes the New 52 in 2011, The Multiversity publishes the architecture docs in 2014, Rebirth reverts in 2016, Dark Crisis lifts the 52-world cap in 2022, All In opens the Absolute line in 2024, and DC K.O. brings Alpha and Omega together in 2026."><code><span class="p">$</span> git log --graph --oneline multiverse
+<span class="m">*</span> 2026 DC K.O.: Alpha and Omega meet
 <span class="m">*</span> 2024 All In: the Absolute line opens
+<span class="m">*</span> 2022 Dark Crisis: 52-world cap lifted
 <span class="m">*</span> 2016 Rebirth: revert, legacy restored
+<span class="m">*</span> 2014 The Multiversity: docs published
 <span class="m">*</span> <span class="r">2011 Flashpoint: force push, New 52</span>
 <span class="m">*</span> 2007 52: 52 Earths restored
 <span class="m">*</span> 1998 Hypertime: long-lived branches OK
@@ -652,20 +623,6 @@
 
     <p>Infinite Crisis (2005) and the weekly series 52 (2006 to 2007) brought the Multiverse back, this time capped at exactly 52 worlds. Final Crisis (2008) stress-tested it. Flashpoint (2011) rebooted the whole line. Then in 2014, after more than fifty years in production, Morrison's The Multiversity finally published the first official architecture diagram.</p>
     <p>After that the pace picked up. Dark Nights: Metal (2017) added a basement. Snyder's Justice League (2018 to 2020) went looking for the original architect. Dark Nights: Death Metal (2020) declared that every story ever told counts. Dark Crisis on Infinite Earths (2022) lifted the 52-world cap and restored the infinite Multiverse. And in 2024, DC All In started the current era.</p>
-
-    <figure class="shot glog" style="max-width:640px">
-      <ol role="list">
-        <li class="fork"><span class="y">1961</span> <span class="t">fork</span> <span class="m">spin up Earth-Two <span class="src">The Flash #123</span></span></li>
-        <li class="migrate"><span class="y">1985</span> <span class="t">migrate</span> <span class="m">consolidate infinite Earths into one <span class="src">Crisis on Infinite Earths</span></span></li>
-        <li class="docs"><span class="y">1998</span> <span class="t">docs</span> <span class="m">admit the branches never left <span class="src">Hypertime, The Kingdom</span></span></li>
-        <li class="feat"><span class="y">2006</span> <span class="t">feat</span> <span class="m">restore the Multiverse, capped at 52 <span class="src">52</span></span></li>
-        <li class="reboot"><span class="y">2011</span> <span class="t">reboot</span> <span class="m">reimage the whole line <span class="src">Flashpoint</span></span></li>
-        <li class="docs"><span class="y">2014</span> <span class="t">docs</span> <span class="m">publish the architecture diagram <span class="src">The Multiversity</span></span></li>
-        <li class="feat"><span class="y">2022</span> <span class="t">feat</span> <span class="m">lift the 52-world cap <span class="src">Dark Crisis on Infinite Earths</span></span></li>
-        <li class="merge"><span class="y">2024</span> <span class="t">merge</span> <span class="m">Alpha and Omega <span class="src">DC All In, DC&nbsp;K.O.</span></span></li>
-      </ol>
-      <figcaption><span class="g">&gt;</span> git log --oneline multiverse_</figcaption>
-    </figure>
 
     <p>If that sounds like a codebase, it's because it is one. Hundreds of writers, thousands of issues, no single owner, and a business that can't take the system down for maintenance. Every Crisis is a migration, and every reboot is a reimage. And somehow the lights stay on.</p>
 
@@ -688,13 +645,13 @@
       <div class="tune-card" aria-live="polite"><p class="tc-h"><svg class="tm" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false"><use href="#tm-0"/></svg><span class="tc-t">earth-0 · Prime Earth</span></p><p class="tc-d">The main DC universe, where the monthly books live.</p><p class="tc-f">first appeared: 2011, Flashpoint&nbsp;#5</p><p class="tc-m">same hardware, separate tenant · the&nbsp;main&nbsp;line</p></div>
       <ul class="tune-list" role="list">
         <li data-e="0" style="--c:#3fb950"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-0"/></svg><span class="tc-h">earth-0 · Prime Earth</span>: <span class="tc-d">The main DC universe, where the monthly books live.</span><span class="tc-x"><span class="tc-f">first appeared: 2011, Flashpoint&nbsp;#5</span> · <span class="tc-mood">the&nbsp;main&nbsp;line</span></span></li>
-        <li data-e="2" style="--c:#e3b341"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-2"/></svg><span class="tc-h">earth-2 · Golden Age</span>: <span class="tc-d">Modern takes on the 1940s heroes, a young Jay Garrick's Flash among them.</span><span class="tc-x"><span class="tc-f">first appeared: 1961, The Flash&nbsp;#123</span> · <span class="tc-mood">nostalgic</span></span></li>
-        <li data-e="3" style="--c:#ff5f57"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-3"/></svg><span class="tc-h">earth-3 · Crime Syndicate</span>: <span class="tc-d">Evil twins of the Justice League run the world.</span><span class="tc-x"><span class="tc-f">first appeared: 1964, Justice League of America&nbsp;#29</span> · <span class="tc-mood">corrupted</span></span></li>
-        <li data-e="12" style="--c:#a78bfa"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-12"/></svg><span class="tc-h">earth-12 · Batman Beyond</span>: <span class="tc-d">A future Gotham with a new, younger Batman under Bruce Wayne's eye.</span><span class="tc-x"><span class="tc-f">first appeared: 2015, The Multiversity Guidebook&nbsp;#1</span> · <span class="tc-mood">neon&nbsp;future</span></span></li>
-        <li data-e="22" style="--c:#ffd866"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-22"/></svg><span class="tc-h">earth-22 · Kingdom Come</span>: <span class="tc-d">An aging Superman ends his exile to rein in a reckless new generation.</span><span class="tc-x"><span class="tc-f">first appeared: 1996, Kingdom Come&nbsp;#1</span> · <span class="tc-mood">twilight</span></span></li>
+        <li data-e="2" style="--c:#e3b341"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-2"/></svg><span class="tc-h">earth-2 · Golden Age</span>: <span class="tc-d">Modern takes on the 1940s heroes, a young Jay Garrick's Flash among them.</span><span class="tc-x"><span class="tc-f">story first appeared: 1961, The Flash&nbsp;#123</span> · <span class="tc-mood">nostalgic</span></span></li>
+        <li data-e="3" style="--c:#ff5f57"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-3"/></svg><span class="tc-h">earth-3 · Crime Syndicate</span>: <span class="tc-d">Evil twins of the Justice League run the world.</span><span class="tc-x"><span class="tc-f">story first appeared: 1964, Justice League of America&nbsp;#29</span> · <span class="tc-mood">corrupted</span></span></li>
+        <li data-e="12" style="--c:#a78bfa"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-12"/></svg><span class="tc-h">earth-12 · Batman Beyond</span>: <span class="tc-d">A future Gotham with a new, younger Batman under Bruce Wayne's eye.</span><span class="tc-x"><span class="tc-f">first mapped: 2015, The Multiversity Guidebook&nbsp;#1</span> · <span class="tc-mood">neon&nbsp;future</span></span></li>
+        <li data-e="22" style="--c:#ffd866"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-22"/></svg><span class="tc-h">earth-22 · Kingdom Come</span>: <span class="tc-d">An aging Superman ends his exile to rein in a reckless new generation.</span><span class="tc-x"><span class="tc-f">story first appeared: 1996, Kingdom Come&nbsp;#1</span> · <span class="tc-mood">twilight</span></span></li>
         <li data-e="23" style="--c:#58a6ff"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-23"/></svg><span class="tc-h">earth-23 · President Superman</span>: <span class="tc-d">Calvin Ellis is both Superman and President of the United States.</span><span class="tc-x"><span class="tc-f">first appeared: 2009, Final Crisis&nbsp;#7</span> · <span class="tc-mood">civic</span></span></li>
-        <li data-e="30" style="--c:#f43f5e"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-30"/></svg><span class="tc-h">earth-30 · Red Son</span>: <span class="tc-d">Superman landed in the Soviet Union instead of Kansas.</span><span class="tc-x"><span class="tc-f">first appeared: 2003, Superman: Red Son&nbsp;#1</span> · <span class="tc-mood">cold&nbsp;war</span></span></li>
-        <li data-e="33" style="--c:#cdd5dc"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-33"/></svg><span class="tc-h">earth-33 · Earth-Prime</span>: <span class="tc-d">Our world, where the heroes are only comics.</span><span class="tc-x"><span class="tc-f">first appeared: 1968, The Flash&nbsp;#179</span> · <span class="tc-mood">ours</span></span></li>
+        <li data-e="30" style="--c:#f43f5e"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-30"/></svg><span class="tc-h">earth-30 · Red Son</span>: <span class="tc-d">Superman landed in the Soviet Union instead of Kansas.</span><span class="tc-x"><span class="tc-f">story first appeared: 2003, Superman: Red Son&nbsp;#1</span> · <span class="tc-mood">cold&nbsp;war</span></span></li>
+        <li data-e="33" style="--c:#cdd5dc"><svg class="tm" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><use href="#tm-33"/></svg><span class="tc-h">earth-33 · Earth-Prime</span>: <span class="tc-d">Our world, where the heroes are only comics.</span><span class="tc-x"><span class="tc-f">story first appeared: 1968, The Flash&nbsp;#179</span> · <span class="tc-mood">ours</span></span></li>
       </ul>
       <figcaption><span class="g">&gt;</span> tune in to one world, the rest stay isolated_</figcaption>
     </figure>
@@ -737,7 +694,7 @@
       </div>
       <div class="layer" data-l="1" style="border-left-color:var(--red)">
         <span class="n" style="color:var(--red)">1</span>
-        <div><span class="nm">Cosmic Forge</span><span class="role">// the foundry</span>
+        <div><span class="nm">World Forge</span><span class="role">// the foundry</span>
         <div class="d">Raw potential, underneath everything. This is where realities get compiled in the first place.</div></div>
       </div>
     </div>
@@ -783,7 +740,7 @@
             <td>Link</td>
           </tr>
           <tr data-l="1">
-            <th scope="row" style="border-left-color:var(--red)"><span class="n" style="color:var(--red)">1</span> Cosmic Forge</th>
+            <th scope="row" style="border-left-color:var(--red)"><span class="n" style="color:var(--red)">1</span> World Forge</th>
             <td>1 Physical</td>
             <td>Link</td>
           </tr>
@@ -801,18 +758,18 @@
     <p>None of this is physics, of course. DC borrowed science's vocabulary and built a theology out of it. Marvel shipped a cinematic universe. DC has spent more than eighty years maintaining a mythology, and you can see the maintenance history in the architecture.</p>
 
     <h2 class="sub">The flaw in the perfection</h2>
-    <p>Which brings me back to the operators, and to how Morrison says the whole thing started. He told it in Final Crisis: Superman Beyond, and it reads like an incident report.</p>
+    <p>Which brings me back to the operators, and to how Morrison says the whole thing started. He told it in The Multiversity Guidebook, and it reads like an incident report.</p>
     <p>In the beginning there is a perfect, empty mind, the Overvoid, and it discovers a flaw in itself. A speck. Something that "is" everything perfection is not. The mind defines itself by its relationship to the flaw and takes a name: Monitor-Mind. Then it does what any operator does with an anomaly. It acts to contain it. It bottles the flaw to prevent its spread.</p>
     <p>Two things are born in that moment. The Monitor, and its opposite, the Anti-Monitor, which Morrison calls "the Conflict generator, the Story Machine." File that away. It matters later.</p>
-    <p>Then Monitor-Mind does the next thing any of us would do. It sends in a probe to study the anomaly up close: the Science Monitor, Dax Novu. Novu enters the flaw and starts cataloguing. He numbers every variation on the basic theme, every alternative twist, and in the act of cataloguing, what had been a Universe becomes a Multiverse. The observer creates the thing he was sent to observe.</p>
-    <p>Novu looks too close, too deep. He is "infected by activity and process, by the endless play of matter and narrative," blinded by the flaw's lightning, and split in two.</p>
+    <p>Then Monitor-Mind does the next thing any of us would do. It sends in a probe to study the anomaly up close: the Science Monitor, Dax Novu. Novu enters the flaw, is contaminated and split in two, and starts cataloguing. He numbers every variation on the basic theme, every alternative twist, and in the act of cataloguing, what had been a Universe becomes a Multiverse. The observer creates the thing he was sent to observe.</p>
+    <p>Novu looks too close, too deep. He is "infected by activity and process, by the endless play of matter and narrative," and blinded by the flaw's lightning.</p>
 
     <figure class="shot sb" style="max-width:520px">
       <a href="superman-beyond-flaw.webp" target="_blank" rel="noopener"><img src="superman-beyond-flaw.webp" alt="Comic page headed &quot;And Then!&quot;, with a red speck, a bottle-shaped vessel and a pair of giant glowing eyes. The narration tells how a flaw appears in a perfect void, which names itself Monitor-Mind. Monitor is born, and with it its opposite, the Anti-Monitor, the Conflict generator, the Story Machine. Monitor-Mind bottles the Flaw to stop it spreading and sends in the Science Monitor Dax Novu, who enters it, is contaminated, and is split in two." loading="lazy" width="502" height="713" /><span class="sr-only"> (full size, opens in a new tab)</span></a>
       <a href="superman-beyond-novu.webp" target="_blank" rel="noopener"><img src="superman-beyond-novu.webp" alt="Two panels of a towering glass vessel packed with glowing blue worlds. The narration says what had been Universe becomes Multiverse as a divided, deranged Novu catalogues and numbers each variation on a basic theme. Looking too close, too deep, he is infected by activity and process, and blinded and corrupted by the Flaw's lightning." loading="lazy" width="710" height="480" /><span class="sr-only"> (full size, opens in a new tab)</span></a>
-      <figcaption><span class="g">&gt;</span> Superman Beyond, the origin pages · tap to inspect_</figcaption>
+      <figcaption><span class="g">&gt;</span> The Multiversity Guidebook, the origin pages · tap to inspect_</figcaption>
     </figure>
-    <p class="credit">Final Crisis: Superman Beyond #2 (2009). Grant Morrison, writer. Doug Mahnke, artist. © DC Comics.</p>
+    <p class="credit">The Multiversity Guidebook #1 (2015). Grant Morrison, writer. Paulo Siqueira, artist. © DC Comics.</p>
 
     <p>Read that as an engineer. The first operator to touch the system was contaminated by it. The probe came back changed, and nobody checked what came back with it. Nobody in this origin is a villain yet. The problem is a probe that came back dirty and went straight back into service.</p>
 
@@ -829,7 +786,7 @@
 
     <h2 class="sub">Who watches the Monitors?</h2>
     <p>So every architecture has a weak spot, and in DC's it's the operators. I don't think that's a design failure. Build a watchtower out of the thing it watches and this is what you get.</p>
-    <p>The first Monitor we met, back in 1985, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
+    <p>The first Monitor, the one from 1985's Crisis, was the hero of the story. He saw the Crisis coming, gathered the heroes, and died so the rest of reality could survive. Honestly, a good admin.</p>
     <p>By the time of Final Crisis there were 52 Monitors, one assigned to each world. Then Morrison finished the thought he started with Novu. The Monitors had been feeding on the stories they were supposed to protect. The one who saw it clearly, Dax Novu himself, became the vampire of the Multiverse: Mandrakk, the Dark Monitor. The most privileged account in creation was also the oldest. When the dust settled, only one Monitor was kept on, the young Nix Uotan, Novu's own son.</p>
 
     <figure class="shot bvb has-replay" style="max-width:640px" data-anim="once">
@@ -844,7 +801,7 @@
         </thead>
         <tbody>
           <tr style="--i:0">
-            <th scope="row">Monitor of Earth-8</th>
+            <th scope="row">Monitor of Earth-6</th>
             <td class="b"><span class="ok nw"><span aria-hidden="true">✓ </span>cleared</span></td>
             <td class="v"><span class="ok nw"><span aria-hidden="true">✓ </span>watching</span></td>
           </tr>
@@ -854,7 +811,7 @@
             <td class="v"><span class="ok nw"><span aria-hidden="true">✓ </span>watching</span></td>
           </tr>
           <tr style="--i:2">
-            <th scope="row">Monitor of Earth-51</th>
+            <th scope="row">Monitor of New Earth</th>
             <td class="b"><span class="ok nw"><span aria-hidden="true">✓ </span>cleared</span></td>
             <td class="v"><span class="ok nw"><span aria-hidden="true">✓ </span>watching</span></td>
           </tr>
@@ -907,7 +864,7 @@
     <p>Strip away the capes and you're left with lessons I'd put in front of any architecture review board.</p>
     <p>Systems that last get refactored. DC never got to start over with a clean sheet. Every Crisis was a migration done live, with readers watching. Most of our environments are the same.</p>
     <p>Write the diagram down. DC ran a Multiverse for decades before anyone published an official map. Once Morrison did, every writer after him had something to build against. That's how the next team avoids breaking things.</p>
-    <p>Quarantine the probe. Novu came back from the flaw changed, and the change took a few billion years to show. Anything that touches a compromised system is suspect until proven otherwise, including your own tools.</p>
+    <p>Quarantine the probe. Novu came back from the flaw changed, and the change may have taken billions of years to show. Anything that touches a compromised system is suspect until proven otherwise, including your own tools.</p>
     <p>Watch the watchers. The Monitors are the clearest insider threat story I know, and the oldest account was the worst one. Being there longest is not the same as being trustworthy.</p>
     <p>Keep an adversary on the payroll. Alpha and Omega, red and blue, ara and nigi. Morrison wrote the Anti-Monitor into the first second of creation and called it the Story Machine. The systems that hold up are the ones that keep a working adversary around.</p>
 
@@ -916,7 +873,9 @@
     <p>A forge of raw potential sits at the bottom, a watchtower sits at the top, and strung between them is every story anyone ever believed in hard enough. The watchtower got compromised. Of course it did. The only operator in the whole design who never gets owned is the one above the control plane, outside the perimeter, holding the book and turning the page.</p>
     <p>That's you. Keep your hands on the book.</p>
 
-    <p class="lede">Further reading: DC's official <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Map of the Multiverse<span class="sr-only"> (opens in a new tab)</span></a> and its <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">history of the Multiverse<span class="sr-only"> (opens in a new tab)</span></a>, <a href="https://dc.fandom.com/wiki/Final_Crisis:_Superman_Beyond_Vol_1" target="_blank" rel="noopener">Final Crisis: Superman Beyond #1 and #2<span class="sr-only"> (opens in a new tab)</span></a> (2008 to 2009), Grant Morrison and Doug Mahnke, for the Overvoid origin, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse<span class="sr-only"> (opens in a new tab)</span></a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum<span class="sr-only"> (opens in a new tab)</span></a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe<span class="sr-only"> (opens in a new tab)</span></a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1<span class="sr-only"> (opens in a new tab)</span></a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature<span class="sr-only"> (opens in a new tab)</span></a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+    <p class="lede">Further reading: DC's official <a href="https://www.dc.com/blog/2014/08/18/the-map-of-the-multiverse" target="_blank" rel="noopener">Map of the Multiverse<span class="sr-only"> (opens in a new tab)</span></a> and its <a href="https://www.dc.com/blog/2021/09/10/unlocking-the-history-of-the-multiverse" target="_blank" rel="noopener">history of the Multiverse<span class="sr-only"> (opens in a new tab)</span></a>, <a href="https://dc.fandom.com/wiki/The_Multiversity_Guidebook_Vol_1_1" target="_blank" rel="noopener">The Multiversity Guidebook #1<span class="sr-only"> (opens in a new tab)</span></a> (2015), Grant Morrison and Paulo Siqueira, for the origin of the Flaw and the Monitors, <a href="https://dc.fandom.com/wiki/Final_Crisis:_Superman_Beyond_Vol_1" target="_blank" rel="noopener">Final Crisis: Superman Beyond #1 and #2<span class="sr-only"> (opens in a new tab)</span></a> (2008 to 2009), Grant Morrison and Doug Mahnke, for the Overvoid, the DC Fandom wiki entries on the <a href="https://dc.fandom.com/wiki/Multiverse" target="_blank" rel="noopener">Multiverse<span class="sr-only"> (opens in a new tab)</span></a>, the <a href="https://dc.fandom.com/wiki/Divine_Continuum" target="_blank" rel="noopener">Divine Continuum<span class="sr-only"> (opens in a new tab)</span></a>, the <a href="https://dc.fandom.com/wiki/Absolute_Universe" target="_blank" rel="noopener">Absolute Universe<span class="sr-only"> (opens in a new tab)</span></a>, <a href="https://dc.fandom.com/wiki/Earth_Omega" target="_blank" rel="noopener">Earth Omega<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="https://dc.fandom.com/wiki/DC_All_In_Special_Vol_1_1" target="_blank" rel="noopener">DC All In Special #1<span class="sr-only"> (opens in a new tab)</span></a>, plus the <a href="https://marvelcinematicuniverse.fandom.com/wiki/Sacred_Timeline" target="_blank" rel="noopener">Marvel Cinematic Universe wiki on the Sacred Timeline<span class="sr-only"> (opens in a new tab)</span></a>. For a great deep dive on Darkseid's place in all this, watch Tyler's channel, The Imaginary Axis, on YouTube. Start with <a href="https://youtu.be/9iEWTHzzCVg" target="_blank" rel="noopener">his breakdown of Darkseid's true nature<span class="sr-only"> (opens in a new tab)</span></a>, then <a href="https://youtu.be/fcJ8QmogoXY" target="_blank" rel="noopener">the follow-up<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+    <p class="lede next">Next dispatch: <a href="batman-no-superpowers.html">Batman Has No Superpowers. That's the Whole Point.</a></p>
+    <p class="lede">Want to talk? Find me on <a href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>.</p>
   </article>
 
   <p class="eof"><span class="g">&gt;</span> EOF<span class="cursor" aria-hidden="true"></span></p>
