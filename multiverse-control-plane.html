@@ -15,11 +15,18 @@
 <meta name="twitter:description" content="DC Comics' Multiverse, read as a system architecture: a control plane, operators who got compromised, and the one reader above it all." />
 <meta property="og:url" content="https://kensden.github.io/multiverse-control-plane.html" />
 <meta property="og:image" content="https://kensden.github.io/vortex.jpg" />
+<meta property="og:image:width" content="1000" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:image:alt" content="A lone caped figure standing before an immense glowing violet vortex ringed with lightning, above a dark futuristic city" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kensden.github.io/vortex.jpg" />
+<meta name="twitter:image:alt" content="A lone caped figure standing before an immense glowing violet vortex ringed with lightning, above a dark futuristic city" />
 <meta name="theme-color" content="#0a0e12" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌀</text></svg>" />
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
+  h1,h2,h3,h4,.w-t{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
   /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
   @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;
     src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
@@ -506,6 +513,7 @@
     font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim)}
   footer a{color:var(--cyan);text-decoration:none}
   footer a:hover{color:var(--green)}
+  footer{flex-wrap:wrap;gap:8px 18px} footer a{white-space:nowrap} footer span{overflow-wrap:anywhere} /* phones: the path drops below the link instead of colliding */
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:519.98px){

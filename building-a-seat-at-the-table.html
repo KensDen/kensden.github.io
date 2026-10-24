@@ -13,11 +13,20 @@
 <meta property="og:description" content="Assess it, learn to do it, come back better at both." />
 <meta property="og:url" content="https://kensden.github.io/building-a-seat-at-the-table.html" />
 <meta property="og:image" content="https://kensden.github.io/chair.jpg" />
+<meta property="og:image:width" content="1440" />
+<meta property="og:image:height" content="810" />
+<meta property="og:image:alt" content="A finished oak Arts and Crafts armchair standing on a heavy workbench in a dim home workshop at night, a hand plane, chisels, a mallet and wood shavings on the bench, warm lamplight with an oil lantern by the window and a green shaded lamp in the background" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Building a Seat at the Table" />
+<meta name="twitter:description" content="Assess it, learn to do it, come back better at both." />
+<meta name="twitter:image" content="https://kensden.github.io/chair.jpg" />
+<meta name="twitter:image:alt" content="A finished oak Arts and Crafts armchair standing on a heavy workbench in a dim home workshop at night, a hand plane, chisels, a mallet and wood shavings on the bench, warm lamplight with an oil lantern by the window and a green shaded lamp in the background" />
 <meta name="theme-color" content="#0a0e12" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪑</text></svg>" />
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
+  h1,h2,h3,h4,.w-t{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
   /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
   @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;
     src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
@@ -93,6 +102,7 @@
     font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim)}
   footer a{color:var(--cyan);text-decoration:none}
   footer a:hover{color:var(--green)}
+  footer{flex-wrap:wrap;gap:8px 18px} footer a{white-space:nowrap} footer span{overflow-wrap:anywhere} /* phones: the path drops below the link instead of colliding */
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:640px){

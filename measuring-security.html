@@ -13,11 +13,20 @@
 <meta property="og:description" content="If closing tickets equals productivity, how many do you have to close to thwart a cyber-attack?" />
 <meta property="og:url" content="https://kensden.github.io/measuring-security.html" />
 <meta property="og:image" content="https://kensden.github.io/boxes.jpg" />
+<meta property="og:image:width" content="1440" />
+<meta property="og:image:height" content="810" />
+<meta property="og:image:alt" content="Pallets of plain cardboard relief boxes stacked in rows in a staging area at dusk, a clipboard with a tally sheet resting on the nearest stack, amber floodlight from one side under a deep blue evening sky" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Measuring Security" />
+<meta name="twitter:description" content="If closing tickets equals productivity, how many do you have to close to thwart a cyber-attack?" />
+<meta name="twitter:image" content="https://kensden.github.io/boxes.jpg" />
+<meta name="twitter:image:alt" content="Pallets of plain cardboard relief boxes stacked in rows in a staging area at dusk, a clipboard with a tally sheet resting on the nearest stack, amber floodlight from one side under a deep blue evening sky" />
 <meta name="theme-color" content="#0a0e12" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 <style>
+  h1,h2,h3,h4,.w-t{text-wrap:balance} p,li,figcaption{text-wrap:pretty} /* no one-word last lines; more specific rules still win */
   /* self-hosted latin subsets (SIL OFL 1.1, see /fonts/OFL.txt); weight ranges match what this page requested from Google Fonts */
   @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;
     src:url(/fonts/space-grotesk-latin.woff2) format("woff2");
@@ -107,6 +116,7 @@
     font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--dim)}
   footer a{color:var(--cyan);text-decoration:none}
   footer a:hover{color:var(--green)}
+  footer{flex-wrap:wrap;gap:8px 18px} footer a{white-space:nowrap} footer span{overflow-wrap:anywhere} /* phones: the path drops below the link instead of colliding */
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:640px){
