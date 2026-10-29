@@ -13,6 +13,7 @@ Securing Agentic AI with Zero Trust · Army Major (Ret.) · maker and dad.
 - `fonts/`: self-hosted JetBrains Mono and Space Grotesk (latin subsets, SIL OFL 1.1, see `fonts/OFL.txt`)
 - `social-card-v3.png`: the homepage's link-preview image (the two cert pages, 10-Cent Dreams and the Multiverse dispatch have their own cards: `social-card-drill.png`, `social-card-study-guide.png`, `social-card-10-cent-dreams.jpg` and `social-card-multiverse.jpg`)
 - `.nojekyll`: tells GitHub Pages to serve the static HTML as-is
+- `tools/quotes.py`: the prose quote check. `python3 tools/quotes.py` fails if any page has a straight quote in its prose (code, attributes, scripts and styles are left alone); `--fix` curls them and `--list` shows each one. Run it before every push.
 
 ## Find me
 

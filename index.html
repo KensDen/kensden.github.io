@@ -56,6 +56,7 @@
     --violet:#a78bfa;    /* engaged */
     --pink:#f778ba;
     --glow:rgba(63,185,80,.16);
+    --read:42.25rem;     /* the one reading width: 68ch of the 15.5px body text */
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -142,7 +143,7 @@
   h2{font-size:22px;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
   h3{font-size:18px;margin:0 0 10px;font-weight:600;letter-spacing:-.01em}
 
-  p.body{color:var(--muted);font-size:15.5px;margin:0 0 14px;max-width:68ch}
+  p.body{color:var(--muted);font-size:15.5px;margin:0 0 14px;max-width:var(--read)}
   p.body a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(57,211,197,.45)}
   p.body a:hover{border-bottom-style:solid}
   p.body .hl{color:var(--ink)}
@@ -150,7 +151,18 @@
 
   /* projects */
   .proj-grid{display:grid;gap:16px;margin-top:6px}
-  @media (min-width:960px){.proj-grid{grid-template-columns:1fr 1fr}}
+  /* desktop (from 1100px, where the column reaches full width): three cards in one row; with subgrid each
+     card's head, text, tags and buttons share rows, so the buttons sit on one line and no card stretches
+     past its content. Narrower screens keep the single column. */
+  @media (min-width:1100px){
+    .proj-grid{grid-template-columns:minmax(0,1.45fr) repeat(2,minmax(0,1fr));align-items:start} /* Lensatic carries the most */
+    @supports (grid-template-rows:subgrid){
+      .proj-grid{align-items:stretch}
+      .proj-grid > .proj{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:12px}
+      .proj-grid > .proj > .proj-head{align-self:start}
+      .proj-grid > .proj > :is(.tags,.proj-btns){margin-top:0;align-content:flex-start;align-items:flex-start}
+    }
+  }
   .proj{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,var(--panel),var(--panel-2));
     border:1px solid var(--line);border-radius:12px;padding:20px 22px 22px}
   .proj-head{display:flex;gap:16px;align-items:center}
@@ -200,7 +212,7 @@
   details.more[open] > summary::before{transform:rotate(90deg)}
   details.more > summary:hover{border-color:var(--green);color:var(--green)}
   .more-body{padding-top:22px}
-  .col{max-width:760px}
+  .col{max-width:var(--read)} /* prose and its figures share the reading width; grids, lists and cards span the column */
 
   /* inline screenshot / figure */
   .shot{margin:24px auto 4px;max-width:520px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}
@@ -251,7 +263,7 @@
 
   /* inspiration */
   .insp-block + .insp-block{margin-top:30px}
-  blockquote{margin:0 0 14px;padding:14px 16px;border-left:2px solid var(--line);
+  blockquote{max-width:var(--read);margin:0 0 14px;padding:14px 16px;border-left:2px solid var(--line);
     background:var(--panel-2);border-radius:0 10px 10px 0}
   blockquote p{margin:0;font-style:italic;color:var(--ink);font-size:15px;max-width:68ch}
   blockquote cite{display:block;font-style:normal;margin-top:7px;font-size:12.5px;
@@ -267,7 +279,7 @@
   .infl .what{display:block;font-size:13px;color:var(--muted);margin-top:2px}
   .infl .go{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);flex:none}
   .infl a:hover .go{color:var(--cyan)}
-  .maker{background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  .maker{max-width:var(--read);background:linear-gradient(180deg,var(--panel),var(--panel-2));
     border:1px solid var(--line);border-left:2px solid var(--pink);border-radius:0 12px 12px 0;padding:18px 18px}
   .maker p{margin:0;color:var(--muted);font-size:15.5px;max-width:68ch}
   .maker p .hl{color:var(--ink)}
@@ -442,9 +454,9 @@
     <ul class="wlist">
       <li><a href="building-a-seat-at-the-table.html"><span class="w-t">Building a Seat at the Table</span><span class="w-hook">2026 · Assess it, learn it, come back better.</span></a></li>
       <li><a href="sanctuary-protocol.html"><span class="w-t">Sanctuary Protocol</span><span class="w-hook">2026 · Everybody gets a cape. Nobody gets a manual.</span></a></li>
-      <li><a href="multiverse-control-plane.html"><span class="w-t">The Multiverse Is a System Architecture, Complete with a Control Plane</span><span class="w-hook">2026 · DC's cosmology, read as an incident report.</span></a></li>
-      <li><a href="/batman-no-superpowers.html"><span class="w-t">Batman Has No Superpowers. That's the Whole Point.</span><span class="w-hook">2026 · The homework is the point.</span></a></li>
-      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span><span class="w-hook">2019 · Closing tickets isn't security.</span></a></li>
+      <li><a href="multiverse-control-plane.html"><span class="w-t">The Multiverse Is a System Architecture, Complete with a Control Plane</span><span class="w-hook">2026 · DC’s cosmology, read as an incident report.</span></a></li>
+      <li><a href="/batman-no-superpowers.html"><span class="w-t">Batman Has No Superpowers. That’s the Whole Point.</span><span class="w-hook">2026 · The homework is the point.</span></a></li>
+      <li><a href="measuring-security.html"><span class="w-t">Measuring Security</span><span class="w-hook">2019 · Closing tickets isn’t security.</span></a></li>
       <li><a href="10-cent-dreams.html"><span class="w-t">10-Cent Dreams of a Two-Sided Coin</span><span class="w-hook">2018 · A dime, my mom, and a two-sided coin.</span></a></li>
     </ul>
   </section>
@@ -453,7 +465,7 @@
   <div class="duo">
     <section id="now">
       <p class="eyebrow">ls ~/now/</p>
-      <h2>What I'm into right now</h2>
+      <h2>What I’m into right now</h2>
       <ul class="now">
         <li><span class="arr" aria-hidden="true">·&gt;</span><span>Agentic AI SecOps: red, blue and purple teaming <span aria-hidden="true">💜</span></span></li>
         <li><span class="arr" aria-hidden="true">·&gt;</span><span>Counter insider threat and AI risk mitigation <span aria-hidden="true">🕵️</span></span></li>
@@ -478,13 +490,13 @@
     <h2>The story so far</h2>
     <div class="col">
       <p class="body lede">I built my first PC from a pile of parts in 8th grade in South Georgia, and taught myself the rest from library VHS tapes and a DOS prompt. Two decades of Army service later, I retired as a Major in Military Intelligence in 2024.</p>
-      <p class="body">In between: fifteen-plus years of cybersecurity consulting, from London to the federal world. These days it's securing Agentic AI. Off the clock I'm a maker and a dad, raising builders, not browsers.</p>
+      <p class="body">In between: fifteen-plus years of cybersecurity consulting, from London to the federal world. These days it’s securing Agentic AI. Off the clock I’m a maker and a dad, raising builders, not browsers.</p>
 
       <details class="more">
         <summary><span aria-hidden="true">$ </span>cat story.txt --full</summary>
         <div class="more-body">
-          <p class="body lede">Before I could afford the real thing, I'd clack away on an old typewriter, pretending it was a computer, typing up the "www-dot" addresses I scribbled down from the ends of TV commercials, building a hand-written index of an internet I couldn't reach yet. The real thing came piece-by-piece, with money earned mowing yards and dodging fire ants during long, hot South Georgia summers.</p>
-          <p class="body">It only booted to a DOS prompt until I could afford Windows 3.1. Dial-up arrived not long after. Back then "the network" was sneakernet (a stack of floppies hand-carried across the room), and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing.</p>
+          <p class="body lede">Before I could afford the real thing, I’d clack away on an old typewriter, pretending it was a computer, typing up the “www-dot” addresses I scribbled down from the ends of TV commercials, building a hand-written index of an internet I couldn’t reach yet. The real thing came piece-by-piece, with money earned mowing yards and dodging fire ants during long, hot South Georgia summers.</p>
+          <p class="body">It only booted to a DOS prompt until I could afford Windows 3.1. Dial-up arrived not long after. Back then “the network” was sneakernet (a stack of floppies hand-carried across the room), and my printer was a clunky black-and-white dot-matrix machine chewing through perforated tractor-feed paper. All before USB drives were even a thing.</p>
 
           <figure class="shot">
             <img src="dos.webp" alt="An MS-DOS 6.22 boot screen running the command: echo hello, future. It prints: hello, future" loading="lazy" width="1040" height="585" />
@@ -516,8 +528,8 @@
 
           <p class="body">Out of the University of Georgia in 2009, my first job took me across the Atlantic: a security consultant at Deloitte in London, advising commercial clients throughout Europe on global trade compliance.</p>
           <p class="body">Since London: fifteen-plus years of consulting and risk advisory, leading enterprise security work for Fortune 100 and federal clients, from threat intelligence to cloud security to compliance.</p>
-          <p class="body">These days I work in security, pairing an analyst's mindset with an operator's instinct. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn't just a department. It's a mission.</p>
-          <p class="body">Off the clock, I'm a maker, a tinkerer, and a dad doing his best to pass the curiosity on, building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we're learning it together: prompts and patterns one day, soldering irons the next. I'd rather raise <span class="hl">builders than browsers</span>; kids who create, build, and delegate, not just swipe and scroll. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. I wrote the longer version of that thought here: <a href="/batman-no-superpowers.html">Batman Has No Superpowers. That's the Whole Point.</a></p>
+          <p class="body">These days I work in security, pairing an analyst’s mindset with an operator’s instinct. Attribution, insider risk, adversarial tradecraft: the old questions, asked of new Agentic AI systems. For me, security isn’t just a department. It’s a mission.</p>
+          <p class="body">Off the clock, I’m a maker, a tinkerer, and a dad doing his best to pass the curiosity on, building little electronics projects with my kiddos and watching the same sparks of curiosity ignite in them. AI is becoming part of their everyday world the way the internet became part of mine, so we’re learning it together: prompts and patterns one day, soldering irons the next. I’d rather raise <span class="hl">builders than browsers</span>; kids who create, build, and delegate, not just swipe and scroll. <span class="hl">Trust, but verify</span>, it turns out, is both a parenting principle and a security one. I wrote the longer version of that thought here: <a href="/batman-no-superpowers.html">Batman Has No Superpowers. That’s the Whole Point.</a></p>
 
           <div class="shot-row">
             <figure class="shot">
@@ -532,10 +544,10 @@
 
           <div id="collect">
             <p class="eyebrow" style="margin-top:34px">man ken</p>
-            <h3>Collector's item</h3>
+            <h3>Collector’s item</h3>
             <p class="body">What happens when a comic collector spends two decades in security? Eventually you make yourself the action figure. Mission first. People always. <span class="hl">Not a toy.</span></p>
-            <p class="body">Now I've finally made it into the toy aisle. Sort of. One evening spent directing an AI image model, and here I am in blister packaging. Not magic. Just a tool, built on human effort.</p>
-            <p class="body">And yes, the early versions misspelled several words. "Counterintelligence" among them. Took a human to catch the mistakes. Moral of the story… Even the machine needs a <span class="hl">human in command</span>!</p>
+            <p class="body">Now I’ve finally made it into the toy aisle. Sort of. One evening spent directing an AI image model, and here I am in blister packaging. Not magic. Just a tool, built on human effort.</p>
+            <p class="body">And yes, the early versions misspelled several words. “Counterintelligence” among them. Took a human to catch the mistakes. Moral of the story… Even the machine needs a <span class="hl">human in command</span>!</p>
             <figure class="shot" style="max-width:640px">
               <a href="kc-01.webp" target="_blank" rel="noopener">
                 <img src="kc-01.webp" alt="A collector action-figure card: Ken Connell, Cyberspace Operator. Blister pack front with mission essentials, and mission dossier back with profile, QR code, and challenge coin" loading="lazy" width="1280" height="852" />
@@ -606,16 +618,16 @@
   <section id="inspiration">
     <p class="eyebrow">ls ~/inspiration/</p>
     <h2>Inspiration</h2>
-    <p class="body">The maker's creed, quotes I keep, the people who shaped how I think, and three videos worth your time.</p>
+    <p class="body">The maker’s creed, quotes I keep, the people who shaped how I think, and three videos worth your time.</p>
     <details class="more">
       <summary><span aria-hidden="true">$ </span>cat ~/inspiration/*</summary>
       <div class="more-body">
 
         <div class="insp-block" id="manifesto">
           <p class="eyebrow">cat /etc/creed</p>
-          <h3>The maker's creed</h3>
+          <h3>The maker’s creed</h3>
           <div class="maker">
-            <p><span class="hl">The world is our classroom, our laboratory.</span> We're the makers and the modders, the dreamers and the hackers: the "what if?" and the "I wonder why?" Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn, and <span class="hl">together, we make the future.</span> <span aria-hidden="true">🔭📡🔨</span></p>
+            <p><span class="hl">The world is our classroom, our laboratory.</span> We’re the makers and the modders, the dreamers and the hackers: the “what if?” and the “I wonder why?” Every problem is just a chance to improve our lives, our world, our community. So we build, we break, we fix, we learn, and <span class="hl">together, we make the future.</span> <span aria-hidden="true">🔭📡🔨</span></p>
 <cite><span aria-hidden="true">·&gt;</span> adapted from pi-top</cite>
           </div>
         </div>
@@ -624,11 +636,11 @@
           <p class="eyebrow">fortune</p>
           <h3>Quotes I keep</h3>
           <blockquote>
-            <p>"Progress brings with it the amelioration of the human condition."</p>
+            <p>“Progress brings with it the amelioration of the human condition.”</p>
             <cite><span aria-hidden="true">·&gt;</span> my motto, and the reason any of this is worth doing <span aria-hidden="true">🛠💡</span></cite>
           </blockquote>
           <blockquote>
-            <p>"Always work hard on something uncomfortably exciting."</p>
+            <p>“Always work hard on something uncomfortably exciting.”</p>
             <cite><span aria-hidden="true">·&gt;</span> Larry Page, co-founder of <a href="https://google.com/" target="_blank" rel="noopener">Google<span class="sr-only"> (opens in a new tab)</span></a> &amp; <a href="https://abc.xyz/" target="_blank" rel="noopener">Alphabet<span class="sr-only"> (opens in a new tab)</span></a></cite>
           </blockquote>
         </div>
@@ -646,7 +658,7 @@
               <span class="go">read <span aria-hidden="true">·&gt;</span></span>
             <span class="sr-only"> (opens in a new tab)</span></a>
             <a href="https://www.pi-top.com/blog/2018/11/06/defining-constructionist-learning" target="_blank" rel="noopener">
-              <span><span class="name">pi-top</span><span class="what">"Defining Constructionist Learning": learning by building</span></span>
+              <span><span class="name">pi-top</span><span class="what">“Defining Constructionist Learning”: learning by building</span></span>
               <span class="go">read <span aria-hidden="true">·&gt;</span></span>
             <span class="sr-only"> (opens in a new tab)</span></a>
           </div>
@@ -670,7 +682,7 @@
                 <span class="talk-t">The Electricity Metaphor</span>
                 <span class="talk-s">Jeff Bezos · founder of Amazon · plays on YouTube</span>
               <span class="sr-only"> (opens in a new tab)</span></a>
-              <p>Why the dot-com boom and bust looks less like a gold rush and more like the early electric industry, with most of the inventions still ahead. It's how I think about AI now: we're still in the early, electrifying days. The world-changing inventions come <span class="hl">after</span> the technology fades into the background. <span aria-hidden="true">⚡</span></p>
+              <p>Why the dot-com boom and bust looks less like a gold rush and more like the early electric industry, with most of the inventions still ahead. It’s how I think about AI now: we’re still in the early, electrifying days. The world-changing inventions come <span class="hl">after</span> the technology fades into the background. <span aria-hidden="true">⚡</span></p>
             </article>
             <article class="talk">
               <a href="https://www.youtube-nocookie.com/embed/jiDQDLnEXdA" target="_blank" rel="noopener">
@@ -678,7 +690,7 @@
                 <span class="talk-t">Why the best hire might not have the perfect resume</span>
                 <span class="talk-s">Regina Hartley · TED@UPS · plays on YouTube</span>
               <span class="sr-only"> (opens in a new tab)</span></a>
-              <p>This one hits close to home: why <span class="hl">passion and purpose</span> tend to beat pedigree. "Choose the underestimated contender, whose secret weapons are passion and purpose." Reminds me where I came from. <span aria-hidden="true">🪛</span></p>
+              <p>This one hits close to home: why <span class="hl">passion and purpose</span> tend to beat pedigree. “Choose the underestimated contender, whose secret weapons are passion and purpose.” Reminds me where I came from. <span aria-hidden="true">🪛</span></p>
             </article>
           </div>
         </div>
@@ -691,7 +703,7 @@
 
   <!-- ============ FOOTER / CONTACT ============ -->
   <footer id="contact">
-    <h2 class="cta"><span class="cta-q">Working on Zero&nbsp;Trust cybersecurity and Agentic&nbsp;AI?</span> <span class="cta-a">Let's talk!</span></h2>
+    <h2 class="cta"><span class="cta-q">Working on Zero&nbsp;Trust cybersecurity and Agentic&nbsp;AI?</span> <span class="cta-a">Let’s talk!</span></h2>
     <ul class="chips" aria-label="Contact">
       <li><a class="chip" href="https://www.linkedin.com/in/kendallconnell" target="_blank" rel="noopener">linkedin<span class="sr-only"> (opens in a new tab)</span></a></li>
       <li><a class="chip" href="https://github.com/KensDen" target="_blank" rel="noopener">github<span class="sr-only"> (opens in a new tab)</span></a></li>
@@ -699,7 +711,7 @@
       <li><a class="chip top" href="#top" aria-label="cd ~, back to top">cd ~ <span aria-hidden="true">↑</span></a></li>
     </ul>
     <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> · thanks for stopping by <span aria-hidden="true">👋</span></p>
-    <p class="updated">Views are my own and don't represent any employer.</p>
+    <p class="updated">Views are my own and don’t represent any employer.</p>
     <p class="updated">last updated: <span id="last-updated">2026-10-24</span></p>
     <p class="future-line">&gt; hello future<span class="u">_</span></p>
   </footer>
