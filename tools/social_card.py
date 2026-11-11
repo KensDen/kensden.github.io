@@ -23,6 +23,9 @@ MAX_BYTES = 300 * 1024
 # layout "cover": the image fills the card. "side": a portrait image stands at
 # full height on the right, over a blurred copy of itself (as on the Multiverse card).
 # "text_at": "top" sets the text in the sky instead, for a subject low in the frame.
+# "band": N, for a light background: the image is fitted, whole, into the white
+# space above a solid dark band N px tall that carries the text.
+# "font_size" and "text_width" override the title's size and the text block's width.
 CARDS = [
     {"out": "social-card-batman.jpg", "image": "batmobile.webp", "layout": "side",
      "title": "Batman Has No Superpowers. That’s the Whole Point."},
@@ -32,6 +35,11 @@ CARDS = [
      "position": "center 45%", "title": "Measuring Security"},
     {"out": "social-card-sanctuary.jpg", "image": "sanctuary.jpg", "layout": "cover",
      "position": "center 60%", "text_at": "top", "title": "Sanctuary Protocol"},
+    {"out": "social-card-multiverse-titled.jpg", "image": "social-card-multiverse.jpg", "layout": "cover",
+     "font_size": 60, "text_width": 900,
+     "title": "The Multiverse Is a System Architecture, Complete with a Control Plane"},
+    {"out": "social-card-10-cent-dreams-titled.jpg", "image": "social-card-10-cent-dreams.jpg", "layout": "cover",
+     "band": 200, "font_size": 54, "text_width": 1080, "title": "10-Cent Dreams of a Two-Sided Coin"},
 ]
 
 TEMPLATE = """<!doctype html><html><head><meta charset="utf-8"><style>
@@ -48,8 +56,11 @@ html,body{width:%(w)dpx;height:%(h)dpx;overflow:hidden;background:#0a0e12}
   linear-gradient(to right, rgba(10,14,18,.55) 0%%, rgba(10,14,18,0) 60%%)}
 .side-shade{position:absolute;inset:0;background:linear-gradient(to right, rgba(10,14,18,.92) 0%%, rgba(10,14,18,.86) 48%%, rgba(10,14,18,.2) 66%%, rgba(10,14,18,0) 74%%)}
 .top-shade{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(10,14,18,.82) 0%%, rgba(10,14,18,.5) 34%%, rgba(10,14,18,0) 58%%)}
+.fit{position:absolute;left:0;right:0;top:0;padding:14px 0;background:#fff center/contain no-repeat;background-origin:content-box}
+.band{position:absolute;left:0;right:0;bottom:0;background:rgba(10,14,18,.93);border-top:3px solid #3fb950}
 .text{position:absolute;left:64px;bottom:56px;width:%(tw)dpx}
 .text.top{bottom:auto;top:56px}
+.in-band{bottom:36px}.in-band .eyebrow{margin-bottom:14px}.in-band .by{margin-top:18px}
 .eyebrow{font:500 22px/1 "JetBrains Mono",monospace;color:#3fb950;margin-bottom:18px}
 .title{font:700 %(fs)dpx/1.06 "Space Grotesk",sans-serif;color:#e6edf3;letter-spacing:-.01em;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.55)}
 .by{font:500 30px/1 "JetBrains Mono",monospace;color:#39d3c5;margin-top:24px}
@@ -66,13 +77,22 @@ def build(card):
         art = '<div class="blur"></div><img class="side" src="%s" alt=""><div class="side-shade"></div>' % img
         tw, fs = 660, 64
     else:
-        shade = "top-shade" if card.get("text_at") == "top" else "shade"
-        art = '<div class="bg"></div><div class="%s"></div>' % shade
+        if card.get("band"):
+            art = ('<div class="fit" style="height:%dpx;background-image:url(\'%s\')"></div>'
+                   '<div class="band" style="height:%dpx"></div>' % (H - card["band"], img, card["band"]))
+        else:
+            shade = "top-shade" if card.get("text_at") == "top" else "shade"
+            art = '<div class="bg"></div><div class="%s"></div>' % shade
         tw, fs = 1000, 76
+    text_class = "text top" if card.get("text_at") == "top" else "text"
+    if card.get("band"):
+        text_class += " in-band"
+    tw = card.get("text_width", tw)
+    fs = card.get("font_size", fs)
     page = TEMPLATE % {"root": "file://" + ROOT, "w": W, "h": H, "img": img,
                        "pos": card.get("position", "center"), "art": art,
                        "tw": tw, "fs": fs,
-                       "text_class": "text top" if card.get("text_at") == "top" else "text", "title": html.escape(card["title"])}
+                       "text_class": text_class, "title": html.escape(card["title"])}
     out = os.path.join(ROOT, card["out"])
     with tempfile.TemporaryDirectory() as tmp:
         src = os.path.join(tmp, "card.html")
