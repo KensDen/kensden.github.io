@@ -40,6 +40,8 @@ CARDS = [
      "title": "The Multiverse Is a System Architecture, Complete with a Control Plane"},
     {"out": "social-card-10-cent-dreams-titled.jpg", "image": "social-card-10-cent-dreams.jpg", "layout": "cover",
      "band": 200, "font_size": 54, "text_width": 1080, "title": "10-Cent Dreams of a Two-Sided Coin"},
+    {"out": "social-card-four-letters.jpg", "image": "army-early.webp", "layout": "cover",
+     "title": "Four Letters"},
 ]
 
 TEMPLATE = """<!doctype html><html><head><meta charset="utf-8"><style>
