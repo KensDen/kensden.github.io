@@ -107,6 +107,22 @@
   .nowrap{white-space:nowrap}
   .tagline{color:var(--muted);font-size:15.5px;margin:16px 0 0;max-width:62ch}
   .tagline .hl{color:var(--ink)}
+  /* "$ now" panel: desktop only, in the space right of the hero text; below 960px the hero is unchanged */
+  .hero-now{display:none}
+  @media (min-width:960px){
+    .term-body{display:grid;grid-template-columns:max-content minmax(0,340px);justify-content:space-between;column-gap:32px;align-items:center}
+    .term-body > .jump{grid-column:1 / -1}
+    .hero-now{display:block;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px 16px 8px;
+      font-family:"JetBrains Mono",monospace}
+    .hero-now-p{margin:0 0 4px;font-size:13.5px;color:var(--ink)}
+    .hero-now-p .g{color:var(--green)}
+    .hero-now ul{margin:0;padding:0;list-style:none}
+    .hero-now a{display:block;min-height:44px;padding:4px 0;text-decoration:none}
+    .hn-t{display:block;font-size:13.5px;line-height:1.45;color:var(--cyan);transition:color .16s;padding-left:3ch;text-indent:-3ch}
+    .hn-t::before{content:"·> ";content:"·> " / "";color:var(--green)}
+    .hn-d{display:block;padding-left:3ch;font-size:12px;line-height:1.5;color:var(--muted);text-wrap:balance}
+    .hero-now a:hover .hn-t{color:var(--green)}
+  }
 
   /* chips: contact links, project buttons, summaries */
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
@@ -350,6 +366,7 @@
         <span class="term-title">kensden@github | &gt; hello future_</span>
       </div>
       <div class="term-body">
+        <div>
         <p class="prompt"><span class="usr">root@KensDen</span>:<span class="path">~</span># whoami</p>
         <h1>Ken Connell</h1>
         <p class="role">Securing Agentic AI with Zero&nbsp;Trust&nbsp;· Army Major (Ret.)&nbsp;· maker and <span class="nowrap">dad<span class="cursor"></span></span></p>
@@ -359,6 +376,15 @@
           <li><a class="chip" href="https://github.com/KensDen" target="_blank" rel="noopener">github<span class="sr-only"> (opens in a new tab)</span></a></li>
           <li><a class="chip" href="https://infosec.exchange/@KenDC" target="_blank" rel="me noopener">mastodon<span class="sr-only"> (opens in a new tab)</span></a></li>
         </ul>
+        </div>
+        <aside class="hero-now" aria-label="Now">
+          <p class="hero-now-p"><span class="g" aria-hidden="true">$</span> now</p>
+          <ul>
+            <li><a href="https://kensden.github.io/lensatic/"><span class="hn-t">Lensatic<span class="sr-only">:</span></span><span class="hn-d">zero trust compass for iPhone, coming soon</span></a></li>
+            <li><a href="https://kensden.github.io/dark-constellation/"><span class="hn-t">Dark Constellation<span class="sr-only">:</span></span><span class="hn-d">going 3D</span></a></li>
+            <li><a href="four-letters.html"><span class="hn-t">Latest dispatch<span class="sr-only">:</span></span><span class="hn-d">Four Letters</span></a></li>
+          </ul>
+        </aside>
         <nav class="jump" aria-label="On this page">
           <span class="ls" aria-hidden="true">$ ls</span>
           <a href="#projects">cd projects/</a>
@@ -713,7 +739,7 @@
     </ul>
     <p class="sign"><span class="green">root@KensDen</span>:~# <span style="color:var(--ink)">logout</span> · thanks for stopping by <span aria-hidden="true">👋</span></p>
     <p class="updated">Views are my own and don’t represent any employer.</p>
-    <p class="updated">last updated: <span id="last-updated">2026-11-11</span></p>
+    <p class="updated">last updated: <span id="last-updated">2026-11-14</span></p>
     <p class="future-line">&gt; hello future<span class="u">_</span></p>
   </footer>
 
