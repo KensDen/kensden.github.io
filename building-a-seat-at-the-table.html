@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://i.ytimg.com; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'" />
 <title>Building a Seat at the Table · Ken Connell</title>
 <meta name="description" content="From policy and paperwork to the SOC floor to securing Agentic AI. On the assessor's gap, imposter syndrome as a measurement error, and building credibility with your hands. By Ken Connell." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -91,6 +91,25 @@
     background:var(--panel)}
   figure.shot figcaption .g{color:var(--green)}
 
+  /* video cards: the home page's talks pattern (index.html #talks) */
+  figure.vids{margin:34px auto;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel-2)}
+  figure.vids figcaption{font-family:"JetBrains Mono",monospace;font-size:12px;
+    line-height:1.55;color:var(--dim);padding:10px 14px;border-top:1px solid var(--line);
+    background:var(--panel)}
+  figure.vids figcaption .g{color:var(--green)}
+  .talks{display:grid;gap:14px;padding:14px}
+  @media (min-width:720px){.talks{grid-template-columns:repeat(2,1fr)}}
+  .talk{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .talk > a{display:block;text-decoration:none;color:inherit;border-bottom:0}
+  .talk-thumb{position:relative;display:block;aspect-ratio:16/9;background:#000 center/cover no-repeat;overflow:hidden}
+  .talk-thumb::after{content:"▶ play";content:"▶ play" / "";position:absolute;left:10px;bottom:10px;padding:3px 9px;border-radius:6px;
+    background:rgba(10,14,18,.82);color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:12px}
+  .talk-t{display:block;padding:12px 14px 0;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:15px;color:var(--ink)}
+  .talk-s{display:block;padding:2px 14px 12px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+  .talk > a:hover .talk-t{color:var(--green)}
+  .talk > a:focus-visible{outline:2px solid var(--green);outline-offset:-3px}
+  @supports selector(:has(a)){.talk > a:focus-visible{outline:none}.talk:has(> a:focus-visible){outline:2px solid var(--green);outline-offset:3px}}
+
   .eof{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--dim);margin:44px 0 0}
   .eof .g{color:var(--green)}
   .cursor{display:inline-block;width:9px;height:15px;background:var(--green);
@@ -134,6 +153,28 @@
     <h2 class="sub">The notebook</h2>
 
     <p>The room was full of people getting a company ready for a government compliance audit, and I was one of the assessors. A technical lead started walking us through telemetry across their cloud operations, and I lost the thread almost immediately. It sounded like rocket science. I had the compliance framework cold; the technology it was supposed to govern might as well have been narrated in another language.</p>
+
+    <p>If you have never sat through one, the industry has been laughing at itself about this for years. This is roughly what it sounded like to me:</p>
+
+    <figure class="vids">
+      <div class="talks">
+        <article class="talk">
+          <a href="https://www.youtube-nocookie.com/embed/RXJKdh1KZ0w" target="_blank" rel="noopener">
+            <span class="talk-thumb" style="background-image:url(https://i.ytimg.com/vi/RXJKdh1KZ0w/hqdefault.jpg)"></span>
+            <span class="talk-t">Rockwell Retro Encabulator</span>
+            <span class="talk-s">Rockwell Automation · plays on YouTube</span>
+          <span class="sr-only"> (opens in a new tab)</span></a>
+        </article>
+        <article class="talk">
+          <a href="https://www.youtube-nocookie.com/embed/5nKk_-Lvhzo" target="_blank" rel="noopener">
+            <span class="talk-thumb" style="background-image:url(https://i.ytimg.com/vi/5nKk_-Lvhzo/hqdefault.jpg)"></span>
+            <span class="talk-t">SANS ICS HyperEncabulator</span>
+            <span class="talk-s">SANS ICS Security · plays on YouTube</span>
+          <span class="sr-only"> (opens in a new tab)</span></a>
+        </article>
+      </div>
+      <figcaption><span class="g">&gt;</span> translation not included_</figcaption>
+    </figure>
 
     <p>So I did the only thing available to me. I took detailed notes. Not to fake comprehension in the meeting, but so I would have a syllabus for later. I did not know it at the time, but that notebook was the whole career plan.</p>
 
